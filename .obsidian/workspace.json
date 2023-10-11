@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "1962980891eadff3",
+        "id": "aa7ba2252f157c99",
         "type": "tabs",
         "children": [
           {
-            "id": "161edee0ba1d6817",
+            "id": "d67b0eca781c9634",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "스크럼/스크럼.md",
+                "file": "2023-10-11(수).md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "스크럼/스크럼.md",
+                "file": "2023-10-11(수).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "스크럼/스크럼.md",
+                "file": "2023-10-11(수).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "스크럼/스크럼.md"
+                "file": "2023-10-11(수).md"
               }
             }
           }
@@ -146,10 +146,11 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "161edee0ba1d6817",
+  "active": "d67b0eca781c9634",
   "lastOpenFiles": [
-    "스크럼/2023-10-11 (수).md",
+    "2023-10-11(수).md",
     "스크럼/스크럼.md",
+    "스크럼/2023-10-11 (수).md",
     "API 진행상황",
     "회의안",
     "FE",
