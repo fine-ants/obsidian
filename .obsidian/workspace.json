@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "6c1cbebb6809567d",
+        "id": "3f31c6b2c1deb1fa",
         "type": "tabs",
         "children": [
           {
-            "id": "841fd0c011c52392",
+            "id": "bc3df8bda7c9f30b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "스크럼/스크럼.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "스크럼/스크럼.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "스크럼/스크럼.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "스크럼/스크럼.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -146,7 +138,7 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "841fd0c011c52392",
+  "active": "bc3df8bda7c9f30b",
   "lastOpenFiles": [
     "스크럼/스크럼.md",
     "스크럼/2023-10-11 (수).md",
