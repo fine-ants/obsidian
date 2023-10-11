@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "요구사항분석.md",
+                "file": "스크럼/스크럼.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "요구사항분석.md",
+                "file": "스크럼/스크럼.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "요구사항분석.md",
+                "file": "스크럼/스크럼.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "요구사항분석.md"
+                "file": "스크럼/스크럼.md"
               }
             }
           }
@@ -157,8 +157,8 @@
   },
   "active": "fb093d9654bc8b8f",
   "lastOpenFiles": [
-    "스크럼/스크럼.md",
     "스크럼/2023-10-11 (수).md",
+    "스크럼/스크럼.md",
     "요구사항분석.md",
     "무제 폴더",
     "2023-10-11(수).md",
