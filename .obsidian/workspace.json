@@ -1,0 +1,163 @@
+{
+  "main": {
+    "id": "8021668e348e17f4",
+    "type": "split",
+    "children": [
+      {
+        "id": "1962980891eadff3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "161edee0ba1d6817",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "스크럼/스크럼.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a56c7a089cd995c2",
+    "type": "split",
+    "children": [
+      {
+        "id": "6493bbf16b14bb7b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4bcdf874c7d3e968",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e7fb3d8d1c2548e8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ce3e6f663b68dce0",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1dbe5f956726bcc5",
+    "type": "split",
+    "children": [
+      {
+        "id": "407d9fb8ed413c8c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "873e67c86f9703f3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "스크럼/스크럼.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c94b31b718c8cbfa",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "스크럼/스크럼.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b1916c0bbc1058f1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "134b112548ecbf37",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "스크럼/스크럼.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:퀵 스위처 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 데일리 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false
+    }
+  },
+  "active": "161edee0ba1d6817",
+  "lastOpenFiles": [
+    "스크럼/2023-10-11 (수).md",
+    "스크럼/스크럼.md",
+    "API 진행상황",
+    "회의안",
+    "FE",
+    "BE",
+    "design/Color.md",
+    "스크럼",
+    "무제 파일.md",
+    "README.md",
+    "design"
+  ]
+}
