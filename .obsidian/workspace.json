@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "스크럼/2023-10-12 (목).md",
+                "file": "FE/Tech-Stack.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "스크럼/2023-10-12 (목).md",
+                "file": "FE/Tech-Stack.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "스크럼/2023-10-12 (목).md",
+                "file": "FE/Tech-Stack.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "스크럼/2023-10-12 (목).md"
+                "file": "FE/Tech-Stack.md"
               }
             }
           },
@@ -158,8 +158,8 @@
   },
   "active": "bc3df8bda7c9f30b",
   "lastOpenFiles": [
-    "스크럼/2023-10-11 (수).md",
     "스크럼/2023-10-12 (목).md",
+    "스크럼/2023-10-11 (수).md",
     "스크럼/스크럼.md",
     "README.md",
     "요구사항분석.md",
