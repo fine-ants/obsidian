@@ -8,7 +8,7 @@
 - ESLint, Prettier
 - Jest, testing-library/react
 - MSW
-- AWS Amplify? HTTPS
+- AWS Amplify
 
 Coding Convention
 - 
