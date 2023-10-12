@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "요구사항분석.md",
+                "file": "스크럼/2023-10-11 (수).md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "요구사항분석.md",
+                "file": "스크럼/2023-10-11 (수).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "요구사항분석.md",
+                "file": "스크럼/2023-10-11 (수).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "요구사항분석.md"
+                "file": "스크럼/2023-10-11 (수).md"
               }
             }
           },
@@ -156,12 +156,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "7d449a01786e3462",
+  "active": "bc3df8bda7c9f30b",
   "lastOpenFiles": [
-    "README.md",
     "스크럼/스크럼.md",
-    "스크럼/2023-10-11 (수).md",
     "요구사항분석.md",
+    "README.md",
+    "스크럼/2023-10-11 (수).md",
     "무제 파일.canvas",
     "무제 폴더",
     "2023-10-11(수).md",
