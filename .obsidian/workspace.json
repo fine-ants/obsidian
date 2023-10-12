@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "3f31c6b2c1deb1fa",
+        "id": "c11d066914a194e6",
         "type": "tabs",
         "children": [
           {
-            "id": "bc3df8bda7c9f30b",
+            "id": "d111b89c81ec26ca",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -156,12 +156,13 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "bc3df8bda7c9f30b",
+  "active": "d111b89c81ec26ca",
   "lastOpenFiles": [
     "스크럼/2023-10-12 (목).md",
-    "스크럼/2023-10-11 (수).md",
     "스크럼/스크럼.md",
+    "().md",
     "요구사항분석.md",
+    "스크럼/2023-10-11 (수).md",
     "README.md",
     "무제 파일.canvas",
     "무제 폴더",
