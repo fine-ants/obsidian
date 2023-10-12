@@ -1,5 +1,4 @@
-# FE Tech Stack
-
+## FE Tech Stack
 - Vite
 - React, React Router
 - TypeScript
@@ -9,46 +8,41 @@
 - Jest, testing-library/react
 - MSW
 - AWS Amplify
+## Code Convention
+- Props
+```
+type Props = {}
 
-Code Convention
-- 
+export default function App({}: Props) {}
+```
+- Styled Components
+```
+export default function App({}: Props) {}
 
-Tech Plan
-- Auth
-	- Kakao
-	- Naver
-		- https://developers.naver.com/docs/login/verify/verify.md
-	- Google
-	- Email/Password
-- 알림 (상한/하한)
-- Realtime price updates
+const StyledApp = styled.div``;
+```
 
-Features
-- 관심목록
-- 내 종목
-	- 추가
-		- Ticker symbol
-		- Purchase price
-		- Purchase date
-		- Number of stocks
-	- Dashboard
-- Recent News
-- View Related
-	- Gain/returns, etc. by category
+```
+${({ theme: { opacity } }) => opacity.hover};
+```
+- Function Naming
+```
+ON TARGET EVENT
 
-
-Benchmark
-- M1finance
-- Yahoo Finance
-- "Rich" App
-	- https://apps.apple.com/us/app/the-rich-investment-partner/id1462844342
-
-
-
-
-
-
-
-
-
-
+Ex: onDropdownClick
+```
+- Function Declarations
+	- Component는 `function`
+	- 내부 함수들은 const
+```
+export default function App({}: Props) {
+	const hamsu = () => {};
+	
+	return ();
+}
+```
+- Props
+	- 1개일 때
+		- Ex: `onDropdownClick={onDropdownClick}`
+	- 2개 이상일 때
+		- Ex: `{...{onDropdownClick, dropdownList}}`
