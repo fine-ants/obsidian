@@ -10,7 +10,7 @@
 - MSW
 - AWS Amplify
 
-Coding Convention
+Code Convention
 - 
 
 Tech Plan
