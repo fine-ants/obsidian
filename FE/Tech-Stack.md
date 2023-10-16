@@ -1,6 +1,7 @@
 ## FE Tech Stack
 - Vite
 - React, React Router
+- React Query
 - TypeScript
 - MUI, Styled Components
 - Axios
