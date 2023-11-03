@@ -1,0 +1,18 @@
+
+- Auth
+- 상태
+- API 분리
+- WebSocket ft. STOMP
+	- STOMP protocol alternative subprotocol
+	- Custom subprotocol?
+- Directory 구조
+	- Scaling에 대한 고민
+- Learned
+	- MUI component customization
+- Troubleshooting
+	- 카카오 로그인 popup 꺼지는 현상
+		- 잘못된 환경변수 설정
+	- Stomp client disconnect 되는 현상
+		- Stomp client initialization과 cleanup(disconnect)을 분리했기 때문
+			- useStompWithRQ에서 setQueryData를 하여 portfolioPage가 재랜더링되면 useStompWithRq의 useEffect cleanup이 진행되어 stomp 연결이 끊어진다.
+- FE Archite
