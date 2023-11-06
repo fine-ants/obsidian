@@ -37,7 +37,7 @@
 
 ### 2. staleTime과 gcTime의 설정을 통한 캐시 관리 전략
 
-**staleTime과 gcTime 설정 이전에 TanStack Query는 실제로 inactive 쿼리를 재활용하는가?
+**staleTime과 gcTime 설정 이전에 TanStack Query는 실제로 inactive 되어있던 쿼리의 데이터를 fetch해오는가?
 
 
 
