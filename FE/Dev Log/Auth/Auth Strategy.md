@@ -57,7 +57,12 @@
 ##### 고민
 - Google은 보통의 경우에 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
 - 하지만 이는 frontend 코드에 Client ID를 포함한다.
-- Client ID를 frontend 코드에 포함하고 있는데 Google은 이를 어떻게 보완하는가?
+- Client ID를 frontend 코드에 포함해야 하는데 이를 어떻게 보완할 수 있는가?
+	- HTTPS
+	- 정확한 Redirect URI
+		- 해커가 Client ID를 가지고 우리의 애플리케이션을 모방하기 어려워진다.
+	- CORS 적용
+		- 
 ### Kakao
 - Kakao는 OpenID Connect을 지원한다.
 - Reference
