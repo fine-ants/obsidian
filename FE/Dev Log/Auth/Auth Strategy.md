@@ -58,6 +58,8 @@
 		- *OIDC 맥락에서 Access Token이란 추가적인 사용자 정보를 요청할 수 있다는 것이다.*
 			- *cf. 기존 OAuth Authorization에서 Access Token이란 사용자를 대신해서 액션을 실행할 수 있도록 OAuth Client에 인가를 하는 것이다.*
 	- OAuth Client는 ID Token을 validate한 후 사용자의 로그인을 승인한다.
+- Reference
+	- [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth)
 ### Illustration
 ![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
 - Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
@@ -77,7 +79,11 @@
 #### 참고
 - Google은 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
 - Frontend 코드에 Client ID를 포함한다.
-	- 하지만, backend server에 Client Secret이 있다. 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 인증이 이루어진다.
+	- Client ID는 OAuth Client의 공개 식별자로서 OAuth Provider가 OAuth Client을 식별할 수 있도록 한다.
+	- Client ID가 frontend code에 노출이 되지만 PKCE를 통해 보완한다.
+- Backend 코드에 Client Secret이 숨겨져 있다.
+	- Client Secret은 OAuth Client의 "인증서"로서 OAuth Provider가 OAuthClient를 인증할 수 있도록 한다.
+	- 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 OAuth 인증이 이루어진다.
 ### Kakao
 - Kakao는 OpenID Connect와 PKCE를 지원한다.
 - Reference
