@@ -14,25 +14,25 @@
 ### SPA와 OAuth 2.0 Authorization Code Grant
 - Client(SPA)에서 시작하는 기본 OAuth 2.0 Authorization Code Grant를 적용하여 Access Token과 Refresh Token을 발급받아서 서버에서 Access Token을 이용하여 사용자 정보를 가져오고 있다.
 ### Illustration
-- *아래와 그림과 같은 흐름이지만 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받고 있다.*
+- *아래 그림과 같은 흐름이지만 authorization으로서 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받고 있다.*
 ![OAuth ](https://images.ctfassets.net/cdy7uua7fh8z/2nbNztohyR7uMcZmnUt0VU/2c017d2a2a2cdd80f097554d33ff72dd/auth-sequence-auth-code.png)
 - Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow
 ### 문제점
-- Client ID, Client Secret, Authorization Code(인가코드)가 노출된다.
-	- 즉, 해커가 해당 정보를 탈취하여 해당 OAuth Client를 가장할 수 있다.
-	- Ex: 탈취한 인가코드를 활용하여 Access Token을 발급 받아 OAuth Provider의 Resource Server에 있는 사용자의 정보를 접근할 수 있다.
+- Client ID, Client Secret, Authorization Code이 노출된다.
+	- 즉, 해커가 해당 정보를 탈취하여 해당 OAuth Client을 가장할 수 있다.
+	- Ex: 탈취한 Authorization Code을 활용하여 Access Token을 발급 받아 OAuth Provider의 Resource Server에 있는 사용자의 정보를 접근할 수 있다.
 - Reference
 	- [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce)
 
 ## 대안 1: OAuth 2.0 Authorization Code Grant with PKCE
-- 이를 보완하기 위해 OAuth 2.0은 Authorization Code Flow에 PKCE를 적용한 흐름을 권장한다.
+- 이를 보완하기 위해 OAuth 2.0은 Authorization Code Grant에 PKCE를 적용한 흐름을 권장한다.
 - Authorization Code Grant을 사용하는 OAuth Client는 PKCE를 사용해야한다.
 - 기존 Authorization Code Flow와 동일하지만 아래와 같은 차이가 있다:
 	- OAuth Client는 secret (Code Verifier)와 해당 secret의 변형된 값 (Code Challenge)를 생성한다.
-	- OAuth Client는 OAuth Provider로부터 인가코드를 받기 위한 요청에 Code Challenge을 같이 보낸다.
-	- OAuth Client가 성공적으로 인가코드를 받으면, 인가코드와 Code Verifier를 OAuth Provider로 보낸다.
+	- OAuth Client는 OAuth Provider로부터 Authorization Code을 받기 위한 요청에 Code Challenge을 같이 보낸다.
+	- OAuth Client가 성공적으로 Authorization Code을 받으면, Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
 	- OAuth Provider는 Code Verifier를 이전 단계에서 받은 Code Challenge을 이용하여 verify한다.
-		- **해당 요청이 인가코드 요청을 한 클라이언트와 동일한지 확인.**
+		- **해당 요청이 Authorization Code을 요청한 클라이언트와 동일한지 확인.**
 	- Code Verifier가 성공적으로 verify가 되었다면 OAuth Provider는 ID token과 Access Token을 반환한다.
 - 개선 사항
 	- 해커가 인가코드를 탈취했더라도 Code Verifier 없이는 Access Token을 발급 받을 수 없다.
@@ -41,20 +41,20 @@
 	- [RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
 	- [draft-ietf-oauth-security-topics-11](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-11#section-2.1.1)
 ### Illustration
-- *아래와 그림과 같은 흐름이지만 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받는다.*
+- *아래 그림과 같은 흐름이지만 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받는다.*
 ![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
 - Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
 ### 문제 및 참고점
-- FineAnts는 OAuth Provider로 사용자를 대신하여 어떤 요청을 하지 않기 때문에, **OAuth을 인가 목적이 아닌 인증 목적으로 사용한다**.
-- OAuth 2.0의 authentication layer인 **OpenID Connect를 사용하는 것이 더 적절하다**.
+- FineAnts는 OAuth Provider로 사용자를 대신하여 어떤 요청을 하지 않기 때문에, **OAuth을 Authorization(인가) 목적이 아닌 Authentication(인증) 목적으로 사용한다**.
+- OAuth 2.0의 identity layer인 **OpenID Connect을 사용하는 것이 더 적절하다**.
 - *"**Authorization Code Grant**" 및 "**PKCE**"는 authorization, authentication 두 상황 모두에 보안을 강화하기 위해 적용 가능한 절차이다.*
 
 ## 대안 2: OpenID Connect Authorization Code Grant with PKCE
-- OpenID Connect는 OAuth 2.0의 identity layer로서 OAuth Client가 사용자를 인증하고 기본 정보를 받을 수 있는 프로토콜이다.
+- OpenID Connect은 OAuth 2.0의 identity layer로서 OAuth Client가 사용자를 인증하고 기본 정보를 받을 수 있는 프로토콜이다.
 - 기본적인 흐름은 OAuth 2.0 Authorization Code Grant with PKCE와 비슷하지만 아래와 같은 차이가 있다.
-	- OAuth Provider는 OAuth Client로부터 받은 인가코드가 유효하다면 ID Token과 Access Token을 반환한다.
+	- OAuth Provider는 OAuth Client로부터 받은 Authorization Cod이 유효하다면 ID Token과 Access Token을 반환한다.
 		- 해당 ID Token은 OAuth 등록시 명시한 scope 및 field(claim)를 담고 있다.
-			- 기본 사용자 정보 (Ex: name, email, picture)를 명시할 수 있다.
+			- 기본 사용자 정보(Ex: name, email, picture)를 명시할 수 있다.
 		- *OIDC 맥락에서 Access Token이란 추가적인 사용자 정보를 요청할 수 있다는 것이다.*
 			- *cf. 기존 OAuth Authorization에서 Access Token이란 사용자를 대신해서 액션을 실행할 수 있도록 OAuth Client에 인가를 하는 것이다.*
 	- OAuth Client는 ID Token을 validate한 후 사용자의 로그인을 승인한다.
@@ -74,12 +74,12 @@
 			- FineAnts에는 불필요한 부분이다.
 	- Reference
 		- [Overview  |  Authentication  |  Google for Developers](https://developers.google.com/identity/gsi/web/guides/overview#compare_to_oauth_and_openid_connect)
-#### 고민
+#### 참고
 - Google은 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
-- Frontend 코드에 Client ID를 포함한다.
+- Frontend 코드에 Client ID를 포함한다.
 	- 하지만, backend server에 Client Secret이 있다. 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 인증이 이루어진다.
 ### Kakao
-- Kakao는 OpenID Connect을 지원한다.
+- Kakao는 OpenID Connect와 PKCE를 지원한다.
 - Reference
 	- [[공지] 카카오 로그인 OpenID Connect 지원 / [Notice] Support of OpenID Connect - Notice / 공지 - 카카오 데브톡](https://devtalk.kakao.com/t/openid-connect-notice-support-of-openid-connect/121888)
 ### Naver
