@@ -54,7 +54,7 @@
 ##### 고민
 - Google은 보통의 경우에 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
 - 하지만 이는 frontend 코드에 Client ID를 포함한다.
-
+- Client ID를 frontend 코드에 포함하고 있는데 Google은 
 
 
 
