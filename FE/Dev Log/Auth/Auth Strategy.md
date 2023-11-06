@@ -13,6 +13,10 @@
 ## 초기 구현 방식
 ### SPA와 OAuth 2.0 Authorization Code Grant
 - Client(SPA)에서 시작하는 기본 OAuth 2.0 Authorization Code Grant를 적용하여 Access Token과 Refresh Token을 발급받아서 서버에서 Access Token을 이용하여 사용자 정보를 가져오고 있다.
+### Illustration
+- 아래와 그림과 같은 흐름이지만 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받고 있다.
+![OAuth ](https://images.ctfassets.net/cdy7uua7fh8z/2nbNztohyR7uMcZmnUt0VU/2c017d2a2a2cdd80f097554d33ff72dd/auth-sequence-auth-code.png)
+- Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow
 ### 문제점
 - Client ID, Client Secret, Authorization Code(인가코드)가 노출된다.
 	- 즉, 해커가 해당 정보를 탈취하여 해당 OAuth Client를 가장할 수 있다.
@@ -36,6 +40,9 @@
 - Reference
 	- [RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
 	- [draft-ietf-oauth-security-topics-11](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-11#section-2.1.1)
+### Illustration
+![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
+- Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
 ### 문제 및 참고점
 - FineAnts는 OAuth Provider로 사용자를 대신하여 어떤 요청을 하지 않기 때문에, **OAuth을 인가 목적이 아닌 인증 목적으로 사용한다**.
 - OAuth 2.0의 authentication layer인 **OpenID Connect를 사용하는 것이 더 적절하다**.
@@ -50,6 +57,10 @@
 		- *OIDC 맥락에서 Access Token이란 추가적인 사용자 정보를 요청할 수 있다는 것이다.*
 			- *cf. 기존 OAuth Authorization에서 Access Token이란 사용자를 대신해서 액션을 실행할 수 있도록 OAuth Client에 인가를 하는 것이다.*
 	- OAuth Client는 ID Token을 성공적으로 validate하면, 사용자의 로그인을 승인한다.
+### Illustration
+![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
+- Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+
 
 ## FineAnts가 지원하는 OAuth Login
 ### Google
@@ -63,11 +74,10 @@
 			- FineAnts에는 불필요한 부분이다.
 	- Reference
 		- [Overview  |  Authentication  |  Google for Developers](https://developers.google.com/identity/gsi/web/guides/overview#compare_to_oauth_and_openid_connect)
-##### 고민
+#### 고민
 - Google은 보통의 경우에 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
-- Frontend 소스코드에 Client ID가 포함되
-- 하지만 이는 frontend 코드에 Client ID를 포함한다.
-- Client ID를 frontend 코드에 포함해야 하는데 이를 어떻게 보완할 수 있는가?
+- Frontend 코드에 Client ID를 포함한다.
+	- 하지만, backend server에 Client Secret이 있다. 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 인증이 이루어진다.
 ### Kakao
 - Kakao는 OpenID Connect을 지원한다.
 - Reference
