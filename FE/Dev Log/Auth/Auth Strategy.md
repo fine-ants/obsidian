@@ -109,4 +109,5 @@
 - 사용자는 OAuth 로그인을 진행한다.
 - 성공하면 OAuth Provider는 Backend Redirect URI로 Authorization Code을 담아서 보낸다.
 - Backend는 받은 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
-- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 
+- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
+- Backend는 받은 ID Token을 verify한후 
