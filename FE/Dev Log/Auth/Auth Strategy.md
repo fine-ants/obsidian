@@ -40,12 +40,14 @@
 - OAuth 2.0의 authentication layer인 **OpenID Connect를 사용하는 것이 더 적절하다**.
 - *"Authorization Code Grant"는 authorization, authentication 두 상황에 보안을 강화하기 위해 적용 가능한 흐름이다.*
 
-## 대안 2: OpenID Connect
+## 대안 2: OpenID Connect Authorization Code Grant with PKCE
 - OpenID Connect는 OAuth 2.0의 identity layer로서 OAuth Client가 사용자를 인증하고 기본 정보를 받을 수 있는 프로토콜이다.
 - 기본적인 흐름은 기본 OAuth 2.0 Authorization Code Flow와 비슷하지만 아래와 같은 차이가 있다.
 	- OAuth Provider는 OAuth Client로부터 받은 인가코드가 유효하다면 ID Token과 Access Token을 반환한다.
 		- 해당 ID Token은 OAuth 등록시 명시한 scope 및 field(claim)를 담고 있다.
-		- 기본 사용자 정보 (Ex: name, email, picture)를 명시할 수 있다.
+			- 기본 사용자 정보 (Ex: name, email, picture)를 명시할 수 있다.
+		- *OIDC 맥락에서 Access Token이란 추가적인 사용자 정보를 요청할 수 있다는 것이다.*
+			- cf. 기존 OAuth의 Authorization에서 Access Token이란 사용자를 대신해서 액션을 실행할 수 있도록 OAuth Client에 인가를 하는 것이다.
 	- OAuth Client는 ID Token을 성공적으로 validate하면, 사용자의 로그인을 승인한다.
 
 ## FineAnts가 지원하는 OAuth Login
