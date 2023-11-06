@@ -52,6 +52,14 @@
 이후 동일한 '삼성전자'를 재입력하면, 이전 쿼리들이 아직 `gcTime` (가비지 컬렉션 타임) 기간 내에 있다면, TanStack Query 라이브러리는 이전에 캐싱된 데이터를 재활용하고, 해당 쿼리들은 다시 `active` 상태가 된다. 만약 쿼리 데이터가 `stale` 상태인 경우, TanStack Query는 백그라운드에서 새로운 데이터를 가져오기 위한 네트워크 요청을 자동으로 시작할 수 있다.
 이러한 행위는 애플리케이션의 데이터 신선도 요구사항과 사용자 상호작용에 따라 최적화되며, `staleTime`과 `gcTime` 설정은 사용자가 같은 데이터를 다시 요청할 때 네트워크 요청 없이 캐시된 데이터를 즉시 사용할 것인지, 아니면 새로운 데이터를 가져올 것인지를 결정하는 중요한 요소가 된다. 
 
+<hr>
+- A second instance of `useQuery({ queryKey: ['todos'], queryFn: fetchTodos })` mounts elsewhere.
+    - Since the cache already has data for the `['todos']` key from the first query, that data is immediately returned from the cache.
+    - The new instance triggers a new network request using its query function.
+        - Note that regardless of whether both `fetchTodos` query functions are identical or not, both queries' [`status`](https://tanstack.com/query/latest/docs/react/reference/useQuery) are updated (including `isFetching`, `isPending`, and other related values) because they have the same query key.
+    - When the request completes successfully, the cache's data under the `['todos']` key is updated with the new data, and both instances are updated with the new data.
+<hr>
+
 출처: https://tanstack.com/query/v4/docs/react/guides/caching#basic-example
 ### search바에서의 staleTime과 gcTime에 대한 고민
 
