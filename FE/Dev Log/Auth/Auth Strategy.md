@@ -8,8 +8,8 @@
 - [[#대안 1 OAuth 2.0 Authorization Code Grant with PKCE]]
 	- [[#문제 및 참고점]]
 - [[#대안 2 OpenID Connect Authorization Code Grant with PKCE]]
-- [[대]]]
 - [[#FineAnts가 지원하는 OAuth Login]]
+- [[#대안 3 Client ID 숨기기]]
 
 ## 초기 구현 방식
 ### SPA와 OAuth 2.0 Authorization Code Grant
@@ -26,8 +26,7 @@
 	- [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce)
 
 ## 대안 1: OAuth 2.0 Authorization Code Grant with PKCE
-- 이를 보완하기 위해 OAuth 2.0은 Authorization Code Grant에 PKCE를 적용한 흐름을 권장한다.
-- Authorization Code Grant을 사용하는 OAuth Client는 PKCE를 사용해야한다.
+- Authorization Code 탈취에 대한 문제를 보완하기 위해 OAuth 2.0은 Authorization Code Grant에 PKCE를 적용한 흐름을 권장 및 강조한다.
 - 기존 Authorization Code Flow와 동일하지만 아래와 같은 차이가 있다:
 	- OAuth Client는 secret (Code Verifier)와 해당 secret의 변형된 값 (Code Challenge)를 생성한다.
 	- OAuth Client는 OAuth Provider로부터 Authorization Code을 받기 위한 요청에 Code Challenge을 같이 보낸다.
