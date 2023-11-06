@@ -37,6 +37,7 @@
 - FineAnts는 OAuth Provider로 사용자를 대신하여 어떤 요청을 하지 않기 때문에, **OAuth을 인가 목적이 아닌 인증 목적으로 사용한다**.
 - OAuth 2.0의 authentication layer인 **OpenID Connect를 사용하는 것이 더 적절하다**.
 
+### OpenID Connect
 
 ### 지원하는 OAuth Provider
 #### Google
@@ -50,12 +51,17 @@
 			- 이는 code 또는 Access Token만을 반환할 수 있다.
 	- Reference
 		- [Overview  |  Authentication  |  Google for Developers](https://developers.google.com/identity/gsi/web/guides/overview#compare_to_oauth_and_openid_connect)
-
 ##### 고민
 - Google은 보통의 경우에 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
 - 하지만 이는 frontend 코드에 Client ID를 포함한다.
-- Client ID를 frontend 코드에 포함하고 있는데 Google은 
-
+- Client ID를 frontend 코드에 포함하고 있는데 Google은 이를 어떻게 보완하는가?
+#### Kakao
+- Kakao는 OpenID Connect을 지원한다.
+- Reference
+	- [[공지] 카카오 로그인 OpenID Connect 지원 / [Notice] Support of OpenID Connect - Notice / 공지 - 카카오 데브톡](https://devtalk.kakao.com/t/openid-connect-notice-support-of-openid-connect/121888)
+#### Naver
+- Naver는 OpenID Connect와 Authorization Code Flow with PKCE를 지원하지 않는다.
+- 기본 Authorization Code Flow만 가능하다.
 
 
 
