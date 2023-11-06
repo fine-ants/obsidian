@@ -92,5 +92,13 @@
 - Naver는 OpenID Connect 및 Authorization Code Grant with PKCE를 지원하지 않는다.
 - 기본 Authorization Code Grant만 가능하다.
 
-
-
+## 대안 3: Frontend는 Client ID를 모르도록하기
+- 사용자는 소셜 로그인 버튼을 누른다.
+- Frontend는 Backend로부터 해당 OAuth Authorization URL 받기위한 요청을 보낸다.
+	- Ex: `await fetch('http://localhost:300/auth/login/google', { method: 'POST' });`
+- Backend는 Client ID와 Redirect URI를 활용하여 OAuth Authorization URL을 생성하고 반환한다.
+	- Example
+```
+https://accounts.google.com/o
+```
+`${process.env.OAUTH_AUTH_URL}?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=code&scope=openid profile&code_challenge_method=S256`
