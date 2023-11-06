@@ -21,6 +21,7 @@ Long Polling은 기존의 HTTP Polling 방식을 개선한 기법으로, 클라�
 - 오래된 브라우저를 지원해야 하는 경우
 
 <hr>
+
 # **Websocket**
 
 WebSocket은 웹상에서 양방향 통신을 가능하게 하는 기술입니다.
@@ -46,6 +47,7 @@ HTTP와 달리, WebSocket은 연결을 맺은 후 지속적인 양방향 통신�
 - 클라이언트와 서버 간의 연결을 지속적으로 유지하기 때문에, 여러 연결을 효율적으로 관리하고 부하를 분산하기 위한 추가적인 서버 측 로직이 필요
 
 <hr>
+
 # **Websocket - stomp**
 
 Websocket 은 기본적으로 텍스트와 바이너라 타입의 메시지만을 양방향으로 주고받을 수 있는 프로토콜 입니다.
@@ -73,6 +75,7 @@ STOMP는 메시징 교환의 형식과 규칙을 정의하는 단순한 텍스�
 - 복잡한 메시징 패턴이나 트랜잭션, 메시지 선택, 메시지 순서, 메시지 확인 등과 같은 고급 기능을 필요로 한 경우
 
 <hr>
+
 # **Server-Sent Events(SSE)**
 
 SSE는 서버가 클라이언트에 데이터를 사전에 푸시할 수 있도록 클라이언트와 서버 간의 장기 통신을 설정하는 방법입니다.
@@ -98,6 +101,36 @@ SSE는 서버가 클라이언트에 데이터를 사전에 푸시할 수 있도�
 - 서버가 유저의 수를 감당 가능한지
 
 <hr>
+
+# Push api
+
+Push API는 웹 애플리케이션에게 서버에서 클라이언트로 데이터를 푸시할 수 있는 기능을 제공하는 웹 표준입니다.
+
+사용자가 웹 사이트에 있지 않을 때에도 알림을 보낼 수 있습니다.
+
+이는 Service Worker API와 함께 사용되어, 백그라운드에서 데이터를 푸시할 수 있도록 합니다.
+
+### 장점
+
+- 웹사이트를 활성화하지 않은 상태에서도 푸시 알림을 받을 수 있다
+- Service Worker를 통해 오프라인 상태에서도 작동할 수 있으며, 네트워크가 연결이 되면 알림을 보낼 수 있다
+- 애플리케이션이 백그라운드에서 실행되지 않아도 알림이 전달되므로, 디바이스의 배터리를 절약할 수 있다
+
+### 단점
+
+- 모든 브라우저에서 지원하지 않는다.
+- Push API를 사용하려면 Service Workers를 설정하고 관리해야 하며 구현에 복잡성이 높아진다.
+- 보안 문제로 암호화된 데이터를 반 필수적으로 요구된다.
+
+### 선택을 고려할 상황
+
+- 사용자의 동의가 있어야만 알림이 가능
+- 오프라인 상태에서도 알림을 받을 수 있다.
+    - 네트워크가 다시 연결되었을 경우 알림을 다 받는다.
+- 데스크탑, 모바일 앱을 고려하고 있는 경우
+
+<hr>
+
 # FineAnts에 맞는 방법은?
 
 - long polling
@@ -119,18 +152,20 @@ SSE는 서버가 클라이언트에 데이터를 사전에 푸시할 수 있도�
 
 ## 결론
 
-**Server-Sent Events가 가장 적합하다고 판단됩니다.**
+미래의 저희 프로젝트에서 양방향 통신이 필요할 수 있다면 그 부분도 고려해서 websocket으로 구현하는 방법도 좋을 수 있지만 우선 지금 글을 쓰고 있는 지금(23/11/07) 이 순간에는 양방향 통신을 하게 될 경우가 생각 나지 않습니다.
 
-우선 아직 대중화 되어 있지 않은 Demo 브라우저를 굳 지원할 필요성을 느끼지 못하며 양방향 통신이 필요 없고 서버로 부터 일방적으로 전달 받는 SSE가 적합하다고 생각됩니다.
+**그래서 Server-Sent Events와 Push api를 함께 사용하는게 가장 적합하다고 판단됩니다.**
+
+우선 아직 대중화 되어 있지 않은 Demo 브라우저를 굳 지원할 필요성을 느끼지 못하며 양방향 통신이 필요가 없기 때문에 서버로부터 일방적으로 전달 받는 SSE가 적합하다고 생각됩니다.
+
 - 사용처로는 Dashboard, portfolio 등 주식의 가격의 변동으로 실시간으로 변경되어야 하는 페이지
 
 알림의 경우 저희 최종 목표인 데스크탑 앱, 모바일 앱을 생각 했을 경우 push api를 사용하는 게 적합하다 판단합니다.
 
-
 # 참고
 
-[https://www.karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events](https://www.karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events)
-[](https://velog.io/@msung99/%EC%9B%B9%EC%86%8C%EC%BC%93%EA%B3%BC-STOMP%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%8B%A4%EC%8B%9C%EA%B0%84-%ED%86%B5%EC%8B%A0-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0)[https://velog.io/@msung99/웹소켓과-STOMP를-통한-실시간-통신-이해하기](https://velog.io/@msung99/%EC%9B%B9%EC%86%8C%EC%BC%93%EA%B3%BC-STOMP%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%8B%A4%EC%8B%9C%EA%B0%84-%ED%86%B5%EC%8B%A0-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0)
+- https://www.karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events
+- https://velog.io/@msung99/%EC%9B%B9%EC%86%8C%EC%BC%93%EA%B3%BC-STOMP%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%8B%A4%EC%8B%9C%EA%B0%84-%ED%86%B5%EC%8B%A0-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0
+- https://stackoverflow.com/questions/40988030/what-is-the-difference-between-websocket-and-stomp-protocols
+- https://ably.com/blog/websockets-vs-sse
 
-[https://stackoverflow.com/questions/40988030/what-is-the-difference-between-websocket-and-stomp-protocols](https://stackoverflow.com/questions/40988030/what-is-the-difference-between-websocket-and-stomp-protocols)
-https://ably.com/blog/websockets-vs-sse
