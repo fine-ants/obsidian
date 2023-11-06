@@ -39,16 +39,21 @@
 
 
 ### 지원하는 OAuth Provider
+#### Google
 - Google Identity Services (Sign In With Google for Web)
 	- Google의 OAuth 2.0을 기반하는 authentication 및 authorization을 한 패키지로 모아둔 SDK.
 		- Authentication "순간"은 One Tap, automatic sign-in, Sign In With Google button을 제공한다.
 			- 이 방식들은 ID Token만을 반환할 수 있고, OpenID Connect spec을 따른다.
+			- 즉, Sign In With Google 방식들은 기본적으로 ID Token을 반환한다.
+				- 해당 ID Token을 
 		- Authorization "순간"은 후에 Google의 Resource Server로부터 데이터 접근이 필요할 때 실행한다.
-			- 이는 code 또는 Access Token만을 만환할 수 있다.
-	- Google은 보통의 경우에 
+			- 이는 code 또는 Access Token만을 반환할 수 있다.
 	- Reference
 		- [Overview  |  Authentication  |  Google for Developers](https://developers.google.com/identity/gsi/web/guides/overview#compare_to_oauth_and_openid_connect)
-	- 
+
+##### 고민
+- Google은 보통의 경우에 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
+- 하지만 이는 frontend 코드에 Client ID를 포함한다.
 
 
 
