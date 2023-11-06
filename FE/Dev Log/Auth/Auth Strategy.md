@@ -31,6 +31,8 @@
 - PKCE 지원
 	- Google
 
+- FineAnts는 OAuth을 인가 목적이 아닌 인증 목적이다.
+
 
 
 
