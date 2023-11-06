@@ -15,7 +15,8 @@
 ### 문제점
 #### SPA와 OAuth 2.0 Authorization Code Flow의 문제
 - Client ID, Client Secret, Authorization Code(인가코드)가 노출된다.
-	- 즉, 해커가 해당 정보를 탈취할 수 있다.
+	- 즉, 해커가 해당 정보를 탈취하여 해당 OAuth Client를 가장할 수 있다.
+	- Ex: 탈취한 인가코드를 활용하여 Access Token을 발급 받아 OAuth Provider의 Resource Server에 있는 사용자의 정보를 접근할 수 있다.
 - Reference
 	- [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce)
 
@@ -41,9 +42,12 @@
 ## 대안 2: OpenID Connect
 - OpenID Connect는 OAuth 2.0의 identity layer로서 OAuth Client가 사용자를 인증하고 기본 정보를 받을 수 있는 프로토콜이다.
 - 기본적인 흐름은 기본 OAuth 2.0 Authorization Code Flow와 비슷하지만 아래와 같은 차이가 있다.
-	- OAuth Provider는 OAuth Client로부터 
+	- OAuth Provider는 OAuth Client로부터 받은 인가코드가 유효하다면 ID Token과 Access Token을 반환한다.
+		- 해당 ID Token은 OAuth 등록시 명시한 scope 및 field(claim)를 담고 있다.
+		- 기본 사용자 정보 (Ex: name, email, picture)를 명시할 수 있다.
+	- OAuth Client는 ID Token을 성공적으로 validate하면, 사용자의 로그인을 승인한다.
 
-## FineAnts가 지원하는 OAuth Provider
+## FineAnts가 지원하는 OAuth Login
 ### Google
 - Google Identity Services (Sign In With Google for Web)
 	- Google의 OAuth 2.0을 기반하는 authentication 및 authorization을 한 패키지로 모아둔 SDK.
