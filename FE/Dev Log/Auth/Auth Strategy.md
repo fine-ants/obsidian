@@ -96,11 +96,16 @@
 - 사용자는 소셜 로그인 버튼을 누른다.
 - Frontend는 Backend로부터 해당 OAuth Authorization URL 받기위한 요청을 보낸다.
 	- Ex: `await fetch('http://localhost:300/auth/login/google', { method: 'POST' });`
-- Backend는 Client ID와 Redirect URI를 활용하여 OAuth Authorization URL을 생성하고 반환한다.
+- Backend는 1) Code Verifier 및 Code Challenge를 생성한다, 2) Client ID와 Redirect URI를 활용하여 OAuth Authorization URL을 생성하고 Code Challenge와 함께 Frontend로 반환한다.
+	- 참고: `nonce`
 	- Example
-```
-https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri]${FRONTEND_REDIRECT_URI}&response_type="code"&scope=openid profile&code_challenge_method=S256
+```json
+{
+	"authURL": "https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri]${BACKEND_REDIRECT_URI}&response_type="code"&scope=openid profile&code_challenge_method=S256",
+	"code_challenge": "blahblah"
+}
 ```
 - Frontend는 Authorization URL을 받고 해당 OAuth consent 화면(popup)을 띄운다.
 - 사용자는 OAuth 로그인을 진행한다.
-- 성공하면 OAuth Provider는 
+- 성공하면 OAuth Provider는 Backend Redirect URI로 Authorization Code을 담아서 보낸다.
+- Backend는 Authorization Code을 받고 
