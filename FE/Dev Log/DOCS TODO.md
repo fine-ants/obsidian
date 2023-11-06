@@ -9,6 +9,7 @@
 	- Scaling에 대한 고민
 - Learned
 	- MUI component customization
+- React Query appropriate stale and cache time.
 - Troubleshooting
 	- 카카오 로그인 popup 꺼지는 현상
 		- 잘못된 환경변수 설정
