@@ -99,6 +99,8 @@
 - Backend는 Client ID와 Redirect URI를 활용하여 OAuth Authorization URL을 생성하고 반환한다.
 	- Example
 ```
-https://accounts.google.com/o
+https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri]${FRONTEND_REDIRECT_URI}&response_type="code"&scope=openid profile&code_challenge_method=S256
 ```
-`${process.env.OAUTH_AUTH_URL}?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=code&scope=openid profile&code_challenge_method=S256`
+- Frontend는 Authorization URL을 받고 해당 OAuth consent 화면(popup)을 띄운다.
+- 사용자는 OAuth 로그인을 진행한다.
+- 성공하면 OAuth Provider는 
