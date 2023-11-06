@@ -4,23 +4,23 @@
 ## Table of Contents
 - [[#초기 구현 방식]]
 	- [[#문제점]]
-		- [[#SPA와 OAuth 2.0 Authorization Code Flow의 문제]]
-- [[#대안 1 OAuth 2.0 Authorization Code Flow with PKCE]]
-	- [[#문제점]]
+		- [[#SPA와 OAuth 2.0 Authorization Code Grant의 문제]]
+- [[#대안 1 OAuth 2.0 Authorization Code Grant with PKCE]]
+	- [[#참고점]]
 - [[#대안 2 OpenID Connect]]
 - [[#지원하는 OAuth Provider]]
 
 ## 초기 구현 방식
-- Client(SPA)에서 시작하는 기본 OAuth 2.0 Authorization Code Flow
+- Client(SPA)에서 시작하는 기본 OAuth 2.0 Authorization Code Grant
 ### 문제점
-#### SPA와 OAuth 2.0 Authorization Code Flow의 문제
+#### SPA와 OAuth 2.0 Authorization Code Grant의 문제
 - Client ID, Client Secret, Authorization Code(인가코드)가 노출된다.
 	- 즉, 해커가 해당 정보를 탈취하여 해당 OAuth Client를 가장할 수 있다.
 	- Ex: 탈취한 인가코드를 활용하여 Access Token을 발급 받아 OAuth Provider의 Resource Server에 있는 사용자의 정보를 접근할 수 있다.
 - Reference
 	- [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce)
 
-## 대안 1: OAuth 2.0 Authorization Code Flow with PKCE
+## 대안 1: OAuth 2.0 Authorization Code Grant with PKCE
 - 이를 보완하기 위해 OAuth 2.0은 Authorization Code Flow에 PKCE를 적용한 흐름을 권장한다.
 - 기존 Authorization Code Flow와 동일하지만 아래와 같은 차이가 있다:
 	- OAuth Client는 secret (Code Verifier)와 해당 secret의 변형된 값 (Code Challenge)를 생성한다.
@@ -35,9 +35,10 @@
 - Reference
 	- [RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
 	- [draft-ietf-oauth-security-topics-11](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-11)
-### 문제점
+### 참고점
 - FineAnts는 OAuth Provider로 사용자를 대신하여 어떤 요청을 하지 않기 때문에, **OAuth을 인가 목적이 아닌 인증 목적으로 사용한다**.
 - OAuth 2.0의 authentication layer인 **OpenID Connect를 사용하는 것이 더 적절하다**.
+- *"Authorization Code Grant"는 authorization, authentication 두 상황에 보안을 강화하기 위해 적용 가능한 흐름이다.*
 
 ## 대안 2: OpenID Connect
 - OpenID Connect는 OAuth 2.0의 identity layer로서 OAuth Client가 사용자를 인증하고 기본 정보를 받을 수 있는 프로토콜이다.
