@@ -1,9 +1,15 @@
 
 
 ## Table of Contents
-- [[#현재 구현 방식]]
+- [[#초기 구현 방식]]
+	- [[#문제점]]
+		- [[#SPA와 OAuth 2.0 Authorization Code Flow의 문제]]
+	- [[#대안]]
+		- [[#OAuth 2.0 Authorization Code Flow with PKCE]]
+	- [[#대안 문제점]]
+	- [[#지원하는 OAuth Provider]]
 
-## 현재 구현 방식
+## 초기 구현 방식
 - Client(SPA)에서 시작하는 기본 OAuth 2.0 Authorization Code Flow
 ### 문제점
 #### SPA와 OAuth 2.0 Authorization Code Flow의 문제
@@ -28,23 +34,21 @@
 - [RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
 - [draft-ietf-oauth-security-topics-11](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-11)
 ### 대안 문제점
-- FineAnts는 OAuth을 인가 목적이 아닌 인증 목적이다.
+- FineAnts는 OAuth Provider로 사용자를 대신하여 어떤 요청을 하지 않기 때문에, **OAuth을 인가 목적이 아닌 인증 목적으로 사용한다**.
+- OAuth 2.0의 authentication layer인 **OpenID Connect를 사용하는 것이 더 적절하다**.
 
 
-
-
-
+### 지원하는 OAuth Provider
 - Google Identity Services (Sign In With Google for Web)
 	- Google의 OAuth 2.0을 기반하는 authentication 및 authorization을 한 패키지로 모아둔 SDK.
 		- Authentication "순간"은 One Tap, automatic sign-in, Sign In With Google button을 제공한다.
 			- 이 방식들은 ID Token만을 반환할 수 있고, OpenID Connect spec을 따른다.
 		- Authorization "순간"은 후에 Google의 Resource Server로부터 데이터 접근이 필요할 때 실행한다.
 			- 이는 code 또는 Access Token만을 만환할 수 있다.
-
-- PKCE 지원
-	- Google
-
-
+	- Google은 보통의 경우에 
+	- Reference
+		- [Overview  |  Authentication  |  Google for Developers](https://developers.google.com/identity/gsi/web/guides/overview#compare_to_oauth_and_openid_connect)
+	- 
 
 
 
