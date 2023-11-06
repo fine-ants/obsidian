@@ -1,4 +1,5 @@
 
+# Auth Strategy
 
 ## Table of Contents
 - [[#초기 구현 방식]]
