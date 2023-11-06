@@ -38,7 +38,9 @@
 - OAuth 2.0의 authentication layer인 **OpenID Connect를 사용하는 것이 더 적절하다**.
 
 ## 대안 2: OpenID Connect
-- OpenID Connect
+- OpenID Connect는 OAuth 2.0의 identity layer로서 OAuth Client가 사용자를 인증하고 기본 정보를 받을 수 있는 프로토콜이다.
+- 기본적인 흐름은 OAuth 2.0 Authorization Code Flow와 비슷하다.
+	- 
 
 
 
@@ -58,11 +60,6 @@
 - Google은 보통의 경우에 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
 - 하지만 이는 frontend 코드에 Client ID를 포함한다.
 - Client ID를 frontend 코드에 포함해야 하는데 이를 어떻게 보완할 수 있는가?
-	- HTTPS
-	- 정확한 Redirect URI
-		- 해커가 Client ID를 가지고 우리의 애플리케이션을 모방하기 어려워진다.
-	- CORS 적용
-		- 
 ### Kakao
 - Kakao는 OpenID Connect을 지원한다.
 - Reference
