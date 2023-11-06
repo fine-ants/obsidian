@@ -117,9 +117,15 @@ SSE는 서버가 클라이언트에 데이터를 사전에 푸시할 수 있도�
         - [https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)
     - 실시간으로 서버와의 통신이 아닌 단방향으로 서버에게 받기만 하기 때문에 적절하다 생각이 든다.
 
+## 결론
+
+Server-Sent Events가 가장 적합하다고 판단됩니다.
+우선 아직 대중화 되어 있지 않은 Demo 브라우저를 굳 지원할 필요성을 느끼지 못하며
+
 # 참고
 
 [https://www.karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events](https://www.karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events)
 [](https://velog.io/@msung99/%EC%9B%B9%EC%86%8C%EC%BC%93%EA%B3%BC-STOMP%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%8B%A4%EC%8B%9C%EA%B0%84-%ED%86%B5%EC%8B%A0-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0)[https://velog.io/@msung99/웹소켓과-STOMP를-통한-실시간-통신-이해하기](https://velog.io/@msung99/%EC%9B%B9%EC%86%8C%EC%BC%93%EA%B3%BC-STOMP%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%8B%A4%EC%8B%9C%EA%B0%84-%ED%86%B5%EC%8B%A0-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0)
 
 [https://stackoverflow.com/questions/40988030/what-is-the-difference-between-websocket-and-stomp-protocols](https://stackoverflow.com/questions/40988030/what-is-the-difference-between-websocket-and-stomp-protocols)
+https://ably.com/blog/websockets-vs-sse
