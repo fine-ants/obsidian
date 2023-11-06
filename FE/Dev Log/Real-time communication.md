@@ -114,7 +114,7 @@ SSE는 서버가 클라이언트에 데이터를 사전에 푸시할 수 있도�
 - Server-Sent Events
     - 우선 모든 브라우저를 지원하지 않는다면 가장 적절해 보인다.
         - Deno 브라우저를 지원하지 않는다.
-        - [https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+        - [https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)
     - 실시간으로 서버와의 통신이 아닌 단방향으로 서버에게 받기만 하기 때문에 적절하다 생각이 든다.
 
 # 참고
