@@ -147,9 +147,10 @@ Push API는 웹 애플리케이션에게 서버에서 클라이언트로 데이�
 - Server-Sent Events
     - 우선 모든 브라우저를 지원하지 않는다면 가장 적절해 보인다.
         - Deno 브라우저를 지원하지 않는다.
-        - [https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)
+        - https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
     - 실시간으로 서버와의 통신이 아닌 단방향으로 서버에게 받기만 하기 때문에 적절하다 생각이 든다.
-
+- Push api
+	- 데스크탑, 모바일 앱을 생각하고 있다고 서비스에 알림 기능이 필요하다면 적절한 선택이 될 것 같다.
 ## 결론
 
 미래의 저희 프로젝트에서 양방향 통신이 필요할 수 있다면 그 부분도 고려해서 websocket으로 구현하는 방법도 좋을 수 있지만 우선 지금 글을 쓰고 있는 지금(23/11/07) 이 순간에는 양방향 통신을 하게 될 경우가 생각 나지 않습니다.
