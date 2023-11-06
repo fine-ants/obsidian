@@ -7,8 +7,8 @@
 		- [[#SPA와 OAuth 2.0 Authorization Code Grant의 문제]]
 - [[#대안 1 OAuth 2.0 Authorization Code Grant with PKCE]]
 	- [[#참고점]]
-- [[#대안 2 OpenID Connect]]
-- [[#지원하는 OAuth Provider]]
+- [[#대안 2 OpenID Connect Authorization Code Grant with PKCE]]
+- [[#FineAnts가 지원하는 OAuth Login]]
 
 ## 초기 구현 방식
 - Client(SPA)에서 시작하는 기본 OAuth 2.0 Authorization Code Grant
@@ -22,6 +22,7 @@
 
 ## 대안 1: OAuth 2.0 Authorization Code Grant with PKCE
 - 이를 보완하기 위해 OAuth 2.0은 Authorization Code Flow에 PKCE를 적용한 흐름을 권장한다.
+- Authorization Code Grant을 사용하는 OAuth Client는 PKCE를 사용해야한다.
 - 기존 Authorization Code Flow와 동일하지만 아래와 같은 차이가 있다:
 	- OAuth Client는 secret (Code Verifier)와 해당 secret의 변형된 값 (Code Challenge)를 생성한다.
 	- OAuth Client는 OAuth Provider로부터 인가코드를 받기 위한 요청에 Code Challenge을 같이 보낸다.
@@ -34,20 +35,20 @@
 	- 해커가 Code Challenge을 탈취하고 Code Challenge을 생성하기 위한 hashing algorithm을 알아내더라도, 1) Code Verifier를 추론할 수 없다 (Code Challenge를 생성하는데 단방향 알고리즘을 사용했기 때문), 2) 매 인가 요청마다 새로운 고유의 Code Verifier를 생성하기 때문에 추론하는데 의미가 없다.
 - Reference
 	- [RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
-	- [draft-ietf-oauth-security-topics-11](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-11)
+	- [draft-ietf-oauth-security-topics-11](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-11#section-2.1.1)
 ### 참고점
 - FineAnts는 OAuth Provider로 사용자를 대신하여 어떤 요청을 하지 않기 때문에, **OAuth을 인가 목적이 아닌 인증 목적으로 사용한다**.
 - OAuth 2.0의 authentication layer인 **OpenID Connect를 사용하는 것이 더 적절하다**.
-- *"Authorization Code Grant"는 authorization, authentication 두 상황에 보안을 강화하기 위해 적용 가능한 흐름이다.*
+- *"**Authorization Code Grant**"는 authorization, authentication 두 상황에 보안을 강화하기 위해 적용 가능한 흐름이다.*
 
 ## 대안 2: OpenID Connect Authorization Code Grant with PKCE
 - OpenID Connect는 OAuth 2.0의 identity layer로서 OAuth Client가 사용자를 인증하고 기본 정보를 받을 수 있는 프로토콜이다.
-- 기본적인 흐름은 기본 OAuth 2.0 Authorization Code Flow와 비슷하지만 아래와 같은 차이가 있다.
+- 기본적인 흐름은 OAuth 2.0 Authorization Code Grant with PKCE와 비슷하지만 아래와 같은 차이가 있다.
 	- OAuth Provider는 OAuth Client로부터 받은 인가코드가 유효하다면 ID Token과 Access Token을 반환한다.
 		- 해당 ID Token은 OAuth 등록시 명시한 scope 및 field(claim)를 담고 있다.
 			- 기본 사용자 정보 (Ex: name, email, picture)를 명시할 수 있다.
 		- *OIDC 맥락에서 Access Token이란 추가적인 사용자 정보를 요청할 수 있다는 것이다.*
-			- cf. 기존 OAuth의 Authorization에서 Access Token이란 사용자를 대신해서 액션을 실행할 수 있도록 OAuth Client에 인가를 하는 것이다.
+			- *cf. 기존 OAuth의 Authorization에서 Access Token이란 사용자를 대신해서 액션을 실행할 수 있도록 OAuth Client에 인가를 하는 것이다.*
 	- OAuth Client는 ID Token을 성공적으로 validate하면, 사용자의 로그인을 승인한다.
 
 ## FineAnts가 지원하는 OAuth Login
@@ -57,9 +58,9 @@
 		- Authentication "순간"은 One Tap, automatic sign-in, Sign In With Google button을 제공한다.
 			- 이 방식들은 ID Token만을 반환할 수 있고, OpenID Connect spec을 따른다.
 			- 즉, Sign In With Google 방식들은 기본적으로 ID Token을 반환한다.
-				- 해당 ID Token을 
 		- Authorization "순간"은 후에 Google의 Resource Server로부터 데이터 접근이 필요할 때 실행한다.
 			- 이는 code 또는 Access Token만을 반환할 수 있다.
+			- FineAnts에는 불필요한 부분이다.
 	- Reference
 		- [Overview  |  Authentication  |  Google for Developers](https://developers.google.com/identity/gsi/web/guides/overview#compare_to_oauth_and_openid_connect)
 ##### 고민
@@ -71,8 +72,8 @@
 - Reference
 	- [[공지] 카카오 로그인 OpenID Connect 지원 / [Notice] Support of OpenID Connect - Notice / 공지 - 카카오 데브톡](https://devtalk.kakao.com/t/openid-connect-notice-support-of-openid-connect/121888)
 ### Naver
-- Naver는 OpenID Connect와 Authorization Code Flow with PKCE를 지원하지 않는다.
-- 기본 Authorization Code Flow만 가능하다.
+- Naver는 OpenID Connect 및 Authorization Code Grant with PKCE를 지원하지 않는다.
+- 기본 Authorization Code Grant만 가능하다.
 
 
 
