@@ -40,12 +40,10 @@
 
 ## 대안 2: OpenID Connect
 - OpenID Connect는 OAuth 2.0의 identity layer로서 OAuth Client가 사용자를 인증하고 기본 정보를 받을 수 있는 프로토콜이다.
-- 기본적인 흐름은 OAuth 2.0 Authorization Code Flow와 비슷하다.
-	- 
+- 기본적인 흐름은 기본 OAuth 2.0 Authorization Code Flow와 비슷하지만 아래와 같은 차이가 있다.
+	- OAuth Provider는 OAuth Client로부터 
 
-
-
-## 지원하는 OAuth Provider
+## FineAnts가 지원하는 OAuth Provider
 ### Google
 - Google Identity Services (Sign In With Google for Web)
 	- Google의 OAuth 2.0을 기반하는 authentication 및 authorization을 한 패키지로 모아둔 SDK.
