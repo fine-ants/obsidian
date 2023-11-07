@@ -99,7 +99,7 @@
 	- Frontend는 Backend로부터 해당 OAuth Authorization URL 받기위한 요청을 보낸다.
 		- Ex: `await fetch('http://localhost:300/auth/login/google', { method: 'POST' });`
 	- Backend는 1) Code Verifier 및 Code Challenge를 생성한다, 2) Client ID, Frontend Redirect URI, scope 등을 활용하여 OAuth Authorization URL을 생성하고 Code Challenge와 함께 Frontend로 반환한다.
-		- Code Challenge 참고: `nonce`
+		- Code Challenge 참고: `nonce`, `state`
 		- Example
 	```json
 	{
