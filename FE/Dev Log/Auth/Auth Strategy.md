@@ -93,24 +93,26 @@
 - 기본 Authorization Code Grant만 가능하다.
 
 ## 대안 3: Client ID 숨기기
-- 사용자는 소셜 로그인 버튼을 누른다.
-- Frontend는 Backend로부터 해당 OAuth Authorization URL 받기위한 요청을 보낸다.
-	- Ex: `await fetch('http://localhost:300/auth/login/google', { method: 'POST' });`
-- Backend는 1) Code Verifier 및 Code Challenge를 생성한다, 2) Client ID, Frontend Redirect URI, scope 등을 활용하여 OAuth Authorization URL을 생성하고 Code Challenge와 함께 Frontend로 반환한다.
-	- Code Challenge 참고: `nonce`
-	- Example
-```json
-{
-	"authURL": "https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri]${REDIRECT_URI_TO_FRONTEND}&response_type='code'&scope=openid profile&code_challenge_method=S256",
-	"code_challenge": "blahblah"
-}
-```
-- Frontend는 해당 OAuth Authorization URL을 화면(OAuth Consent Screen)을 띄운다.
-- 사용자는 OAuth 로그인을 진행한다.
-- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code을 담아서 보낸다.
-- Frontend는 받은 Authorization Code을 담아 Backend로 로그인을 위한 마지막 요청을 보낸다.
-	- Ex: `useEffect`
-- Backend는 받은 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
-- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
-- Backend는 받은 ID Token을 verify한 후 Frontend로 응답한다.
-- Frontend는 로그인된 화면을 보여준다.
+- 대안 2와의 차이점은 Frontend가 Authorization URL을 직접 생성하는 것이 아니라 Backend로부터 Authorization URL을 요청한다는 것이다.
+- Flow
+	- 사용자는 소셜 로그인 버튼을 누른다.
+	- Frontend는 Backend로부터 해당 OAuth Authorization URL 받기위한 요청을 보낸다.
+		- Ex: `await fetch('http://localhost:300/auth/login/google', { method: 'POST' });`
+	- Backend는 1) Code Verifier 및 Code Challenge를 생성한다, 2) Client ID, Frontend Redirect URI, scope 등을 활용하여 OAuth Authorization URL을 생성하고 Code Challenge와 함께 Frontend로 반환한다.
+		- Code Challenge 참고: `nonce`
+		- Example
+	```json
+	{
+		"authURL": "https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri]${REDIRECT_URI_TO_FRONTEND}&response_type='code'&scope=openid profile&code_challenge_method=S256",
+		"code_challenge": "blahblah"
+	}
+	```
+	- Frontend는 해당 OAuth Authorization URL을 화면(OAuth Consent Screen)을 띄운다.
+	- 사용자는 OAuth 로그인을 진행한다.
+	- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code을 담아서 보낸다.
+	- Frontend는 받은 Authorization Code을 담아 Backend로 로그인을 위한 마지막 요청을 보낸다.
+		- Ex: `useEffect`
+	- Backend는 받은 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
+	- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
+	- Backend는 받은 ID Token을 verify한 후 Frontend로 응답한다.
+	- Frontend는 로그인된 화면을 보여준다.
