@@ -52,7 +52,7 @@
 ## 대안 2: OpenID Connect Authorization Code Grant with PKCE
 - OpenID Connect은 OAuth 2.0의 identity layer로서 OAuth Client가 사용자를 인증하고 기본 정보를 받을 수 있는 프로토콜이다.
 - 기본적인 흐름은 OAuth 2.0 Authorization Code Grant with PKCE와 비슷하지만 아래와 같은 차이가 있다.
-	- OAuth Provider는 OAuth Client로부터 받은 Authorization Cod이 유효하다면 ID Token과 Access Token을 반환한다.
+	- OAuth Provider는 OAuth Client로부터 받은 Authorization Code가 유효하다면 ID Token과 Access Token을 반환한다.
 		- 해당 ID Token은 OAuth 등록시 명시한 scope 및 field(claim)를 담고 있다.
 			- 기본 사용자 정보(Ex: name, email, picture)를 명시할 수 있다.
 		- *OIDC 맥락에서 Access Token이란 추가적인 사용자 정보를 요청할 수 있다는 것이다.*
