@@ -17,3 +17,7 @@
 		- Stomp client initialization과 cleanup(disconnect)을 분리했기 때문
 			- useStompWithRQ에서 setQueryData를 하여 portfolioPage가 재랜더링되면 useStompWithRq의 useEffect cleanup이 진행되어 stomp 연결이 끊어진다.
 - FE Architecture
+- 라이브러리 사용예시
+	- Recharts
+	- lightweight-charts
+	- React DnD -> 대체 라이브러리도
