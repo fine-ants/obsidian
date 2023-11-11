@@ -114,5 +114,3 @@
 	- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
 	- Backend는 받은 ID Token을 verify한 후 Frontend로 응답한다.
 	- Frontend는 로그인된 화면을 보여준다.
-
-
