@@ -78,7 +78,7 @@
 		- [Overview  |  Authentication  |  Google for Developers](https://developers.google.com/identity/gsi/web/guides/overview#compare_to_oauth_and_openid_connect)
 #### 참고
 - Google은 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
-- Frontend 코드에 Client ID를 포함한다.
+- Frontend 코드에 Client ID를 포함해야한다.
 	- Client ID는 OAuth Client의 공개 식별자로서 OAuth Provider가 OAuth Client을 식별할 수 있도록 한다.
 	- Client ID가 frontend code에 노출이 되지만 PKCE를 통해 보완한다.
 - Backend 코드에 Client Secret이 숨겨져 있다.
