@@ -169,5 +169,4 @@ Push API는 웹 애플리케이션에게 서버에서 클라이언트로 데이�
 - https://velog.io/@msung99/%EC%9B%B9%EC%86%8C%EC%BC%93%EA%B3%BC-STOMP%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%8B%A4%EC%8B%9C%EA%B0%84-%ED%86%B5%EC%8B%A0-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0
 - https://stackoverflow.com/questions/40988030/what-is-the-difference-between-websocket-and-stomp-protocols
 - https://ably.com/blog/websockets-vs-sse
-- https://www.timeplus.com/post/websocket-vs-sse
 
