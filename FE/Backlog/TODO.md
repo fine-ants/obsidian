@@ -1,6 +1,6 @@
 # TODO
 
-- [ ]  **Landing Page**
+- [ ] **Landing Page**
 	- [ ] 디자인은 없지만 BasePage 적용해 놓기
 
 - [ ] **Dashboard Page**
