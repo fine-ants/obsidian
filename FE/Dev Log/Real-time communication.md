@@ -22,7 +22,7 @@ Long Polling은 기존의 HTTP Polling 방식을 개선한 기법으로, 클라�
 
 <hr>
 
-# **Websocket**
+# **WebSocket**
 
 WebSocket은 웹상에서 양방향 통신을 가능하게 하는 기술입니다.
 
@@ -48,7 +48,7 @@ HTTP와 달리, WebSocket은 연결을 맺은 후 지속적인 양방향 통신�
 
 <hr>
 
-# **Websocket - stomp**
+# **WebSocket - stomp**
 
 Websocket 은 기본적으로 텍스트와 바이너라 타입의 메시지만을 양방향으로 주고받을 수 있는 프로토콜 입니다.
 
