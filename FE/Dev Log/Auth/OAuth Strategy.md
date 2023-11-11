@@ -33,9 +33,9 @@
 	- OAuth Client가 성공적으로 Authorization Code을 받으면, Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
 	- OAuth Provider는 Code Verifier를 이전 단계에서 받은 Code Challenge을 이용하여 verify한다.
 		- **해당 요청이 Authorization Code을 요청한 클라이언트와 동일한지 확인.**
-	- Code Verifier가 성공적으로 verify가 되었다면 OAuth Provider는 ID token과 Access Token을 반환한다.
+	- Code Verifier가 성공적으로 verify가 되었다면 OAuth Provider는 Access Token과 Refresh Token을 반환한다.
 - 개선 사항
-	- 해커가 인가코드를 탈취했더라도 Code Verifier 없이는 Access Token을 발급 받을 수 없다.
+	- 해커가 Authorization Code을 탈취했더라도 Code Verifier 없이는 Access Token을 발급 받을 수 없다.
 	- 해커가 Code Challenge을 탈취하고 Code Challenge을 생성하기 위한 hashing algorithm을 알아내더라도, 1) Code Verifier를 추론할 수 없다 (Code Challenge를 생성하는데 단방향 알고리즘을 사용했기 때문), 2) 매 인가 요청마다 새로운 고유의 Code Verifier를 생성하기 때문에 추론하는데 의미가 없다.
 - Reference
 	- [RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
