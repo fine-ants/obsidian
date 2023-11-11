@@ -104,7 +104,6 @@
 	```json
 	{
 		"authURL": "https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri]${REDIRECT_URI_TO_FRONTEND}&response_type='code'&scope=openid profile&code_challenge_method=S256",
-		"code_challenge": "blahblah"
 	}
 	```
 	- Frontend는 해당 OAuth Authorization URL을 화면(OAuth Consent Screen)을 띄운다.
@@ -113,4 +112,5 @@
 	- Backend는 받은 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
 	- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
 	- Backend는 받은 ID Token을 verify한 후 Frontend로 응답한다.
+	
 	- Frontend는 로그인된 화면을 보여준다.
