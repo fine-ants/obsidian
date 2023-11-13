@@ -123,4 +123,4 @@
 #### 전략
 - **기존 전략 + Authorization URL을 Backend로부터 받아는 방식.**
 - Backend로부터 Auth URL을 먼저 받고 요청을 하는 방식이기 때문에 SDK 미사용.
-	- SDK 사용은 Client에서 바로 OAuth Provider의 Auth URL로 요청이 가
+	- SDK 사용은 Client에서 바로 OAuth Provider의 Auth URL로 요청이 가기 때문이다.
