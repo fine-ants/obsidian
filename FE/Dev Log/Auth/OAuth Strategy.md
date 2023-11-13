@@ -78,9 +78,9 @@
 		"authURL": "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=88171956c99257e9ea8c241b4fd544df&redirect_uri=https://localhost/api/auth/kakao/login&scope=openid&state=529374102256579043115536254813377574697&code_challenge=1WVYaLp-pk0QxDEIU2W4WPlv1WNqsYZJLdvCkOZyWiw&code_challenge_method=S256",
 	}
 	```
-	- Frontend는 해당 OAuth Authorization URL 화면(OAuth Consent Screen)을 띄운다.
+	- Frontend는 해당 OAuth Authorization URL popup 화면(OAuth Consent Screen)을 띄운다.
 	- 사용자는 OAuth 로그인을 진행한다.
-	- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code을 담아서 보낸다.
+	- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code, state, 을 담아서 보낸다.
 	- Frontend는 받은 Authorization Code를 Backend로 보낸다.
 	- Backend는 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
 	- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
@@ -117,7 +117,6 @@
 	- [[공지] 카카오 로그인 OpenID Connect 지원 / [Notice] Support of OpenID Connect - Notice / 공지 - 카카오 데브톡](https://devtalk.kakao.com/t/openid-connect-notice-support-of-openid-connect/121888)
 #### 전략
 - 대안 3
-	- 
 ### Naver
 - Naver는 OpenID Connect 및 Authorization Code Grant with PKCE를 지원하지 않는다.
 - 기본 Authorization Code Grant만 가능하다.
