@@ -81,11 +81,10 @@
 	- Frontend는 해당 OAuth Authorization URL popup 화면(OAuth Consent Screen)을 띄운다.
 	- 사용자는 OAuth 로그인을 진행한다.
 	- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code, State을 search params에 포함해서 보낸다.
-		- *State은 매 로그인 요청에 대한 고유의 값으로 CSRF으로부터 보호하기 위해 사용한다.*
-		- Authorization Code 요청, Authorization Code 응답, ID Token 발급 요청의 `state` 값 일치 여부로 요청 및 응답 유효성을 확인한다.
 	- Frontend는 받은 Authorization Code, State을 Backend로 보낸다.
+	- Backend는 받은 State이 처음에 보낸 State과 동일한지 확인한다.
 	- Backend는 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
-	- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
+	- OAuth Provider는 Code Verifier를 CoCode Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
 	- Backend는 받은 ID Token을 verify한 후 Frontend로 응답한다.
 	- Frontend는 성공적으로 로그인된 화면을 보여준다.
 
@@ -131,5 +130,7 @@
 
 ## 기타
 ### CSRF ft. `state`
+- *State은 매 로그인 요청에 대한 고유의 값으로 CSRF으로부터 보호하기 위해 사용한다.*
+- Authorization Code 요청, Authorization Code 응답, ID Token 발급 요청의 `state` 값 일치 여부로 요청 및 응답 유효성을 확인한다.
 
 ### PKCE
