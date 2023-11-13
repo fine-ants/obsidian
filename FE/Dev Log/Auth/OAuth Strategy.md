@@ -108,7 +108,7 @@
 	- Client Secret은 OAuth Client의 "인증서"로서 OAuth Provider가 OAuthClient를 인증할 수 있도록 한다.
 	- 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 OAuth 인증이 이루어진다.
 #### 전략
-- 대안 2
+- **대안 2**
 	- Sign in With Google SDK를 사용하면 Frontend에 Client ID를 포함해야한다.
 
 ### Kakao
@@ -116,7 +116,11 @@
 - Reference
 	- [[공지] 카카오 로그인 OpenID Connect 지원 / [Notice] Support of OpenID Connect - Notice / 공지 - 카카오 데브톡](https://devtalk.kakao.com/t/openid-connect-notice-support-of-openid-connect/121888)
 #### 전략
-- 대안 3
+- **대안 3**
 ### Naver
 - Naver는 OpenID Connect 및 Authorization Code Grant with PKCE를 지원하지 않는다.
 - 기본 Authorization Code Grant만 가능하다.
+#### 전략
+- **기존 전략 + Authorization URL을 Backend로부터 받아는 방식.**
+- Backend로부터 Auth URL을 먼저 받고 요청을 하는 방식이기 때문에 SDK 미사용.
+	- SDK 사용은 Client에서 바로 OAuth Provider의 Auth URL로 요청이 가
