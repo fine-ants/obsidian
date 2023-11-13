@@ -80,12 +80,12 @@
 	```
 	- Frontend는 해당 OAuth Authorization URL popup 화면(OAuth Consent Screen)을 띄운다.
 	- 사용자는 OAuth 로그인을 진행한다.
-	- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code, State, 을 담아서 보낸다.
-	- Frontend는 받은 Authorization Code를 Backend로 보낸다.
+	- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code, State을 search params에 포함해서 보낸다.
+	- Frontend는 받은 Authorization Code, State을 Backend로 보낸다.
 	- Backend는 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
 	- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
 	- Backend는 받은 ID Token을 verify한 후 Frontend로 응답한다.
-	- Frontend는 로그인된 화면을 보여준다.
+	- Frontend는 성공적으로 로그인된 화면을 보여준다.
 
 ## FineAnts가 지원하는 OAuth Login
 ### Google
