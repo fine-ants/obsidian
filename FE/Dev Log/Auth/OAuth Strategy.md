@@ -103,7 +103,7 @@
 		- Example
 	```json
 	{
-		"authURL": "https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri]${REDIRECT_URI_TO_FRONTEND}&response_type='code'&scope=openid profile&code_challenge_method=S256",
+		"authURL": "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=88171956c99257e9ea8c241b4fd544df&redirect_uri=https://localhost/api/auth/kakao/login&scope=openid&state=529374102256579043115536254813377574697&code_challenge=1WVYaLp-pk0QxDEIU2W4WPlv1WNqsYZJLdvCkOZyWiw&code_challenge_method=S256",
 	}
 	```
 	- Frontend는 해당 OAuth Authorization URL 화면(OAuth Consent Screen)을 띄운다.
