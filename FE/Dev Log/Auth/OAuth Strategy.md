@@ -65,13 +65,15 @@
 ![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
 - Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
 
-## 대안 3: Client ID 숨기기
-- 대안 2와의 차이점은 Frontend가 Authorization URL을 직접 생성하는 것이 아니라 Backend로부터 Authorization URL을 요청한다는 것이다.
+## 대안 3: Client ID 숨기기 및 `state` Parameter 추가
+- 대안 2와의 차이점
+	- Frontend가 Authorization URL을 직접 생성하는 것이 아니라 Backend로부터 Authorization URL을 요청한다는 것이다. 즉, Frontend는 Client ID를 들고 있지 않는다.
+	- `state` parameter를 이용하여 CSRF 공격을 방어한다.
 - Flow
 	- 사용자는 소셜 로그인 버튼을 누른다.
 	- Frontend는 Backend로부터 해당 OAuth Authorization URL 받기위한 요청을 보낸다.
 		- Ex: `await fetch('http://localhost:300/auth/login/google', { method: 'POST' });`
-	- Backend는 1) Code Verifier 및 Code Challenge를 생성한다, 2) Client ID, Frontend Redirect URI, Scope, Code Challenge, State 등을 활용하여 OAuth Authorization URL을 생성해서 Frontend로 반환한다.
+	- Backend는 1) Code Verifier 및 Code Challenge를 생성한다, 2) Client ID, Frontend Redirect URI, Scope, Code Challenge, State 등을 활용하여 OAuth Authorization URL을 생성하여 Frontend로 반환한다.
 		- Example
 	```json
 	{
@@ -80,13 +82,15 @@
 	```
 	- Frontend는 해당 OAuth Authorization URL popup 화면(OAuth Consent Screen)을 띄운다.
 	- 사용자는 OAuth 로그인을 진행한다.
-	- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code, State을 search params에 포함해서 보낸다.
+	- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code, State을 보낸다.
 	- Frontend는 받은 Authorization Code, State을 Backend로 보낸다.
 	- Backend는 받은 State이 처음에 보낸 State과 동일한지 확인한다.
 	- Backend는 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
-	- OAuth Provider는 Code Verifier를 CoCode Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
-	- Backend는 받은 ID Token을 verify한 후 Frontend로 응답한다.
+	- OAuth Provider는 받은 Code Verifier를 Code Challenge Method로 해싱한 값이 이전에 받았던 Code Challenge와 동일한지 verify한 후 ID Token 및 Access Token을 반환한다.
+	- Backend는 받은 ID Token을 verify한 후 Frontend로 로그인 응답을 한다.
 	- Frontend는 성공적으로 로그인된 화면을 보여준다.
+### Illustration
+
 
 ## FineAnts가 지원하는 OAuth Login
 ### Google
@@ -111,14 +115,12 @@
 #### 전략
 - **대안 2**
 	- Sign in With Google SDK를 사용하면 Frontend에 Client ID를 포함해야한다.
-
 ### Kakao
 - Kakao는 OpenID Connect와 PKCE를 지원한다.
 - Reference
 	- [[공지] 카카오 로그인 OpenID Connect 지원 / [Notice] Support of OpenID Connect - Notice / 공지 - 카카오 데브톡](https://devtalk.kakao.com/t/openid-connect-notice-support-of-openid-connect/121888)
 #### 전략
 - **대안 3**
-
 ### Naver
 - Naver는 OpenID Connect 및 Authorization Code Grant with PKCE를 지원하지 않는다.
 - 기본 Authorization Code Grant만 가능하다.
