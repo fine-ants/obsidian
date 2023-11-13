@@ -64,34 +64,6 @@
 ![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
 - Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
 
-## FineAnts가 지원하는 OAuth Login
-### Google
-- Google Identity Services (Sign In With Google for Web)
-	- Google의 OAuth 2.0을 기반하는 authentication 및 authorization을 한 패키지로 모아둔 SDK.
-		- Authentication "순간"은 One Tap, automatic sign-in, Sign In With Google button을 제공한다.
-			- 이 방식들은 ID Token만을 반환할 수 있고, OpenID Connect spec을 따른다.
-			- 즉, Sign In With Google 방식들은 기본적으로 ID Token을 반환한다.
-		- Authorization "순간"은 후에 Google의 Resource Server로부터 데이터 접근이 필요할 때 실행한다.
-			- 이는 code 또는 Access Token만을 반환할 수 있다.
-			- FineAnts에는 불필요한 부분이다.
-	- Reference
-		- [Overview  |  Authentication  |  Google for Developers](https://developers.google.com/identity/gsi/web/guides/overview#compare_to_oauth_and_openid_connect)
-#### 참고
-- Google은 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
-- Frontend 코드에 Client ID를 포함해야한다.
-	- Client ID는 OAuth Client의 공개 식별자로서 OAuth Provider가 OAuth Client을 식별할 수 있도록 한다.
-	- Client ID가 frontend code에 노출이 되지만 PKCE를 통해 보완한다.
-- Backend 코드에 Client Secret이 숨겨져 있다.
-	- Client Secret은 OAuth Client의 "인증서"로서 OAuth Provider가 OAuthClient를 인증할 수 있도록 한다.
-	- 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 OAuth 인증이 이루어진다.
-### Kakao
-- Kakao는 OpenID Connect와 PKCE를 지원한다.
-- Reference
-	- [[공지] 카카오 로그인 OpenID Connect 지원 / [Notice] Support of OpenID Connect - Notice / 공지 - 카카오 데브톡](https://devtalk.kakao.com/t/openid-connect-notice-support-of-openid-connect/121888)
-### Naver
-- Naver는 OpenID Connect 및 Authorization Code Grant with PKCE를 지원하지 않는다.
-- 기본 Authorization Code Grant만 가능하다.
-
 ## 대안 3: Client ID 숨기기
 - 대안 2와의 차이점은 Frontend가 Authorization URL을 직접 생성하는 것이 아니라 Backend로부터 Authorization URL을 요청한다는 것이다.
 - Flow
@@ -114,3 +86,38 @@
 	- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
 	- Backend는 받은 ID Token을 verify한 후 Frontend로 응답한다.
 	- Frontend는 로그인된 화면을 보여준다.
+
+## FineAnts가 지원하는 OAuth Login
+### Google
+- Google Identity Services (Sign In With Google for Web)
+	- Google의 OAuth 2.0을 기반하는 authentication 및 authorization을 한 패키지로 모아둔 SDK.
+		- Authentication "순간"은 One Tap, automatic sign-in, Sign In With Google button을 제공한다.
+			- 이 방식들은 ID Token만을 반환할 수 있고, OpenID Connect spec을 따른다.
+			- 즉, Sign In With Google 방식들은 기본적으로 ID Token을 반환한다.
+		- Authorization "순간"은 후에 Google의 Resource Server로부터 데이터 접근이 필요할 때 실행한다.
+			- 이는 code 또는 Access Token만을 반환할 수 있다.
+			- FineAnts에는 불필요한 부분이다.
+	- Reference
+		- [Overview  |  Authentication  |  Google for Developers](https://developers.google.com/identity/gsi/web/guides/overview#compare_to_oauth_and_openid_connect)
+#### 참고
+- Google은 직접적입 Google API 호출보다 해당 SDK 사용을 권장한다.
+- Frontend 코드에 Client ID를 포함해야한다.
+	- Client ID는 OAuth Client의 공개 식별자로서 OAuth Provider가 OAuth Client을 식별할 수 있도록 한다.
+	- Client ID가 frontend code에 노출이 되지만 PKCE를 통해 보완한다.
+- Backend 코드에 Client Secret이 숨겨져 있다.
+	- Client Secret은 OAuth Client의 "인증서"로서 OAuth Provider가 OAuthClient를 인증할 수 있도록 한다.
+	- 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 OAuth 인증이 이루어진다.
+#### 전략
+- 대안 2
+	- Sign in With Google SDK를 사용하면 Frontend에 Client ID를 포함해야한다.
+
+### Kakao
+- Kakao는 OpenID Connect와 PKCE를 지원한다.
+- Reference
+	- [[공지] 카카오 로그인 OpenID Connect 지원 / [Notice] Support of OpenID Connect - Notice / 공지 - 카카오 데브톡](https://devtalk.kakao.com/t/openid-connect-notice-support-of-openid-connect/121888)
+#### 전략
+- 대안 3
+	- 
+### Naver
+- Naver는 OpenID Connect 및 Authorization Code Grant with PKCE를 지원하지 않는다.
+- 기본 Authorization Code Grant만 가능하다.
