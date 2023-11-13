@@ -71,7 +71,6 @@
 	- Frontend는 Backend로부터 해당 OAuth Authorization URL 받기위한 요청을 보낸다.
 		- Ex: `await fetch('http://localhost:300/auth/login/google', { method: 'POST' });`
 	- Backend는 1) Code Verifier 및 Code Challenge를 생성한다, 2) Client ID, Frontend Redirect URI, Scope, Code Challenge, State 등을 활용하여 OAuth Authorization URL을 생성해서 Frontend로 반환한다.
-		- Code Challenge 참고: `nonce`, `state`
 		- Example
 	```json
 	{
@@ -81,6 +80,7 @@
 	- Frontend는 해당 OAuth Authorization URL popup 화면(OAuth Consent Screen)을 띄운다.
 	- 사용자는 OAuth 로그인을 진행한다.
 	- 성공하면 OAuth Provider는 Frontend Redirect URI로 Authorization Code, State을 search params에 포함해서 보낸다.
+		- *State은 CSRF으로부터 보호하기 위해 사용한다.*
 	- Frontend는 받은 Authorization Code, State을 Backend로 보낸다.
 	- Backend는 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
 	- OAuth Provider는 Code Verifier를 Code Challenge에 비교해서 verify한후 ID Token 및 Access Token을 반환한다.
@@ -117,6 +117,8 @@
 	- [[공지] 카카오 로그인 OpenID Connect 지원 / [Notice] Support of OpenID Connect - Notice / 공지 - 카카오 데브톡](https://devtalk.kakao.com/t/openid-connect-notice-support-of-openid-connect/121888)
 #### 전략
 - **대안 3**
+
+
 ### Naver
 - Naver는 OpenID Connect 및 Authorization Code Grant with PKCE를 지원하지 않는다.
 - 기본 Authorization Code Grant만 가능하다.
