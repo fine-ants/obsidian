@@ -29,7 +29,7 @@
 ## 대안 1: OAuth 2.0 Authorization Code Grant with PKCE
 - Authorization Code 탈취에 대한 문제를 보완하기 위해 OAuth 2.0은 Authorization Code Grant에 PKCE를 적용한 흐름을 권장 및 강조한다.
 - 기존 Authorization Code Flow와 동일하지만 아래와 같은 차이가 있다:
-	- OAuth Client는 secret (Code Verifier)와 해당 secret의 변형된 값 (Code Challenge)를 생성한다.
+	- OAuth Client는 secret(Code Verifier)와 해당 secret의 변형된 값(Code Challenge)을 생성한다.
 	- OAuth Client는 OAuth Provider로부터 Authorization Code을 받기 위한 요청에 Code Challenge을 같이 보낸다.
 	- OAuth Client가 성공적으로 Authorization Code을 받으면, Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
 	- OAuth Provider는 Code Verifier를 이전 단계에서 받은 Code Challenge을 이용하여 verify한다.
