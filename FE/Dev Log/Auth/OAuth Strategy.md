@@ -145,4 +145,10 @@
 	- [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 #### `nonce`
 - `nonce` binds the tokens with the client.
+- It serves as a token validation parameter; introduced in OIDC spec.
+- Purpose is to mitigate replay attacks.
+- If enabled, it is present in the ID Token, which clients must verify that the nonce claim value is the same as the value of the nonce parameter sent in the authentication request.
+
+#### Reference
+[Difference between OAuth 2.0 "state" and OpenID "nonce" parameter? Why state could not be reused? - Stack Overflow](https://stackoverflow.com/questions/46844285/difference-between-oauth-2-0-state-and-openid-nonce-parameter-why-state-cou)
 ### PKCE
