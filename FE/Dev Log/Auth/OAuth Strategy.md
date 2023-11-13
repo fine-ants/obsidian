@@ -131,8 +131,18 @@
 
 
 ## 기타
-### CSRF ft. `state`
+### CSRF ft. `state`, `nonce`
+#### `state`
 - *State은 매 로그인 요청에 대한 고유의 값으로 CSRF으로부터 보호하기 위해 사용한다.*
+	- a.k.a. CSRF Token
 - Authorization Code 요청, Authorization Code 응답, ID Token 발급 요청의 `state` 값 일치 여부로 요청 및 응답 유효성을 확인한다.
-
+- Verify that the authentication response returned by the OAuth Provider is the same as the unique session token that was created by your application.
+- `state` is used in authorization requests.
+	- It enables the client to validate that the authorization response is not altered and sent by the original server which the auth request was sent.
+		- i.e. allows the client to cross check the authorization request and response.
+	- i.e. binding the original authorizatsion request to responses. <-- CSRF protection.
+- Reference
+	- [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
+#### `nonce`
+- `nonce` binds the tokens with the client.
 ### PKCE
