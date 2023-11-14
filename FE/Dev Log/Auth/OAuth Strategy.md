@@ -143,20 +143,26 @@
 #### PKCE 
 - PKCE란, OAuth 2.0 Authorization Code Grant 흐름에서 Authorization Code 탈취에 대한 문제를 보완하기 위해 나온 장치다.
 #### Code Verifier, Code Challenge
+- Code Verifier는 랜덤한 고유 값이다.
+- Code Challenge는 Code Verifier를 단방향 해싱을 활용하여 변형한 값이다.
+- 매 Authorization Code 요청마다 고유의 값을 갖는다.
 - *OAuth Client가 Code Verifier 및 Code Challenge을 생성하고 OAuth Provider가 검증한다.*
-
-
-- **Used by the OAuth Provider to check if the Client requesting to exchange an Authorization Code for Tokens is indeed the client that requested the Authorization Code in the first place.**
+- Authorization Code을 요청한 Client와 Authorization Code을 토큰으로 교환 요청을 한 Client가 동일한지 확인하는 것이 목적이다.
 ##### 흐름
-
+- OAuth Client는 secret(Code Verifier)와 해당 secret의 변형된 값(Code Challenge)을 생성한다.
+- OAuth Client는 OAuth Provider로부터 Authorization Code을 받기 위한 요청에 Code Challenge을 같이 보낸다.
+- OAuth Client가 성공적으로 Authorization Code을 받으면, Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
+- OAuth Provider는 Code Verifier를 이전 단계에서 받은 Code Challenge을 이용하여 verify한다.
+	- **해당 요청이 Authorization Code을 요청한 클라이언트와 동일한지 확인.**
+- Code Verifier가 성공적으로 verify가 되었다면 OAuth Provider는 Access Token과 Refresh Token을 반환한다.
 
 ### Cross Site Request Forgery(CSRF) ft. `state`
 #### CSRF
 - CSRF 공격이란, 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 하는 공격을 말한다.
 - CSRF 공격자는 위조된 요청에 대한 응답을 확인 할 수 없다.
-- CSRF 공격자의 목표는 사용자가 승인한 웹사이트로의 위조된 요청을 보내는 것이다.
+- CSRF 공격자의 목적은 사용자가 승인한 웹사이트로의 위조된 요청을 보내는 것이다.
 - CSRF 공격 방어란, Auth Request와 Response을 binding하는 것이다.
-	- i.e. OAuth Client가 보낸 Auth Request과 OAuth Provider가 보 Auth Response간의 세션을 유지한다.
+	- i.e. OAuth Client가 보낸 Auth Request과 OAuth Provider가 보낸 Auth Response간의 세션을 유지한다.
 #### `state` Parameter
 - a.k.a. CSRF Token
 - 매 요청마다 고유의 값을 갖는 `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
@@ -174,7 +180,7 @@
 
 #### ID Token Replay Attack
 - ID Token Replay 공격이란, 유효한 ID Token의 무단 재사용을 의미한다.
-- ID Token Replay 공격자의 목표는 탈취한 ID Token을 활용하여 OAuth Client와 인증을 하는 것이다.
+- ID Token Replay 공격자의 목적은 탈취한 ID Token을 활용하여 OAuth Client와 인증을 하는 것이다.
 - ID Token Replay 공격 방어란, OAuth Client와 ID Token을 binding하여 세션을 유지하여 replay 공격을 방어한다.
 	- 일회용 값을 사용하여 한번 인증에 사용한 ID Token을 무효화하여 ID Token을 재사용하여 인증을 하는 것을 방지한다.
 #### `nonce` Parameter
