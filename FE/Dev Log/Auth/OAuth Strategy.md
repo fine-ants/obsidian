@@ -137,16 +137,18 @@
 ## 기타 내용
 ### PKCE ft. Code Verifier, Code Challenge
 - TODO!!!!!!!!!!
-- Used by the OAuth Provider to check if 
+- **Used by the OAuth Provider to check if the Client requesting to exchange an Authorization Code for Tokens is indeed the client that requested the Authorization Code in the first place.**
 ### CSRF ft. `state`
 #### Cross Site Request Forgery(CSRF)
 - CSRF is...
 - TODO!!!!!!!!!!
-#### `state`
+#### `state` Parameter
+- a.k.a. CSRF Token
 - *State은 매 로그인 요청에 대한 고유의 값으로 CSRF으로부터 보호하기 위해 사용한다.*
-	- a.k.a. CSRF Token
+- **Used by the OAuth Client to verify that the authentication response returned by the OAuth Provider is the same as the unique session token that was created by your application.**
+
+
 - Authorization Code 요청, Authorization Code 응답, ID Token 발급 요청의 `state` 값 일치 여부로 요청 및 응답 유효성을 확인한다.
-- Verify that the authentication response returned by the OAuth Provider is the same as the unique session token that was created by your application.
 - `state` is used in authorization requests.
 	- It enables the client to validate that the authorization response is not altered and sent by the original server which the auth request was sent.
 		- i.e. allows the client to cross check the authorization request and response.
@@ -160,7 +162,7 @@
 #### ID Token Replay
 - OIDC 전략에서의 ID Token Replay 공격이란, 해커가 ID Token을 탈취하여 OAuth Provider를 대상으로 
 - TODO!!!!!!!!!!
-#### `nonce`
+#### `nonce` Parameter
 - a.k.a. "number used once"
 - Authorization Code Injection 공격에 대한 방어.
 
