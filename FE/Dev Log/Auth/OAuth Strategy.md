@@ -142,12 +142,16 @@
 #### Cross Site Request Forgery(CSRF)
 - CSRF란, 
 - CSRF exploits the trust that a site has in a user's browser.
+	- "site" refers to our application.
 
-- The objective of a CSRF attack concerning the Authorization Code is that, the malicious attacker tries to steal the Authorization Code (since the OAuth Client needs to exchange it for tokens).???
+- The objective of a CSRF attack concerning the Authorization Code is that, the malicious attacker tries to steal the Authorization Code (since the OAuth Client needs to exchange it for tokens) by modifying the Redirect URI to their server.??
+
+- A CSRF attacker has no way to see the response to the forged request. Therefore, 
+
 
 A CSRF attack specifically targets state-changing requests to initiate an action instead of getting user data because the attacker has no way to see the response to the forged request. For the most basic cases the state parameter should be a nonce, used to correlate the request with the response received from the authentication.
 
-- CSRF 공격 방어란, Authorization Request와 Response를 binding하는 것이다.
+- Auth 맥락에서 CSRF 공격 방어란, Authorization Request와 Response를 binding하는 것이다.
 #### `state` Parameter
 - a.k.a. CSRF Token
 - `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
