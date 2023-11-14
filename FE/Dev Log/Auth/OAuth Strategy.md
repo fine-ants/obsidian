@@ -144,18 +144,18 @@
 - CSRF 공격자는 위조된 요청에 대한 응답을 확인 할 수 없다.
 - CSRF 공격자의 목표는 사용자가 승인한 웹사이트로의 위조된 요청을 보내는 것이다.
 - CSRF 공격 방어란, Auth Request와 Response를 binding하는 것이다.
-	- 사용자가 보낸 Auth Request가 맞다면 Auth Response에서 받은 `state` 값이 일치해야 하는데, 내가 모르게 CSRF 공격자에 의해 Auth Request를 보냈다면 `state` 값이 일치하지 않을 것이다.
+	- i.e. OAuth Client가 보낸 Auth Request과 OAuth Provider가 보 Auth Response간의 세션을 유지한다.
 #### `state` Parameter
 - a.k.a. CSRF Token
 - 매 요청마다 고유의 값을 갖는 `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
-- OAuth Client가 OAuth Provider가 보낸 Auth Response가 
-- **Used by the OAuth Client to verify that the authentication response returned by the OAuth Provider is the same as the unique session token that was created by your application.**
+- OAuth Client가 `state`을 생성 및 검증한다.
+- 사용자가 보낸 Auth Request가 맞다면 Auth Response에서 받은 `state` 값이 일치해야 하는데, 내가 모르게 CSRF 공격자에 의해 Auth Request를 보냈다면 `state` 값이 일치하지 않을 것이다.
 ##### 흐름
 - OAuth Client는 Authorization Code 요청을 할 때 `state` parameter를 포함하여 보낸다.
-- OAuth Provider는 Redirect URI에 Authorization Code와 받은 `state` parameter를 그대로 보낸다.
-- OAuth Client는 돌려 받은 `state` 값이 Authorization Code 요청을 할 때 보낸 `state` 값과 일치하는지 확인한다.
+- OAuth Provider는 Redirect URI로 Authorization Code와 받은 `state` parameter를 그대로 보낸다.
+- OAuth Client는 받은 `state` 값이 Authorization Code 요청을 할 때 보낸 `state` 값과 일치하는지 확인한다.
 	- *i.e. Authorization Response가 조작되지 않고 다른 서버가 아닌 자신이 Authorization Code 요청을 보낸 서버로부터 온게 맞는지 확인한다.*
-	- `state` 값이 다르다면, 내가 보낸 요청에 대한 응답이 아니거나 OAuth Provider의 응답을 위조했다는 뜻이다.
+	- `state` 값이 다르다면, 자신이 보낸 요청에 대한 응답이 아니거나 OAuth Provider의 응답을 위조했다는 뜻이다.
 #### Reference
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 ### ID Token Replay Attack ft. `nonce`
