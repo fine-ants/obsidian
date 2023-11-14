@@ -23,7 +23,7 @@
 	- [ ] 목표 손익률, 최대 손실률input에 소숫점 2자리 문제
 	- [ ] 증권사 로고 추가 하기
 
-- [ ] **Watchlist Page**
+- [x] **Watchlist Page**
 	- [x] Hardcode된 포트폴리오 제거
 	- [x] Watchlist 추가, 삭제 기능
 		- [x] 종목 추가, 삭제 기능
