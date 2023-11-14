@@ -140,19 +140,18 @@
 - **Used by the OAuth Provider to check if the Client requesting to exchange an Authorization Code for Tokens is indeed the client that requested the Authorization Code in the first place.**
 ### CSRF ft. `state`
 #### Cross Site Request Forgery(CSRF)
-- CSRF is...
-- TODO!!!!!!!!!!
+- CSRF란, 
+- CSRF 공격 방어란, Authorization Request와 Response를 binding하는 것이다.
 #### `state` Parameter
 - a.k.a. CSRF Token
-- *State은 매 로그인 요청에 대한 고유의 값으로 CSRF으로부터 보호하기 위해 사용한다.*
+- `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
+- `state`은 매 요청마다 고유의 값을 갖는다.
 - **Used by the OAuth Client to verify that the authentication response returned by the OAuth Provider is the same as the unique session token that was created by your application.**
-
-
-- Authorization Code 요청, Authorization Code 응답, ID Token 발급 요청의 `state` 값 일치 여부로 요청 및 응답 유효성을 확인한다.
-- `state` is used in authorization requests.
-	- It enables the client to validate that the authorization response is not altered and sent by the original server which the auth request was sent.
-		- i.e. allows the client to cross check the authorization request and response.
-	- i.e. binding the original authorizatsion request to responses. <-- CSRF protection.
+##### 흐름
+- OAuth Client는 Authorization Code 요청을 할 때 `state` parameter를 포함하여 보낸다.
+- OAuth Provider는 Redirect URI에 Authorization Code와 받은 `state` parameter를 그대로 보낸다.
+- OAuth Client는 돌려 받은 `state` 값이 Authorization Code 요청을 할 때 보낸 `state` 값과 일치하는지 확인한다.
+	- *i.e. Authorization Response가 조작되지 않고 다른 서버가 아닌 자신이 Authorization Code 요청을 보낸 서버로부터 온게 맞는지 확인한다.*
 #### Reference
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 ### ID Token Replay Attack ft. `nonce`
