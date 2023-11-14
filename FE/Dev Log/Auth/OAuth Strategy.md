@@ -12,6 +12,9 @@
 - [[#대안 4 `nonce` Parameter 추가]]
 - [[#FineAnts가 지원하는 OAuth Login]]
 - [[#기타 보안 내용]]
+	- [[#Proof Key for Code Exchange(PKCE) ft. Code Verifier, Code Challenge]]
+	- [[#Cross Site Request Forgery(CSRF) ft. `state`]]
+	- [[#ID Token Replay Attack ft. `nonce`]]
 
 ## 초기 구현 방식
 ### SPA와 OAuth 2.0 Authorization Code Grant
@@ -136,11 +139,19 @@
 
 
 ## 기타 보안 내용
-### PKCE ft. Code Verifier, Code Challenge
-- TODO!!!!!!!!!!
+### Proof Key for Code Exchange(PKCE) ft. Code Verifier, Code Challenge
+#### PKCE 
+- PKCE란, OAuth 2.0 Authorization Code Grant 흐름에서 Authorization Code 탈취에 대한 문제를 보완하기 위해 나온 장치다.
+#### Code Verifier, Code Challenge
+- *OAuth Client가 Code Verifier 및 Code Challenge을 생성하고 OAuth Provider가 검증한다.*
+
+
 - **Used by the OAuth Provider to check if the Client requesting to exchange an Authorization Code for Tokens is indeed the client that requested the Authorization Code in the first place.**
-### CSRF ft. `state`
-#### Cross Site Request Forgery(CSRF)
+##### 흐름
+
+
+### Cross Site Request Forgery(CSRF) ft. `state`
+#### CSRF
 - CSRF 공격이란, 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 하는 공격을 말한다.
 - CSRF 공격자는 위조된 요청에 대한 응답을 확인 할 수 없다.
 - CSRF 공격자의 목표는 사용자가 승인한 웹사이트로의 위조된 요청을 보내는 것이다.
@@ -164,9 +175,8 @@
 #### ID Token Replay Attack
 - ID Token Replay 공격이란, 유효한 ID Token의 무단 재사용을 의미한다.
 - ID Token Replay 공격자의 목표는 탈취한 ID Token을 활용하여 OAuth Client와 인증을 하는 것이다.
-- ID Token Replay 공격 방어란, 일회용 값을 사용하여 한번 인증에 사용한 ID Token을 무효화하여 ID Token을 재사용하여 인증을 하는 것을 방지하는 것이다.
-	- OAuth Client와 ID Token의 session을 연관지어서 replay 공격을 방어한다.
-	- `nonce` binds the tokens with the client.
+- ID Token Replay 공격 방어란, OAuth Client와 ID Token을 binding하여 세션을 유지하여 replay 공격을 방어한다.
+	- 일회용 값을 사용하여 한번 인증에 사용한 ID Token을 무효화하여 ID Token을 재사용하여 인증을 하는 것을 방지한다.
 #### `nonce` Parameter
 - a.k.a. "number used once"
 - *OAuth Client가 `nonce`을 생성 및 검증한다.*
@@ -177,7 +187,7 @@
 - OAuth Client는 Authorization Request에 `nonce` parameter를 추가하여 요청을 보낸다.
 - OAuth Provider는 받은 `nonce`을 그대로 ID Token에 포함해서 응답한다.
 - OAuth Client는 ID Token에 들어있는 `nonce` 값이 Authorization Request에 보냈던 `nonce` 값과 동일한지 확인한다.
-	- ID Token에 들어있는 `nonce` 값이 처음 Auth Request에 보낸 `nonce` 값과 다를 경우, 해당 ID Token은 유효하하지 않다.
+	- ID Token에 들어있는 `nonce` 값이 처음 Auth Request에 보낸 `nonce` 값과 다를 경우, 해당 ID Token은 유효하지 않다.
 	- OAuth Client는 `nonce` 확인을 하기 전까지 발급 받은 token을 사용하지 말아야 한다.
 #### Reference
 - [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
