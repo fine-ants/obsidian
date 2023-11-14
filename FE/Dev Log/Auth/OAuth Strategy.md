@@ -143,15 +143,12 @@
 - CSRF란, 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 하는 공격을 말한다.
 - CSRF 공격자는 위조된 요청에 대한 응답을 확인 할 수 없다.
 - CSRF 공격자의 목표는 사용자가 승인한 웹사이트로의 위조된 요청을 보내는 것이다.
-
-
-- Auth 맥락에서 CSRF 공격 방어란, Authorization Request와 Response를 binding하는 것이다.
-- 내가 보낸 Authorization Request라면 `state`이 일치해야 하는데, 내가 모르게 CSRF공격자에 의해 Authorization Request를 보냈다면 `state`이 일치하지 않을 것이다.
-If an attacker somehow tricks the user into initiating an authorization request, the `state` parameter acts as a protective measure to ensure the legitimacy of the authorization process.
+- CSRF 공격 방어란, Auth Request와 Response를 binding하는 것이다.
+	- 사용자가 보낸 Auth Request가 맞다면 Auth Response에서 받은 `state` 값이 일치해야 하는데, 내가 모르게 CSRF 공격자에 의해 Auth Request를 보냈다면 `state` 값이 일치하지 않을 것이다.
 #### `state` Parameter
 - a.k.a. CSRF Token
-- `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
-- `state`은 매 요청마다 고유의 값을 갖는다.
+- 매 요청마다 고유의 값을 갖는 `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
+- OAuth Client가 OAuth Provider가 보낸 Auth Response가 
 - **Used by the OAuth Client to verify that the authentication response returned by the OAuth Provider is the same as the unique session token that was created by your application.**
 ##### 흐름
 - OAuth Client는 Authorization Code 요청을 할 때 `state` parameter를 포함하여 보낸다.
