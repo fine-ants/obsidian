@@ -141,6 +141,12 @@
 ### CSRF ft. `state`
 #### Cross Site Request Forgery(CSRF)
 - CSRF란, 
+- CSRF exploits the trust that a site has in a user's browser.
+
+- The objective of a CSRF attack concerning the Authorization Code is that, the malicious attacker tries to steal the Authorization Code (since the OAuth Client needs to exchange it for tokens).???
+
+A CSRF attack specifically targets state-changing requests to initiate an action instead of getting user data because the attacker has no way to see the response to the forged request. For the most basic cases the state parameter should be a nonce, used to correlate the request with the response received from the authentication.
+
 - CSRF 공격 방어란, Authorization Request와 Response를 binding하는 것이다.
 #### `state` Parameter
 - a.k.a. CSRF Token
@@ -152,6 +158,7 @@
 - OAuth Provider는 Redirect URI에 Authorization Code와 받은 `state` parameter를 그대로 보낸다.
 - OAuth Client는 돌려 받은 `state` 값이 Authorization Code 요청을 할 때 보낸 `state` 값과 일치하는지 확인한다.
 	- *i.e. Authorization Response가 조작되지 않고 다른 서버가 아닌 자신이 Authorization Code 요청을 보낸 서버로부터 온게 맞는지 확인한다.*
+	- `state` 값이 다르다면, 내가 보낸 요청에 대한 응답이 아니거나 OAuth Provider의 응답을 위조했다는 뜻이다.
 #### Reference
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 ### ID Token Replay Attack ft. `nonce`
