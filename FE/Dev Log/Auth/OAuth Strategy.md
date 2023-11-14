@@ -12,7 +12,7 @@
 - [[#대안 4 `nonce` Parameter 추가]]
 - [[#FineAnts가 지원하는 OAuth Login]]
 - [[#기타 보안 내용]]
-	- [[#Proof Key for Code Exchange(PKCE) ft. Code Verifier, Code Challenge]]
+	- [[#Authorization Code Replay Attack ft. PKCE]]
 	- [[#Cross Site Request Forgery(CSRF) ft. `state`]]
 	- [[#ID Token Replay Attack ft. `nonce`]]
 
@@ -139,10 +139,13 @@
 
 
 ## 기타 보안 내용
-### Proof Key for Code Exchange(PKCE) ft. Code Verifier, Code Challenge
-#### PKCE 
+### Authorization Code Replay Attack ft. PKCE
+- a.k.a. Authorization Code Replay Attack
+#### Authorization Code Replay Attack
+- Authorization Code Replay Attack이란, 유효한 Authorization Code의 무단 재사용을 의미한다.
+- 
+#### Proof Key for Code Exchange(PKCE) ft. Code Verifier, Code Challenge
 - PKCE란, OAuth 2.0 Authorization Code Grant 흐름에서 Authorization Code 탈취에 대한 문제를 보완하기 위해 나온 장치다.
-#### Code Verifier, Code Challenge
 - Code Verifier는 랜덤한 고유 값이다.
 - Code Challenge는 Code Verifier를 단방향 해싱을 활용하여 변형한 값이다.
 - 매 Authorization Code 요청마다 고유의 값을 갖는다.
