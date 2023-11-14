@@ -140,15 +140,15 @@
 - **Used by the OAuth Provider to check if the Client requesting to exchange an Authorization Code for Tokens is indeed the client that requested the Authorization Code in the first place.**
 ### CSRF ft. `state`
 #### Cross Site Request Forgery(CSRF)
-- CSRF란, 
-- CSRF exploits the trust that a site has in a user's browser.
-	- "site" refers to our application.
-- A CSRF attacker has no way to see the response to the forged request (due to SOP in browsers). 
-	- Hence, they cannot directly see the response containing the Authorization Code.
-	- SOP prevents a web page from making requests to a different domain than the one that served the web page.
-- Therefore, in an attempt to obtain the Authorization Code, 
+- CSRF란, 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 하는 공격을 말한다.
+- CSRF 공격자는 위조된 요청에 대한 응답을 확인 할 수 없기 때문에 특정 행위를 요청하는 것이 목표다.
 
-- The objective of a CSRF attack concerning the Authorization Code is that, the malicious attacker tries to 
+
+
+- A CSRF Attacker cannot directly fetch or intercept the content (Authorization Code) of the Redirect URI due to SOP in browsers.
+	- SOP prevents a web page from making requests to a different domain than the one that served the web page.
+- However, if the attacker is somehow able to gain access to the Authorization Code, the `state` parameter can be used to mitigate this.
+
 
 In summary, while the attacker can't directly capture the authorization code from the redirect URI due to SOP, the `state` parameter ensures that the authorization code is associated with a legitimate and initiated authorization request. The `state` parameter helps prevent CSRF attacks by linking the authorization code to a specific user and client interaction. If an attacker somehow tricks the user into initiating an authorization request, the `state` parameter acts as a protective measure to ensure the legitimacy of the authorization process.
 
