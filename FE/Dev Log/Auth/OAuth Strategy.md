@@ -131,7 +131,9 @@
 
 
 ## 기타
-### CSRF ft. `state`, `nonce`
+### CSRF ft. `state`
+#### CSRF
+
 #### `state`
 - *State은 매 로그인 요청에 대한 고유의 값으로 CSRF으로부터 보호하기 위해 사용한다.*
 	- a.k.a. CSRF Token
@@ -141,14 +143,18 @@
 	- It enables the client to validate that the authorization response is not altered and sent by the original server which the auth request was sent.
 		- i.e. allows the client to cross check the authorization request and response.
 	- i.e. binding the original authorizatsion request to responses. <-- CSRF protection.
-- Reference
-	- [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
+#### Reference
+- [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
+### ID Token Replay Attack ft. `nonce`
+#### ID Token Replay
+- ID Token Replay 공격이란, 
 #### `nonce`
+- OAuth Client와 ID Token의 session을 연관지어서 replay 공격을 방어한다.
 - `nonce` binds the tokens with the client.
 - It serves as a token validation parameter; introduced in OIDC spec.
 - Purpose is to mitigate replay attacks.
 - If enabled, it is present in the ID Token, which clients must verify that the nonce claim value is the same as the value of the nonce parameter sent in the authentication request.
-
 #### Reference
-[Difference between OAuth 2.0 "state" and OpenID "nonce" parameter? Why state could not be reused? - Stack Overflow](https://stackoverflow.com/questions/46844285/difference-between-oauth-2-0-state-and-openid-nonce-parameter-why-state-cou)
+- [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
+- [Difference between OAuth 2.0 "state" and OpenID "nonce" parameter? Why state could not be reused? - Stack Overflow](https://stackoverflow.com/questions/46844285/difference-between-oauth-2-0-state-and-openid-nonce-parameter-why-state-cou)
 ### PKCE
