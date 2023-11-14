@@ -163,6 +163,8 @@
 #### ID Token Replay Attack
 - "Replay" 공격이란 unauthorized reuse of a valid data transmission.
 - ID Token Replay 공격이란, 유효한 ID Token의 무단 재사용을 의미한다.
+- ID Token Replay 공격자의 목표는 OAuth Client와의 인증이다.
+- ID Token Replay 공격 방어란, 
 
 - If the attacker intercepts the successful authentication response (ID Token), they can paste it in their URL bar, and establish identity with the OAuth Client.
 
@@ -171,6 +173,7 @@
 - *OAuth Client가 `nonce`을 생성 및 검증한다.*
 - Implicit Grant에서는 `nonce` parameter가 필수다.
 - Authorization Code Grant에서는 `nonce` parameter를선택적으로 적용할 수 있다.
+- 한번 검증이 된 `nonce` 값은 더 이상 유효하지 않기 때문에 해커가 ID Token을 탈취하더라도 
 ##### 흐름
 - OAuth Client는 Authorization Request에 `nonce` parameter를 추가하여 요청을 보낸다.
 - OAuth Provider는 받은 `nonce`을 그대로 ID Token에 포함해서 응답한다.
