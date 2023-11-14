@@ -148,7 +148,7 @@
 #### `state` Parameter
 - a.k.a. CSRF Token
 - 매 요청마다 고유의 값을 갖는 `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
-- OAuth Client가 `state`을 생성 및 검증한다.
+- *OAuth Client가 `state`을 생성 및 검증한다.*
 - 사용자가 보낸 Auth Request가 맞다면 Auth Response에서 받은 `state` 값이 일치해야 하는데, 내가 모르게 CSRF 공격자에 의해 Auth Request를 보냈다면 `state` 값이 일치하지 않을 것이다.
 ##### 흐름
 - OAuth Client는 Authorization Code 요청을 할 때 `state` parameter를 포함하여 보낸다.
@@ -162,10 +162,13 @@
 
 #### ID Token Replay Attack
 - "Replay" 공격이란 unauthorized reuse of a valid data transmission.
-- ID Token Replay 공격이란, 유효한 ID Token의 무단 재사용을 의미한다.????
+- ID Token Replay 공격이란, 유효한 ID Token의 무단 재사용을 의미한다.
+
+- If the attacker intercepts the successful authentication response (ID Token), they can paste it in their URL bar, and establish identity with the OAuth Client.
 
 #### `nonce` Parameter
 - a.k.a. "number used once"
+- *OAuth Client가 `nonce`을 생성 및 검증한다.*
 - Implicit Grant에서는 `nonce` parameter가 필수다.
 - Authorization Code Grant에서는 `nonce` parameter를선택적으로 적용할 수 있다.
 ##### 흐름
@@ -178,9 +181,6 @@
 
 - OAuth Client와 ID Token의 session을 연관지어서 replay 공격을 방어한다.
 	- `nonce` binds the tokens with the client.
-- It serves as a token validation parameter; introduced in OIDC spec.
-- Purpose is to mitigate replay attacks.
-- If enabled, it is present in the ID Token, which clients must verify that the nonce claim value is the same as the value of the nonce parameter sent in the authentication request.
 #### Reference
 - [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
 - [draft-ietf-oauth-security-topics-24](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#nonce_as_injection_protection)
