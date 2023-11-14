@@ -140,17 +140,17 @@
 
 ## 기타 보안 내용
 ### Authorization Code Replay Attack ft. PKCE
-- a.k.a. Authorization Code Replay Attack
+- a.k.a. Authorization Code Injection
 #### Authorization Code Replay Attack
-- Authorization Code Replay Attack이란, 유효한 Authorization Code의 무단 재사용을 의미한다.
-- 
+- Authorization Code Replay 공격이란, 유효한 Authorization Code의 무단 재사용을 의미한다.
+- Authorization Code Replay 공격자의 목적은 탈취한 Authorization Code로 OAuth Provider로부터 토큰을 발급받는 것이다.
+- Authorization Code Replay 공격 방어란, Authorization Code을 요청한 Client와 Authorization Code을 토큰으로 교환 요청을 하는 Client가 동일한지 확인하는 것이 목적이다.
 #### Proof Key for Code Exchange(PKCE) ft. Code Verifier, Code Challenge
 - PKCE란, OAuth 2.0 Authorization Code Grant 흐름에서 Authorization Code 탈취에 대한 문제를 보완하기 위해 나온 장치다.
 - Code Verifier는 랜덤한 고유 값이다.
 - Code Challenge는 Code Verifier를 단방향 해싱을 활용하여 변형한 값이다.
 - 매 Authorization Code 요청마다 고유의 값을 갖는다.
 - *OAuth Client가 Code Verifier 및 Code Challenge을 생성하고 OAuth Provider가 검증한다.*
-- Authorization Code을 요청한 Client와 Authorization Code을 토큰으로 교환 요청을 한 Client가 동일한지 확인하는 것이 목적이다.
 ##### 흐름
 - OAuth Client는 secret(Code Verifier)와 해당 secret의 변형된 값(Code Challenge)을 생성한다.
 - OAuth Client는 OAuth Provider로부터 Authorization Code을 받기 위한 요청에 Code Challenge을 같이 보낸다.
