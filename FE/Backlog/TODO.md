@@ -24,9 +24,11 @@
 	- [ ] 증권사 로고 추가 하기
 
 - [ ] **Watchlist Page**
-	- [ ] Hardcode된 포트폴리오 제거
-	- [ ] Watchlist 추가, 삭제 기능
-	- [ ] DnD library 바꾸기
+	- [x] Hardcode된 포트폴리오 제거
+	- [x] Watchlist 추가, 삭제 기능
+		- [x] 종목 추가, 삭제 기능
+	- [x] DnD library 바꾸기
+		- [x] react-movable로 변경
 
 - [ ] **Profile Page**
 	- [ ] “내 프로필” 탭
