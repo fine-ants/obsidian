@@ -153,13 +153,23 @@
 #### Reference
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 ### ID Token Replay Attack ft. `nonce`
-- Impli
+- Implicit Grant에서는 `nonce` parameter가 필수다.
+- Authorization Code Grant에서는 선택적으로 적용할 수 있다.
 #### ID Token Replay
 - OIDC 전략에서의 ID Token Replay 공격이란, 해커가 ID Token을 탈취하여 OAuth Provider를 대상으로 
 - TODO!!!!!!!!!!
 #### `nonce`
 - a.k.a. "number used once"
-- 
+- Authorization Code Injection 공격에 대한 방어.
+
+##### 흐름
+- OAuth Client는 Authorization Request에 `nonce` parameter를 추가하여 요청을 보낸다.
+- OAuth Provider는 ID Token에 받은 `nonce`를 그대로 포함해서 응답한다.
+- OAuth Client는 ID Token에 들어있는 `nonce` 값이 Authorization Request에 보냈던 `nonce` 값과 동일한지 확인한다.
+	- 만일, 해커가 Authorization Response에 Authorization Code를 inject했다면 ID Token에 들어있는 `nonce` 값과 OAuth Client가 유지하고 있는 `nonce`값과 다를 것이다.
+	- OAuth Client는 `nonce` 확인을 하기 전까지 발급 받은 token을 사용하지 말아야 한다.
+
+
 - OAuth Client와 ID Token의 session을 연관지어서 replay 공격을 방어한다.
 - `nonce` binds the tokens with the client.
 - It serves as a token validation parameter; introduced in OIDC spec.
@@ -167,9 +177,8 @@
 - If enabled, it is present in the ID Token, which clients must verify that the nonce claim value is the same as the value of the nonce parameter sent in the authentication request.
 
 
-- OAuth Client는 Authorization Request에 `nonce` parameter를 추가하여 요청을 보낸다.
-- OAuth Provider는 ID Token에 받은 `nonce`를 그대로 포함해서 응답한다.
-- OAuth Client는 ID Token에 들어있는 `nonce` 값이 Authorizaiton Request에 보냈던 `nonce` 값과 동일한지 확인한다.
+
 #### Reference
 - [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
+- [draft-ietf-oauth-security-topics-24](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#nonce_as_injection_protection)
 - [Difference between OAuth 2.0 "state" and OpenID "nonce" parameter? Why state could not be reused? - Stack Overflow](https://stackoverflow.com/questions/46844285/difference-between-oauth-2-0-state-and-openid-nonce-parameter-why-state-cou)
