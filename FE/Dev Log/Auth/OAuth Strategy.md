@@ -185,9 +185,6 @@ If an attacker somehow tricks the user into initiating an authorization request,
 - It serves as a token validation parameter; introduced in OIDC spec.
 - Purpose is to mitigate replay attacks.
 - If enabled, it is present in the ID Token, which clients must verify that the nonce claim value is the same as the value of the nonce parameter sent in the authentication request.
-
-
-
 #### Reference
 - [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
 - [draft-ietf-oauth-security-topics-24](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#nonce_as_injection_protection)
