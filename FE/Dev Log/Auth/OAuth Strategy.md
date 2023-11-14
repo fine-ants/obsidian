@@ -145,20 +145,9 @@
 - CSRF 공격자의 목표는 사용자가 승인한 웹사이트로의 위조된 요청을 보내는 것이다.
 
 
-
-- A CSRF Attacker cannot directly fetch or intercept the content (Authorization Code) of the Redirect URI due to SOP in browsers.
-	- SOP prevents a web page from making requests to a different domain than the one that served the web page.
-- However, if the attacker is somehow able to gain access to the Authorization Code, the `state` parameter can be used to mitigate this.
-
-
-In summary, while the attacker can't directly capture the authorization code from the redirect URI due to SOP, the `state` parameter ensures that the authorization code is associated with a legitimate and initiated authorization request. The `state` parameter helps prevent CSRF attacks by linking the authorization code to a specific user and client interaction. If an attacker somehow tricks the user into initiating an authorization request, the `state` parameter acts as a protective measure to ensure the legitimacy of the authorization process.
-
-
-
-
-A CSRF attack specifically targets state-changing requests to initiate an action instead of getting user data because the attacker has no way to see the response to the forged request. For the most basic cases the state parameter should be a nonce, used to correlate the request with the response received from the authentication.
-
 - Auth 맥락에서 CSRF 공격 방어란, Authorization Request와 Response를 binding하는 것이다.
+- 내가 보낸 Authorization Request라면 `state`이 일치해야 하는데, 내가 모르게 CSRF공격자에 의해 Authorization Request를 보냈다면 `state`이 일치하지 않을 것이다.
+If an attacker somehow tricks the user into initiating an authorization request, the `state` parameter acts as a protective measure to ensure the legitimacy of the authorization process.
 #### `state` Parameter
 - a.k.a. CSRF Token
 - `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
@@ -169,7 +158,7 @@ A CSRF attack specifically targets state-changing requests to initiate an action
 - OAuth Provider는 Redirect URI에 Authorization Code와 받은 `state` parameter를 그대로 보낸다.
 - OAuth Client는 돌려 받은 `state` 값이 Authorization Code 요청을 할 때 보낸 `state` 값과 일치하는지 확인한다.
 	- *i.e. Authorization Response가 조작되지 않고 다른 서버가 아닌 자신이 Authorization Code 요청을 보낸 서버로부터 온게 맞는지 확인한다.*
-	- `state` 값이 다르다면, 내가 보낸 요청에 대한 응답이 아니거나 OAuth Provider의 응답을 위조했다는 뜻이다.
+	- `state` 값이 다르다면, 내가 보낸 요청에 대한 응답이 아니거나 OAuth Provider의 응답을 위조했다는 뜻이다.
 #### Reference
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 ### ID Token Replay Attack ft. `nonce`
