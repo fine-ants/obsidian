@@ -155,7 +155,9 @@
 - OAuth Provider는 Code Verifier를 이전 단계에서 받은 Code Challenge을 이용하여 verify한다.
 	- **해당 요청이 Authorization Code을 요청한 클라이언트와 동일한지 확인.**
 - Code Verifier가 성공적으로 verify가 되었다면 OAuth Provider는 Access Token과 Refresh Token을 반환한다.
-
+#### Reference
+- [RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
+- [draft-ietf-oauth-security-topics-11](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-11#section-2.1.1)
 ### Cross Site Request Forgery(CSRF) ft. `state`
 #### CSRF
 - CSRF 공격이란, 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 하는 공격을 말한다.
