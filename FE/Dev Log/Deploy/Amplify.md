@@ -8,7 +8,7 @@
 - 하지만, 사이트내의 다른 페이지로 *바로* navigate할 때에는 실패한다.
 	- Ex: OAuth Redirect URI.
 	- Ex: `site.amplifyapp.com/signin`을 직접 브라우저에 입력하면 해당 페이지를 찾는데 실패한다.
-	- 실패하는 이유는, SPA는 `index.html`이 먼저 로드가 되어야하지만, 바로 `site.amplifyapp.com/signin`을 한다는 것은 `index.html` 및 스크립트가 로드되지 않았기 때문이다.
+- 실패하는 이유는, SPA는 `index.html`이 먼저 로드가 되어야하지만, 바로 `site.amplifyapp.com/signin`을 한다는 것은 `index.html` 및 라우트 처리를 해줄 스크립트가 로드되지 않았기 때문이다.
 ### 설정 내용
 - 정규식 표현을 사용해서 특정 파일 확장자들을 제외한 모든 파일들에 대한 요청을 `index.html`로 200 rewrite하도록 설정해야 한다.
 - Source Address
