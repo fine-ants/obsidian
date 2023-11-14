@@ -3,6 +3,8 @@
 - Auth
 - 상태
 - API 분리
+- React
+	- 받은 Props로 state을 생성하는데, props가 후에 바뀌어도 state은 다른 조치가 있지 않는 이상 이전 상태를 유지한다.
 - WebSocket ft. STOMP
 	- STOMP protocol alternative subprotocol
 	- Custom subprotocol?
