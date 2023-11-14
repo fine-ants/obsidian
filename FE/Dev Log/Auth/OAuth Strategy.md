@@ -132,8 +132,9 @@
 
 ## 기타
 ### CSRF ft. `state`
-#### CSRF
-
+#### Cross Site Request Forgery(CSRF)
+- CSRF is...
+- TODO!!!!!!!!!!
 #### `state`
 - *State은 매 로그인 요청에 대한 고유의 값으로 CSRF으로부터 보호하기 위해 사용한다.*
 	- a.k.a. CSRF Token
@@ -147,7 +148,8 @@
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 ### ID Token Replay Attack ft. `nonce`
 #### ID Token Replay
-- ID Token Replay 공격이란, 
+- OIDC 전략에서의 ID Token Replay 공격이란, 해커가 ID Token을 탈취하여 OAuth Provider를 대상으로 
+- TODO!!!!!!!!!!
 #### `nonce`
 - OAuth Client와 ID Token의 session을 연관지어서 replay 공격을 방어한다.
 - `nonce` binds the tokens with the client.
@@ -157,4 +159,4 @@
 #### Reference
 - [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
 - [Difference between OAuth 2.0 "state" and OpenID "nonce" parameter? Why state could not be reused? - Stack Overflow](https://stackoverflow.com/questions/46844285/difference-between-oauth-2-0-state-and-openid-nonce-parameter-why-state-cou)
-### PKCE
+### PKCE ft. Code Verifier, Code Challenge
