@@ -159,15 +159,14 @@
 #### Reference
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 ### ID Token Replay Attack ft. `nonce`
-- a.k.a. Authorization Code Injection
-- Implicit Grant에서는 `nonce` parameter가 필수다.
-- Authorization Code Grant에서는 선택적으로 적용할 수 있다.
-#### ID Token Replay
+#### ID Token Replay Attack
 - OIDC 전략에서의 ID Token Replay 공격이란, 해커가 ID Token을 탈취하여 OAuth Provider를 대상으로 
 - TODO!!!!!!!!!!
 #### `nonce` Parameter
 - a.k.a. "number used once"
-- Authorization Code Injection 공격에 대한 방어.
+- Implicit Grant에서는 `nonce` parameter가 필수다.
+- Authorization Code Grant에서는 `nonce` parameter를선택적으로 적용할 수 있다.
+
 
 ##### 흐름
 - OAuth Client는 Authorization Request에 `nonce` parameter를 추가하여 요청을 보낸다.
