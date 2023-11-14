@@ -143,10 +143,16 @@
 - CSRF란, 
 - CSRF exploits the trust that a site has in a user's browser.
 	- "site" refers to our application.
+- A CSRF attacker has no way to see the response to the forged request (due to SOP in browsers). 
+	- Hence, they cannot directly see the response containing the Authorization Code.
+	- SOP prevents a web page from making requests to a different domain than the one that served the web page.
+- Therefore, in an attempt to obtain the Authorization Code, 
 
-- The objective of a CSRF attack concerning the Authorization Code is that, the malicious attacker tries to steal the Authorization Code (since the OAuth Client needs to exchange it for tokens) by modifying the Redirect URI to their server.??
+- The objective of a CSRF attack concerning the Authorization Code is that, the malicious attacker tries to 
 
-- A CSRF attacker has no way to see the response to the forged request. Therefore, 
+In summary, while the attacker can't directly capture the authorization code from the redirect URI due to SOP, the `state` parameter ensures that the authorization code is associated with a legitimate and initiated authorization request. The `state` parameter helps prevent CSRF attacks by linking the authorization code to a specific user and client interaction. If an attacker somehow tricks the user into initiating an authorization request, the `state` parameter acts as a protective measure to ensure the legitimacy of the authorization process.
+
+
 
 
 A CSRF attack specifically targets state-changing requests to initiate an action instead of getting user data because the attacker has no way to see the response to the forged request. For the most basic cases the state parameter should be a nonce, used to correlate the request with the response received from the authentication.
