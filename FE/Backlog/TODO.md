@@ -51,12 +51,14 @@
 - [ ] **OAuth Sign In**
 	- [ ] Redirect URI
 	    - [ ] Redirect URI를 `/signin`이 아니라 따로 sign in loading page(Ex: “로그인 중입니다”)로 구현
-	- [ ] GoogleSignInButton
+	- [ ] Google Sign In
 	    - [ ] `@react/oauth-google`은 Client ID를 FE에 명시하는 것을 필요로하기 때문에 사용하지 말고 직접 구현
 	    - [ ] `@react/oauth-google`을 사용한다면 Custom login button (`useGoogleLogin` "auth-code" flow)
 	    - [ ] Handle error from Google
-	- [ ] KakaoSignInButton
-	    - [ ] Handle case where popup doesn't show
+	- [x] Kakao Sign In
+	    - [x] 대안3으로 refactor
+	- [x] Naver Sign In
+		- [x] Backend로부터 Authorization URL 받는 방식으로 refactor
 
 - [ ] **Modal 컴포넌트**
 	- [ ] `Modal` -> `Dialog`

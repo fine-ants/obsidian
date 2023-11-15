@@ -1,6 +1,8 @@
 
 # Docs TODO
 - Auth
+	- 대안 Illustration
+	- `nonce`
 - 상태
 - API 분리
 - React
