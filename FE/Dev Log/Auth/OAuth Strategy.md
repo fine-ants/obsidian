@@ -95,8 +95,8 @@
 	- Backend는 받은 ID Token과 Nonce 값을 verify 한 후 Frontend로 로그인 응답을 한다.
 	- Frontend는 성공적으로 로그인된 화면을 보여준다.
 ### Illustration
-- TODO!!!!!!!!!!
 ![[strategy-3.png]]
+
 ## FineAnts가 지원하는 OAuth Login
 ### Google
 - Google Identity Services (Sign In With Google for Web)
@@ -133,7 +133,6 @@
 - **기존 전략 + Authorization URL을 Backend로부터 받아는 방식.**
 - Backend로부터 Auth URL을 먼저 받고 요청을 하는 방식이기 때문에 SDK 미사용.
 	- SDK 사용은 Client에서 바로 OAuth Provider의 Auth URL로 요청이 가기 때문이다.
-
 
 ## 기타 보안 내용
 ### Authorization Code Replay Attack ft. PKCE

@@ -94,7 +94,7 @@
 	    - [ ] error component
 	    - [ ] loading component
 	    - [ ] 아이콘
-	- [ ] 각 api 호출에 맞는 error handle
+	- [ ] 각 api 호출에 맞는 error handle (Query/Mutation Cache?)
 
 - [ ] **Docs Todo**
 	- [ ] FE Architecture
