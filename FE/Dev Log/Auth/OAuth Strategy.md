@@ -96,7 +96,7 @@
 	- Frontend는 성공적으로 로그인된 화면을 보여준다.
 ### Illustration
 - TODO!!!!!!!!!!
-
+![[strategy-3.png]]
 ## FineAnts가 지원하는 OAuth Login
 ### Google
 - Google Identity Services (Sign In With Google for Web)
