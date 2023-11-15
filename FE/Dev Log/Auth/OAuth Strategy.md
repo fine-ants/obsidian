@@ -92,7 +92,7 @@
 	- Backend는 받은 State이 처음에 보낸 State과 동일한지 확인한다.
 	- Backend는 Authorization Code와 Code Verifier를 OAuth Provider로 보낸다.
 	- OAuth Provider는 받은 Code Verifier를 Code Challenge Method로 해싱한 값이 이전에 받았던 Code Challenge와 동일한지 verify한 후 ID Token 및 Access Token을 반환한다.
-	- Backend는 받은 ID Token을 verify한 후 Frontend로 로그인 응답을 한다.
+	- Backend는 받은 ID Token과 Nonce 값을 verify 한 후 Frontend로 로그인 응답을 한다.
 	- Frontend는 성공적으로 로그인된 화면을 보여준다.
 ### Illustration
 - TODO!!!!!!!!!!
