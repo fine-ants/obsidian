@@ -129,6 +129,7 @@
 ### Naver
 - Naver는 OpenID Connect 및 Authorization Code Grant with PKCE를 지원하지 않는다.
 - 기본 Authorization Code Grant만 가능하다.
+- `state` parameter를 이용할 수 있다.
 #### 전략
 - **기존 전략 + Authorization URL을 Backend로부터 받아는 방식.**
 - Backend로부터 Auth URL을 먼저 받고 요청을 하는 방식이기 때문에 SDK 미사용.
