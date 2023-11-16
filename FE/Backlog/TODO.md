@@ -69,9 +69,9 @@
 
 - [ ] **Portfolio Dialog**
 	- [ ] 무슨 리팩토링이 시급했는지 찾기
-	- [ ] 수정, 추가 로직이 추가 되었으니 TODO 지우기
-	- [ ] Button disabled 조건식 추가하기
-	- [ ] Input 소수점 2자리 문제 해결하기
+	- [x] 수정, 추가 로직이 추가 되었으니 TODO 지우기
+	- [x] Button disabled 조건식 추가하기
+	- [x] Input 소수점 2자리 문제 해결하기
 
 - [ ] **TotalValuationLineChart**
 	- [ ] TODO 주석 2개 해결하기
@@ -104,3 +104,5 @@
 
 - [ ] Router 관련 수정
 	-  지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다
+	
+- [ ] securitiesFirm 로고 이미지 추가하기 
