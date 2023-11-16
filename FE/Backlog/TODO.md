@@ -60,13 +60,13 @@
 	- [x] Naver Sign In
 		- [x] Backend로부터 Authorization URL 받는 방식으로 refactor
 
-- [ ] **Modal 컴포넌트**
-	- [ ] `Modal` -> `Dialog`
-	    - [ ] "Modal" refers to an element that blocks interaction with the rest of the application.
-	- [ ] `ConfirmAlert` -> `ConfirmDialog`
-	    - [ ] "Alert" displays a short, important message to the user without interrupting the user's task.
-
-- [ ] **Portfolio Modal**
+- [x] **Modal 컴포넌트**
+	- [x] `Modal` -> `Dialog`
+	    - [x] "Modal" refers to an element that blocks interaction with the rest of the application.
+	- [x] `ConfirmAlert` -> `ConfirmDialog`
+	    - [x] "Alert" displays a short, important message to the user without interrupting the user's task.
+	- 해당 TODO Issue : https://github.com/fine-ants/frontend/issues/5
+- [ ] **Portfolio Dialog**
 	- [ ] 무슨 리팩토링이 시급했는지 찾기
 	- [ ] 수정, 추가 로직이 추가 되었으니 TODO 지우기
 	- [ ] Button disabled 조건식 추가하기
