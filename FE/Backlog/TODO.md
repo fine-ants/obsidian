@@ -1,7 +1,7 @@
 # TODO
 
-- [ ] **Landing Page**
-	- [ ] 디자인은 없지만 BasePage 적용해 놓기
+- [x] **Landing Page**
+	- [x] 디자인은 없지만 BasePage 적용해 놓기
 
 - [ ] **Dashboard Page**
 	- [ ] 포트폴리오 PieChart 예산이 아니라 평가금액으로 변경
@@ -40,7 +40,8 @@
 	- [ ] “내 포트폴리오” 탭
 	    - [ ] 스타일
 	    - [ ] 하드코딩 제거
-	    - [ ] msw에 portfolios 값이 react에서 사용처와 달라 에러 나고 있음
+	    - [x] msw에 portfolios 값이 react에서 사용처와 달라 에러 나고 있음
+		    - [x] undefined 예외처리해줘서 해결
 	- [ ] Sector
 	    - [ ] 하드코딩 제거
 
