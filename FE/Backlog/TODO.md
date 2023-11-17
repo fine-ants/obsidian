@@ -20,8 +20,6 @@
 	    - [ ] 0일 경우 bar 없음
 	- [ ] 연배당률 소수점 포함
 	- [ ] `useStompWithRQ` 구조 수정 필요
-	- [ ] 목표 손익률, 최대 손실률input에 소숫점 2자리 문제
-	- [ ] 증권사 로고 추가 하기
 
 
 - [x] **Watchlist Page**
@@ -69,11 +67,14 @@
 	    - [x] "Alert" displays a short, important message to the user without interrupting the user's task.
 	- 해당 TODO Issue : https://github.com/fine-ants/frontend/issues/5
 
-- [ ] **Portfolio Dialog**
-	- [ ] 무슨 리팩토링이 시급했는지 찾기
+- [x] **Portfolio Dialog**
+	- [ ] ~~무슨 리팩토링이 시급했는지 찾기
+		- 컴포넌트 사이즈가 커서 추가/수정을 분리로 추정된다.
+		- 하지만 분리가 오히려 복잡도가 높아질 것 같아서 분리하지 않았습니다.
 	- [x] 수정, 추가 로직이 추가 되었으니 TODO 지우기
 	- [x] Button disabled 조건식 추가하기
 	- [x] Input 소수점 2자리 문제 해결하기
+	- 해당 TODO Issue : https://github.com/fine-ants/frontend/issues/8
 
 - [ ] **TotalValuationLineChart**
 	- [ ] TODO 주석 2개 해결하기
