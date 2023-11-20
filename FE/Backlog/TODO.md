@@ -117,3 +117,6 @@
 
 - [ ] Husky 고치기
 
+- [ ] README.md
+	- [ ] Tech stack, links, etc.
+
