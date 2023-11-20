@@ -62,12 +62,10 @@
 	    - [x] 대안3으로 refactor
 	- [x] Naver Sign In
 		- [x] Backend로부터 Authorization URL 받는 방식으로 refactor
-	- [ ] Pop Up Browser Compatibility
-		- [x] Chrome
-		- [ ] Safari
-			- 문제: 팝업 미허용인 상태일 때 로그인 시도시, 로그인을 계속 진행하는데 문제 생김 (window.opener가 null인 상태).
+	- [ ] Pop Up 흐름
+		- [ ] Chrome, Safari, Firefox
+			- 문제: 팝업 미허용인 상태일 때 로그인 시도시, 로그인을 계속 진행하는데 문제 생김 (window.opener가 null인데 진행하려는 상태).
 			- 대안: 팝업 열기 시도 전 팝업 허용 상태 확인 후, 미허용인 상태면 팝업을 먼저 허용해달라는 안내 표시.
-		- [ ] Firefox
 
 - [x] **Modal 컴포넌트**
 	- [x] `Modal` -> `Dialog`
