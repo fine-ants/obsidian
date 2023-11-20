@@ -19,7 +19,7 @@
 	    - [x] 현재월 highlight 되도록 수정
 	    - [ ] 0일 경우 bar 없음
 	- [ ] 연배당률 소수점 포함
-	- [ ] `useStompWithRQ` 구조 수정 필요
+	- [ ] stomp 웹소켓 -> SSE 변경
 
 
 - [x] **Watchlist Page**
