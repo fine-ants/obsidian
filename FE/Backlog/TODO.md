@@ -2,6 +2,7 @@
 
 - [x] **Landing Page**
 	- [x] 디자인은 없지만 BasePage 적용해 놓기
+	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
 
 - [ ] **Dashboard Page**
 	- [ ] 포트폴리오 리스트 데이터 예산이 아니라 평가금액으로 변경
