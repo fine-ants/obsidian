@@ -23,3 +23,6 @@
 	- Recharts
 	- lightweight-charts
 	- React DnD -> 대체 라이브러리도
+- Stock Valuation
+	- Ex: DCF model, etc.
+	- Ex: 현재가가 저평가/고평가인지 등.
