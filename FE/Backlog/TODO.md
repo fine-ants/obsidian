@@ -120,7 +120,7 @@
 - [ ] 배포
 	- [ ] Custom domain name (fineants) 적용.
 
-- [ ] Husky 고치기
+- [x] Husky 고치기
 
 - [ ] README.md
 	- [ ] Tech stack, links, etc.
