@@ -620,7 +620,6 @@
             </value>
           </objProp>
           <stringProp name="filename"></stringProp>
-          <stringProp name="RespTimeGraph.interval">100</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
