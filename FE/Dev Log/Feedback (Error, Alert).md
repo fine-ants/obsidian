@@ -5,7 +5,6 @@
 - [[#User Feedbacks]]
 - [[#에러 및 피드백 핸들링 방식]]
 
-
 ## User Feedbacks
 - CRUD 성공/실패 - Toast
 	- Portfolio Page
@@ -30,4 +29,5 @@
 - Query/Mutation Cache에서 에러 일괄 처리
 	- 각 query/mutation에서 meta 필드 이용해서 error message 설정
 - Suspense
+	- MUI Skeleton
 - ErrorBoundary
