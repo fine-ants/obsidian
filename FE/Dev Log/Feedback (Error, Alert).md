@@ -7,8 +7,9 @@
 		- Portfolio 추가, 수정, 삭제
 		- Portfolio Holding 추가, 수정, 삭제
 	- Watchlist Page
-		- Watchlist 추가, 수정, 삭제
-		- Watchlist Stock 추가, 수정, 삭제
+		- Watchlist
+			- 추가, 수정 (이름 변경), 삭제
+		- Watchlist Stock 추가, 삭제
 	- Signup Page
 		- 회원가입
 	- Signin Page
@@ -21,6 +22,9 @@
 	- 최대 손실율 도달
 
 
+
+- 어떤 것들을 피드백을 줄지
+- 어디서 핸들링할건지
 
 
 
