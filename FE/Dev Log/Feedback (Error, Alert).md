@@ -1,7 +1,12 @@
 
 # Feedback (Error, Alert)
 
+## Table of Contents
+- [[#User Feedbacks]]
+- [[#에러 및 피드백 핸들링 방식]]
 
+
+## User Feedbacks
 - CRUD 성공/실패 - Toast
 	- Portfolio Page
 		- Portfolio 추가, 수정, 삭제
@@ -21,13 +26,8 @@
 	- 목표 수익률 도달
 	- 최대 손실율 도달
 
-
-
-
-- 어디서 핸들링할건지
-	- Query/Mutation Cache
-	- Suspense
-
-
-
-
+## 에러 및 피드백 핸들링 방식
+- Query/Mutation Cache에서 일괄처리
+	- 각 query/mutation에서 meta 필드 이용해서 error message 설정
+- Suspense
+- ErrorBoundary
