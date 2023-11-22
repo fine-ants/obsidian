@@ -2,7 +2,7 @@
 # Feedback (Error, Alert)
 
 
-- CRUD 성공
+- CRUD 성공/실패
 	- Portfolio Page
 		- Portfolio 추가, 수정, 삭제
 		- Portfolio Holding 추가, 수정, 삭제
@@ -15,7 +15,11 @@
 		- 로그인 성공/실패
 	- My Profile Page
 		- 프로필 정보 변경
-404 Page
+- 404 Page
+- Notification
+	- 목표 수익률 도달
+	- 최대 손실율 도달
+
 
 
 

@@ -125,3 +125,6 @@
 - [ ] README.md
 	- [ ] Tech stack, links, etc.
 
+- [ ] Dropdown component refactor
+
+- [ ] 개별 종목 현재가 알림
