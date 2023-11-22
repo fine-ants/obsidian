@@ -25,7 +25,6 @@
 
 
 - 어디서 핸들링할건지
-	- 발생 위치
 	- Query/Mutation Cache
 	- Suspense
 
