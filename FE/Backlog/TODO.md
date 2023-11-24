@@ -101,7 +101,7 @@
 	- [ ] 화폐단위 KRW
 	- [ ] 계산 test code
 	- [ ] 공용 컴포넌트
-	    - [ ] toast
+	    - [x] toast
 	    - [ ] error component
 	    - [ ] loading component
 	    - [ ] 아이콘
