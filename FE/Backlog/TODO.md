@@ -24,7 +24,6 @@
 	- [ ] stomp 웹소켓 -> SSE 변경
 	- [ ] 실시간 변경 값 1초마다 상승 하락 플래그 다른색깔로 깜빡
 
-
 - [x] **Watchlist Page**
 	- [x] Hardcode된 포트폴리오 제거
 	- [x] Watchlist 추가, 삭제 기능
