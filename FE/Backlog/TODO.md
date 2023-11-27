@@ -47,8 +47,8 @@
 
 - [ ] **Signup Page**
 	- [ ] 이메일/비밀번호
-	- [ ] Funnel pattern custom hook
-	- [ ] TODO 내용 확인하고 해결하기
+	- [x] Funnel pattern custom hook
+	- [x] TODO 내용 확인하고 해결하기
 
 - [ ] **OAuth Sign In**
 	- [ ] Redirect URI
