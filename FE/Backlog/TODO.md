@@ -99,12 +99,13 @@
 	- [ ] 금액 1,000단위로 comma 찍기
 	- [ ] 화폐단위 KRW
 	- [ ] 계산 test code
-	- [ ] 공용 컴포넌트
-	    - [x] toast
-	    - [ ] error component
-	    - [ ] loading component
-	    - [ ] 아이콘
 	- [ ] 각 api 호출에 맞는 error handle (Query/Mutation Cache, Suspense, etc)
+
+- [ ] 공용 컴포넌트
+	- [x] toast
+	- [ ] error component
+	- [ ] loading component
+	- [ ] 아이콘 버튼
 
 - [ ] **Docs Todo**
 	- [ ] FE Architecture
