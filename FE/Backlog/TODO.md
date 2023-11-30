@@ -107,11 +107,6 @@
 	- [ ] loading component
 	- [ ] 아이콘 버튼
 
-- [ ] **Docs Todo**
-	- [ ] FE Architecture
-	    - Amplify, React Query, HTTPS, WSS
-	- [ ] State Management
-
 - [ ] Router 관련 수정
 	-  지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다
 
