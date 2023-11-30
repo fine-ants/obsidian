@@ -1,5 +1,8 @@
 # Amplify 배포
 
+## Table of Contents
+- [[#Amplify를 선택한 이유]]
+- [[#SPA Redirect and Rewrites 설정]]
 
 ## Amplify를 선택한 이유
 
@@ -16,10 +19,7 @@
 	- Google과 같은 검색 엔진은 HTTPS를 사용하는 웹사이트를 선호하는데, 이는 검색 엔진 최적화(SEO)에 긍정적인 영향을 주고, 웹사이트의 검색 순위를 향상시킬 수 있다.
 
 - **CI/CD**
-	- 코드 변경이 발생할 때마다 자동으로 빌드 및 배포가 이뤄짐으로써, 코드 업데이트에만 집중가능
- 
-## Table of Contents
-- [[#SPA Redirect and Rewrites 설정]]
+	- 코드 변경이 발생할 때마다 자동으로 빌드 및 배포가 이뤄짐으로써, 코드 업데이트에만 집중가능 
 
 ## SPA Redirect and Rewrites 설정
 - 대부분 SPA는 사이트내에서의 navigate(i.e. `/index.html`에서 출발을 할 때)을 할 때에는 서버로의 요청없이도 HTML5 `history.pushState()`으로 브라우저의 location을 바꿀 수 있다.
