@@ -46,7 +46,8 @@
 	    - [ ] 하드코딩 제거
 
 - [ ] **Signup Page**
-	- [ ] 이메일/비밀번호
+	- [ ] 이메일/비밀번호 가입
+		- [ ] 이미지 업로드 (S3 presigned URL)
 	- [x] Funnel pattern custom hook
 	- [x] TODO 내용 확인하고 해결하기
 
