@@ -4,11 +4,11 @@
 	- [x] 디자인은 없지만 BasePage 적용해 놓기
 	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
 
-- [ ] **Dashboard Page**
-	- [ ] 포트폴리오 리스트 데이터 예산이 아니라 평가금액으로 변경
-	- [ ] 포트폴리오 파이차트 API 따로 생성
-	- [ ] ValuationOverview 값
-	- [ ] "총 자산 추이" 그래프에서 현재 선택된 기간 highlight
+- [x] **Dashboard Page**
+	- [x] 포트폴리오 리스트 데이터 예산이 아니라 평가금액으로 변경
+	- [x] 포트폴리오 파이차트 API 따로 생성
+	- [x] ValuationOverview 값
+	- [x] "총 자산 추이" 그래프에서 현재 선택된 기간 highlight
 
 - [ ] **Portfolio Page**
 	- [ ] Overview 부분에 포트폴리오 평가금액 추가
