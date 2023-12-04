@@ -124,3 +124,6 @@
 - [ ] Dropdown component refactor
 
 - [ ] 개별 종목 현재가 알림
+
+- [ ] Pie Chart type에서 `fill` 제거 (프론트에서 색상 핸들링)
+
