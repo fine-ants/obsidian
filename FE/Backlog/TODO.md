@@ -127,3 +127,4 @@
 
 - [ ] Pie Chart type에서 `fill` 제거 (프론트에서 색상 핸들링)
 
+- [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
