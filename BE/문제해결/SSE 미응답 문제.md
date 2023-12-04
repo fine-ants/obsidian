@@ -26,4 +26,31 @@ public Long getPrice(String tickerSymbol) {
 - 배포 서버의 redis 저장소를 확인해보니 종목 종가에 대한 데이터를 저장하지 않고 있었습니다.
 ![[Pasted image 20231204233609.png]]
 
-즈
+즉, SSE 응답을 하지 못한 원인은 포트폴리오 상세 조회 데이터를 만들려고 하다가 redis에 종가 데이터를 저장하지 않아서 실행 중 IllegalArgumentException이 발생한 것이었고 이 예외가 발생했음에도 스케줄링 안에 쓰레드에서 실행되어 예외가 로깅되지 않았던 것이었습니다.
+
+발견한 계기는 쓰레드풀에 넣지 않고 실행했을때 GlobalExceptionHandler로 로깅할 수 있었습니다.
+
+```
+@GetMapping  
+public SseEmitter readMyPortfolioStocks(@PathVariable Long portfolioId) {  
+    SseEmitter emitter = new SseEmitter(1000L * 30);  
+    emitter.onTimeout(emitter::complete);  
+  
+    try {  
+       emitter.send(SseEmitter.event()  
+          .data(portfolioStockService.readMyPortfolioStocks(portfolioId, lastDayClosingPriceManager))  
+          .name("sse event - myPortfolioStocks"));  
+       emitter.complete();  
+    } catch (IOException e) {  
+       log.error(e.getMessage(), e);  
+    }  
+  
+    // 장시간 동안에는 스케줄러를 이용하여 지속적 응답  
+    // if (stockMarketChecker.isMarketOpen(LocalDateTime.now())) {  
+    //     scheduleSseEventTask(portfolioId, emitter, false);    // } else {    //     scheduleSseEventTask(portfolioId, emitter, true);    // }    return emitter;  
+}
+```
+![[Pasted image 20231204234122.png]]
+
+### 해결방법
+- 5초에 한번씩 현재가 및 종가 가격을 갱신하는 부분에서 문제를 해결합니다.
