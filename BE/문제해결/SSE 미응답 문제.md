@@ -52,5 +52,18 @@ public SseEmitter readMyPortfolioStocks(@PathVariable Long portfolioId) {
 ```
 ![[Pasted image 20231204234122.png]]
 
+#### scheduleAtFixedRate vs. scheduleWithFixedDelay
+scheduleAtFixedRate(command, initialDelay, period, unit)
+1. initialDelay 후에 period 간격으로 command 실행
+2. 어떤 이유(예: 가비지 컬렉션 또는 기타 백그라운드 활동)로 인해 실행이 지연되면 두번 이상 실행될 수 있습니다.
+	- ex) scheduleAtFixedRate(command, 1, 2, TimeUnit.SECONDS) 일 때 실행시간이 12시 00분 00초이면 1초 후인 12시 00분 01초에 command가 실행되고 다음은 12시 00분 03초, 5초, 7초입니다. command의 종료 여부와 관계가 없습니다.
+
+scheduleWithFixedDelay(command, initialDelay, delay, unit)
+1. initialDelay 후에 delay 간격으로 command 실행
+2. command가 종료된 후를 기준으로 delay 간격으로 command 실행
+	- cheduleWithFixedDelay(command, 1, 2, TimeUnit.SECONDS) 일 때 실행시간이 12시 00분 00초라면 1초 후인 12시 00분 01초에 command가 실행되고 그후 command가 10초 후에 종료되었다면 다음은 12시 00분 13초입니다. 그후 command가 2초후 종료되었다면 다음은 12시 00분 17초입니다.
+
+
 ### 해결방법
 - 5초에 한번씩 현재가 및 종가 가격을 갱신하는 부분에서 문제를 해결합니다.
+- 종가 갱신하는 부분은 쓰레드 풀을 사용하여 테스크를 실행하는데 이 부분의 테스크들을 한번에 요청하여 open api에서 초과 요청으로 인해서 가격 문의가 거부당하였습니다. 따라서 쓰레드풀을 설정하여 각각의 테스크가 0.2초 간격으로 한개씩 전송하도록 합니다.
