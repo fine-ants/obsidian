@@ -63,6 +63,9 @@ scheduleWithFixedDelay(command, initialDelay, delay, unit)
 2. command가 종료된 후를 기준으로 delay 간격으로 command 실행
 	- cheduleWithFixedDelay(command, 1, 2, TimeUnit.SECONDS) 일 때 실행시간이 12시 00분 00초라면 1초 후인 12시 00분 01초에 command가 실행되고 그후 command가 10초 후에 종료되었다면 다음은 12시 00분 13초입니다. 그후 command가 2초후 종료되었다면 다음은 12시 00분 17초입니다.
 
+#### 왜 open api 서버로부터 요청 횟수 초과 응답을 받았는가?
+- ScheduledExecutorService 사용시 여러개의 테스크를 넣고 delay를 설정하면 각각의 테스크가 delay 간격만큼 대기한다음 실행한다고 생각하였습니다. 그런데 쓰레드풀의 크기가 5인 경우 5개의 쓰레드가 각자 delay만큼 대기한다음 동시에 실행하게 됩니다.
+- 따라서 쓰레드의 크기를 1개로 줄여서 문제를 해결하였습니다.
 
 ### 해결방법
 - 5초에 한번씩 현재가 및 종가 가격을 갱신하는 부분에서 문제를 해결합니다.
