@@ -66,4 +66,10 @@ scheduleWithFixedDelay(command, initialDelay, delay, unit)
 
 ### 해결방법
 - 5초에 한번씩 현재가 및 종가 가격을 갱신하는 부분에서 문제를 해결합니다.
-- 종가 갱신하는 부분은 쓰레드 풀을 사용하여 테스크를 실행하는데 이 부분의 테스크들을 한번에 요청하여 open api에서 초과 요청으로 인해서 가격 문의가 거부당하였습니다. 따라서 쓰레드풀을 설정하여 각각의 테스크가 0.2초 간격으로 한개씩 전송하도록 합니다.
+- 종가 갱신하는 부분은 쓰레드 풀을 사용하여 테스크를 실행하는데 이 부분의 테스크들을 한번에 요청하여 open api에서 초과 요청으로 인해서 가격 문의가 거부당하였습니다. 따라서 쓰레드풀의 크기를 1로 설정하여 각각의 테스크가 0.2초 간격으로 한개씩 전송하도록 합니다.
+```
+public class KisService {  
+    private static final String SUBSCRIBE_PORTFOLIO_HOLDING_FORMAT = "/sub/portfolio/%d";  
+    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+```
+- KisService 클래스의 executorService 쓰레드풀의  크기를 1로 설정하여 각각의 테스크가 0.2초 간격으로 수행하도록 합니다.
