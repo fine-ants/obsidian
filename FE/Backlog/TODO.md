@@ -148,3 +148,5 @@
 		- CUD 요청이 생길 시, SSE 연결 끊고, 1번, 2번 반복.
 
 - [ ] 문제: 다른 사용자가 만든 portfolio를 `/portfolio/:portfolioId`로 접근이 가능함.
+
+- [ ] DashboardPage 포트폴리오 비중 차트 레전드 스크롤 UI 수정
