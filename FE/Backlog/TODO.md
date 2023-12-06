@@ -130,9 +130,15 @@
 
 - [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
 
-- [ ] Toast 위치 변경
+- [ ] Toast
+	- [ ] 위치 변경
+	- [ ] 종목 검색 시 다수 toast 발생
 
 - [ ] 포트폴리오 상세 조회 및 종목 조회
 	- `portfolioDetails`에서 실시간 항목이 6개.
-	- 
+	- `portfolioHoldings`에서 실시간 항목이 6개.
+	- 나머지 정적인 데이터들을 SSE로 계속 받는 것에 대한 overhead 확인 필요.
+	- 문제: 매입 이력을 추가하는 등 CRUD 작업을 진행하면 
+	- CRUD vs 실시간 분리.
 
+- [ ] 문제: 다른 사용자가 만든 portfolio를 `/portfolio/:portfolioId`로 접근이 가능함.
