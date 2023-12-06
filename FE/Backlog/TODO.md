@@ -66,6 +66,7 @@
 		- [ ] Chrome, Safari, Firefox
 			- 문제: 팝업 미허용인 상태일 때 로그인 시도시, 로그인을 계속 진행하는데 문제 생김 (window.opener가 null인데 진행하려는 상태).
 			- 대안: 팝업 열기 시도 전 팝업 허용 상태 확인 후, 미허용인 상태면 팝업을 먼저 허용해달라는 안내 표시.
+	- [ ] Pop Up Window 종종 original window로 이동이 안됨 (로그인 안됨).
 
 - [x] **Modal 컴포넌트**
 	- [x] `Modal` -> `Dialog`
@@ -128,3 +129,10 @@
 - [ ] Pie Chart type에서 `fill` 제거 (프론트에서 색상 핸들링)
 
 - [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
+
+- [ ] Toast 위치 변경
+
+- [ ] 포트폴리오 상세 조회 및 종목 조회
+	- `portfolioDetails`에서 실시간 항목이 6개.
+	- 
+
