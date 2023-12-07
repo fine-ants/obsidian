@@ -150,3 +150,5 @@
 - [ ] 문제: 다른 사용자가 만든 portfolio를 `/portfolio/:portfolioId`로 접근이 가능함.
 
 - [ ] DashboardPage 포트폴리오 비중 차트 레전드 스크롤 UI 수정
+
+- [ ] 반응형
