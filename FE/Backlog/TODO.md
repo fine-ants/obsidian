@@ -156,9 +156,13 @@
 
 
 - 우선순위
+	- Search debounce 적용 (카카 & 박하)
 	- Suspense, ErrorBoundary
-	- Search debounce 적용
-	- PieChart
-	- 
+		- 대시보드 페이지 (제이)
+		- 포트폴리오 상세 페이지 (박하)
+		- 포트폴리오 목록 페이지 (카카)
+		- 글로벌(루트 레벨) 처리 (카카)
+		- 관심 목록 페이지 (높은 확률로 제이)
+	- PortfolioHoldingsPieChart 실시간으로 변경
 	- 반응형
 
