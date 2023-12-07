@@ -152,3 +152,13 @@
 - [ ] DashboardPage 포트폴리오 비중 차트 레전드 스크롤 UI 수정
 
 - [ ] 반응형
+
+
+
+- 우선순위
+	- Suspense, ErrorBoundary
+	- Search debounce 적용
+	- PieChart
+	- 
+	- 반응형
+
