@@ -30,10 +30,15 @@
 - [Token Best Practices](https://auth0.com/docs/secure/tokens/token-best-practices)
 - [Which OAuth 2.0 Flow Should I Use?](https://auth0.com/docs/get-started/authentication-and-authorization-flow/which-oauth-2-0-flow-should-i-use)
 
+### References
+- [Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow#learn-more)
+
 ---
 
 ## Tokens
 식별과 관련된 토큰은 두가지 타입이 존재합니다. : ID tokens과 Access Tokens
 
 ### ID Tokens
+ID tokens은 오직 애플리케이션에서만 사용할 수 있는 JSON Web Token(JWT)입니다. 만약에 달력을 동기화 하고, 구글을 이용하여 사용자들을 로그인시키는 애플리케이션이 있다면, 구글은 사용자의 정보를 저장한 ID Token을 애플리케이션에 전송할 것입니다. 애플리케이션은 그런 다음 토큰의 내용을 추출하고 사용자에게 개인적인 서비스를 제공하기 위해서 정보(이름과 프로파일 사진과 같은)들을 사용합니다. 
 
+단, 포함된 정보를 사용하기 전에 [ID Token의 유효성을 확인](https://auth0.com/docs/secure/tokens/id-tokens/validate-id-tokens)해야 합니다. [라이브러리](https://jwt.io/libraries)를 사용하여 이 작업을 수행할 수 있습니다.
