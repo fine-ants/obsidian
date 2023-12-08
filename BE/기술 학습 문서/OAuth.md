@@ -65,4 +65,7 @@ ID Token의 디코딩된 내용은 다음과 같을 수 있습니다.
 
 이 토큰은 애플리케이션에 사용자를 인증합니다. 토큰의 audience(aud claim)은 오직 이 명세한 애플리케이션만이 ID Token을 소비해야 된다는 것을 의미하는 애플리케이션의 식별자로 설정됩니다. 
 
-API의 유니크한 식별자와 동일한 값인 aud 
+반대로 API는 aud 값을 가진 토큰이 API의 유니크한 식별자와 동일할 것으로 예상합니다. 그러므로 여러분들이 애플리케이션과 API 둘다 제어를 유지하지 않는한 일반적으로 API에 ID Token을 보내는 것은 작동하지 않을 것입니다. 왜냐하면 ID Token은 API에 의해서 서명되지 않았기 때문에 만약 API가 ID Token을 수락한다면 애플리케이션이 토큰을 수정(ex, 더 많은 범위 추가)했는지 알 수 있는 방법이 없을 것입니다. 자세한 정보는 [JWT Handbook](https://auth0.com/resources/ebooks/jwt-handbook)을 참고해주세요.
+
+
+### Access Tokens
