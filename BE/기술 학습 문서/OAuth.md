@@ -42,3 +42,27 @@
 ID tokens은 오직 애플리케이션에서만 사용할 수 있는 JSON Web Token(JWT)입니다. 만약에 달력을 동기화 하고, 구글을 이용하여 사용자들을 로그인시키는 애플리케이션이 있다면, 구글은 사용자의 정보를 저장한 ID Token을 애플리케이션에 전송할 것입니다. 애플리케이션은 그런 다음 토큰의 내용을 추출하고 사용자에게 개인적인 서비스를 제공하기 위해서 정보(이름과 프로파일 사진과 같은)들을 사용합니다. 
 
 단, 포함된 정보를 사용하기 전에 [ID Token의 유효성을 확인](https://auth0.com/docs/secure/tokens/id-tokens/validate-id-tokens)해야 합니다. [라이브러리](https://jwt.io/libraries)를 사용하여 이 작업을 수행할 수 있습니다.
+
+API에 대한 접근 권한을 얻기 위해서 ID Token을 사용하지 마세요. 각 토큰은 의도된 audience(보통, 수신자)에 대한 정보를 포함하고 있습니다. OpenID Connection 스펙에 따르면 ID Token의 audience(aud claim을 가리키는)는 인증 요청을 만드는 애플리케이션의 클라이언트 아이디가 되어야 합니다. 만약 이 경우에 해당되지 않으면, 여러분들은 토큰을 신뢰하면 안됩니다.
+
+ID Token의 디코딩된 내용은 다음과 같을 수 있습니다.
+```
+{
+	"iss": "http://{yourDomain}/", 
+	"sub": "auth0|123456", 
+	"aud": "{yourClientId}", 
+	"exp": 1311281970, 
+	"iat": 1311280970, 
+	"name": "Jane Doe", 
+	"given_name": "Jane", 
+	"family_name": "Doe", 
+	"gender": "female", 
+	"birthdate": "0000-10-31", 
+	"email": "janedoe@example.com", 
+	"picture": "http://example.com/janedoe/me.jpg" 
+}
+```
+
+이 토큰은 애플리케이션에 사용자를 인증합니다. 토큰의 audience(aud claim)은 오직 이 명세한 애플리케이션만이 ID Token을 소비해야 된다는 것을 의미하는 애플리케이션의 식별자로 설정됩니다. 
+
+API의 유니크한 식별자와 동일한 값인 aud 
