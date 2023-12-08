@@ -15,4 +15,25 @@
 7. Auth0 인가 서버는 인가 코드, 애플리케이션의 클라이언트 아이디, 애플리케이션 인증 정보들을 검증합니다.
 8. Auth0 인가 서버는 ID 토큰과 Access Token(선택적으로 Refresh Token)을 응답합니다.
 9. 애플리케이션은 사용자에 대한 정보에 접근하기 위해 API를 호출하는데 Access Token을 사용할 수 있습니다.
-10. API는 요청된 데이터를 
+10. API는 요청된 데이터를 응답합니다.
+
+### 어떻게 인가 코드 플로우를 구현하는가?
+인가 코드 플로우를 구현하는 가장 쉬운 방법은 [Regular Web App QuickStarts](https://auth0.com/docs/quickstart/webapp)를 따라가는 것입니다.
+
+대안으로 인가 코드 플로우를 구현하기 위해서 Authentication API를 사용할 수 있습니다. 더 많은 정보를 얻기 위해서는 [Add Login Using the Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/add-login-auth-code-flow) 또는 [Call Your API Using the Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-authorization-code-flow)를 읽어보세요.
+
+## Learn more
+
+- [Auth0 Rules](https://auth0.com/docs/customize/rules)
+- [Auth0 Hooks](https://auth0.com/docs/customize/hooks)
+- [Tokens](https://auth0.com/docs/secure/tokens)
+- [Token Best Practices](https://auth0.com/docs/secure/tokens/token-best-practices)
+- [Which OAuth 2.0 Flow Should I Use?](https://auth0.com/docs/get-started/authentication-and-authorization-flow/which-oauth-2-0-flow-should-i-use)
+
+---
+
+## Tokens
+식별과 관련된 토큰은 두가지 타입이 존재합니다. : ID tokens과 Access Tokens
+
+### ID Tokens
+
