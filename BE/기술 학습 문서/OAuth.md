@@ -76,3 +76,25 @@ Access Token(JWT가 항상 있는 것은 아님)은 토큰의 베어러(Bearer)�
 **Access Token은 [인증(authentication)](https://auth0.com/docs/authenticate)에 절대 사용되면 안됩니다.** Access Token은 사용자가 인증되었는지 여부를 알 수 없습니다. Access Token이 가지고 있는 유일한 사용자 정보는 하위 클레임에 있는 사용자 ID입니다. 애플리케이션에서 Access Token은 API 용이므로 불투명 문자열로 취급합니다. 여러분들의 애플리케이션은 특정 형식으로 토큰을 디코딩하려고 시도하거나 토큰을 수신하기를 기대해서는 안됩니다.
 
 여기에 Access Token에 대한 예제가 있습니다.
+```
+{ 
+	"iss": "https://{yourDomain}/", 
+	"sub": "auth0|123456", 
+	"aud": [ "my-api-identifier", "https://{yourDomain}/userinfo" ], 
+	"azp": "{yourClientId}", 
+	"exp": 1489179954, 
+	"iat": 1489143954, 
+	"scope": "openid profile email address phone read:appointments" 
+}
+
+```
+
+토큰에는 사용자의 ID(서브 클레임) 외에 사용자에 대한 정보가 포함되어 있지 않습니다. 애플리케이션이 API에서 수행할 수 있는 작업(scope claim)에 대한 권한 정보만 포함되어 있습니다. 이것이 API 보안에는 유용하지만, 사용자 인증에는 유용하지 않습니다.
+
+일부 상황에서는 API가 사용자에 대한 자세한 정보를 가져오기 위해 추가 작업을 수행해야 하는 것을 방지하기 위해 Access Token에 사용자 또는 하위 클레임 외에 다른 사용자 지정 클레임에 대한 추가 정보를 넣는 것이 바람직할 수 있습니다. 이렇게 선택하는 경우, 이러한 추가 클레임이 Access Token에서 읽을 수 있음을 명심하세요. 자세한 내용은 [Create Custom Claims](https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims)을 읽어주세요.
+
+### Specialized tokens
+Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 토큰이 있습니다.
+- Refresh Tokens : 사용자를 재인증 할 필요없이 갱신된 Access Token을 얻는 데 사용되는 토큰입니다.
+- IDP(Identity Provider) access tokens : 
+
