@@ -35,7 +35,6 @@
 
 ### 관련 링크
 - [[BE/기술 학습 문서/OAuth#Tokens]]
-- [[]]
 
 ---
 
@@ -114,4 +113,10 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 
 ### References
 - [Tokens](https://auth0.com/docs/secure/tokens#learn-more)
+
+---
+
+## Which OAuth 2.0 Flow Should I Use? (어떤 OAuth 2.0 Flow를 사용해야 하는가?)
+
+
 
