@@ -33,6 +33,10 @@
 ### References
 - [Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow#learn-more)
 
+### 관련 링크
+- [[BE/기술 학습 문서/OAuth#Tokens]]
+- [[]]
+
 ---
 
 ## Tokens
@@ -96,5 +100,18 @@ Access Token(JWT가 항상 있는 것은 아님)은 토큰의 베어러(Bearer)�
 ### Specialized tokens
 Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 토큰이 있습니다.
 - Refresh Tokens : 사용자를 재인증 할 필요없이 갱신된 Access Token을 얻는 데 사용되는 토큰입니다.
-- IDP(Identity Provider) access tokens : 
+- IDP(Identity Provider) access tokens : 사용자 인증 후 identity provider가 발행한 토큰에 접근하여 서드 파티 API를 호출하는데 사용할 수 있습니다.
+- Auth0 Management API access tokens : Management API 엔드 포인트를 호출하기 위해서 여러분들에게 허용하는 특정 클레임(scope)을 포함되는 수명이 짧은 토큰입니다.
+
+## Learn more
+
+- [JSON Web Tokens](https://auth0.com/docs/secure/tokens/json-web-tokens)
+- [ID Tokens](https://auth0.com/docs/secure/tokens/id-tokens)
+- [Access Tokens](https://auth0.com/docs/secure/tokens/access-tokens)
+- [Refresh Tokens](https://auth0.com/docs/secure/tokens/refresh-tokens)
+- [Token Storage](https://auth0.com/docs/secure/security-guidance/data-security/token-storage)
+- [Token Best Practices](https://auth0.com/docs/secure/tokens/token-best-practices)
+
+### References
+- [Tokens](https://auth0.com/docs/secure/tokens#learn-more)
 
