@@ -69,3 +69,10 @@ ID Token의 디코딩된 내용은 다음과 같을 수 있습니다.
 
 
 ### Access Tokens
+Access Token(JWT가 항상 있는 것은 아님)은 토큰의 베어러(Bearer)가 API에 접근할 수 있는 권한을 부여받았음을 API에 알리는데 사용됩니다. (부여된 범위에 의해 지정됨)
+
+위의 구글 예제에서 구글은 사용자가 로그인 한 후에 앱에 Access Token을 전송하고 애플리케이션이 구글 캘린더에 읽고 쓰는것에 대한 동의를 제공합니다. 애플리케이션이 구글 캘린더에 글을 쓰고 싶을 때마다 HTTP Authorization 헤더에 있는 Access Token을 포함한 요청을 구글 캘린더 API에 전송합니다.
+
+**Access Token은 [인증(authentication)](https://auth0.com/docs/authenticate)에 절대 사용되면 안됩니다.** Access Token은 사용자가 인증되었는지 여부를 알 수 없습니다. Access Token이 가지고 있는 유일한 사용자 정보는 하위 클레임에 있는 사용자 ID입니다. 애플리케이션에서 Access Token은 API 용이므로 불투명 문자열로 취급합니다. 여러분들의 애플리케이션은 특정 형식으로 토큰을 디코딩하려고 시도하거나 토큰을 수신하기를 기대해서는 안됩니다.
+
+여기에 Access Token에 대한 예제가 있습니다.
