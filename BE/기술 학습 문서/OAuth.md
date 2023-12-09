@@ -135,6 +135,12 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 
 
 ### Is the Client a web app executing on the server? (클라이언트가 서버에서 실행해하는 웹 애플리케이션인가?)
+클라이언트가 서버에서 실행하는 일반적인 웹 애플리케이션 인경우 **Authorization Code Flow**를 사용해야 합니다. 이를 사용하여 클라이언트는 Access Tokenr과 Refersh Token을 발급받을 수 있습니다. 이 플로우는 안전한 선택으로 고려됩니다. 왜냐하면 Access Token이 노출되는 리스크와 사용자의 웹 브라우저를 통해 전달되는 것 없이 클라이언트를 호스팅하는 웹 서버로 직접적으로 전달되기 때문입니다. 
+
+만약 이 케이스가 여러분들의 필요에 맞는다면 이 플로우가 어떻게 작동하고 어떻게 구현하는지 [Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow) 참고해주세요.
+
+### Is the Client absolutely trusted with user credentials? (클라이언트가 사용자 인증정보를 절대적으로 신뢰받는가?)
+
 
 
 
