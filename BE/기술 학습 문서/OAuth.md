@@ -243,7 +243,44 @@ PKCE Authorization Code Flow를 구현하기 위해서는 다음과 같은 리�
 ### Prerequisites
 Auth0에 여러분들의 애플리케이션을 등록하세요. 더 배우기 위해서는  [Register Native Applications](https://auth0.com/docs/get-started/auth0-overview/create-applications/native-apps) 또는 [Register Single-Page Web Applications](https://auth0.com/docs/get-started/auth0-overview/create-applications/single-page-web-apps).을 읽으세요.
 - 여러분들의 애플리케이션 타입에 따라서 네이티브 또는 싱글 페이지 애플리케이션의 애플리케이션 타입을 선택하세요. 
-- 여러분들의 Callback URl을 추가하세요. 여러분들의 애플리케이션 타입과 플랫폼에 따라서 여러분들의 callback URL 형식은 다양할 것입니다. 애플리케이션 타입과 플랫폼에 대한 자세한 정보는 
+- 여러분들의 Callback URl을 추가하세요. 여러분들의 애플리케이션 타입과 플랫폼에 따라서 여러분들의 callback URL 형식은 다양할 것입니다. 애플리케이션 타입과 플랫폼에 대한 자세한 정보는  [Native/Mobile Quickstarts](https://auth0.com/docs/quickstart/native)및  [Single-Page App Quickstarts](https://auth0.com/docs/quickstart/spa).을 참고해주세요.
+- 여러분들의 애플리케이션의 Authorization Code를 포함한 승인 타입을 포함하고 있는지 확인하세요. 더 배우기 위해서는 [Update Grant Types](https://auth0.com/docs/get-started/applications/update-grant-types).을 참고해주세요.
+
+### Create code verifier
+토큰을 요청하기 위해서 Auth0에 최종적으로 전송되는 Base64로 인코딩되고 암호학적으로 랜덤한 code verifier를 생성하세요. 
+
+code_verifier를 생성하기 위한 알고리즘에 대해서 더 배우기 위해서는 OAuth Proof Key for Code Exchange 스펙의  [4.1 Client Creates a Code Verifier](https://datatracker.ietf.org/doc/html/rfc7636#section-4.1)을 읽으세요.
 
 
+#### Java sample
+```java
+// Dependency: Apache Commons Codec 
+// https://commons.apache.org/proper/commons-codec/ 
+// Import the Base64 class. 
+// import org.apache.commons.codec.binary.Base64; 
+SecureRandom sr = new SecureRandom(); 
+byte[] code = new byte[32]; 
+sr.nextBytes(code); 
+String verifier = Base64.getUrlEncoder().withoutPadding().encodeToString(code);
 
+```
+
+### Create code challenge
+authorization code를 요청하기 위해서 Auth0에 전송될 에정인 code verifier로부터 code challenge를 생성하세요. 
+
+code challeng가 어떻게 code verifier에서 도출되는지 더 자세히 알아보기 위해서는 [4.2 Client Creates the Code Challenge](https://datatracker.ietf.org/doc/html/rfc7636#section-4.)을 읽으세요.
+
+#### Java sample
+```java
+// Dependency: Apache Commons Codec
+// https://commons.apache.org/proper/commons-codec/
+// Import the Base64 class.
+// import org.apache.commons.codec.binary.Base64;
+byte[] bytes = verifier.getBytes("US-ASCII");
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+md.update(bytes, 0, bytes.length);
+byte[] digest = md.digest();
+String challenge = Base64.encodeBase64URLSafeString(digest);
+```
+
+### Authorize user
