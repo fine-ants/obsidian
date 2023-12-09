@@ -147,10 +147,17 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 ### Is the Client a Single-Page App? (클라이언트 싱글 페이지 애플리케이션인가?)
 만약 클라이언트가 자바스크립트와 같은 스크립트 언어를 사용하여 브라우저에 실행하는 애플리케이션인 싱글 페이지 애플리케이션(Single-Page Application, SPA)라면, 두가지 승인 옵션이 있습니다. Proof Key for Code Exchange를 가진 Authorization Code Flow와 Form Post를 가진 묵시적인 옵션이 있습니다. 대부분의 경우에는 우리는 PKCE를 이용한 Authorization Code Flow를 사용하는 것을 권장합니다. 왜냐하면 액세스 토큰은 클라이언트 사이드에 노출되지 않기 때문입니다. 그리고 이 플로우는 [Refresh Tokens](https://auth0.com/docs/secure/tokens/refresh-tokens)을 반환할 수 있습니다.
 
-이 플로우가 어떻게 작동하고 구현하는지 더 보기 위해서는 [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce)을 참고해주세요. Auth0 Single-Page App SDK는 SPA에서 PKCE를 가진 Authorization Code Flow를 구현하기 위한 높은 레벨의 API를 제공합니다.
+이 플로우가 어떻게 작동하고 구현하는지 더 보기 위해서는 [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce)을 참고해주세요. [Auth0 Single-Page App SDK](https://auth0.com/docs/libraries/auth0-single-page-app-sdk)는 SPA에서 PKCE를 가진 Authorization Code Flow를 구현하기 위한 높은 레벨의 API를 제공합니다.
 
-만약 
+만약 여러분들의 SPA가 액세스 토큰이 필요하지 않다면, 여러분들은 Form post를 가진 묵시적 플로우를 사용할 수 있습니다. Form post를 가진 묵시적 플로루가 어떻게 작동하고 구현하는지 알기 위해서 [Implict Flow with Form Post](https://auth0.com/docs/get-started/authentication-and-authorization-flow/implicit-flow-with-form-post)_를 참고해주세요.
 
+### Is the Client a Native/Mobile App? (클라이언트가 네이티브/모바일 앱인가?)
+만약 애플리케이션이 네이티브 앱이라면, **Authorization Code Flow with Proof Key for Code Exchange (PKCE)**를 사용하세요.
+
+어떻게 작동하고 어떻게 구현하는지 보기 위해서는 [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce).를 참고해주세요.
+
+### I have an application that needs to talk to different resource servers (다른 리소스 서버와 통신해야 하는 애플리케이션이 있습니다.)
+만약 싱글 애플리케이션이 다른 리소스 서버들에 대하여 액세스 토큰이 필요하다면, 여러개의 `/authorize`(같거나 서로 다른 Authorization Flow 실행) 콜이 수행될 필요가 있습니다. 각각의 authorization은 서로 다른 audien
 
 
 
