@@ -117,4 +117,4 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 ---
 
 ## Which OAuth 2.0 Flow Should I Use? (어떤 OAuth 2.0 Flow를 사용해야 하는가?)
-OAuth 2.0 Authorization Framework는 여러개의 다른 
+[OAuth 2.0 Authorization Framework](https://auth0.com/docs/authenticate/protocols/oauth)는 여러개의 다른 흐름들 또는 승인(grant)을 지원합니다. Access Token을 발급하는 여러개의 Flow가 있습니다.
