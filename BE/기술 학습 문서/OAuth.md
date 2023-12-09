@@ -165,5 +165,17 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 - Token 엔드포인트를 위하여 [Get Token](https://auth0.com/docs/api/authentication#get-token)을 가고 여러분들이 테스트 하기를 원하는 승인 플로우에 대한 "Test this endpoint"를 읽어보세요.
 
 
+### References
+- [Which OAuth 2.0 Flow Should I Use?](https://auth0.com/docs/get-started/authentication-and-authorization-flow/which-oauth-2-0-flow-should-i-use#can-i-try-the-endpoints-before-i-implement-my-application-)
+
+---
+
+## Authorization Code Flow with Proof Key for Code Exchange (PKCE)
+### 개요
+주요 개념
+- OAuth 2.0 grant type, Authorization Code Flow with Proof Key for Code Exchange (PKCE)에 대해서 알아보기.
+- 네이티브 또는 싱글 페이지 앱과 같은 client secret을 저장할 수 없는 애플리케이션을 위하여 이 grant type 사용하기
+- Auth0 SDK를 가지고 서로 다른 구현 방법들을 리뷰하기
+
 
 
