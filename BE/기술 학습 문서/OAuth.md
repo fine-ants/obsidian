@@ -320,4 +320,49 @@ https://{yourDomain}/authorize?
 
 예를 들어 여러분들의 애플리케이션이 다음과 같이 로그인을 추가할때 인증 URL에 대한 HTML 코드를 다음과 같이 구현할 수 있다.
 
-``
+```html
+<a href="https://{yourDomain}/authorize?
+  response_type=code&
+  code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&
+  code_challenge_method=S256&
+  client_id={yourClientId}&
+  redirect_uri={yourCallbackUrl}&
+  scope=openid%20profile&
+  state=xyzABC123">
+  Sign In
+</a>
+```
+
+### Response
+만약 모든것이 잘되면, 여러분들은 302 응답을 받습니다. authorization code는 URL의 쿼리 파라미터에 포함됩니다.
+```text
+HTTP/1.1 302 Found
+Location: {yourCallbackUrl}?code={authorizationCode}&state=xyzABC123
+```
+
+### Request tokens
+토큰을 위하여 여러분들의 authorization code와 code verifier를 같이 포함하여 전송합니다.
+
+지금 여러분들은 Authorization Code를 가지고 있고 만약 토큰으로 교환해야 한다면, 이전 단계로부터 추출된 Authorization Codecode)를 사용하여 code verifier를 포함하여  [token URL](https://auth0.com/docs/api/authentication#authorization-code-pkce-)에 전송합니다.
+
+### POST to token URL example
+```text
+curl --request POST \
+  --url 'https://{yourDomain}/oauth/token' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data grant_type=authorization_code \
+  --data 'client_id={yourClientId}' \
+  --data 'code_verifier={yourGeneratedCodeVerifier}' \
+  --data 'code={yourAuthorizationCode}' \
+  --data 'redirect_uri={https://yourApp/callback}'
+```
+
+### Parameters
+|Parameter Name|Description|
+|---|---|
+|`grant_type`|"authorization_code"으로 설정하세요. 고정값입니다.|
+|`code_verifier`|이 튜토리얼의 첫번째 단계에서 생성한 암호학적으로 랜덤하게 생성한 키값입니다.|
+|`code`|이 튜토리얼의 이전 단계에서 발급한 `authorization_code`입니다.|
+|`client_id`|여러분들의 애플리케이션의 Client ID입니다. 이것은 애플리케이션 설정에서 확인할 수 있습니다.|
+|`redirect_uri`||
+
