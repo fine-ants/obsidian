@@ -364,5 +364,24 @@ curl --request POST \
 |`code_verifier`|이 튜토리얼의 첫번째 단계에서 생성한 암호학적으로 랜덤하게 생성한 키값입니다.|
 |`code`|이 튜토리얼의 이전 단계에서 발급한 `authorization_code`입니다.|
 |`client_id`|여러분들의 애플리케이션의 Client ID입니다. 이것은 애플리케이션 설정에서 확인할 수 있습니다.|
-|`redirect_uri`||
+|`redirect_uri`|여러분들의 애플리케이션에서 설정한 callback URL입니다. 이 튜토리얼의 이전 단계에서 Authorization URL에 전달되는 `redirect_uri`과 정확히 매칭되어야 합니다. 이것은 URL 인코딩되어야 합니다.|
+
+### Response
+만약 모든것이 잘되면, 여러분들은 200 응답을 받습니다. 페이로드에는 access token, refresh token, id token, token type 값들이 포함됩니다.
+```json
+{
+  "access_token":"eyJz93a...k4laUWw",
+  "refresh_token":"GEbRxBN...edjnXbL",
+  "id_token":"eyJ0XAi...4faeEoQ",
+  "token_type":"Bearer",
+  "expires_in":86400
+}
+```
+
+
+## Learn more
+
+- [OAuth 2.0 Authorization Framework](https://auth0.com/docs/authenticate/protocols/oauth)
+- [OpenID Connect Protocol](https://auth0.com/docs/authenticate/protocols/openid-connect-protocol)
+- [Tokens](https://auth0.com/docs/secure/tokens)
 
