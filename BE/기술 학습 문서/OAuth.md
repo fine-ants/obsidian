@@ -177,5 +177,13 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 - 네이티브 또는 싱글 페이지 앱과 같은 client secret을 저장할 수 없는 애플리케이션을 위하여 이 grant type 사용하기
 - Auth0 SDK를 가지고 서로 다른 구현 방법들을 리뷰하기
 
+공개 클라이언트(public client)가(네이티브와 싱글 페이지 애플리케이션) 액세스 토큰을 요청할 때, Authorization Code Flow만으로는 완화되지 않은 몇몇 추가적인 보안 문제가 제기됩니다. 이것은 다음과 같은 이유 때문입니다.
+
+**Native apps**
+- Client Secret을 보안적으로 저장할 수 없습니다. 앱을 디컴파일하면 앱에 바인딩 되어 있으며 모든 사용자와 장치에서 동일한 Client Secret이 표시됩니다.
+- 커스텀 URL 스키마를 사용하여 리다이렉션(ex, MyApp://)을 캡처하여  악의적인 애플리케이션이 인증 서버로부터 Authorization Code를 받을 수 있습니다.
+
+**Single-page apps**
+- 전체 소스 코드가 브라우저에서 이용가능하면 Client Secret을 안전하게 저장할 수 없기 때문입니다.
 
 
