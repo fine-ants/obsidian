@@ -207,11 +207,27 @@ PKCE가 강화한 Authorization Code Flow는 [표준 Authorization Code Flow](ht
 10. 여러분들의 애플리케이션은 액세스 토큰을 사용자에 대한 정보를 가져오기 위해서 API 콜하는데 사용할 수 있습니다.
 11. API는 요청된 정보를 응답합니다.
 
-```
+만약 여러분들이 Refresh Token Rotation을 활성화했다면, 새로운 Refresh Token은 매 요청마다 생성되고 Access Token을 가지고 발급될 것입니다. Refresh Token이 교환될 때, 이전 Refresh Token은 유효하지 않게 됩니다. 그러나 관계에 대한 정보는 authorization server에 의해서 유지될 것입니다.
 
-```
+### How to implement it(PKCE가 강화한 Authorization Code Flow는 어떻게 구현하는가?)
+PKCE가 강화한 Authorization Code Flow를 구현하는 가정 쉬운 방법은 [follow our Native Quickstarts](https://auth0.com/docs/quickstart/native) 또는[follow our Single-Page Quickstarts](https://auth0.com/docs/quickstart/spa).를 하는 것입니다.
 
+**Mobile**
+- [Auth0 Swift SDK](https://auth0.com/docs/libraries/auth0-swift)
+- [Auth0 Android SDK](https://auth0.com/docs/libraries/auth0-android)
 
+**Single-page**
+- [Auth0 Single-Page App SDK](https://auth0.com/docs/libraries/auth0-single-page-app-sdk)
+- [Auth0 React SDK](https://auth0.com/docs/libraries/auth0-react)
+
+여러분들은 [Add Login Using the Authorization Code Flow with PKCE](https://auth0.com/docs/get-started/authentication-and-authorization-flow/add-login-using-the-authorization-code-flow-with-pkce)또는 [Call Your API Using the Authorization Code Flow with PKCE](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-authorization-code-flow-with-pkce).을 참고하여 튜토리얼을 해볼 수 있습니다.
+
+## Learn more
+- [Auth0 Rules](https://auth0.com/docs/customize/rules)
+- [Auth0 Hooks](https://auth0.com/docs/customize/hooks)
+- [Tokens](https://auth0.com/docs/secure/tokens)
+- [Token Best Practices](https://auth0.com/docs/secure/tokens/token-best-practices)
+- [Which OAuth 2.0 Flow Should I Use?](https://auth0.com/docs/get-started/authentication-and-authorization-flow/which-oauth-2-0-flow-should-i-use)
 
 
 
