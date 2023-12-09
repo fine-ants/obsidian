@@ -186,4 +186,18 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 **Single-page apps**
 - 전체 소스 코드가 브라우저에서 이용가능하면 Client Secret을 안전하게 저장할 수 없기 때문입니다.
 
+이러한 상황이 주어졌을 때, OAuth 2.0은 Proof Key for Code Exchange (PKCE)을 사용하는 Authorization Code Flow 버전을 제공합니다. ([OAuth 2.0 RFC 7636](https://tools.ietf.org/html/rfc7636) 정의)
+
+PKCE가 강화한 Authorization Code Flow는 Authorization Server에서 확인할 수 있는 sercret을 소개합니다. 이 secret 정보는 **Code Verifier**라고 불립니다. 추가적으로 호출하는 애플리케이션은 Code Challenge라고 불리는 Code Verifier의 변환된 값을 생성하고 Authorization Code를 발급하기 위해서 HTTPS를 통해서 Code Challenge 값이 전송됩니다. **이 방법은 악의적인 공격자가 오직 Authorization Code를 가로챌수는 있지만, Code Verifier없이 토큰을 교환할 수 없습니다.**
+
+### How it works(PKCE가 적용된 Authorization Code Flow는 어떻게 작동하는가?)
+PKCE가 강화한 Authorization Code Flow
+
+
+
+
+
+
+
+
 
