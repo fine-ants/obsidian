@@ -284,3 +284,36 @@ String challenge = Base64.encodeBase64URLSafeString(digest);
 ```
 
 ### Authorize user
+사용자의 인증을 요청하고 authorization code를 가지고 여러분들의 애플리케이션으로 리다이렉션 시킵니다.
+
+일단 여러분들이 code verifier와 code challenge를 생성하였다면, 여러분들은 사용자의 인증을 얻어야 합니다. 이것은 기술적으로 authorization flow의 시작입니다. 그리고 이 단계는 한개이상의 프로세스들을 포함하고 있습니다. 
+
+사용자 인증, 인증을 다루기 위해 Identity Provider에게 사용자를 리다이렉션 하기,  [Single Sign-on (SSO)](https://auth0.com/docs/authenticate/single-sign-on) 세션 활성화를 위해 체크하기, 승인이 이전에 주어진 적이 있음에도 불구하고 요청된 권한 레벨에 대한 사용자 동의 얻기.
+
+**사용자를 인증하기 위해서 여러분들의 애플리케이션은 사용자에게 여러분들이 이전 단계에서 생성한 code challenge가 포함된 [authorization URL](https://auth0.com/docs/api/authentication#authorization-code-grant-pkce-)을 전송해야 합니다.** 
+
+### Authorization URL example
+```text
+https://{yourDomain}/authorize?
+    response_type=code&
+    code_challenge={codeChallenge}&
+    code_challenge_method=S256&
+    client_id={yourClientId}&
+    redirect_uri={yourCallbackUrl}&
+    scope={scope}&
+    state={state}
+```
+
+### Parameters
+|Parameter Name|Description|
+|---|---|
+|`response_type`|Denotes the kind of credential that Auth0 will return (`code` or `token`). For this flow, the value must be `code`.|
+|`code_challenge`|Generated challenge from the `code_verifier`.|
+|`code_challenge_method`|Method used to generate the challenge (e.g., S256). The PKCE spec defines two methods, `S256` and `plain`, the former is used in this example and is the **only** one supported by Auth0 since the latter is discouraged.|
+|`client_id`|Your application's Client ID. You can find this value in your [Application Settings](https://manage.auth0.com/#/Applications/{yourClientId}/settings).|
+|`redirect_uri`|The URL to which Auth0 will redirect the browser after authorization has been granted by the user. The Authorization Code will be available in the `code` URL parameter. You must specify this URL as a valid callback URL in your [Application Settings](https://manage.auth0.com/#/Applications/{yourClientId}/settings).  <br>  <br>**Warning:** Per the [OAuth 2.0 Specification](https://tools.ietf.org/html/rfc6749#section-3.1.2), Auth0 removes everything after the hash and does _not_ honor any fragments.|
+|`scope`|Specifies the [scopes](https://auth0.com/docs/scopes) for which you want to request authorization, which dictate which claims (or user attributes) you want returned. These must be separated by a space. To get an ID Token in the response, you need to specify a scope of at least `openid`. If you want to return the user's full profile, you can request `openid profile`. You can request any of the [standard OpenID Connect (OIDC) scopes](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims) about users, such as `email`, or [custom claims](https://auth0.com/docs/tokens/concepts/jwt-claims#custom-claims) conforming to a [namespaced format](https://auth0.com/docs/tokens/guides/create-namespaced-custom-claims). Include `offline_access` to get a Refresh Token (make sure that the **Allow Offline Access** field is enabled in the [Application Settings](https://manage.auth0.com/#/applications)).|
+|`state`|(recommended) An opaque arbitrary alphanumeric string your app adds to the initial request that Auth0 includes when redirecting back to your application. To see how to use this value to prevent cross-site request forgery (CSRF) attacks, see [Mitigate CSRF Attacks With State Parameters](https://auth0.com/docs/protocols/oauth2/mitigate-csrf-attacks).|
+|`connection`|(optional) Forces the user to sign in with a specific connection. For example, you can pass a value of `github` to send the user directly to GitHub to log in with their GitHub account. When not specified, the user sees the Auth0 Lock screen with all configured connections. You can see a list of your configured connections on the **Connections** tab of your application.|
+|`organization`|(optional) ID of the organization to use when authenticating a user. When not provided, if your application is configured to **Display Organization Prompt**, the user will be able to enter the organization name when authenticating.|
+|`invitation`|(optional) Ticket ID of the organization invitation. When [inviting a member to an Organization](https://auth0.com/docs/organizations/invite-members), your application should handle invitation acceptance by forwarding the `invitation` and `organization` key-value pairs when the user accepts the invitation.|
