@@ -157,7 +157,13 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 어떻게 작동하고 어떻게 구현하는지 보기 위해서는 [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce).를 참고해주세요.
 
 ### I have an application that needs to talk to different resource servers (다른 리소스 서버와 통신해야 하는 애플리케이션이 있습니다.)
-만약 싱글 애플리케이션이 다른 리소스 서버들에 대하여 액세스 토큰이 필요하다면, 여러개의 `/authorize`(같거나 서로 다른 Authorization Flow 실행) 콜이 수행될 필요가 있습니다. 각각의 authorization은 서로 다른 audien
+만약 싱글 애플리케이션이 다른 리소스 서버들에 대하여 액세스 토큰이 필요하다면, 여러개의 `/authorize`(같거나 서로 다른 Authorization Flow 실행) 콜이 수행될 필요가 있습니다. 각 인증은 audience에 대해서 다른 값을 사용하므로 플로우의 끝에서 다른 액세스 토큰이 생성됩니다. 더 많은 정보를 보기 위해서는 [OAuth 2.0: Audience Information Specification](https://tools.ietf.org/html/draft-tschofenig-oauth-audience-00#section-3).를 참고해주세요.
+
+## Can I try the endpoints before I implement my application? (내가 나의 애플리케이션을 구현하기 전에 엔드포인트들에 시도할 수 있는가?)
+물론이다! 여러분들은 우리의 [Authentication API Debugger Extension](https://auth0.com/docs/customize/extensions/authentication-api-debugger-extension)을 사용할 수 있다. 우리의 [Authentication API Reference](https://auth0.com/docs/api/authentication).에서 매 `/grant` 엔드포인트에 대한 자세한 정보를 찾아볼 수 있습니다. 
+- Authorize 엔드포인트를 위하여 [Authorize Application](https://auth0.com/docs/api/authentication#authorize-application)를 가고 여러분들이 테스트하기를 원하는 승인 플로우를 위해서 "Test this endpoint" 문단을 읽어보세요.
+- Token 엔드포인트를 위하여 [Get Token](https://auth0.com/docs/api/authentication#get-token)을 가고 여러분들이 테스트 하기를 원하는 승인 플로우에 대한 "Test this endpoint"를 읽어보세요.
+
 
 
 
