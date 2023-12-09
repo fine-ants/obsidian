@@ -229,5 +229,13 @@ PKCE가 강화한 Authorization Code Flow를 구현하는 가정 쉬운 방법�
 - [Token Best Practices](https://auth0.com/docs/secure/tokens/token-best-practices)
 - [Which OAuth 2.0 Flow Should I Use?](https://auth0.com/docs/get-started/authentication-and-authorization-flow/which-oauth-2-0-flow-should-i-use)
 
+---
+
+## Add Login Using the Authorization Code Flow with PKCE
+여러분들은 PKCE가 강화한 Authorization Code Flow를 사용하여 네이티브, 모바일 또는 싱글 페이지 애플리케이션에 로그인을 추가할 수 있습니다. 이 인증 코드 플로우가 어떻게 작동하고 왜 사용해야 하는지 배우기 위해서는 [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce).을 참고해주세요. 네이티브, 모바일 또는 싱글 페이지 애플리케이션에서 API 호출 방법을 알아보려면  [Call Your API Using Authorization Code Flow with PKCE](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-authorization-code-flow-with-pkce).을 읽어주세요.
+
+PKCE Authorization Code Flow를 구현하기 위해서는 다음과 같은 리소스들을 사용할 수 있습니다.
+- [Auth0 Mobile SDKs](https://auth0.com/docs/libraries) 및 [Auth0 Single-Page App SDK](https://auth0.com/docs/libraries/auth0-single-page-app-sdk): 플로우를 구현하는 가장 쉬운 방법이며, 대부분 무거운 리프팅을 수행할 것입니다. 우리의 [Mobile Quickstarts](https://auth0.com/docs/quickstart/native)와  [Single-Page App Quickstarts](https://auth0.com/docs/quickstart/spa)가 프로세스를 안내해 드립니다.
+- [Authentication API](https://auth0.com/docs/api/authentication) : 만약 여러분들이 여러분들의 소유의 솔루션을 빌드하는 것을 선호한다면, 
 
 
