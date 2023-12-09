@@ -120,7 +120,13 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 [OAuth 2.0 Authorization Framework](https://auth0.com/docs/authenticate/protocols/oauth)는 여러개의 다른 흐름들 또는 승인(grant)을 지원합니다. Access Token을 발급하는 여러개의 Flow가 있습니다. 사용 사례에 적합한 것을 결정하는 것은 여러분들의 애플리케이션의 타입에 따라 다르지만, 클라이언트에 대한 신뢰 수준이나 사용자가 원하는 경험과 같은 다른 매개변수도 고려됩니다.
 
 ### OAuth 2.0 terminology
-- Resource Owner : 보호된 리소스에 접근하는 승인해주는 엔티티, 일반적으로 이 리소스는 최종 사용자의 정보입니다.
+- Resource Owner : 보호된 리소스에 접근하는 것을 승인해주는 사용자, 일반적으로 이 리소스는 최종 사용자의 정보입니다.
 - Client : 리소스 소유자를 대신하여 보호된 리소스에 접근을 요청하는 애플리케이션
 - Resource Server : 보호된 리소스들을 호스팅하는 서버. 이 서버는 여러분들이 접근하기 위해 원하는 API입니다.
-- Authorization Server : 
+- Authorization Server : Resource Owner를 인증하고 적절한 권한을 부여받은 후 Access Token을 발급하는 서버, 이경우에는 OAuth0가 해당됩니다.
+- User Agent : Client와 같이 상호작용하기 위해 Resource Owner에 의해 사용되는 에이전트, 예를 들어 브라우저나 네이티브 애플리케이션이 해당됩니다.
+
+### Is the Client the Resource Owner?
+첫번째 결정 포인트는 리소스들에 접근을 요구하는 서드파티가 기계인지 아닌지에 대한 것입니다.
+
+
