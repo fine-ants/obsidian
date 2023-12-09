@@ -236,6 +236,14 @@ PKCE가 강화한 Authorization Code Flow를 구현하는 가정 쉬운 방법�
 
 PKCE Authorization Code Flow를 구현하기 위해서는 다음과 같은 리소스들을 사용할 수 있습니다.
 - [Auth0 Mobile SDKs](https://auth0.com/docs/libraries) 및 [Auth0 Single-Page App SDK](https://auth0.com/docs/libraries/auth0-single-page-app-sdk): 플로우를 구현하는 가장 쉬운 방법이며, 대부분 무거운 리프팅을 수행할 것입니다. 우리의 [Mobile Quickstarts](https://auth0.com/docs/quickstart/native)와  [Single-Page App Quickstarts](https://auth0.com/docs/quickstart/spa)가 프로세스를 안내해 드립니다.
-- [Authentication API](https://auth0.com/docs/api/authentication) : 만약 여러분들이 여러분들의 소유의 솔루션을 빌드하는 것을 선호한다면, 
+- [Authentication API](https://auth0.com/docs/api/authentication) : 만약 여러분들이 여러분들의 소유의 솔루션을 빌드하는 것을 선호한다면, 우리의 API를 직접적으로 호출하는 방법을 읽어보세요.
+
+성공적인 로그인 다음에 여러분들의 애플리케이션은 사용자의 ID Token과 Access Token에 접근할 것입니다. ID Token은 기본적인 사용자 프로필 정보를 포함할 것입니다. 그리고 Access Token은 Auth0 `/userinfo` 엔드포인트를 호출 또는 자신의 보호된 API를 호출하는데 사용될 수 있습니다. ID Token에 대한 것을 더 배우기 위해서는 [ID Tokens](https://auth0.com/docs/secure/tokens/id-tokens)을 읽으세요. Access Token에 대해서 더 배우기 위해서는  [Access Tokens](https://auth0.com/docs/secure/tokens/access-tokens).을 읽으세요.
+
+### Prerequisites
+Auth0에 여러분들의 애플리케이션을 등록하세요. 더 배우기 위해서는  [Register Native Applications](https://auth0.com/docs/get-started/auth0-overview/create-applications/native-apps) 또는 [Register Single-Page Web Applications](https://auth0.com/docs/get-started/auth0-overview/create-applications/single-page-web-apps).을 읽으세요.
+- 여러분들의 애플리케이션 타입에 따라서 네이티브 또는 싱글 페이지 애플리케이션의 애플리케이션 타입을 선택하세요. 
+- 여러분들의 Callback URl을 추가하세요. 여러분들의 애플리케이션 타입과 플랫폼에 따라서 여러분들의 callback URL 형식은 다양할 것입니다. 애플리케이션 타입과 플랫폼에 대한 자세한 정보는 
+
 
 
