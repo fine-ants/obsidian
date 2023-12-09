@@ -139,7 +139,14 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 
 만약 이 케이스가 여러분들의 필요에 맞는다면 이 플로우가 어떻게 작동하고 어떻게 구현하는지 [Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow) 참고해주세요.
 
-### Is the Client absolutely trusted with user credentials? (클라이언트가 사용자 인증정보를 절대적으로 신뢰받는가?)
+### Is the Client absolutely trusted with user credentials? (클라이언트가 사용자 인증정보로 절대적으로 신뢰받는가?)
+이 결정 포인트로 인해 Resource Owner Password Credentials Grant가 발생할 수 있습니다. 이 플로우에서는 최종 사용자는 로그인 화면을 사용하여 인증정보(사용자이름/패스워드)를 입력하는 것을 요청받습니다. 이 정보는 백엔드로 전송되고 백엔듯에서 OAuth0 서버로 전송됩니다. 따라서 클라이언트가 이 정보를 절대적으로 신뢰해야 합니다.
+
+이 승인 부여 플로우는 리다이렉트 기반 플로우들이 가능하지 않을때 사용되어야 합니다. 만약 이 케이스가 여러분들의 케이스라면, 이 플로우가 어떻게 작동하고 어떻게 구현되는지 [Resource Owner Password Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/resource-owner-password-flow)를 참고해주세요.
+
+### Is the Client a Single-Page App? (클라이언트 싱글 페이지 애플리케이션인가?)
+
+
 
 
 
