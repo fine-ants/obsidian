@@ -385,3 +385,7 @@ curl --request POST \
 - [OpenID Connect Protocol](https://auth0.com/docs/authenticate/protocols/openid-connect-protocol)
 - [Tokens](https://auth0.com/docs/secure/tokens)
 
+---
+
+## Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters
+Authorization 프로토콜들은 여러분들의 애플리케이션의 이전 state를 재저장하기 위해 
