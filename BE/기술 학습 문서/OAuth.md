@@ -191,11 +191,15 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 PKCE가 강화한 Authorization Code Flow는 Authorization Server에서 확인할 수 있는 sercret을 소개합니다. 이 secret 정보는 **Code Verifier**라고 불립니다. 추가적으로 호출하는 애플리케이션은 Code Challenge라고 불리는 Code Verifier의 변환된 값을 생성하고 Authorization Code를 발급하기 위해서 HTTPS를 통해서 Code Challenge 값이 전송됩니다. **이 방법은 악의적인 공격자가 오직 Authorization Code를 가로챌수는 있지만, Code Verifier없이 토큰을 교환할 수 없습니다.**
 
 ### How it works(PKCE가 적용된 Authorization Code Flow는 어떻게 작동하는가?)
-PKCE가 강화한 Authorization Code Flow
+PKCE가 강화한 Authorization Code Flow는 [표준 Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow) 기반으로 지어졌기 때문에 단계들이 매우 비슷합니다.
 
+![[Pasted image 20231209140847.png]]
 
-
-
+1. 사용자는 애플리케이션에 있는 로그이 버튼을 클릭합니다.
+2. Auth0의 SDK는 암호학적으로 무작위한 code verifier를 만들고 이로부터 code challenge를 생성합니다.
+3. Auth0의 SDK는 code challenge와 함께 Auth0 Authorization Server로 사용자를 리다이렉션 시킵니다. (/authorize 엔드포인트)
+4. 여러분들의 Auth0 Authorization Server는 로그인 및 인증 프롬프트 화면으로 사용자를 리다이렉션 시킵니다.
+5. 사용자는 설정된 로그인 옵션들 중 하나를 선택하여 인증하고 
 
 
 
