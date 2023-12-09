@@ -199,7 +199,17 @@ PKCE가 강화한 Authorization Code Flow는 [표준 Authorization Code Flow](ht
 2. Auth0의 SDK는 암호학적으로 무작위한 code verifier를 만들고 이로부터 code challenge를 생성합니다.
 3. Auth0의 SDK는 code challenge와 함께 Auth0 Authorization Server로 사용자를 리다이렉션 시킵니다. (/authorize 엔드포인트)
 4. 여러분들의 Auth0 Authorization Server는 로그인 및 인증 프롬프트 화면으로 사용자를 리다이렉션 시킵니다.
-5. 사용자는 설정된 로그인 옵션들 중 하나를 선택하여 인증하고 
+5. 사용자는 설정된 로그인 옵션들 중 하나를 선택하여 인증하고 Auth0가 애플리케이션에게 권한을 주는 리스팅을 제공하는 페이지를 볼 수 있습니다.
+6. 여러분들의 Auth0 Authorization Server는 code challenge를 저장하고 사용자를 authorization code를 가지고 애플리케이션에 다시 리다이렉션 시킵니다. 
+7. Auth0의 SDK는 authorization code와 code verifier(2단계에서 생성한 데이터)를 Auth0 Authorization Server에 전송합니다.(`/oauth/token` 엔드포인트)
+8. 여러분들의 Auth0 Authorization Server는 code challenge와 code verifier를 확인합니다.
+9. 여러분들의 Auth0 Authorization Server는 ID Tokens과 액세스 토큰을 같이 응답합니다. (선택적으로 refresh token도 포함될 수 있음)
+10. 여러분들의 애플리케이션은 액세스 토큰을 사용자에 대한 정보를 가져오기 위해서 API 콜하는데 사용할 수 있습니다.
+11. API는 요청된 정보를 응답합니다.
+
+```
+
+```
 
 
 
