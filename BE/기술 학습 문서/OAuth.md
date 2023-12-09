@@ -388,4 +388,9 @@ curl --request POST \
 ---
 
 ## Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters
-Authorization 프로토콜들은 여러분들의 애플리케이션의 이전 state를 재저장하기 위해 
+Authorization 프로토콜들은 여러분들의 애플리케이션의 이전 state를 재저장하기 위해 state 파라미터를 제공합니다. `state`파라미터는 Authorization 요청에서 클라이언트가 설정한 일부 state 객체를 보존하고 응답에서 클라이언트가 이 state 객체를  사용할 수 있도록 합니다.
+
+### CSRF attacks
+`state` 파라미터를 사용하는 주된 이유는 시작되려는 각 **인증 요청과 관련된 유니크하고 추측할 수 없는 값을 사용하여 CSRF(Cross Site Request Forgery) 공격을 완화하기 위해서**입니다. 여러분들이 전송한 state 값과 응답으로 온 state값이 일치하는지 확인해서 여러분들에게 CSRF 공격을 예방합니다.
+
+
