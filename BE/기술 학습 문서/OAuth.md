@@ -126,7 +126,16 @@ Auth0의 토큰 기반 인증 시나리오에서 사용되는 3개의 특별한 
 - Authorization Server : Resource Owner를 인증하고 적절한 권한을 부여받은 후 Access Token을 발급하는 서버, 이경우에는 OAuth0가 해당됩니다.
 - User Agent : Client와 같이 상호작용하기 위해 Resource Owner에 의해 사용되는 에이전트, 예를 들어 브라우저나 네이티브 애플리케이션이 해당됩니다.
 
-### Is the Client the Resource Owner?
-첫번째 결정 포인트는 리소스들에 접근을 요구하는 서드파티가 기계인지 아닌지에 대한 것입니다.
+### Is the Client the Resource Owner? (클라이언트가 리소스 소유자인가?)
+첫번째 결정 포인트는 리소스들에 접근을 요구하는 서드파티가 머신인지 아닌지에 대한 것입니다. 머신 대 머신 인가의 사용의 경우에는 Client 또한 Resource Owner이기도 하므로 최종 사용자 권한이 필요하지 않습니다. API를 사용하여 데이터베이스로 정보를 가져오는 cron 작업이 그 예시입니다. 이 예에서 cron 작업은 client-id와 client-secret을 갖고 있고 이 정보들을 사용하여 인증 서버에서 액세스 토큰을 가져오기 때문에 Client 및 Resource Owner입니다.
+
+> [!info]
+> database cron working
+> 반복작인 테스크를 자동화하기 위해서 여러분들의 데이터베이스에 procedure 또는 command를 스케줄링하는 프로세스
+
+
+### Is the Client a web app executing on the server? (클라이언트가 서버에서 실행해하는 웹 애플리케이션인가?)
+
+
 
 
