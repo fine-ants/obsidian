@@ -14,11 +14,16 @@ FineAnts 애플리케이션에서 소셜 로그인을 사용하기 위해서 Goo
 
 ### Authorization Code Flow With PKCE 장점
 - Native 또는 Single Page Application과 같은 애플리케이션 타입에 적용하여 client-secret을 저장 및 노출시키지 않고 code verifier와 code challenge를 이용하여 액세스 토큰을 발급받을 수 있다. 즉, **client-secret을 저장하지 않을 수 있다.**
-	- 단, Google에서는 PKCE 플로우임에도 액세스 토큰 요청시 client-secret 요구를 강제하고 있다.
+	- 단, Google에서는 PKCE 플로우임에도 액세스 토큰 요청시 client-secret 요구를 강제하고 있다. 구글은 client-secreet과 Code Verifier를 같이 전송하여 추가적인 보안을 하고 있는 상황이다.
 - PKCE를 사용하게 되면 악의적인 공격자가 Authorization Code를 탈취하여 요청할 수는 있지만 Code Verifier를 요구하게 되면서 액세스 토큰 발급을 막을 수 있습니다. 클라이언트에서는 Code Verifier를 S256 방식으로 암호화한 Code Challenge를 인가코드 요청할때 전송하므로 Code Verifier가 노출되는 길이 없다. **즉, PKCE 사용시 악의적인 공격자가 Authorization Code를 탈취해도 Access Token을 발급받을 수 없도록 할 수 있다.**
 
 
 ### 왜 인가 코드 URL 생성시 state, nonce 프로퍼티를 생성하는가?
+- 카카오에서는 로그인 과정 중 동일한 값을 유지하기 위해서 임의의 문자열인 state를 사용합니다. (정해진 형식은 없음)
+	- Cross-Site-Request-Forgery(CSRF) 공격으로부터 카카오 로그인 요청을 보호하기 위해 사용된다
+	- 각 사용자의 로그인 요청에 대한 state 값은 고유해야 합니다
+	- 인가 코드 요청, 인가 코드 응답, 토큰 발급 요청의 state 값 일치 여부로 요청 및 응답 유효성을 확인합니다
+- 
 
 ### 왜 OpenID Connect를 사용하는가?
 
