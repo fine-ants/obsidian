@@ -45,4 +45,37 @@ document.forms[0].submit();
 </script>
 ```
 
-만약 GET 형식ㅇ
+만약 GET 형식으로도 간단히 처리할 수 있는 것이라면, 아래와 같이 img 태그가 포함된 글을 보기만 해도 로그아웃 시킬수 있습니다.
+```HTML
+<img src="http://vulnerable-website.com/logout" />
+```
+- img 태그로 요청된 src 주소는 GET 요청으로 처리됩니다.
+
+### CSRF 방어방법 - 사용자 입장
+- 사용자 입장에서는 이상한 URL을 함부로 클릭하지 않고, 의심이 되는 메일을 함부로 열어보지 않습니다.
+- CSRF는 내가 클릭만 해도 내가 의도하지 않은 action이 발생할 수 있습니다.
+
+
+### CSRF 방어방법 - 웹개발자/운영자 입장
+#### 1. Referer check(리퍼러 체크)
+HTTP Request Header에서 Referer 정보를 확인할 수 있습니다. 보통이라면 호스트(host)와 Referer의 값이 일치하므로 둘을 비교합니다. CSRF 공격의 대부분이 Referer 값에 대한 검증만으로도 많은 수의 공격을 방어할 수 있다고 합니다. Java Servelt을 사용한다면 아래와 같이 interceptor 클래스를 만들어 모든 요청에 대해 Referer Check 할 수 있도록 방어가 가능합니다.
+
+```Java
+public class ReferrerCheck implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String referer = request.getHeader("Referer");
+        String host = request.getHeader("host");
+        if (referer == null || !referer.contains(host)) {
+            response.sendRedirect("/");
+            return false;
+        }
+        return true;
+    }
+}
+```
+
+> [!info] 
+> Referer
+> 
+
