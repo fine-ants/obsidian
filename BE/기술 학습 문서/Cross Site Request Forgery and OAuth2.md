@@ -8,7 +8,10 @@ OAuth2 시스템은 CSRF 공격에 취약합니다. CSRF 공격에 당한 사용
 
 아래에서 논의하는 CSRF에 대한 방어책 중 일부는 OAuth2 클라이언트 애플리케이션의 구현에서 비롯되기 때문에 Authorization Server가 OAuth2 스펙을 구현하는 한 모든 클라이언트 애플리케이션에서 사용할 수 있습니다. 방어책 중 일부는 OAuth2 Authorization Server 자체에 구현되어 있기 때문에 서버 컴포넌트들의 일부만 개발자가 구현하면 됩니다. 일부는 스펙에 의해서 의무하되거나 강력하게 제안되며, 일부는 프로토콜을 신중하게 사용하는데서 비롯됩니다. 
 
-몇몇 CSRF 시도 예제들은 아래 내부 링크로서 주어집니다. 해당 링크는 클릭했다고 위허함지 않습니다. 해당 예제들은 데모이고 손상될 수 있는 데이터나 신원을 밝힐수 없는 데이터는 없습니다. 여러분들은 로그인 화면 (marissa/koala)에서 인증정보를 입력하여 Authroziation Server로 로깅할 수 있습니다. 공격들은 무조건 성공합니다. 왜냐하면 데모 시스템이 취약하게 구현되어 있기 때문입니다. 여러분들은 
+몇몇 CSRF 시도 예제들은 아래 내부 링크로서 주어집니다. 해당 링크는 클릭했다고 위허함지 않습니다. 해당 예제들은 데모이고 손상될 수 있는 데이터나 신원을 밝힐수 없는 데이터는 없습니다. 여러분들은 로그인 화면 (marissa/koala)에서 인증정보를 입력하여 Authroziation Server로 로깅할 수 있습니다. 공격들은 무조건 성공합니다. 왜냐하면 데모 시스템이 취약하게 구현되어 있기 때문입니다. 여러분들이 실제 OAuth2 구현하는 사람이라면 더욱 주의하시기를 바랍니다.
+
+### Attacks on the Authorization Server
+사용자가 이미 인증하여 로그인한 시점에서 사용자가 Authorization Server에 대한 링크를 클릭하도록 사용자를 속여서 Access Token을 얻으려고 합니다. 예제들은 Authorization Server가 사용자가 요청하는 URI로 Redirect
 
 
 - [Cross Site Request Forgery and OAuth2](https://spring.io/blog/2011/11/30/cross-site-request-forgery-and-oauth2)
