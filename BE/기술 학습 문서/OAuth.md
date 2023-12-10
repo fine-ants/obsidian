@@ -440,6 +440,23 @@ else {
 
 리다이렉션 URL과 같은 state 생성하고 로컬 저장소(쿠키, 세션, 로컬 스토리지)에 저장합니다. 프로토콜 메시지에서 nonce를 state로서 사용하세요. 만약 응답된 state가 기존 저장하고 있던 nonce를 매치시켜서 검증합니다. 
 
+### Use the stored URL to redirect users
+1. CSRF 공격을 완하시키기 위해서 임시 state 파라미터를 설정하세요.
+2. 사용자가 가고자 했던 URL과 같은 다른 모든 애플리케이션 state 정보를 저장하기 위한 키로 사용하여 임시값을 로컬에 저장합니다. 예를 들면 다음과 같습니다.
+```javascript
+{
+  "xyzABC123" : {
+    redirectUrl: '/protectedResource',
+    expiresOn: [...]
+  }
+}
+```
+
+3. state로서 생성한 임시값을 전송하여 사용자를 인증시킨다.
+4. 콜백 처리 및 응답 유효성 검사의 일부로써 반환된 state가 로컬에 저장된 state가 일치하는지 확인합니다. 만약 반환이 되면, redirectUrl과 같은 나머지 애플리케이션 state를 반환합니다.
+5. 일단 여러분들이 콜백 프로세싱을 
+
+
 ### References
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 
