@@ -39,7 +39,7 @@
 - [Using redirects - AWS Amplify Hosting](https://docs.aws.amazon.com/amplify/latest/userguide/redirects.html#redirects-for-single-page-web-apps-spa)
 
 ## Custom Domain (GoDaddy)
-- `fineants.co`
+- Domain: `fineants.co` 
 - GoDaddy는 ANAME/ALIAS record를 지원하지 않는다.
 	- 즉, `fineants.co`로 입력을 하면 브라우저 주소창에 `release.blah.amplify.com` 주소가 뜬다.
 	- GoDaddy 설정에서 Forwarding with masking 설정이 있지만 이는 `release.blah.amplify.com`을 frame 또는 iframe에 로딩을 하려고 시도한다.
