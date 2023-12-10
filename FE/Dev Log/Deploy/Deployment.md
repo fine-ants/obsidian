@@ -44,11 +44,12 @@
 	- 즉, `fineants.co`로 입력을 하면 브라우저 주소창에 `release.blah.amplify.com` 주소가 뜬다.
 	- GoDaddy 설정에서 Forwarding with masking 설정이 있지만 이는 `release.blah.amplify.com`을 frame 또는 iframe에 로딩을 하려고 시도한다.
 		- 이렇게 설정하고 접속할 시 frame 관련하여 에러가 떠서 사이트 접속이 불가하다.
-	- AWS는 Route53으로 migrate을 안할 시, GoDaddy에서 Temporary Forwarding 적용을 추천한다.
-		- 
+	- AWS는 Route53으로 migrate을 안할 시, GoDaddy에서 Temporary Forwarding(302 Redirect) 적용을 제시한다.
+		- SEO에 좋지 않다.
+	- AWS는 Route53로 migration을 추천한다.
 ### Reference
 - https://docs.aws.amazon.com/amplify/latest/userguide/understanding-dns-terminology-and-concepts.html
 - https://docs.aws.amazon.com/amplify/latest/userguide/to-add-a-custom-domain-managed-by-godaddy.html
 - https://au.godaddy.com/help/forward-my-godaddy-domain-12123
 - https://webmasters.stackexchange.com/questions/136652/how-can-i-mask-an-aws-site-with-a-domain-registered-with-godaddy
-
+- https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/migrate-dns-domain-inactive.html
