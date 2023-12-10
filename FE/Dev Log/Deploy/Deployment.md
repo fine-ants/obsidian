@@ -40,7 +40,11 @@
 
 ## Custom Domain (GoDaddy)
 - `fineants.co`
+- GoDaddy는 ANAME/ALIAS record를 지원하지 않는다.
+	- 즉, `fineants.co`로 입력을 하면 브라우저 주소창에 `release.blah.amplify.com` 주소가 뜬다.
+	- GoDaddy 설정에서 Forwarding with masking 설정을 해서 destination URL (`release.blah.amplify.com`)을 `fineants.co`로 masking 해줘야 한다.
 ### Reference
 - https://docs.aws.amazon.com/amplify/latest/userguide/understanding-dns-terminology-and-concepts.html
 - https://docs.aws.amazon.com/amplify/latest/userguide/to-add-a-custom-domain-managed-by-godaddy.html
+- https://au.godaddy.com/help/forward-my-godaddy-domain-12123
 
