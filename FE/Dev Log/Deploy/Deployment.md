@@ -48,6 +48,8 @@
 		- SEO에 좋지 않다.
 	- AWS는 Route53로 migration을 추천한다.
 		- `co` TLD 등록 및 갱신 가격: $25
+		- GoDaddy 도메인 등록 60일 이후(2024년2월7일)에 transfer 가능.
+
 ### Reference
 - https://docs.aws.amazon.com/amplify/latest/userguide/understanding-dns-terminology-and-concepts.html
 - https://docs.aws.amazon.com/amplify/latest/userguide/to-add-a-custom-domain-managed-by-godaddy.html
