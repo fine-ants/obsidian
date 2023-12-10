@@ -79,5 +79,50 @@ public class ReferrerCheck implements HandlerInterceptor {
 > Referer
 > Referer HTTP Request Header에는 리소스가 요청된 절대 주소 또는 부분 주소가 포함되어 있습니다. Referer 헤더를 통해 서버는 사용자가 방문하거나 요청된 리소스가 사용되는 참조 페이지를 식별할 수 있습니다. Referer 헤더의 값은 분석, 로깅, 최적화된 캐싱 등에 사용할 수 있습니다.
 > 여러분들이 링크를 클릭했을 때, Referer는 링크가 포함된 페이지의 주소를 포함하고 있습니다. 여러분들이 다른 도메인에 리소스를 요청할 때 Referer에는 요청한 리소스를 사용하는 페이지의 주소가 포함됩니다
-> Referer 헤더에는 origin, path 및 
+> Referer 헤더에는 origin, path 및 querystring이 포함될 수 있으며, URL 조각(예, 섹션) 또는 username:password 정보는 포함되지 않을 수 있습니다. 포함될 수 있는 data는 request의 referer 정책에 의해 정의됩니다. 자세한 내용 및 예제는 [`Referrer-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) 참고해주세요
+> 
 
+
+#### 2. CAPTCHA 도입
+![[Pasted image 20231210155229.png]]
+
+요청시에 CAPTCHA를 이용하여, CAPTCHA 인증코드가 없거나 틀리면, 요청을 거부하도록 할 수 있습니다.
+
+### 3. CSRF 토큰 사용
+사용자 세션에 임의의 값을 저장하여 모든 요청마다 해당 값을 포함하여 전송하도록 합니다.
+서버에서 요청을 받을 때마다, 세션에 저장된 값과 요청으로 전송된 값이 일치하여 검증하여 방어하는 기법입니다.
+
+Java 사용시 다음과 같은 코드를 작성할 수 있습니다.
+```Java
+//로그인시 session value에 CSRF_TOKEN값 저장
+session.setAttribute("CSRF_TOKEN", UUID.randomUUID().toString());
+```
+
+```HTML
+<!---요청시 CSRF_TOKEN 값을 전송하도록 해줌---->
+<form action="http://example/path" method="POST">
+   <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
+ <!-- ... -->
+</form>
+```
+
+```Java
+// 요청을 받을시, 인터셉터에서 CSRF_TOKEN값 검증하도록 함.
+public class CsrfTokenInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HttpSession httpSession = request.getSession();
+        String csrfTokenParam = request.getParameter("CSRF_TOKEN");
+        String csrfTokenSession = (String) httpSession.getAttribute("CSRF_TOKEN");
+        if (csrfTokenParam == null || !csrfTokenParam.equals(csrfTokenSession)) {
+            response.sendRedirect("/");
+            return false;
+        }
+        return true;
+    }
+}
+```
+
+### References
+- [CSRF란, CSRF 동작원리, CSRF 방어방법](https://devscb.tistory.com/123)
+- [Referer](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referer)
