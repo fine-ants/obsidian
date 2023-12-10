@@ -400,10 +400,45 @@ Authorization 프로토콜들은 여러분들의 애플리케이션의 이전 st
 대부분의 현대 OIDC와 싱글 페이지 애플리케이션에서 Auth0.js를 포함하는 OAuth SDK들은 자동으로 state를 생성하고 검증합니다.
 
 ### Set and compare state parameter values
-1. Identity Provider(IdP)로 요청을 리다이렉션하기 전에 
+1. Identity Provider(IdP)로 요청을 리다이렉션하기 전에 애플리케이션은 랜덤한 문자열을 다음과 같이 생성합니다.
+```text
+xyzABC123
+```
+ - state는 길이 제한이 없습니다. 만약 여러분들이 `414 Request-URI Too Large`에러를 받는다면, state 길이를 작게 조절하세요.
+
+2. 문자열을 로컬 저장소 같은 곳에 저장하세요.
+```text
+storeStateLocally(xyzABC123)
+```
+
+3. request URI에 state 파라미터를 추가하세요. (URL 인코딩은 필수적입니다.) 예를 들어 다음과 같습니다.
+```text
+// Encode the String   
+tenant.auth0.com/authorize?...&state=xyzABC123
+```
+- 요청이 전송된 후, 사용자는 Auth0에 의해서 애플리케이션으로 다시 리다이렉션됩니다. 이 리다이렉션에는 state 값이 포함될 것입니다.
+- 사용되는 연결 종류에 따라서 state 값이 request body나 쿼리 파라미터에 응답될 수 있습니다.
+
+```text
+/callback?...&state=xyzABC123
+```
+
+4. 반환된 state 값을 발급받고 여러분들이 앞서 저장한 state 값과 비교합니다. 만약 state 값이 매치된다면, 인증 응답을 승인하세요. 그렇지 않으면 거부하세요.
+```javascript
+// Decode the String
+var decodedString = Base64.decode(encodedString);
+if(receivedState === retrieveStateStoredLocally()) {
+ // Authorized request
+} 
+else {
+  // This response is not for us, reject it
+}
+```
+
+### Redirect users
 
 
 
-
-
+### References
+- [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 
