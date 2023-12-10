@@ -77,5 +77,6 @@ public class ReferrerCheck implements HandlerInterceptor {
 
 > [!info] 
 > Referer
-> 
+> Referer HTTP Request Header에는 리소스가 요청된 절대 주소 또는 부분 주소가 포함되어 있습니다. Referer 헤더를 통해 서버는 사용자가 방문하거나 요청된 리소스가 사용되는 참조 페이지를 식별할 수 있습니다. Referer 헤더의 값은 분석, 로깅, 최적화된 캐싱 등에 사용할 수 있습니다.
+> 여러분들이 링크를 클릭했을 때, Referer는 링크가 포함된 페이지의 주소를 포함하고 있습니다. 여러분들이 
 
