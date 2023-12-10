@@ -436,8 +436,9 @@ else {
 ```
 
 ### Redirect users
+`state` 파라미터를 사용하여 사용자가 인증 프로세스를 시작하기 전에 있었던 위치에 놓을 애플리케이션의 state를 인코딩할 수 있습니다. 예를 들어 사용자들이 애플리케이션에 보호된 페이지에 접근하고자 한다면, 인증을 위한 요청 트리거가 발생하고 여러분들은 인증이 완료된 후 사용자가 원하는 페이지로 리다이렉션 시킬 수 있습니다.
 
-
+리다이렉션 URL과 같은 state 생성하고 로컬 저장소(쿠키, 세션, 로컬 스토리지)에 저장합니다. 프로토콜 메시지에서 nonce를 state로서 사용하세요. 만약 응답된 state가 기존 저장하고 있던 nonce를 매치시켜서 검증합니다. 
 
 ### References
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
