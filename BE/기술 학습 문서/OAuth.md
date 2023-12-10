@@ -454,8 +454,22 @@ else {
 
 3. state로서 생성한 임시값을 전송하여 사용자를 인증시킨다.
 4. 콜백 처리 및 응답 유효성 검사의 일부로써 반환된 state가 로컬에 저장된 state가 일치하는지 확인합니다. 만약 반환이 되면, redirectUrl과 같은 나머지 애플리케이션 state를 반환합니다.
-5. 일단 여러분들이 콜백 프로세싱을 
+5. 일단 여러분들이 콜백 프로세싱을 완료하면, 이전에 저장한 URL로 사용자를 리다이렉트 시킵니다.
 
+### Alternate redirect method
+1. state값을 생성하고 로컬에 저장합니다.
+2. state를 인코딩합니다.
+3. 응답 메시지에서 state값을 얻습니다.
+4. 로컬 저장소에 저장하고 있던 state값과 응답 메시지에서 얻은 state값을 비교하여 검증합니다. 
+
+### Limitations and considerations
+- 애플리케이션 타입에 기반하여 스토리지 방법을 선택합니다.
+
+|App Type|Storage Recommendation|
+|---|---|
+|Regular Web App|Cookie or session|
+|SPA|Local browser|
+|Native App|Memory or local|
 
 ### References
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
