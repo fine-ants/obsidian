@@ -47,6 +47,7 @@
 	- AWS는 Route53으로 migrate을 안할 시, GoDaddy에서 Temporary Forwarding(302 Redirect) 적용을 제시한다.
 		- SEO에 좋지 않다.
 	- AWS는 Route53로 migration을 추천한다.
+		- `co` TLD는 $25
 ### Reference
 - https://docs.aws.amazon.com/amplify/latest/userguide/understanding-dns-terminology-and-concepts.html
 - https://docs.aws.amazon.com/amplify/latest/userguide/to-add-a-custom-domain-managed-by-godaddy.html
