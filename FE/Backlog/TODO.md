@@ -160,6 +160,7 @@
 	- [ ] 검색 에러 토스트 제거
 	- [ ] 조회 실패 토스트 제거
 
+- [ ] Hooks 및 Utils 제거 후 `@fineants/demolition` 패키지 적용
 
 
 - 우선순위
