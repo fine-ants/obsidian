@@ -106,8 +106,6 @@
 
 - [ ] 공용 컴포넌트
 	- [x] toast
-	- [ ] error component
-	- [ ] loading component
 	- [ ] 아이콘 버튼
 
 - [ ] Router 관련 수정
