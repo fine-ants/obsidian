@@ -8,10 +8,7 @@ ID 값을 지정하지 않고 행을 삽입합니다. 행을 삽입하고 나�
 
 Identity 전략은 이러한 최적화를 허용하지 않고 있습니다.
 
-즉, 정리하면 두 쿼
-
-
-
+즉, 정리하면 sequence와 identity 전략 모두 쿼리의 수는 동일하지만  성능상 sequence 생성 전략이 더 효율적입니다. 그 이유는 sequence 전략은 미리 메모리에 50개의 값을 유지한 다음에 50개의 값을 모두 삽입한 이후에 데이터베이스에 다음 50개의 값을 요구하기 때문입니다. 하지만 identity 전략은 이러한 최적화를 하지 않고 있습니다.
 
 ### References
 - [Hibernate IDENTITY vs SEQUENCE entity identifier generators](https://stackoverflow.com/questions/17780394/hibernate-identity-vs-sequence-entity-identifier-generators) 
