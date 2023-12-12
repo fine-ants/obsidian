@@ -63,6 +63,7 @@
 		- *OIDC 맥락에서 Access Token이란 추가적인 사용자 정보를 요청할 수 있다는 것이다.*
 			- *cf. 기존 OAuth Authorization에서 Access Token이란 사용자를 대신해서 액션을 실행할 수 있도록 OAuth Client에 인가를 하는 것이다.*
 	- OAuth Client는 ID Token을 validate한 후 사용자의 로그인을 승인한다.
+- OIDC server flow는 Backend가 브라우저(Frontend)를 활용하여 사용자를 인증하는 방식이다.
 - Reference
 	- [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth)
 ### Illustration
