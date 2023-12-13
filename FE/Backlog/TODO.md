@@ -94,15 +94,6 @@
   - [x] Input 소수점 2자리 문제 해결하기
   - 해당 TODO Issue : https://github.com/fine-ants/frontend/issues/8
 
-- [ ] **TotalValuationLineChart**
-
-  - [ ] TODO 주석 2개 해결하기
-
-- [ ] **RechartPieChart**
-
-  - [ ] api 추가
-  - [ ] 참고용 주석 따로 보관하기
-
 - [x] **Footer 컴포넌트**
 
   - [x] @ -> ©
@@ -113,9 +104,9 @@
 
 - [ ] **기타**
 
-  - [ ] 금액 1,000단위로 comma 찍기
+  - [x] 금액 1,000단위로 comma 찍기
   - [ ] 화폐단위 KRW
-  - [ ] 계산 test code
+  - [x] 계산 test code
   - [ ] 각 api 호출에 맞는 error handle (Query/Mutation Cache, Suspense, etc)
 
 - [ ] 공용 컴포넌트
