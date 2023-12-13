@@ -127,7 +127,7 @@
 
   - 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다
 
-- [ ] securitiesFirm 로고 이미지 추가하기
+- [x] securitiesFirm 로고 이미지 추가하기
 
 - [ ] 배포
 
@@ -181,6 +181,7 @@
 
 - [ ] 사용하지 않는 이미지, 아이콘 지우기
 - [ ] Hooks 및 Utils 제거 후 `@fineants/demolition` 패키지 적용
+- [ ] Header에 로고 클릭시 dashboard가 아닌 랜딩 페이지로
 
 - 우선순위
   - Search debounce 적용 (카카 & 박하)
