@@ -1,5 +1,6 @@
 ## 목차
 - [[#EC2 인스턴스 생성]]
+- [[#VPC 생성]]
 
 ## EC2 인스턴스 생성
 
@@ -37,7 +38,7 @@ EC2 인스턴스와 RDS 인스턴스를 생성한 다음에 연결시키기 위�
 
 위와 같은 사전 작업이 필요한 이유는 private subnet에 RDS를 위치시켜 외부에서 접근할 수 없도록 하고 오직 EC2 인스턴스를 통해서만 접근할 수 있도록 하기 위해서입니다.
 
-### VPC 생성
+## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
 ![[Pasted image 20231214143816.png]]
 
@@ -104,4 +105,27 @@ public 서브넷이 인터넷과 연결하기 위한 라우팅 규칙이 필요�
 
 4.다음과 같이 fineAnts-public-rt 라우팅 테이블이 인터넷 게이트웨이와 연결하여 연결이 되었는지 확인합니다.
 ![[Pasted image 20231214151505.png]]
+
+### 라우팅 테이블을 public subnet에 연결
+1. 서브넷 메뉴에 들어가고 fineAnts-public 서브넷의 서브넷 ID를 클릭합니다.
+![[Pasted image 20231214151630.png]]
+
+2. fineAnts-public 서브넷의 상세 페이지에서 라우팅 테이블 탭을 클릭하고 "라우팅 테이블 연결 편집" 버튼을 클릭합니다.
+![[Pasted image 20231214151720.png]]
+
+3. 다음과 같이 fineAnts-public 서브넷의 연결되고 있는 라우팅 테이블을 방금 생성한 fineAnts-public-rt 라우팅 테이블로 선택하고 저장 버튼을 클릭합니다.
+![[Pasted image 20231214151810.png]]
+
+4. fineAnts-public 서브넷의 라우팅 테이블이 fineAnts-public-rt 라우팅 테이블에 연결되었는지 확인합니다.
+![[Pasted image 20231214151846.png]]
+
+### public subnet ip 자동 할당 설정
+1. 서브넷 메뉴에 입장하여 fineAnts-public 서브넷 ID를 클릭합니다.
+![[Pasted image 20231214152223.png]]
+
+2. 서브넷 상세 페이지에서 작업 -> 서브넷 설정 편집 버튼을 클릭하여 public subnet ip 자동 할당을 설정합니다.
+![[Pasted image 20231214152315.png]]
+
+3. 자동 할당 IP 설정에서 퍼블릭 IPv4 주소 자동 할당 활성화를 체크하고 저장합니다.
+![[Pasted image 20231214152357.png]]
 
