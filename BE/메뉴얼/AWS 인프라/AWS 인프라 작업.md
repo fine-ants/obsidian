@@ -13,7 +13,9 @@
 - [[#EC2 인스턴스 생성]]
 - [[#DB 서브넷 그룹 생성]]
 - [[#데이터베이스 보안 그룹 생성]]
-- [[#]]
+- [[#RDS 인스턴스 생성]]
+- [[#EC2 인스턴스에서 RDS 데이터베이스 연결]]
+- [[#IntelliJ에서 RDS 데이터베이스 원격 접속]]
 
 
 ## VPC 생성
@@ -265,3 +267,5 @@ mysql > create database fineAnts;
 6. Test Connection을 클릭하고 로그인 되면 OK를 누릅니다.
 ![[Pasted image 20231214170804.png]]
 
+
+## AWS CodeDeploy를 위한 S3 ㅂ
