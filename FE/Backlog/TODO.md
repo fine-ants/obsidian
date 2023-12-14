@@ -94,6 +94,11 @@
 	- [ ] 사용하지 않는 이미지, 아이콘 지우기
 	- [ ] Header에 로고 클릭시 로그인 상태 비교해서 랜딩 or 대시보드
 
+- [ ] Docs 내용 추가
+	- `useSuspenseQuery` relies on the internal cache for suspense functionality, and the cache operates independently of the `gcTime` configuration. Therefore, error responses are mandatorily cached despite manually setting `gcTime: 0`.
+	- When using **suspense** or **throwOnError** in your queries, you need a way to let queries know that you want to try again when re-rendering after some error occurred. With the `QueryErrorResetBoundary` component you can reset any query errors within the boundaries of the component.
+	- [ ] https://tanstack.com/query/v5/docs/react/reference/QueryErrorResetBoundary
+
 - 우선순위
 	- Suspense, ErrorBoundary
 		- 포트폴리오 상세 페이지 (박하)
