@@ -19,6 +19,18 @@
 	- [ ] 실시간 변경 값 1초마다 상승 하락 플래그 다른색깔로 깜빡
 	- [ ] Sector
 		- [ ] 하드코딩 제거
+- [ ] 포트폴리오 상세 조회 및 종목 조회
+	- `portfolioDetails`에서 실시간 항목이 6개.
+	- `portfolioHoldings`에서 실시간 항목이 6개.
+	- 나머지 정적인 데이터들을 SSE로 계속 받는 것에 대한 overhead 확인 필요.
+	- 문제: 매입 이력을 추가하는 등 CRUD 작업을 진행하면 다음 SSE message을 기다려야함.
+	- CRUD vs 실시간 분리.
+	- 현재 상황에서는 서버에서 부담스러움
+	- 대안
+		- REST API로 우선 화면 초기화.
+		- 이후 SSE로 실시간 데이터만 받아서 화면 업데이트.
+		- CUD 요청이 생길 시, SSE 연결 끊고, 1번, 2번 반복.
+
 
 - [ ] **Profile Page**
 	- [ ] 스타일
@@ -44,49 +56,25 @@
 	- [ ] 화폐단위 KRW
 
 - [ ] 공용 컴포넌트
-	- [ ] 아이콘 버튼
+	- [ ] Button
+		- [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
+		- [ ] 아이콘 버튼
+	- [ ] 
 
 - [ ] Router 관련 수정
-	- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다
-
-- [x] securitiesFirm 로고 이미지 추가하기
+	- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다 (TVTickerTapWidget).
 
 - [ ] 배포
-
-  - [ ] Custom domain name (fineants) 적용.
-
-- [x] Husky 고치기
+	- [ ] Custom domain name (fineants) 적용. Docs 참고.
 
 - [ ] README.md
-
-  - [ ] Tech stack, links, etc.
-
-- [x] Dropdown component refactor
+	- [ ] Tech stack, links, etc.
 
 - [ ] 개별 종목 현재가 알림
 
 - [ ] Pie Chart type에서 `fill` 제거 (프론트에서 색상 핸들링)
 
-- [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
 
-- [ ] Toast
-
-  - [ ] 위치 변경
-  - [ ] 종목 검색 시 다수 toast 발생
-
-- [ ] 포트폴리오 상세 조회 및 종목 조회
-
-  - `portfolioDetails`에서 실시간 항목이 6개.
-  - `portfolioHoldings`에서 실시간 항목이 6개.
-  - 나머지 정적인 데이터들을 SSE로 계속 받는 것에 대한 overhead 확인 필요.
-  - 문제: 매입 이력을 추가하는 등 CRUD 작업을 진행하면 다음 SSE message을 기다려야함.
-  - CRUD vs 실시간 분리.
-  - 고려한 대안: SSE 주기 5초 -> 1초
-    - 현재 상황에서는 서버에서 부담스러움
-  - 대안
-    - REST API로 우선 화면 초기화.
-    - 이후 SSE로 실시간 데이터만 받아서 화면 업데이트.
-    - CUD 요청이 생길 시, SSE 연결 끊고, 1번, 2번 반복.
 
 - [ ] 문제: 다른 사용자가 만든 portfolio를 `/portfolio/:portfolioId`로 접근이 가능함.
 
@@ -97,9 +85,9 @@
 - [ ] `useInputDebounce` test code 작성
 
 - [ ] Toast 사용 줄임
-
-  - [ ] 검색 에러 토스트 제거
-  - [ ] 조회 실패 토스트 제거
+	- [ ] 검색 에러 토스트 제거
+	- [ ] 조회 실패 토스트 제거
+	- [ ] Toast 위치 변경 (중간?)
 
 - [ ] 사용하지 않는 이미지, 아이콘 지우기
 - [ ] Hooks 및 Utils 제거 후 `@fineants/demolition` 패키지 적용
