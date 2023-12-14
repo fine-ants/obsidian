@@ -83,6 +83,8 @@
 	- [ ] 현재 있는 hook 및 util library로 이동
 	- [ ] `useInputDebounce` test code 작성
 	- [ ] JSDocs 작성
+	- [ ] README 작성
+	- [ ] Open Source
 
 - [ ] Toast 사용 줄임
 	- [ ] 검색 에러 토스트 제거
