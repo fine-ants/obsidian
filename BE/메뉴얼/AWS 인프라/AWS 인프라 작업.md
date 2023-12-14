@@ -121,8 +121,11 @@ EC2 인스턴스에 사용할 OS Image를 선택합니다. AWS 인프라와 호�
 - 키 페어 생성 버튼을 누르면 pem 키 파일이 다운로드 된것을 볼 수 있습니다.
 - 키 파일을 분실되거나 노출되면 안되는 중요한 파일입니다.
 
-3. 네트워크 설정에서 편집버튼을 클릭하여 이전 단계에서 생성한 fineAnts_vpc VPC와 외부 인터넷과 연결되기 위해서 fineAnts-public 서브넷을 선택합니다. 또한 보안 그룹을 별도로 생성하여 특정한 프로토콜과 포트만 연결되도록 합니다.
+3. 네트워크 설정에서 편집버튼을 클릭하여 이전 단계에서 생성한 fineAnts_vpc VPC와 외부 인터넷과 연결되기 위해서 fineAnts-public 서브넷을 선택합니다. 또한 보안 그룹을 별도로 생성하여 특정한 프로토콜과 포트만 연결되도록 티합니다.
 ![[Pasted image 20231214153809.png]]
+- fineAnts-public-sg 보안 그룹 생성시 pem 키 파일을 이용한 원격 접속을 하기 위해서는 SSH를 추가해야 합니다.
+![[Pasted image 20231214164941.png]]
+
 
 4. 다른 설정은 기본값으로 두고 인스턴스 생성 버튼을 클릭합니다.
 ![[Pasted image 20231214142356.png]]
@@ -210,3 +213,13 @@ DB 서브넷 그룹을 생성하기 위해서 최소 private한 서브넷이 2�
 ## EC2 인스턴스에서 RDS 데이터베이스 연결
 1. EC2 인스턴스에 접속합니다.
 2. mysql을 설치합니다.
+```
+$ sudo yum update -y
+$ wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+$ sudo yum localinstall mysql80-community-release-el9-1.noarch.rpm
+$ sudo yum install mysql-community-server
+$ sudo systemctl start mysqld
+$ sudo systemctl status mysqld
+```
+
+
