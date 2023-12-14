@@ -11,6 +11,11 @@
 	- 라우팅 테이블을 public subnet에 연결
 - [[#public subnet의 ip 자동 할당 설정]]
 - [[#EC2 인스턴스 생성]]
+- [[#DB 서브넷 그룹 생성]]
+- [[#데이터베이스 보안 그룹 생성]]
+- [[#RDS 인스턴스 생성]]
+- [[#EC2 인스턴스에서 RDS 데이터베이스 연결]]
+- [[#IntelliJ에서 RDS 데이터베이스 원격 접속]]
 
 
 ## VPC 생성
@@ -235,6 +240,12 @@ $ mysql -u admin -h {RDS 주소} -p
 4. mysql 원격 접속 결과를 확인합니다.
 ![[Pasted image 20231214165550.png]]
 
+5. fineAnts 데이터베이스를 생성합니다.
+
+```
+mysql > create database fineAnts;
+```
+
 ## IntelliJ에서 RDS 데이터베이스 원격 접속
 1. 인텔리제이서 datasource 탭을 엽니다.
 ![[Pasted image 20231214165700.png]]
@@ -249,4 +260,12 @@ $ mysql -u admin -h {RDS 주소} -p
 4. 다음 그림과 같이 EC2 인스턴스의 IPv4 주소를 입력, 인증 타입(Authentication Type)을 키 페어 방식으로 선택한 다음 ec2 생성시 받았던 키 파일을 경로 선택합니다. 그리고 Test Connection 버튼을 클릭하여 EC2 인스턴스에 원격 접속이 되는지 테스트합니다.
 ![[Pasted image 20231214170142.png]]
 
-5. 
+5. 다음과 같이 RDS 정보를 입력합니다.
+![[Pasted image 20231214170700.png]]
+- HOST에는 RDS 데이터베이스의 엔드 포인트를 입력합니다.
+
+6. Test Connection을 클릭하고 로그인 되면 OK를 누릅니다.
+![[Pasted image 20231214170804.png]]
+
+
+## AWS CodeDeploy를 위한 S3 ㅂ
