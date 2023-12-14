@@ -222,4 +222,31 @@ $ sudo systemctl start mysqld
 $ sudo systemctl status mysqld
 ```
 
+![[Pasted image 20231214165227.png]]
 
+3. RDS 서버에 원격 접속합니다.
+```
+$ mysql -u admin -h {RDS 주소} -p 
+```
+- RDS 주소는 RDS 서비스의 fineAnts 데이터베이스 상세 페이지에 들어가서 엔드 포인트를 확인하면 됩니다.
+- 비밀번호는 RDS 데이터베이스 생성시 설정했던 비밀번호를 설정하면 됩니다.
+![[Pasted image 20231214165404.png]]
+
+4. mysql 원격 접속 결과를 확인합니다.
+![[Pasted image 20231214165550.png]]
+
+## IntelliJ에서 RDS 데이터베이스 원격 접속
+1. 인텔리제이서 datasource 탭을 엽니다.
+![[Pasted image 20231214165700.png]]
+- 위 결과는 이미 접속한 것이 있기 때문에 접속된 것입니다.
+
+2. 왼쪽 상단에 플러스 버튼을 클릭 -> Data Source -> MySQL을 선택합니다. 
+![[Pasted image 20231214165742.png]]
+
+3. 데이터소스의 이름을 작성하고 SSH/SSL 탭으로 이동합니다. 그리고 SSH Configuration에서 "..." 버튼을 클릭합니다.
+![[Pasted image 20231214165945.png]]
+
+4. 다음 그림과 같이 EC2 인스턴스의 IPv4 주소를 입력, 인증 타입(Authentication Type)을 키 페어 방식으로 선택한 다음 ec2 생성시 받았던 키 파일을 경로 선택합니다. 그리고 Test Connection 버튼을 클릭하여 EC2 인스턴스에 원격 접속이 되는지 테스트합니다.
+![[Pasted image 20231214170142.png]]
+
+5. 
