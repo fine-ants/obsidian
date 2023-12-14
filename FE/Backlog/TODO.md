@@ -1,34 +1,32 @@
 # TODO
 
 - [x] **Landing Page**
-
   - [x] 디자인은 없지만 BasePage 적용해 놓기
   - [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
 
 - [x] **Dashboard Page**
-
   - [x] 포트폴리오 리스트 데이터 예산이 아니라 평가금액으로 변경
   - [x] 포트폴리오 파이차트 API 따로 생성
   - [x] ValuationOverview 값
   - [x] "총 자산 추이" 그래프에서 현재 선택된 기간 highlight
 
 - [ ] **Portfolio Page**
-
-  - [ ] Overview 부분에 포트폴리오 평가금액 추가
-  - [ ] Overview 최대 손실율에 대한 논의
-  - [ ] 매입이력
-    - [ ] 각 매입이력별 손익률
-    - [ ] 매입 이력 추가 시 금액 합계 보이기
-  - [ ] Prevent adding duplicate 종목
-  - [ ] 배당금 차트
-    - [x] 현재월 highlight 되도록 수정
-    - [ ] 0일 경우 bar 없음
-  - [ ] 연배당률 소수점 포함
-  - [ ] stomp 웹소켓 -> SSE 변경
-  - [ ] 실시간 변경 값 1초마다 상승 하락 플래그 다른색깔로 깜빡
+	- [ ] Overview 부분에 포트폴리오 평가금액 추가
+	- [ ] Overview 최대 손실율에 대한 논의
+	- [ ] 매입이력
+		- [ ] 각 매입이력별 손익률
+		- [ ] 매입 이력 추가 시 금액 합계 보이기
+	- [ ] Prevent adding duplicate 종목
+	- [ ] 배당금 차트
+		- [x] 현재월 highlight 되도록 수정
+		- [ ] 0일 경우 bar 없음
+- [ ] 연배당률 소수점 포함
+- [x] stomp 웹소켓 -> SSE 변경
+- [ ] 실시간 변경 값 1초마다 상승 하락 플래그 다른색깔로 깜빡
+- [ ] Sector
+  - [ ] 하드코딩 제거
 
 - [x] **Watchlist Page**
-
   - [x] Hardcode된 포트폴리오 제거
   - [x] Watchlist 추가, 삭제 기능
     - [x] 종목 추가, 삭제 기능
@@ -36,29 +34,19 @@
     - [x] react-movable로 변경
 
 - [ ] **Profile Page**
-
-  - [ ] “내 프로필” 탭
     - [ ] 스타일
     - [ ] api 추가
     - [ ] 이미지 용량 제한
-    - [ ] isNicknameChecked 상태에 맞는 화면 렌더링
-  - [ ] “내 포트폴리오” 탭
-    - [ ] 스타일
-    - [ ] 하드코딩 제거
-    - [x] msw에 portfolios 값이 react에서 사용처와 달라 에러 나고 있음
-      - [x] undefined 예외처리해줘서 해결
-  - [ ] Sector
-    - [ ] 하드코딩 제거
+
+
 
 - [ ] **Signup Page**
-
   - [ ] 이메일/비밀번호 가입
     - [ ] 이미지 업로드 (S3 presigned URL)
   - [x] Funnel pattern custom hook
   - [x] TODO 내용 확인하고 해결하기
 
 - [ ] **OAuth Sign In**
-
   - [ ] Redirect URI
     - [ ] Redirect URI를 `/signin`이 아니라 따로 sign in loading page(Ex: “로그인 중입니다”)로 구현
   - [ ] Google Sign In
