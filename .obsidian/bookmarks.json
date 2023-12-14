@@ -26,6 +26,13 @@
       "ctime": 1702531509259,
       "path": "BE/메뉴얼/AWS 인프라/AWS 인프라 작업.md",
       "subpath": "#EC2 인스턴스 생성"
+    },
+    {
+      "type": "file",
+      "ctime": 1702531523311,
+      "path": "BE/메뉴얼/AWS 인프라/AWS 인프라 작업.md",
+      "subpath": "#EC2 인스턴스 생성",
+      "title": "EC2 인스턴스 생성"
     }
   ]
 }
