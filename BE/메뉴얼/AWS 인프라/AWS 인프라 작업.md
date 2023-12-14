@@ -268,4 +268,30 @@ mysql > create database fineAnts;
 ![[Pasted image 20231214170804.png]]
 
 
-## AWS CodeDeploy를 위한 S3 ㅂ
+## AWS CodeDeploy를 위한 S3 버킷 생성
+AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
+
+1. S3 서비스로 이동하여 버킷 생성을 합니다.
+![[Pasted image 20231214172300.png]]
+
+2. 버킷 생성 결과를 확인합니다.
+![[Pasted image 20231214172323.png]]
+
+3. 배포 zip 파일이 저장될 디렉토리를 생성합니다.
+![[Pasted image 20231214172434.png]]
+
+## AWS CodeDeploy를 위한 CodeDeploy 
+
+1. 만약, CodeDeploy 서비스에 들어갔는데 권한이 필요하다면 해당 사용자 또는 그룹에 AWSCodeDeployFullAccess 권한을 얻습니다.
+![[Pasted image 20231214172722.png]]
+
+2. AWS CodeDeploy 서비스에서 배포에서 애플리케이션을 선택합니다. 그리고 애플리케이션 생성 버튼을 클릭합니다.
+![[Pasted image 20231214172831.png]]
+
+3. 애플리케이션에 대한 정보를 입력합니다.
+![[Pasted image 20231214172850.png]]
+
+4. 애플리케이션 생성 결과를 확인합니다.
+![[Pasted image 20231214172936.png]]
+
+5. fineAnts 애플리케이션을 들어가서 배포 그룹 탭으로 들어가서 배포 그룹 생성 버튼을 클릭합니다.
