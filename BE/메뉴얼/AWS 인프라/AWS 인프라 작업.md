@@ -203,3 +203,10 @@ DB 서브넷 그룹을 생성하기 위해서 최소 private한 서브넷이 2�
 ![[Pasted image 20231214162941.png]]
 ![[Pasted image 20231214163026.png]]
 ![[Pasted image 20231214163051.png]]
+
+3. RDS 데이터베이스 생성 결과를 확인합니다.
+![[Pasted image 20231214164018.png]]
+
+## EC2 인스턴스에서 RDS 데이터베이스 연결
+1. EC2 인스턴스에 접속합니다.
+2. mysql을 설치합니다.
