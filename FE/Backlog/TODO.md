@@ -86,15 +86,16 @@
 	- [ ] README 작성
 	- [ ] Open Source
 
-- [ ] Toast 사용 줄임
-	- [ ] 검색 에러 토스트 제거
-	- [ ] 조회 실패 토스트 제거
-	- [ ] Toast 위치 변경 (중간?)
+- [x] Toast 사용 줄임
+	- [x] 검색 에러 토스트 제거
+	- [x] 조회 실패 토스트 제거
+	- [x] Toast 위치 변경 (중간?)
 
 - [ ] **기타**
 	- [ ] 화폐단위 KRW
-	- [ ] 사용하지 않는 이미지, 아이콘 지우기
-	- [ ] Header에 로고 클릭시 로그인 상태 비교해서 랜딩 or 대시보드
+	- [x] 사용하지 않는 이미지, 아이콘 지우기
+	- [x] Header에 로고 클릭시 로그인 상태 비교해서 랜딩 or 대시보드
+	- [x] refetchOnWindowFocus 옵션 제거
 
 - [ ] Docs ErrorBoundary 관련 내용 추가
 	- `componentDidCatch(error, info)` api를 통해 render 과정에서 일어나는 에러를 잡을 수 있는데, 이는 현재 Class component에만 available하다. ErrorBoundary class component을 만들거나 `react-error-boundary` library를 사용.
