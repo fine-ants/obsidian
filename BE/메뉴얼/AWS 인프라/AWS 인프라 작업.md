@@ -288,7 +288,21 @@ CodeDeploy를 이용하여 배포하는 EC2 인스턴스가 S3와 CodeDeploy에 
 ```
 - 마지막 CloudWatchLogsFullAccess는 추후 로깅 모니터링 때문에 추가하였습니다.
 
-4. 역할 이름 및 추가한 권한을 다
+4. 역할 이름 및 추가한 권한을 다시 한번 확인합니다.
+![[Pasted image 20231215143221.png]]
+![[Pasted image 20231215143235.png]]
+
+5. 역할 추가 결과를 확인합니다.
+![[Pasted image 20231215143301.png]]
+
+### EC2 인스턴슨에 IAM 역할 적용
+이전 단계에서 생성한 ec2-deploy를 EC2 인스턴스에 적용하여 배포할 수 있는 권한을 부여합니다.
+1. EC2 서비스로 이동하여 생성된 EC2 인스턴스의 상세 페이지로 이도합니다. 그리고 작업 -> 보안 -> IAM 역할 수정을 클릭합니다.
+![[Pasted image 20231215143848.png]]
+
+2. ec2-deploy 역할을 선택하고 업데이트합니다.
+![[Pasted image 20231215143918.png]]
+
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
 AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
