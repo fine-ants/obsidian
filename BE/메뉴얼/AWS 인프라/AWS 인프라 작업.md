@@ -22,6 +22,7 @@
 	- [[#EC2 인스턴스에 IAM 역할 적용]]
 	- [[#Code Deploy Agent용 사용자 추가]]
 	- [[#EC2에 Code Deploy Agent 설치]]
+	- [[#프로젝트에 배포 파일 생성]]
 
 ## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
@@ -504,25 +505,40 @@ hooks:
 - `timeout` : 스크립트 실행 최대 시간. 스크립트가 시간을 초과하면 중단될 수 있습니다.
 - `runas` : 스크립트를 실행할 사용자 지정. 스크립트는 해당 사용자 권한으로 실행됩니다.
 
-2. EC2에 `/home/ec2-user/build/` 디렉토리를 생성하고 프로젝트 세팅을 종료합니다.
+2. scripts/start.sh 파일에 다음과 같이 작성합니다.
+```
+#!/bin/bash  
+  
+BUILD_JAR=$(ls /home/ec2-user/build/build/libs/*.jar)  
+JAR_NAME=$(basename $BUILD_JAR)  
+echo ">>> build filename: $JAR_NAME" >> /home/ec2-user/build/deploy.log  
+  
+echo ">>> copy build file" >> /home/ec2-user/build/deploy.log  
+DEPLOY_PATH=/home/ec2-user/build/  
+cp $BUILD_JAR $DEPLOY_PATH  
+  
+sudo chmod 666 /var/run/docker.sock  
+sudo chmod +x /usr/local/bin/docker-compose  
+docker-compose -f /home/ec2-user/build/docker-compose-dev.yml down -v  
+docker-compose -f /home/ec2-user/build/docker-compose-dev.yml build  
+docker-compose -f /home/ec2-user/build/docker-compose-dev.yml pull  
+docker-compose -f /home/ec2-user/build/docker-compose-dev.yml up -d  
+docker system prune -a
+```
+
+
+3. EC2에 `/home/ec2-user/build/` 디렉토리를 생성하고 프로젝트 세팅을 종료합니다.
 ```
 $ mkdir /home/ec2-user/build/
 ```
 
 
-## AWS CodeDeploy를 위한 S3 버킷 생성
-AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
 
-1. S3 서비스로 이동하여 버킷 생성을 합니다.
-![[Pasted image 20231214172300.png]]
+### Code Deploy용 Role 생성
+CodeDeploy를 통해서 EC2에 배포하기 위해서는 CodeDeploy가 EC2에 접근할 ㅅ
 
-2. 버킷 생성 결과를 확인합니다.
-![[Pasted image 20231214172323.png]]
 
-3. 배포 zip 파일이 저장될 디렉토리를 생성합니다.
-![[Pasted image 20231214172434.png]]
-
-## AWS CodeDeploy를 위한 CodeDeploy 
+### AWS CodeDeploy를 위한 CodeDeploy 
 
 1. 만약, CodeDeploy 서비스에 들어갔는데 권한이 필요하다면 해당 사용자 또는 그룹에 AWSCodeDeployFullAccess 권한을 얻습니다.
 ![[Pasted image 20231214172722.png]]
@@ -542,3 +558,15 @@ AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서�
 6. 배포 그룹 생성 정보를 입력합니다. 이 예제 같은 경우 개발 배포 서버에 배포하기 위해서 그룹을 생성하기 때문에 dev라고 명명하였습니다.
 ![[Pasted image 20231214173154.png]]
 
+
+## AWS CodeDeploy를 위한 S3 버킷 생성
+AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
+
+1. S3 서비스로 이동하여 버킷 생성을 합니다.
+![[Pasted image 20231214172300.png]]
+
+2. 버킷 생성 결과를 확인합니다.
+![[Pasted image 20231214172323.png]]
+
+3. 배포 zip 파일이 저장될 디렉토리를 생성합니다.
+![[Pasted image 20231214172434.png]]
