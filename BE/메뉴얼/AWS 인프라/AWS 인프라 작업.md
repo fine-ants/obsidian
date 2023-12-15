@@ -557,17 +557,13 @@ CodeDeploy를 통해서 EC2에 배포하기 위해서는 CodeDeploy가 EC2에 �
 
 
 
+### Code Deploy 생성
+AWS Code Deploy 서비스에서 Code Deploy 애플리케이션을 생성하여 EC2에 배포하도록 합니다.
 
-
-### AWS CodeDeploy를 위한 CodeDeploy 
-
-1. 만약, CodeDeploy 서비스에 들어갔는데 권한이 필요하다면 해당 사용자 또는 그룹에 AWSCodeDeployFullAccess 권한을 얻습니다.
-![[Pasted image 20231214172722.png]]
-
-2. AWS CodeDeploy 서비스에서 배포에서 애플리케이션을 선택합니다. 그리고 애플리케이션 생성 버튼을 클릭합니다.
+1. AWS CodeDeploy 서비스에서 배포에서 애플리케이션을 선택합니다. 그리고 애플리케이션 생성 버튼을 클릭합니다.
 ![[Pasted image 20231214172831.png]]
 
-3. 애플리케이션에 대한 정보를 입력합니다.
+2. 애플리케이션에 대한 정보를 입력합니다.
 ![[Pasted image 20231214172850.png]]
 
 4. 애플리케이션 생성 결과를 확인합니다.
@@ -578,6 +574,18 @@ CodeDeploy를 통해서 EC2에 배포하기 위해서는 CodeDeploy가 EC2에 �
 
 6. 배포 그룹 생성 정보를 입력합니다. 이 예제 같은 경우 개발 배포 서버에 배포하기 위해서 그룹을 생성하기 때문에 dev라고 명명하였습니다.
 ![[Pasted image 20231214173154.png]]
+
+7. 이전 단계에서 생성한 Code Deploy용 Role을 선택합니다.
+![[Pasted image 20231215171127.png]]
+
+8. 배포 유형 및 환경 구성을 다음과 같이 설정합니다.
+![[Pasted image 20231215171254.png]]
+![[Pasted image 20231215171304.png]]
+![[Pasted image 20231215171327.png]]
+![[Pasted image 20231215171445.png]]
+
+
+
 
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
