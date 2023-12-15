@@ -588,3 +588,6 @@ AWS Code Deploy 서비스에서 Code Deploy 애플리케이션을 생성하여 E
 
 9. 배포 그룹 생성을 확인합니다.
 ![[Pasted image 20231215171837.png]]
+
+
+### Code Deploy를 위한 S3 버킷 생성
