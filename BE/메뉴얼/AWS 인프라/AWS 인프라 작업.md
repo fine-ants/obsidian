@@ -20,8 +20,6 @@
 	- [[#Code Deploy용 Role 생성]]
 	- [[#Code Deploy 생성]]
 	- [[#Code Deploy를 위한 S3 버킷 생성]]
-- 
-
 
 ## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
@@ -605,3 +603,13 @@ AWS Code Deploy 서비스에서 Code Deploy 애플리케이션을 생성하여 E
 
 위와 같은 과정을 통해서 AWS Code Deploy에 대한 환경 구성은 끝났습니다. 이제 Github Action 같은 툴을 통해서 AWS Code Deploy 서비스를 사용하여 EC2에 배포할 수 있습니다.
 
+
+
+
+## Github Action을 이용한 CI/CD 구현
+이전 글에서 EC2, RDS, Code Deploy를 생성하였습니다. 이제 CI/CD 과정을 통하여 EC2에 배포하기를 원합니다. 
+
+CI/CD 구현과정을 소개하기에 앞서 이 글에서 소개하는 전체적인 인프라 구조는 다음과 같습니다.
+
+![[fineAnts_architecture_v2.png]]
+1. 
