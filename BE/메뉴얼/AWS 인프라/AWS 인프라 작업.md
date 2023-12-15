@@ -390,6 +390,30 @@ $ cd /home/ec2-user/
 $ sudo aws configure
 ```
 
+3. 다음과 같이 액세스 키 ID와 시크릿 키 값과 리전 정보, json을 입력합니다.
+![[Pasted image 20231215154701.png]]
+
+4. aws 설정이 끝났다면 Agent 설치 파일을 다운받습니다.
+```bash
+$ wget https://aws-codedeploy-ap-northeast-2.s3.amazonaws.com/latest/install
+$ chmod +x ./install
+$ sudo ./install auto
+```
+
+만약 install auto 명령어 실행시 루비(ruby)가 설치가 되어 있지 않으면 다음과 같은 에러가 발생합니다.
+![[Pasted image 20231215155013.png]]
+
+다음 명령어를 실행하여 루비를 설치합니다.
+```
+$ sudo yum install ruby
+```
+
+다시 Agent를 설치 시도합니다.
+```
+$ sudo ./install auto
+```
+
+
 ## AWS CodeDeploy를 위한 S3 버킷 생성
 AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
 
