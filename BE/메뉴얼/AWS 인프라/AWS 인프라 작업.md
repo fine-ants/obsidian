@@ -11,6 +11,7 @@
 	- 라우팅 테이블을 public subnet에 연결
 - [[#public subnet의 ip 자동 할당 설정]]
 - [[#EC2 인스턴스 생성]]
+- [[#RDS 인스턴스 생성 전 사전 작업]]
 - [[#DB 서브넷 그룹 생성]]
 - [[#데이터베이스 보안 그룹 생성]]
 - [[#RDS 인스턴스 생성]]
@@ -20,7 +21,7 @@
 	- [[#IAM Role 생성]]
 	- [[#EC2 인스턴스에 IAM 역할 적용]]
 	- [[#Code Deploy Agent용 사용자 추가]]
-
+	- [[#EC2에 Code Deploy Agent 설치]]
 
 ## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
@@ -412,6 +413,33 @@ $ sudo yum install ruby
 ```
 $ sudo ./install auto
 ```
+![[Pasted image 20231215155511.png]]
+
+5. 다음 명령어를 실행하여 EC2에 Agent가 실행중인지 확인합니다.
+```bash
+$ sudo service codedeploy-agent status
+```
+![[Pasted image 20231215155622.png]]
+
+6. 마지막으로 EC2 인스턴스가 부팅되면 자동으로 AWS CodeDeploy Agent가 실행될 수 있도록 쉘 스크립트 파일을 생성합니다.
+```bash
+$ sudo vim /etc/init.d/codedeploy-startup.sh
+```
+
+쉘 스크립트 파일 내용은 다음과 같습니다.
+```bash
+#!/bin/bash 
+echo 'Starting codedeploy-agent' 
+sudo service codedeploy-agent restart
+```
+
+쉘 스크립트 파일 저장뒤 실행 권한을 추가합니다.
+```bash
+$ sudo chmod +x /etc/init.d/codedeploy-startup.sh
+```
+
+위 과정들을 통해서 EC2에 CodeDeploy Agent 설치가 완료되었습니다.
+
 
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
