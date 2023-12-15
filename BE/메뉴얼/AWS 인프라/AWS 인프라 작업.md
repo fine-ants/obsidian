@@ -308,8 +308,42 @@ CodeDeploy를 이용하여 배포하는 EC2 인스턴스가 S3와 CodeDeploy에 
 EC2 인스턴스가 Code Deploy 이벤트를 수신할 수 있도록 Agent를 설치해야 합니다. 그전에 EC2에서 AWS CLI를 사용할 수 있도록 IAM 사용자를 추가합니다.
 
 1. IAM 서비스의 그룹 메뉴로 이동합니다. 그리고 그룹 생성 버튼을 클릭합니다.
+![[Pasted image 20231215151331.png]]
 
+2. 그룹이름을 deploy라고 입력하고 사용자 및 권한을 건들지 않고 생성합니다.
+![[Pasted image 20231215151403.png]]
 
+3. deploy 그룹 생성을 확인합니다.
+![[Pasted image 20231215151428.png]]
+
+4. deploy 그룹의 권한 탭 -> 권한 추가 -> 인라인 정책 생성 버튼을 클릭합니다.
+![[Pasted image 20231215151505.png]]
+
+5. 다음 사진과 같이 정책을 추가합니다.
+![[Pasted image 20231215151746.png]]
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codedeploy:*",
+                "ec2:*",
+                "s3:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+6. 정책 이름을 입력하고 생성 버튼을 클릭합니다.
+![[Pasted image 20231215151905.png]]
+
+이제 deploy 그룹에 fineAnts 애플리케이션에 대한 배포 권한을 생성하였으니 deploy 그룹에 사용자를 추가해보겠습니다.
+
+7. 사용자 메뉴로 이동하여 사용자 추가를 클릭합니다.
 
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
