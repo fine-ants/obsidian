@@ -23,6 +23,8 @@
 	- [[#Code Deploy Agent용 사용자 추가]]
 	- [[#EC2에 Code Deploy Agent 설치]]
 	- [[#프로젝트에 배포 파일 생성]]
+	- [[#Code Deploy용 Role 생성]]
+	- [[#Code Deploy 생성]]
 
 ## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
@@ -584,18 +586,5 @@ AWS Code Deploy 서비스에서 Code Deploy 애플리케이션을 생성하여 E
 ![[Pasted image 20231215171327.png]]
 ![[Pasted image 20231215171445.png]]
 
-
-
-
-
-## AWS CodeDeploy를 위한 S3 버킷 생성
-AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
-
-1. S3 서비스로 이동하여 버킷 생성을 합니다.
-![[Pasted image 20231214172300.png]]
-
-2. 버킷 생성 결과를 확인합니다.
-![[Pasted image 20231214172323.png]]
-
-3. 배포 zip 파일이 저장될 디렉토리를 생성합니다.
-![[Pasted image 20231214172434.png]]
+9. 배포 그룹 생성을 확인합니다.
+![[Pasted image 20231215171837.png]]
