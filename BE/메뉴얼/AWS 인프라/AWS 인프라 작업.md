@@ -463,7 +463,7 @@ permissions:
   
 hooks:  
   ApplicationStart:  
-    - location: scripts/deploy.sh  
+    - location: scripts/start.sh  
       timeout: 60  
       runas: ec2-user
 ```
@@ -491,6 +491,20 @@ permissions:
 - `owner` : 대상 파일 또는 디렉터리의 소유자를 지정합니다. 여기서는 `ec2-user`로 설정되어 있습니다.
 - `group`: 대상 파일 또는 디렉터리의 그룹을 지정합니다. 여기서도 `ec2-user`로 설정되어 있습니다.
 
+```
+hooks:  
+  ApplicationStart:  
+    - location: scripts/start.sh  
+      timeout: 60  
+      runas: ec2-user
+```
+- `hooks` : 이 섹션은 배포 중에 특정 이벤트가 발생했을 때 실행할 스크립트를 지정합니다.
+- `ApplicationStart` : 이벤트의 이름을 나타냅니다. 여기서는 애플리케이션이 시작될 때 실행될 스크립트를 정의하고 있습니다.
+- `location`: 실행할 스크립트의 위치를 지정합니다. 여기서는 scritps/start.sh 쉘 스크립트 파일을 실행합니다.
+- `timeout` : 스크립트 실행 최대 시간. 스크립트가 시간을 초과하면 중단될 수 있습니다.
+- `runas` : 스크립트를 실행할 사용자 지정. 스크립트는 해당 사용자 권한으로 실행됩니다.
+
+2. ec2에 
 
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
