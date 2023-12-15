@@ -535,7 +535,28 @@ $ mkdir /home/ec2-user/build/
 
 
 ### Code Deploy용 Role 생성
-CodeDeploy를 통해서 EC2에 배포하기 위해서는 CodeDeploy가 EC2에 접근할 ㅅ
+CodeDeploy를 통해서 EC2에 배포하기 위해서는 CodeDeploy가 EC2에 접근할 수 있도록 별도의 Role 생성을 해야 합니다.
+
+1. IAM 서비스를 들어가서 역할 메뉴에 들어갑니다. 그리고 역할 생성 버튼을 클릭합니다.
+![[Pasted image 20231215165808.png]]
+
+2. 다음과 같이 AWS 서비스 및 CodeDeploy 사용 사례를 검색하여 선택합니다.
+![[Pasted image 20231215170052.png]]
+
+3. 추가된 권한을 확인합니다.
+![[Pasted image 20231215170122.png]]
+
+4. 역할 이름 및 설명을 추가합니다. 그리고 역할을 생성합니다.
+![[Pasted image 20231215170301.png]]
+
+5. 역할 생성 결과를 확인합니다.
+![[Pasted image 20231215170349.png]]
+
+
+
+
+
+
 
 
 ### AWS CodeDeploy를 위한 CodeDeploy 
