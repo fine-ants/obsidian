@@ -344,6 +344,27 @@ EC2 인스턴스가 Code Deploy 이벤트를 수신할 수 있도록 Agent를 �
 이제 deploy 그룹에 fineAnts 애플리케이션에 대한 배포 권한을 생성하였으니 deploy 그룹에 사용자를 추가해보겠습니다.
 
 7. 사용자 메뉴로 이동하여 사용자 추가를 클릭합니다.
+![[Pasted image 20231215152424.png]]
+
+8. 배포용 사용자 이름을 입력합니다.
+![[Pasted image 20231215152351.png]]
+
+9. deploy 그룹에 fineAntsDeploy 사용자를 추가합니다.
+![[Pasted image 20231215152522.png]]
+
+10. 사용자 최종 권한을 확인합니다. 그리고 생성 버튼을 눌러서 사용자를 생성합니다.
+![[Pasted image 20231215152600.png]]
+
+11. 사용자 생성 결과를 확인합니다.
+![[Pasted image 20231215152714.png]]
+
+12. fineAntsDeploy 사용자의 상세 페이지로 들어가서 액세스 키를 생성합니다.
+![[Pasted image 20231215152859.png]]
+
+13. 사용 사례에서 Command Line Interface를 선택합니다.
+![[Pasted image 20231215153034.png]]
+
+14. 액세스 키 생성하고 csv 파일을 다운로드 받아둡니다.
 
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
