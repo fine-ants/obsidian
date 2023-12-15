@@ -446,7 +446,52 @@ $ sudo chmod +x /etc/init.d/codedeploy-startup.sh
 1. 프로젝트 최상단 위치에 appspec.yml 파일을 생성합니다.
 ![[Pasted image 20231215160958.png]]
 
-2. 
+2. appsepc.yml 파일에 다음과 같이 작성합니다.
+```yml
+version: 0.0  
+os: linux  
+files:  
+  - source: /  
+    destination: /home/ec2-user/build  
+    overwrite: yes  
+  
+permissions:  
+  - object: /  
+    pattern: "**"  
+    owner: ec2-user  
+    group: ec2-user  
+  
+hooks:  
+  ApplicationStart:  
+    - location: scripts/deploy.sh  
+      timeout: 60  
+      runas: ec2-user
+```
+- AWS CodeDeploy는 appspec.yml 파일을 통해서 어떤 파일들을 어떤 위치로 배포하고, 이후 어떤 스크립트를 실행시킬 것인지 관리합니다.
+
+```yml
+os: linux  
+files:  
+  - source: /  
+    destination: /home/ec2-user/build  
+    overwrite: yes  
+```
+- 위 코드는 Code Build, S3, Github 등을 통해서 받은 전체 파일들(`source: /`)을 `/home/ec2-user/build/`로 옮기겠다는 의미입니다.
+
+```yml
+permissions:  
+  - object: /  
+    pattern: "**"  
+    owner: ec2-user  
+    group: ec2-user  
+```
+- `permissions`: 이 섹션은 파일 및 디렉토리에 대한 권한을 정의합니다.
+- `object` : 권한을 부여할 대상을 정합니다. 여기서는 루트 디렉토리를 나타냅니다.
+- `pattern` : 해당 대상에 대한 경로 패턴을 정의합니다. "**"는 임의의 하위 디렉토리를 나타냅니다. 따라서 모든 경로가 대상이 됩니다.
+- `owner` : 대상 파일 또는 디렉터리의 소유자를 지정합니다. 여기서는 `ec2-user`로 설정되어 있습니다.
+- `group`: 대상 파일 또는 디렉터리의 그룹을 지정합니다. 여기서도 `ec2-user`로 설정되어 있습니다.
+
+
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
 AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
