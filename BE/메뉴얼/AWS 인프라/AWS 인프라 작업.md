@@ -16,6 +16,10 @@
 - [[#RDS 인스턴스 생성]]
 - [[#EC2 인스턴스에서 RDS 데이터베이스 연결]]
 - [[#IntelliJ에서 RDS 데이터베이스 원격 접속]]
+- [[#AWS CodeDeploy 사용하기]]
+	- [[#IAM Role 생성]]
+	- [[#EC2 인스턴스에 IAM 역할 적용]]
+	- [[#Code Deploy Agent용 사용자 추가]]
 
 
 ## VPC 생성
@@ -365,7 +369,26 @@ EC2 인스턴스가 Code Deploy 이벤트를 수신할 수 있도록 Agent를 �
 ![[Pasted image 20231215153034.png]]
 
 14. 액세스 키 생성하고 csv 파일을 다운로드 받아둡니다.
+![[Pasted image 20231215153456.png]]
 
+
+
+
+
+
+### EC2에 Code Deploy Agent 설치
+EC2 인스턴스에 CodeDeploy로 지정한 위치에서 파일을 받아 진행하기 위해서는 Code Deploy Agent가 설치되어야 합니다. 
+
+1. EC2 접속 및 aws-cli를 설치합니다.
+```
+$ sudo yum install -y aws-cli
+```
+
+2. 사용자 홈 디렉토리로 이동하여 aws cli 설정을 합니다.
+```
+$ cd /home/ec2-user/
+$ sudo aws configure
+```
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
 AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
