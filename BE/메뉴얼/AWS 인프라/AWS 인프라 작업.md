@@ -612,4 +612,91 @@ AWS Code Deploy 서비스에서 Code Deploy 애플리케이션을 생성하여 E
 CI/CD 구현과정을 소개하기에 앞서 이 글에서 소개하는 전체적인 인프라 구조는 다음과 같습니다.
 
 ![[fineAnts_architecture_v2.png]]
-1. 
+1. Github의 특정 브린치에 푸시됩니다.
+2. Github Action에서 빌드하고 zip 파일로 압축하여 저장합니다.
+3. Github Action에서 AWS Code Deploy에게 배포를 요청합니다.
+4. AWS Code Deploy에서 S3에 저장된 zip 파일을 이용하여 EC2에 배포합니다.
+5. EC2에서는 docker spring, redis 컨테이너를 실행합니다.
+
+### Github Action Workflow 구현
+1. Github Action을 수행하기 위해서 프로젝트 최상단을 기준으로 /.github/workflows 디렉토리에 cicd.yml 파일을 생성하고 코드를 작성합니다.
+```yml
+name: ci-cd  
+  
+on:  
+  push:  
+    branches: [ dev-cicd, dev ]  
+  
+permissions:  
+  contents: read  
+  
+env:  
+  S3_BUCKET_NAME: fineants  
+  AWS_REGION: ap-northeast-2  
+  CODEDEPLOY_NAME: fineAnts  
+  CODEDEPLOY_GROUP: dev  
+  
+jobs:  
+  build-image:  
+    runs-on: ubuntu-latest  
+    environment: dev  
+    defaults:  
+      run:  
+        shell: bash  
+  
+    steps:  
+      - uses: actions/checkout@v3  
+        with:  
+          submodules: true  
+          token: ${{ secrets.GIT_TOKEN }}  
+      ## JDK 설정  
+      - name: Set up JDK 11  
+        uses: actions/setup-java@v3  
+        with:  
+          java-version: '11'  
+          distribution: 'temurin'  
+      # gradle caching - 빌드 시간 향상  
+      - name: Gradle Caching  
+        uses: actions/cache@v3  
+        with:  
+          # 캐시할 디렉토리 경로를 지정합니다.  
+          path: |  
+            ~/.gradle/caches  
+            ~/.gradle/wrapper  
+          # 캐시를 구분하는 키를 지정합니다.  
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}  
+          # 이전에 생성된 캐시를 복원하는데 사용할 키를 지정합니다.  
+          # 캐시가 없거나 만료되었을때 이 키를 기반으로 이전에 생성된 캐시를 찾아 복원합니다.  
+          restore-keys: |  
+            ${{ runner.os }}-gradle-  
+      # env 파일 생성  
+      - name: make .env file  
+        run: |  
+          touch .env  
+          echo "${{ secrets.ENV }}" > ./.env  
+      # gradlew 실행을 위해서 실행 권한을 부여  
+      - name: Grant execute permission for gradlew  
+        run: chmod +x ./gradlew  
+      # Gradle을 이용하여 빌드 수행  
+      - name: Build with Gradle  
+        run: ./gradlew bootJar  
+      # zip 파일 생성  
+      - name: Make zip file  
+        run: zip -r ./$GITHUB_SHA.zip .  
+      # AWS 인증정보 설정  
+      - name: Configure AWS credentials  
+        uses: aws-actions/configure-aws-credentials@v1  
+        with:  
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+          aws-region: ${{ env.AWS_REGION }}  
+      # S3에 업로드  
+      - name: Upload to S3  
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip  
+      # 코드 배포  
+      - name: Code Deploy  
+        run: aws deploy create-deployment --application-name $CODEDEPLOY_NAME --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name $CODEDEPLOY_GROUP --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
+```
+
+2. Github 시크릿 설정에서 환경변수를 설정합니다.
+
