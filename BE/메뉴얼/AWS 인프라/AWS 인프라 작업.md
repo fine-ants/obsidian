@@ -440,7 +440,13 @@ $ sudo chmod +x /etc/init.d/codedeploy-startup.sh
 
 위 과정들을 통해서 EC2에 CodeDeploy Agent 설치가 완료되었습니다.
 
+### 프로젝트에 배포 파일 생성
+배포할 프로젝트의 환경은 Java11, Spring Boot, Gradle을 사용합니다. 이 단계에서는 프로젝트 디렉토리에 AWS CodeDeploy가 이용하여 배포할 스크립트를 작성합니다.
 
+1. 프로젝트 최상단 위치에 appspec.yml 파일을 생성합니다.
+![[Pasted image 20231215160958.png]]
+
+2. 
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
 AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
