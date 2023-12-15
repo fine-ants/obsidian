@@ -270,7 +270,25 @@ mysql > create database fineAnts;
 
 ## AWS CodeDeploy 사용하기
 ### IAM Role 생성
-1. 
+CodeDeploy를 이용하여 배포하는 EC2 인스턴스가 S3와 CodeDeploy에 접근할 수 있는 권한을 부여하도록 역할을 생성해야 합니다.
+
+1. IAM 서비스로 이동하여 역할 생성을 클릭합니다.
+![[Pasted image 20231215142618.png]]
+
+2. 다음과 같이 엔티티 유형과 사용사례를 선택합니다.
+![[Pasted image 20231215142714.png]]
+![[Pasted image 20231215142727.png]]
+
+3. 다음을 클릭하고 역할에 부여하고  싶은 권한을 선택합니다. EC2가 S3와 CodeDeploy에 접근하기 위해서 다음과 같은 권한을 추가합니다.
+```
+- AmazonS3FullAccess
+- AWSCodeDeployFullAccess
+- AWSCodeDeployRole
+- CloudWatchLogsFullAccess
+```
+- 마지막 CloudWatchLogsFullAccess는 추후 로깅 모니터링 때문에 추가하였습니다.
+
+4. 역할 이름 및 추가한 권한을 다
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
 AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
