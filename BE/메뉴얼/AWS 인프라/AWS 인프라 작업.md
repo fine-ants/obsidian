@@ -504,7 +504,10 @@ hooks:
 - `timeout` : 스크립트 실행 최대 시간. 스크립트가 시간을 초과하면 중단될 수 있습니다.
 - `runas` : 스크립트를 실행할 사용자 지정. 스크립트는 해당 사용자 권한으로 실행됩니다.
 
-2. ec2에 
+2. EC2에 `/home/ec2-user/build/` 디렉토리를 생성하고 프로젝트 세팅을 종료합니다.
+```
+$ mkdir /home/ec2-user/build/
+```
 
 
 ## AWS CodeDeploy를 위한 S3 버킷 생성
