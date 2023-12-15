@@ -268,6 +268,10 @@ mysql > create database fineAnts;
 ![[Pasted image 20231214170804.png]]
 
 
+## AWS CodeDeploy 사용하기
+### IAM Role 생성
+1. 
+
 ## AWS CodeDeploy를 위한 S3 버킷 생성
 AWS CodeDeploy를 이용하여 CI/CD 파이프 라인을 구축하기 위해서는 S3 버킷 생성이 필요합니다.
 
