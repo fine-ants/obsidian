@@ -304,7 +304,11 @@ CodeDeploy를 이용하여 배포하는 EC2 인스턴스가 S3와 CodeDeploy에 
 ![[Pasted image 20231215143918.png]]
 
 
-### EC2 인스턴스 설정
+### Code Deploy Agent용 사용자 추가
+EC2 인스턴스가 Code Deploy 이벤트를 수신할 수 있도록 Agent를 설치해야 합니다. 그전에 EC2에서 AWS CLI를 사용할 수 있도록 IAM 사용자를 추가합니다.
+
+1. IAM 서비스의 그룹 메뉴로 이동합니다. 그리고 그룹 생성 버튼을 클릭합니다.
+
 
 
 
