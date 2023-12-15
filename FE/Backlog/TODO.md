@@ -61,7 +61,7 @@
 	- [ ] Select
 	- [ ] SearchBar refactor
 	- [ ] TextField
-	- [ ] Tab 컴포넌트화
+	- [x] Tab 컴포넌트화
 	- [ ] Breadcrumb
 
 - [ ] Router 관련 수정
