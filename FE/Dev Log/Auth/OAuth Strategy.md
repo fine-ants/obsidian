@@ -119,8 +119,8 @@
 	- Client Secret은 OAuth Client의 "인증서"로서 OAuth Provider가 OAuthClient를 인증할 수 있도록 한다.
 	- 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 OAuth 인증이 이루어진다.
 #### 전략
-- **대안 2**
-	- Sign in With Google SDK를 사용하면 Frontend에 Client ID를 포함해야한다.
+- **대안 3**
+	- Sign in With Google SDK 미사용으로 Frontend에 Client ID를 포함하지 않는다.
 ### Kakao
 - Kakao는 OpenID Connect와 PKCE를 지원한다.
 - Reference
