@@ -1,14 +1,8 @@
 ## 목차
 - [[#VPC 생성]]
-- [[#서브넷 생성]]
-	- 서브넷 생성
-	- 라우팅 테이블 연결 확인 
+- [[#서브넷 생성]] 
 - [[#인터넷 게이트웨이 생성]]
-	- 인터넷 게이트웨이 생성
-	- VPC 연결
 - [[#public subnet의 라우팅 테이블 생성]]
-	- 라우팅 테이블 생성
-	- 라우팅 테이블을 public subnet에 연결
 - [[#public subnet의 ip 자동 할당 설정]]
 - [[#EC2 인스턴스 생성]]
 - [[#RDS 인스턴스 생성 전 사전 작업]]
@@ -25,6 +19,7 @@
 	- [[#프로젝트에 배포 파일 생성]]
 	- [[#Code Deploy용 Role 생성]]
 	- [[#Code Deploy 생성]]
+	- [[#Code Deploy를 위한 S3 버킷 생성]]
 
 ## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
@@ -588,3 +583,122 @@ AWS Code Deploy 서비스에서 Code Deploy 애플리케이션을 생성하여 E
 
 9. 배포 그룹 생성을 확인합니다.
 ![[Pasted image 20231215171837.png]]
+
+
+### Code Deploy를 위한 S3 버킷 생성
+배포 방식을 빌드하고 압축한 zip파일을 S3에 저장하였다가 EC2에 압축해제하면서 저장하기 위해서 S3 버킷을 생성합니다.
+
+1. S3 서비스에 들어가서 버킷 생성 만들기합니다.
+![[Pasted image 20231215173719.png]]
+
+2. 버킷에 대한 정보를 입력합니다. 그리고 다른 설정들은 기본값으로 유지한채 생성합니다.
+![[Pasted image 20231215173729.png]]
+
+3. 버킷 생성 결과를 확인합니다.
+![[Pasted image 20231215173819.png]]
+
+4. fineants 버킷에 들어가서 deploy 폴더를 생성합니다. deploy 폴더에 배포한 zip 파일들을 저장할 것입니다.
+![[Pasted image 20231215173836.png]]
+
+
+위와 같은 과정을 통해서 AWS Code Deploy에 대한 환경 구성은 끝났습니다. 이제 Github Action 같은 툴을 통해서 AWS Code Deploy 서비스를 사용하여 EC2에 배포할 수 있습니다.
+
+
+
+
+## Github Action을 이용한 CI/CD 구현
+이전 글에서 EC2, RDS, Code Deploy를 생성하였습니다. 이제 CI/CD 과정을 통하여 EC2에 배포하기를 원합니다. 
+
+CI/CD 구현과정을 소개하기에 앞서 이 글에서 소개하는 전체적인 인프라 구조는 다음과 같습니다.
+
+![[fineAnts_architecture_v2.png]]
+1. Github의 특정 브린치에 푸시됩니다.
+2. Github Action에서 빌드하고 zip 파일로 압축하여 저장합니다.
+3. Github Action에서 AWS Code Deploy에게 배포를 요청합니다.
+4. AWS Code Deploy에서 S3에 저장된 zip 파일을 이용하여 EC2에 배포합니다.
+5. EC2에서는 docker spring, redis 컨테이너를 실행합니다.
+
+### Github Action Workflow 구현
+1. Github Action을 수행하기 위해서 프로젝트 최상단을 기준으로 /.github/workflows 디렉토리에 cicd.yml 파일을 생성하고 코드를 작성합니다.
+```yml
+name: ci-cd  
+  
+on:  
+  push:  
+    branches: [ dev-cicd, dev ]  
+  
+permissions:  
+  contents: read  
+  
+env:  
+  S3_BUCKET_NAME: fineants  
+  AWS_REGION: ap-northeast-2  
+  CODEDEPLOY_NAME: fineAnts  
+  CODEDEPLOY_GROUP: dev  
+  
+jobs:  
+  build-image:  
+    runs-on: ubuntu-latest  
+    environment: dev  
+    defaults:  
+      run:  
+        shell: bash  
+  
+    steps:  
+      - uses: actions/checkout@v3  
+        with:  
+          submodules: true  
+          token: ${{ secrets.GIT_TOKEN }}  
+      ## JDK 설정  
+      - name: Set up JDK 11  
+        uses: actions/setup-java@v3  
+        with:  
+          java-version: '11'  
+          distribution: 'temurin'  
+      # gradle caching - 빌드 시간 향상  
+      - name: Gradle Caching  
+        uses: actions/cache@v3  
+        with:  
+          # 캐시할 디렉토리 경로를 지정합니다.  
+          path: |  
+            ~/.gradle/caches  
+            ~/.gradle/wrapper  
+          # 캐시를 구분하는 키를 지정합니다.  
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}  
+          # 이전에 생성된 캐시를 복원하는데 사용할 키를 지정합니다.  
+          # 캐시가 없거나 만료되었을때 이 키를 기반으로 이전에 생성된 캐시를 찾아 복원합니다.  
+          restore-keys: |  
+            ${{ runner.os }}-gradle-  
+      # env 파일 생성  
+      - name: make .env file  
+        run: |  
+          touch .env  
+          echo "${{ secrets.ENV }}" > ./.env  
+      # gradlew 실행을 위해서 실행 권한을 부여  
+      - name: Grant execute permission for gradlew  
+        run: chmod +x ./gradlew  
+      # Gradle을 이용하여 빌드 수행  
+      - name: Build with Gradle  
+        run: ./gradlew bootJar  
+      # zip 파일 생성  
+      - name: Make zip file  
+        run: zip -r ./$GITHUB_SHA.zip .  
+      # AWS 인증정보 설정  
+      - name: Configure AWS credentials  
+        uses: aws-actions/configure-aws-credentials@v1  
+        with:  
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+          aws-region: ${{ env.AWS_REGION }}  
+      # S3에 업로드  
+      - name: Upload to S3  
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip  
+      # 코드 배포  
+      - name: Code Deploy  
+        run: aws deploy create-deployment --application-name $CODEDEPLOY_NAME --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name $CODEDEPLOY_GROUP --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
+```
+
+2. Github 시크릿 설정에서 환경변수를 설정합니다.
+![[Pasted image 20231215232410.png]]
+
+
