@@ -203,3 +203,5 @@
 - [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
 - [draft-ietf-oauth-security-topics-24](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#nonce_as_injection_protection)
 - [Difference between OAuth 2.0 "state" and OpenID "nonce" parameter? Why state could not be reused? - Stack Overflow](https://stackoverflow.com/questions/46844285/difference-between-oauth-2-0-state-and-openid-nonce-parameter-why-state-cou)
+- [security - what is the case of replay attack for which OIDC nonce is a protection - Stack Overflow](https://stackoverflow.com/questions/77250027/what-is-the-case-of-replay-attack-for-which-oidc-nonce-is-a-protection)
+- [OAuth Replay Attack Mitigation. When working with developers on… | by Ben Botto | Medium](https://medium.com/@benjamin.botto/oauth-replay-attack-mitigation-18655a62fe53)
