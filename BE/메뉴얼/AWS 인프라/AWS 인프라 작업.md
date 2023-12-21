@@ -20,6 +20,8 @@
 	- [[#Code Deploy용 Role 생성]]
 	- [[#Code Deploy 생성]]
 	- [[#Code Deploy를 위한 S3 버킷 생성]]
+	- [[#Github Action을 이용한 CI/CD 구현]]
+	- 
 
 ## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
@@ -669,11 +671,6 @@ jobs:
           # 캐시가 없거나 만료되었을때 이 키를 기반으로 이전에 생성된 캐시를 찾아 복원합니다.  
           restore-keys: |  
             ${{ runner.os }}-gradle-  
-      # env 파일 생성  
-      - name: make .env file  
-        run: |  
-          touch .env  
-          echo "${{ secrets.ENV }}" > ./.env  
       # gradlew 실행을 위해서 실행 권한을 부여  
       - name: Grant execute permission for gradlew  
         run: chmod +x ./gradlew  
@@ -692,13 +689,63 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}  
       # S3에 업로드  
       - name: Upload to S3  
-        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip  
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/deploy/$GITHUB_SHA.zip  
       # 코드 배포  
       - name: Code Deploy  
-        run: aws deploy create-deployment --application-name $CODEDEPLOY_NAME --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name $CODEDEPLOY_GROUP --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
+        run: aws deploy create-deployment --application-name $CODEDEPLOY_NAME --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name $CODEDEPLOY_GROUP --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=deploy/$GITHUB_SHA.zip
 ```
 
 2. Github 시크릿 설정에서 환경변수를 설정합니다.
 ![[Pasted image 20231215232410.png]]
 
+## EC2 인스턴스에 Memory Swap 설정
+EC2 인스턴스 사용시 메모리가 부족하여 실행이 안되는 경우가 있습니다. 이 글에서는 메모리 스왑 기술을 사용하여 가상 메모리를 늘리는 작업을 수행합니다.
 
+#### Swap Memory 확인
+```
+$ free -h
+```
+![[Pasted image 20231221115721.png]]
+- buff/cache : 커널이 성능 향상을 위해 캐시 영역으로 사용되는 메모리 영역
+- buff : 프로세스가 사용하는 메모리 영역이 아닌 커널에서 사용하는 영역
+- cache : 페이지 캐시의 메모리
+
+#### 페이지 캐시
+
+- 페이지 캐시는 처리한 데이터를 RAM에 저장해서 가지고 있다가, 다시 이 데이터에 대한 접근이 발생하면 디스크에서 입출력 처리하지 않고 메인 메모리 영역의 데이터를 반환하여 처리할 수 있도록 해주는 공간
+
+#### Swap Memory 생성
+
+1. fallocate 명령어로 원하는 크기의 파일을 만든다
+
+```jsx
+$ sudo fallocate -l 2G ./swapfile
+```
+
+- 경고가 뜬다면 swapfile을 600으로 지정합니다.
+
+1. mkswap 명령어로 swap 파티션 지정
+
+```jsx
+$ sudo mkswap ./swapfile
+```
+
+1. swapon 명령어로 swap memory 활성화
+
+```jsx
+$ sudo swapon ./swapfile
+```
+
+1. /etc/fstab에 추가
+
+- **/etc/fstab 파일은 리눅스에서 사용하는 파일 시스템 정보를 정적으로 저장하고 있는 파일**입니다.
+- 리눅스 부팅시 마운트 정보를 가지고 있는 파일입니다. 이 파일에 추가해주어야 swap memory가 유효합니다.
+- 파일 제일 아래쪽에 다음 내용을 추가합니다.
+
+```jsx
+$ sudo vim /etc/fstab
+```
+
+```jsx
+/swapfile swap swap defaults 0 0
+```
