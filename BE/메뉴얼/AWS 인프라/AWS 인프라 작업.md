@@ -21,7 +21,8 @@
 	- [[#Code Deploy 생성]]
 	- [[#Code Deploy를 위한 S3 버킷 생성]]
 	- [[#Github Action을 이용한 CI/CD 구현]]
-	- 
+- [[#EC2 인스턴스에 Memory Swap 설정]]
+- 가비아에서 구매한 도메인을 AWS Route53에서 호스팅
 
 ## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
@@ -749,3 +750,6 @@ $ sudo vim /etc/fstab
 ```jsx
 /swapfile swap swap defaults 0 0
 ```
+
+## 가비아에서 구매한 도메인을 AWS Route53에서 호스팅
+1. Route53 서비스로 이동하여 
