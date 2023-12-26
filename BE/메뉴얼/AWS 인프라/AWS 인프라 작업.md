@@ -22,7 +22,7 @@
 	- [[#Code Deploy를 위한 S3 버킷 생성]]
 	- [[#Github Action을 이용한 CI/CD 구현]]
 - [[#EC2 인스턴스에 Memory Swap 설정]]
-- 가비아에서 구매한 도메인을 AWS Route53에서 호스팅
+- [[#가비아에서 구매한 도메인을 AWS Route53에서 호스팅]]
 
 ## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
@@ -769,5 +769,8 @@ $ sudo vim /etc/fstab
 ![[Pasted image 20231226142033.png]]
 
 6. Route53의 fineants.site 호스팅 영역으로 돌아가서 새로운 레코드를 생성합니다.
-![[Pasted image 20231226143603.png]]
-3.38.193.176
+![[Pasted image 20231226144200.png]]
+
+7. 다시 레코드를 생성 버튼을 누르고 레코드 유형을 A로 선택한 다음에 ec2 인스턴스의 ip 주소를 넣어 생성합니다. 레코드 이름은 비워두어 루트 도메인에 대한 레코드를 생성합니다.
+![[Pasted image 20231226144258.png]]
+ 
