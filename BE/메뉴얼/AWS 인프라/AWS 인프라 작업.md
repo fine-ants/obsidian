@@ -762,9 +762,12 @@ $ sudo vim /etc/fstab
 ![[Pasted image 20231226143017.png]]
 
 4. 가비아의 네임서버 설정으로 들어가서 다음과 같이 변경합니다.
+![[Pasted image 20231226143140.png]]
 
 
 5. 도메인의 DNS 설정화면에서 DNS 설정합니다. 값은 EC2 인스턴스의 IP주소입니다.
 ![[Pasted image 20231226142033.png]]
 
 6. Route53의 fineants.site 호스팅 영역으로 돌아가서 새로운 레코드를 생성합니다.
+![[Pasted image 20231226143603.png]]
+3.38.193.176
