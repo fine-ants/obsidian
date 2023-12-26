@@ -80,9 +80,9 @@
 - [ ] 반응형
 
 - [ ] `@fineants/demolition`
-	- [ ] 현재 있는 hook 및 util library로 이동
-	- [ ] `useInputDebounce` test code 작성
-	- [ ] JSDocs 작성
+	- [x] 현재 있는 hook 및 util library로 이동
+	- [x] `useInputDebounce` test code 작성
+	- [x] JSDocs 작성
 	- [ ] README 작성
 	- [ ] Open Source
 
