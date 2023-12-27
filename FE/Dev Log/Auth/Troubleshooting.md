@@ -10,6 +10,7 @@
 ## 팝업이 닫혀버리는 문제
 - 문제?
 	- `window.opener.postMessage`가 실행이 되지 않았지만 message handler가 이벤트를 어디선가 받아서 실행이 됨. 기존에는 핸들러에서 `closePopUpWindow()`를 실행하고 있었기 때문에 popup이 바로 꺼짐.
+		- `postMessage`는 한번만 실행하는데 `handler`는 3번 실행됨.
 	- Incognito 모드에서는 문제가 발생이 안됨.
 	- 그래서 진짜 문제의 원인은?
 		- 
