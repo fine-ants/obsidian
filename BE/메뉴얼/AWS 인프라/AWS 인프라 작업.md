@@ -792,3 +792,20 @@ $ sudo vim /etc/fstab
 4. 생성한 로그 그룹에 들어가서 로그 스트림 생성합니다.
 ![[Pasted image 20231227171904.png]]
 
+5. ec2 인스턴스의 docker-compose-dev.yml 파일을 다음과 같이 변경합니다.
+```yml
+  app:
+
+    ...
+
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: "fineAnts/app" 
+        awslogs-region: "ap-northeast-2" 
+        awslogs-stream: "web/info"
+```
+
+6. docker container를 재시작하고 로그 스트림에서 결과를 확인합니다.
+![[Pasted image 20231227172736.png]]
+
