@@ -41,6 +41,8 @@
 		- [ ] 이미지 업로드 (S3 presigned URL)
 	- [ ] 회원가입 페이지 디자인에 맞게 추가 작업(메일 인증, 프로필 이미지 등록, 현재 가입 단계 표시)
 
+- [ ] **SignInLoadingPage**
+
 - [ ] **OAuth Sign In**
   - [ ] Redirect URI
 	- [ ] Redirect URI를 `/signin`이 아니라 따로 sign in loading page(Ex: “로그인 중입니다”)로 구현
