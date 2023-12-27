@@ -773,4 +773,17 @@ $ sudo vim /etc/fstab
 
 7. 다시 레코드를 생성 버튼을 누르고 레코드 유형을 A로 선택한 다음에 ec2 인스턴스의 ip 주소를 넣어 생성합니다. 레코드 이름은 비워두어 루트 도메인에 대한 레코드를 생성합니다.
 ![[Pasted image 20231226144258.png]]
- 
+
+## EC2 인스턴스의 docker container log를 AWS CloudWatch에 내보내기
+1. EC2 인스턴스의 역할에 CloudWatchLogsFullAccess 추가합니다.
+
+![[Pasted image 20231227170642.png]]
+- 위 그림은 ec2 인스턴스에 설정되어 있는 ec2-deploy 역할이 가지고 있는 권한들입니다.
+- 이중에서 CloudWatchLogsFullAccess 권한을 추가합니다.
+
+
+2. AWS CloudWatch 서비스로 이동하여 Log groups 메뉴로 이동합니다. 그다음에 로그 그룹 생성 버튼을 클릭합니다.
+![[Pasted image 20231227170859.png]]
+
+
+3. 
