@@ -30,6 +30,7 @@
 			- REST API로 우선 화면 초기화.
 			- 이후 SSE로 실시간 데이터만 받아서 화면 업데이트.
 			- CUD 요청이 생길 시, SSE 연결 끊고, 1번, 2번 반복.
+	- [ ] Skeleton 구현 필요 (현재 overview skeleton이 보여짐)
 
 - [ ] **Profile Page**
 	- [x] 스타일
