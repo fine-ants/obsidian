@@ -59,6 +59,7 @@
 		- [ ] 아이콘 버튼
 	- [ ] Scroll
 	- [x] Select
+		- [ ] 168px 기준으로 Scroll 적용
 	- [ ] SearchBar refactor
 	- [x] TextField
 	- [x] Tab 컴포넌트화
