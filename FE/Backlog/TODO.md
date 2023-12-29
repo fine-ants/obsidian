@@ -120,3 +120,11 @@
 		- [x] 글로벌(루트 레벨) 처리 (카카)
 		- [ ] 관심 목록 페이지 (높은 확률로 제이)
 	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
+
+- [ ] TablePagination / Select option이 -1일 때 "All" 로직 처리
+
+- BE
+	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
+	- `api/portfolio/24/holdings` —> `api/portfolio/24` ?
+	- 포트폴리오 수정
+		- 이름은 안바꾸고 증권사만 바꿀 때 “포트폴리오 이름이 중복되었습니다” error.
