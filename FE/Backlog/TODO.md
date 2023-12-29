@@ -61,11 +61,11 @@
 			- [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
 		- [ ] 아이콘 버튼
 	- [ ] Scroll
-	- [ ] Select
+	- [x] Select
 	- [ ] SearchBar refactor
 	- [x] TextField
 	- [x] Tab 컴포넌트화
-	- [ ] Breadcrumb
+	- [ ] Breadcrumb (링크 연결 미완)
 
 - [ ] Router 관련 수정
 	- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다 (TVTickerTapWidget).
