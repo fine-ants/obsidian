@@ -118,6 +118,7 @@
 	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
 
 - [ ] TablePagination / Select option이 -1일 때 "All" 로직 처리
+- [ ] 
 
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
