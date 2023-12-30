@@ -139,6 +139,8 @@
 
 - [ ] Table 관련 컴포넌트 refactor
 
+- [ ] Proprietary License
+
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
 	- `api/portfolio/24/holdings` —> `api/portfolio/24` ?
