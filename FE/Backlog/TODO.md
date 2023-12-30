@@ -64,6 +64,8 @@
 	- [x] TextField
 	- [x] Tab 컴포넌트화
 	- [x] Breadcrumb
+	- [ ] Icon
+		- [ ] Hover 색상 처리
 
 - [ ] Router 관련 수정
 	- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다 (TVTickerTapWidget).
@@ -128,6 +130,13 @@
 	- [ ] 종목 추가 dialog 종목 검색 해서 추가 되었을 경우 dialog 높이 변하게 추가(피그마에 나온 것 처럼)
 	- [ ] 종목 추가 dialog에 우측 상단 닫기 버튼 추가
 	- [ ] 종목 추가 버튼 디자인과 동일하게 수정하기(디자인에는 + 아이콘있고, border가 없음)
+
+- [ ] Optimization
+	- [ ] Performance
+		- [ ] FCP, LCP
+	- [ ] Accessibility
+		- [ ] Button (https://dequeuniversity.com/rules/axe/4.7/button-name)
+		- [ ] Image (https://dequeuniversity.com/rules/axe/4.7/image-alt)
 
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
