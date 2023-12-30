@@ -109,8 +109,8 @@
 	- [ ] https://tanstack.com/query/v5/docs/react/reference/QueryErrorResetBoundary
 
 - [ ] PortfolioListTable
-	- [ ] pagePerOptions을 All로 했을 때 sorting 적용안됨.
-	- [ ] pagePerOptions -1을 All로 display해야 됨.
+	- [ ] rowsPerPageOptions All로 했을 때 sorting 적용안됨.
+	- [ ] rowsPerPageOptions -1을 All로 display해야 됨.
 
 - 우선순위
 	- Suspense, ErrorBoundary
