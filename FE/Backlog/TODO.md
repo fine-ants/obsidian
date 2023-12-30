@@ -44,8 +44,8 @@
 - [ ] **SignInLoadingPage**
 
 - [ ] **OAuth Sign In**
-  - [ ] Redirect URI
-	- [ ] Redirect URI를 `/signin`이 아니라 따로 sign in loading page(Ex: “로그인 중입니다”)로 구현
+  - [x] Redirect URI
+	- [x] Redirect URI를 `/signin`이 아니라 따로 sign in loading page(Ex: “로그인 중입니다”)로 구현
   - [ ] Error 처리
   - [ ] Pop Up 흐름
 	- [ ] Chrome, Safari, Firefox
@@ -108,9 +108,9 @@
 	- When using **suspense** or **throwOnError** in your queries, you need a way to let queries know that you want to try again when re-rendering after some error occurred. With the `QueryErrorResetBoundary` component you can reset any query errors within the boundaries of the component.
 	- [ ] https://tanstack.com/query/v5/docs/react/reference/QueryErrorResetBoundary
 
-- [ ] PortfolioListTable
-	- [ ] rowsPerPageOptions All로 했을 때 sorting 적용안됨.
-	- [ ] rowsPerPageOptions -1을 All로 display해야 됨.
+- [x] PortfolioListTable
+	- [x] rowsPerPageOptions All로 했을 때 sorting 적용안됨.
+	- [x] rowsPerPageOptions -1을 All로 display해야 됨.
 
 - 우선순위
 	- Suspense, ErrorBoundary
@@ -119,8 +119,6 @@
 		- [x] 글로벌(루트 레벨) 처리 (카카)
 		- [ ] 관심 목록 페이지 (높은 확률로 제이)
 	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
-
-- [ ] TablePagination / Select option이 -1일 때 "All" 로직 처리
 
 - [ ] 포트폴리오 Q/A
 	- [ ] 포트폴리오 종목 상세 페이지에서 아코디언이 펼쳐져 있는 경우 header에 수정, 삭제 아이콘 삭제하기
