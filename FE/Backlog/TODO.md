@@ -105,7 +105,6 @@
 		- https://react.dev/reference/react/Component#componentdidcatch-caveats
 		- https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
 		- https://react.dev/reference/react/Component#componentdidcatch
-	- 
 	- `useSuspenseQuery` relies on the internal cache for suspense functionality, and the cache operates independently of the `gcTime` configuration. Therefore, error responses are mandatorily cached despite manually setting `gcTime: 0`.
 	- When using **suspense** or **throwOnError** in your queries, you need a way to let queries know that you want to try again when re-rendering after some error occurred. With the `QueryErrorResetBoundary` component you can reset any query errors within the boundaries of the component.
 	- [ ] https://tanstack.com/query/v5/docs/react/reference/QueryErrorResetBoundary
@@ -137,6 +136,8 @@
 	- [ ] Accessibility
 		- [ ] Button (https://dequeuniversity.com/rules/axe/4.7/button-name)
 		- [ ] Image (https://dequeuniversity.com/rules/axe/4.7/image-alt)
+
+- [ ] Table 관련 컴포넌트 refactor
 
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
