@@ -110,6 +110,7 @@
 
 - [ ] PortfolioListTable
 	- [ ] pagePerOptions을 All로 했을 때 sorting 적용안됨.
+	- [ ] pagePerOptions -1을 All로 display해야 됨.
 
 - 우선순위
 	- Suspense, ErrorBoundary
