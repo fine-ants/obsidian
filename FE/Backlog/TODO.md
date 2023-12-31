@@ -53,9 +53,10 @@
 	  - 문제: 팝업 미허용인 상태일 때 로그인 시도시, 로그인을 계속 진행하는데 문제 생김 (window.opener가 null인데 진행하려는 상태).
 	  - 대안: 팝업 열기 시도 전 팝업 허용 상태 확인 후, 미허용인 상태면 팝업을 먼저 허용해달라는 안내 표시.
 
-- [ ] NavBar
+- [ ] Header Refactor
+	- [ ] NavBar
 	- [ ] SearchBar
-	- [ ] UserControls 부분
+	- [ ] UserControls
 
 - [ ] 공용 컴포넌트
 	- [ ] Button
