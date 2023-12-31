@@ -38,17 +38,20 @@
 	- [ ] 이미지 용량 제한
 	- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게
 
+- [ ] UserControls 부분
+
 - [ ] **Signup Page**
 	- [ ] 이메일/비밀번호 가입
 	- [ ] 회원가입 페이지 디자인에 맞게 추가 작업(메일 인증, 프로필 이미지 등록, 현재 가입 단계 표시)
+
 - [ ] **SignInLoadingPage**
 
-- [ ] **OAuth Sign In**
+- [x] **OAuth Sign In**
   - [x] Redirect URI
 	- [x] Redirect URI를 `/signin`이 아니라 따로 sign in loading page(Ex: “로그인 중입니다”)로 구현
-  - [ ] Error 처리
-  - [ ] Pop Up 흐름
-	- [ ] Chrome, Safari, Firefox
+  - [x] Error 처리
+  - [x] Pop Up 흐름
+	- [x] Chrome, Safari, Firefox
 	  - 문제: 팝업 미허용인 상태일 때 로그인 시도시, 로그인을 계속 진행하는데 문제 생김 (window.opener가 null인데 진행하려는 상태).
 	  - 대안: 팝업 열기 시도 전 팝업 허용 상태 확인 후, 미허용인 상태면 팝업을 먼저 허용해달라는 안내 표시.
 
@@ -118,7 +121,7 @@
 		- [ ] 포트폴리오 상세 페이지 (박하)
 		- [x] 포트폴리오 목록 페이지 (카카)
 		- [x] 글로벌(루트 레벨) 처리 (카카)
-		- [ ] 관심 목록 페이지 (높은 확률로 제이)
+		- [x] 관심 목록 페이지 (카카)
 	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
 
 - [ ] 포트폴리오 Q/A
@@ -139,9 +142,11 @@
 
 - [ ] Table 관련 컴포넌트 refactor
 
+- [ ] **WatchlistsPage 및 WatchlistPage**
+
 - [ ] Proprietary License
 
-- [ ] Received Dividends Record
+- [ ] Received Dividends Record Feature
 
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
