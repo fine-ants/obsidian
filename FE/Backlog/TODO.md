@@ -153,6 +153,4 @@
 
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
-	- 포트폴리오 수정
-		- 이름은 안바꾸고 증권사만 바꿀 때 “포트폴리오 이름이 중복되었습니다” error.
 	- WatchlistItemType에 `dateAdded`, `dailyChange` field 추가
