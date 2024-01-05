@@ -40,7 +40,7 @@
 	- [ ] 이메일/비밀번호 가입
 	- [ ] 회원가입 페이지 디자인에 맞게 추가 작업(메일 인증, 프로필 이미지 등록, 현재 가입 단계 표시)
 
-- [ ] **SignInLoadingPage**
+- [x] **SignInLoadingPage**
 
 - [x] **OAuth Sign In**
   - [x] Redirect URI
