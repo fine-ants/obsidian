@@ -156,9 +156,10 @@
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
 	- WatchlistItemType에 `dateAdded`, `dailyChange` field 추가
 	- Watchlist API
-		- Watctlist 다수 삭제 기능
+		- Watchlist 다수 삭제 기능
 		- Watchlist 추가시 watchlistId가 아닌 이름 watchlistName 받아야함
 
+- 포트포리오 종목 다수 삭제 API 확인
 
 - 1/12 배포 목표
 	- Header (및 SearchBar)
