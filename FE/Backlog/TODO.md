@@ -158,6 +158,9 @@
 	- Watchlist API
 		- Watchlist 다수 삭제 기능
 		- Watchlist 추가시 watchlistId가 아닌 이름 watchlistName 받아야함
+	- 대시보드 오버뷰 API 
+		- totalGain 필드 누락
+	- 
 
 - 포트포리오 종목 다수 삭제 API 확인
 
