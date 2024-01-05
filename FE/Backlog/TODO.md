@@ -5,20 +5,18 @@
 	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
 
 - [ ] **Portfolio Page**
-	- [ ] Overview 부분에 포트폴리오 평가금액 추가
+	- [x] Overview 부분에 포트폴리오 평가금액 추가
 	- [ ] Overview 최대 손실율에 대한 논의
-	- [ ] 매입이력
-		- [ ] 각 매입이력별 손익률
-		- [ ] 매입 이력 추가 시 금액 합계 보이기
 	- [ ] Prevent adding duplicate 종목
-	- [ ] 배당금 차트
+		- [ ] 에러메세지 수정 필요
+	- [x] 배당금 차트
 		- [x] 현재월 highlight 되도록 수정
-		- [ ] 0일 경우 bar 없음
+		- [x] 0일 경우 bar 없음
 	- [ ] 연배당률 소수점 포함
 	- [x] stomp 웹소켓 -> SSE 변경
 	- [ ] 실시간 변경 값 1초마다 상승 하락 플래그 다른색깔로 깜빡
-	- [ ] Sector
-		- [ ] 하드코딩 제거
+	- [x] Sector
+		- [x] 하드코딩 제거
 	- [ ] 포트폴리오 상세 조회 및 종목 조회
 		- `portfolioDetails`에서 실시간 항목이 6개.
 		- `portfolioHoldings`에서 실시간 항목이 6개.
@@ -30,7 +28,7 @@
 			- REST API로 우선 화면 초기화.
 			- 이후 SSE로 실시간 데이터만 받아서 화면 업데이트.
 			- CUD 요청이 생길 시, SSE 연결 끊고, 1번, 2번 반복.
-	- [ ] Skeleton 구현 필요 (현재 overview skeleton이 보여짐)
+	- [x] Skeleton 구현 필요 (현재 overview skeleton이 보여짐)
 
 - [ ] **Profile Page**
 	- [x] 스타일
@@ -84,7 +82,7 @@
 
 - [ ] 개별 종목 현재가 알림
 
-- [ ] Pie Chart type에서 `fill` 제거 (프론트에서 색상 핸들링)
+- [x] Pie Chart type에서 `fill` 제거 (프론트에서 색상 핸들링)
 
 - [ ] 반응형
 
