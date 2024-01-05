@@ -153,6 +153,8 @@
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
 	- WatchlistItemType에 `dateAdded`, `dailyChange` field 추가
+	- Watchlist API
+		- Whatlist 다수 삭제 기능
 
 
 - 1/12 배포 목표
