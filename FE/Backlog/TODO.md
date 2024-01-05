@@ -153,3 +153,12 @@
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
 	- WatchlistItemType에 `dateAdded`, `dailyChange` field 추가
+
+
+- 1/12 배포 목표
+	- Header (및 SearchBar)
+	- 관심목록
+	- 이메일/회원가입
+	- 포트폴리오 상세 페이지 SSE
+	- 프로필 페이지
+	- 기타 
