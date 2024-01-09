@@ -150,9 +150,7 @@
 
 - [ ] Received Dividends Record Feature
 
-- [ ] Icon size 속성에 맞게 크기 변환 안됨
-
-- [ ] Design System Font에 letter-spacing 적용
+- [x] Icon size 속성에 맞게 크기 변환 안됨
 
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
@@ -169,4 +167,5 @@
 	- 관심목록 (박하)
 	- 이메일/회원가입 (제이)
 	- 포트폴리오 상세 페이지 SSE
+	- Design System Font에 letter-spacing 적용 (박하)
 	- 기타
