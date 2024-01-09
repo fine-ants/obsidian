@@ -34,7 +34,8 @@
 	- [x] 스타일
 	- [ ] api 추가
 	- [ ] 이미지 용량 제한
-	- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게
+ 
+- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게
 
 - [ ] **Signup Page**
 	- [ ] 이메일/비밀번호 가입
@@ -51,11 +52,6 @@
 	  - 문제: 팝업 미허용인 상태일 때 로그인 시도시, 로그인을 계속 진행하는데 문제 생김 (window.opener가 null인데 진행하려는 상태).
 	  - 대안: 팝업 열기 시도 전 팝업 허용 상태 확인 후, 미허용인 상태면 팝업을 먼저 허용해달라는 안내 표시.
 
-- [ ] Header Refactor
-	- [ ] NavBar
-	- [ ] SearchBar
-	- [ ] UserControls
-
 - [ ] 공용 컴포넌트
 	- [ ] Button
 		- [ ] Refactoring
@@ -70,6 +66,7 @@
 	- [x] Breadcrumb
 	- [ ] Icon
 		- [ ] Hover 색상 처리
+		- [ ] Hover 필요한 icon 사용처 수정
 
 - [ ] Router 관련 수정
 	- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다 (TVTickerTapWidget).
@@ -117,13 +114,7 @@
 	- [x] rowsPerPageOptions All로 했을 때 sorting 적용안됨.
 	- [x] rowsPerPageOptions -1을 All로 display해야 됨.
 
-- 우선순위
-	- Suspense, ErrorBoundary
-		- [ ] 포트폴리오 상세 페이지 (박하)
-		- [x] 포트폴리오 목록 페이지 (카카)
-		- [x] 글로벌(루트 레벨) 처리 (카카)
-		- [x] 관심 목록 페이지 (카카)
-	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
+- [ ] PortfolioHoldingsPieChart 실시간으로 변경
 
 - [ ] 포트폴리오 Q/A
 	- [ ] 포트폴리오 종목 상세 페이지에서 아코디언이 펼쳐져 있는 경우 header에 수정, 삭제 아이콘 삭제하기
@@ -158,7 +149,10 @@
 		- totalGain 필드 누락
 
 - 1/12 배포 목표
-	- Header (카카모토비)
+	- [ ] Header Refactor (카카모토비)
+		- [x] NavBar
+		- [x] SearchBar
+		- [ ] UserControls
 	- 프로필 페이지 (카카모토비)
 	- 관심목록 (박하)
 	- 이메일/회원가입 (제이)
