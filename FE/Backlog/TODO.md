@@ -143,6 +143,8 @@
 
 - [x] Icon size 속성에 맞게 크기 변환 안됨
 
+- [ ] Use PasswordTextField's `helperText` instead of `TextInputError`
+
 - BE
 	- WatchlistItemType에 `dateAdded`, `dailyChange` field 추가
 	- 대시보드 오버뷰 API 
@@ -156,6 +158,7 @@
 	- 프로필 페이지 (카카모토비)
 	- 관심목록 (박하)
 	- 이메일/회원가입 (제이)
+		- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
 	- 포트폴리오 상세 페이지 SSE
 	- Design System Font에 letter-spacing 적용 (박하)
 	- Access token을 refresh할 때 error 무한 루프
