@@ -34,12 +34,10 @@
 	- [x] 스타일
 	- [ ] api 추가
 	- [ ] 이미지 용량 제한
- 
-- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게
 
-- [ ] **Signup Page**
-	- [ ] 이메일/비밀번호 가입
-	- [ ] 회원가입 페이지 디자인에 맞게 추가 작업(메일 인증, 프로필 이미지 등록, 현재 가입 단계 표시)
+- [x] **Signup Page**
+	- [x] 이메일/비밀번호 가입
+	- [x] 회원가입 페이지 디자인에 맞게 추가 작업(메일 인증, 프로필 이미지 등록, 현재 가입 단계 표시)
 
 - [x] **SignInLoadingPage**
 
@@ -144,6 +142,8 @@
 - [x] Icon size 속성에 맞게 크기 변환 안됨
 
 - [ ] Use PasswordTextField's `helperText` instead of `TextInputError`
+
+- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게
 
 - BE
 	- WatchlistItemType에 `dateAdded`, `dailyChange` field 추가
