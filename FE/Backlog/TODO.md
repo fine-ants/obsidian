@@ -153,11 +153,7 @@
 - [x] Icon size 속성에 맞게 크기 변환 안됨
 
 - BE
-	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
 	- WatchlistItemType에 `dateAdded`, `dailyChange` field 추가
-	- Watchlist API
-		- Watchlist 다수 삭제 기능
-		- Watchlist 추가시 watchlistId가 아닌 이름 watchlistName 받아야함
 	- 대시보드 오버뷰 API 
 		- totalGain 필드 누락
 
@@ -168,4 +164,5 @@
 	- 이메일/회원가입 (제이)
 	- 포트폴리오 상세 페이지 SSE
 	- Design System Font에 letter-spacing 적용 (박하)
+	- Access token을 refresh할 때 error 무한 루프
 	- 기타
