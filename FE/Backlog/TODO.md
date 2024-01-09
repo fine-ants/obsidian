@@ -152,6 +152,8 @@
 
 - [ ] Icon size 속성에 맞게 크기 변환 안됨
 
+- [ ] Design System Font에 letter-spacing 적용
+
 - BE
 	- 증권사 로고 한글로 변경 필요 (`securitiesFirm`)
 	- WatchlistItemType에 `dateAdded`, `dailyChange` field 추가
