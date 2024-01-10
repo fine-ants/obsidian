@@ -1,12 +1,11 @@
 # TanStack Query and ErrorBoundary
 
 ## ErrorBoundary
-- 
-- `componentDidCatch(error, info)` api를 통해 render 과정에서 일어나는 에러를 잡을 수 있는데, 이는 현재 Class component에만 available하다. ErrorBoundary class component을 만들거나 `react-error-boundary` library를 사용.
-		- https://react.dev/reference/react/Component#componentdidcatch-caveats
-		- https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
-		- https://react.dev/reference/react/Component#componentdidcatch
-
+- `componentDidCatch(error, info)` api를 통해 render 과정에서 일어나는 에러를 잡을 수 있는데, 이는 현재 Class component에만 가능하다.
+- ErrorBoundary class component을 만들거나 `react-error-boundary` library를 사용.
+	- https://react.dev/reference/react/Component#componentdidcatch-caveats
+	- https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
+	- https://react.dev/reference/react/Component#componentdidcatch
 
 ## ErrorBoundary with TanStack Query
 
