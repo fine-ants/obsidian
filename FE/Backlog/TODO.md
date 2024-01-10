@@ -117,15 +117,15 @@
 		- [x] NavBar
 		- [x] SearchBar
 		- [x] UserControls
-	- [ ] 프로필 페이지 (카카모토비)
-	- [ ] 관심목록 (박하)
-	- [ ] 이메일/회원가입 (제이)
+	- [ ] 프로필 페이지 (카카모토비) - Design, API 대기
+	- [ ] 관심목록 (박하) - API 대기
+	- [ ] 이메일/회원가입 (제이) - API 대기
 		- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
-	- [ ] 포트폴리오 상세 페이지 SSE
-	- [ ] Design System Font에 letter-spacing 적용 (박하)
-	- [ ] Access token을 refresh할 때 error 무한 루프
+	- [ ] 포트폴리오 상세 페이지 SSE (박하)
+	- [ ] Design System Font에 letter-spacing 적용 (박하) - PR 올릴 예정
+	- [x] Access token을 refresh할 때 error 무한 루프
 	- 기타
-		- [ ] Toast Design 적용 (Jay)
+		- [ ] Toast Design 적용 (Jay) - Design 대기
 		- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게
 		- [ ] Router 관련 수정
 			- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다 (TVTickerTapeWidget).
