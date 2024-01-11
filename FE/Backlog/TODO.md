@@ -130,7 +130,7 @@
 		- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게
 		- [ ] Router 관련 수정
 			- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다 (TVTickerTapeWidget).
-	- [ ] Docs ErrorBoundary 관련 내용 추가
+	- [x] Docs ErrorBoundary 관련 내용 추가
 		- `componentDidCatch(error, info)` api를 통해 render 과정에서 일어나는 에러를 잡을 수 있는데, 이는 현재 Class component에만 available하다. ErrorBoundary class component을 만들거나 `react-error-boundary` library를 사용.
 			- https://react.dev/reference/react/Component#componentdidcatch-caveats
 			- https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
