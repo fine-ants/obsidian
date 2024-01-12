@@ -107,6 +107,8 @@
 
 - [ ] Use PasswordTextField's `helperText` instead of `TextInputError`
 
+- [ ] PortfoliosDropdown 누를 시 stale 값으로 먼저 렌더(포트폴리오 이동, 포트폴리오 추가)된 후 포트폴리오 목록 렌더로 인한 layout/repaint 일어남.
+
 - BE
 	- WatchlistItemType에 `dateAdded`, `dailyChange` field 추가
 	- 대시보드 오버뷰 API 
