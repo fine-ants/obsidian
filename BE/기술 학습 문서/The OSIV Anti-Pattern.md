@@ -33,5 +33,10 @@ spring.jpa.open-in-view=false
 
 이 설정은 `LazyInitializationException`을 올바른 방법으로 처리할 수 있도록 OSIV를 비활성화시킵니다. 
 
-Spring  Boot 2.0부터 
+Spring  Boot 2.0부터는 OSIV가 기본적으로 활성화되 있으면 Spring Boot에서 경고를 표시하므로 운영 체제에 영향을 주기 훨씬 전에 이 문제를 발견할 수 있습니다.
+
+### References
+- https://stackoverflow.com/questions/30549489/what-is-this-spring-jpa-open-in-view-true-property-in-spring-boot
+- https://velog.io/@michaelp3/Spring%EC%9D%98-SSE
+
 
