@@ -117,36 +117,27 @@
 	- 대시보드 오버뷰 API 
 		- totalGain 필드 누락
 
-- 1/12 배포 목표
-	- [x] Header Refactor (카카모토비)
-		- [x] NavBar
-		- [x] SearchBar
-		- [x] UserControls
-	- [ ] 프로필 페이지 (카카모토비) - Design, API 대기
+- 1/19 배포 목표
+	- [ ] 프로필 페이지 (카카모토비) - API 대기
+		- [ ] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
+		- [ ] `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
+		- [ ] `user` 객체 `profileUrl`
+			- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 	- [ ] 관심목록 (박하) - API 대기
 		- [ ] 관심종목 단일목록 조회시 이름 필요
 	- [ ] 이메일/회원가입 (제이) - API 대기
 		- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
-	- [x] 포트폴리오 상세 페이지 SSE (박하) - 진행 중
-	- [ ] Table Refactor (카카) - PR 올림
 	- [ ] Design System Font에 letter-spacing 적용 (박하) - Watchlist API 완성 후 PR 머지
-	- [x] Access token을 refresh할 때 error 무한 루프
 	- 기타
 		- [ ] Toast Design 적용 (Jay) - Design 대기
 		- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게 - 진행 가능
-		- [x] Router 관련 수정
-			- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다 (TVTickerTapeWidget).
 
+
+QA
 - `PortfolioPage`에 `PortfolioHoldingRow` 개수 font 수정
-
-- `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
-
-- `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
 
 - `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
 
-- `user` 객체 `profileUrl`
-	- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 - Portfolios Dropdown 데이터가 오면 dropdown 전체 재렌더됨.
 
 - 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request
@@ -156,4 +147,8 @@
 	- UI 수정.
 	- 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
 
-- 종목 테이블 "변동률" --> "당일 변동률"
+- 종목 테이블 "변동률" --> "당일 변동률"?
+- 종목 테이블 "연 배당금" 헤더 hover 시 tooltip ("예상 연 배당금")
+
+- Chart Legend 패딩 및 높이 조절 필요
+
