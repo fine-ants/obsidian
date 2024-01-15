@@ -136,3 +136,6 @@
 		- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게 - 진행 가능
 		- [x] Router 관련 수정
 			- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다 (TVTickerTapeWidget).
+
+- PortfolioPage `PortfolioHoldingRow` 개수 font 수정
+
