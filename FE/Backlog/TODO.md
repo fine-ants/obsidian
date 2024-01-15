@@ -162,3 +162,7 @@ QA
 - Overview data
 	- `username` field? 대신 user 객체 사용?
 	- Data update 안됨?
+
+- `@fineants/demolition`
+	- `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
+	- `useImageInput`의 `error` 정상 작동 확인 필요.
