@@ -150,5 +150,10 @@ QA
 - 종목 테이블 "변동률" --> "당일 변동률"?
 - 종목 테이블 "연 배당금" 헤더 hover 시 tooltip ("예상 연 배당금")
 
+- `TablePagination`의 `rowsPerPageOptions` dropdown height 조정.
+	- `Select`의 `MenuProps`의 `minHeight` 수정 필요.
+
+- `PortfolioListTable` 빈칸 `height` 조정 필요.
+
 - Chart Legend 패딩 및 높이 조절 필요
 
