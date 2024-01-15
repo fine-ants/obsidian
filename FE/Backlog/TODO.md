@@ -128,7 +128,7 @@
 	- [ ] 이메일/회원가입 (제이) - API 대기
 		- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
 	- [ ] 포트폴리오 상세 페이지 SSE (박하) - 진행 중
-	- [ ] Table Refactor (카카) - 진행 중
+	- [ ] Table Refactor (카카) - PR 올림
 	- [ ] Design System Font에 letter-spacing 적용 (박하) - Watchlist API 완성 후 PR 머지
 	- [x] Access token을 refresh할 때 error 무한 루프
 	- 기타
