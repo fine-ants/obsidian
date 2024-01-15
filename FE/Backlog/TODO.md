@@ -158,3 +158,6 @@ QA
 
 - Chart Legend 패딩 및 높이 조절 필요
 
+- Overview data
+	- `username` field? 대신 user 객체 사용?
+	- Data update 안됨?
