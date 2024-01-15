@@ -119,10 +119,12 @@
 
 ### 1/19 배포 목표
 - [ ] 프로필 페이지 (카카모토비) - API 대기
-	- [ ] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
+	- [x] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
 	- [x] `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
-	- [ ] `user` 객체 `profileUrl`
+	- [ ] `user` 객체 `profileUrl` 값
 		- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
+	- [ ] 프로필 설정
+	- [ ] 계정 설정
 - [ ] 관심목록 (박하) - API 대기
 	- [ ] 관심종목 단일목록 조회시 이름 필요
 - [ ] 이메일/회원가입 (제이) - API 대기
