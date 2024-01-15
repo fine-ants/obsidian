@@ -121,6 +121,7 @@
 	- [ ] 프로필 페이지 (카카모토비) - API 대기
 		- [ ] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
 		- [ ] `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
+			- `img`을 래핑하는 `div`에 `overflow: hidden` 적용.
 		- [ ] `user` 객체 `profileUrl`
 			- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 	- [ ] 관심목록 (박하) - API 대기
@@ -140,7 +141,7 @@ QA
 
 - Portfolios Dropdown 데이터가 오면 dropdown 전체 재렌더됨.
 
-- 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request
+- 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남)
 - 매입 이력 추가시 해당 종목의 row의 평가금액이 update 안됨 (아마 invalidateQuery 필요).
 
 - 매입 이력 수정 DatePicker
