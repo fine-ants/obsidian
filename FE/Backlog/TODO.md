@@ -141,5 +141,14 @@
 
 - `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
 
+- `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
+
 - `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
+
+- `user` 객체 `profileUrl`
+	- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
+- Portfolios Dropdown 데이터가 오면 dropdown 전체 재렌더됨.
+
+- 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request
+
 
