@@ -117,21 +117,20 @@
 	- 대시보드 오버뷰 API 
 		- totalGain 필드 누락
 
-- 1/19 배포 목표
-	- [ ] 프로필 페이지 (카카모토비) - API 대기
-		- [ ] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
-		- [ ] `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
-			- `img`을 래핑하는 `div`에 `overflow: hidden` 적용.
-		- [ ] `user` 객체 `profileUrl`
-			- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
-	- [ ] 관심목록 (박하) - API 대기
-		- [ ] 관심종목 단일목록 조회시 이름 필요
-	- [ ] 이메일/회원가입 (제이) - API 대기
-		- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
-	- [ ] Design System Font에 letter-spacing 적용 (박하) - Watchlist API 완성 후 PR 머지
-	- 기타
-		- [ ] Toast Design 적용 (Jay) - Design 대기
-		- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게 - 진행 가능
+### 1/19 배포 목표
+- [ ] 프로필 페이지 (카카모토비) - API 대기
+	- [ ] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
+	- [x] `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
+	- [ ] `user` 객체 `profileUrl`
+		- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
+- [ ] 관심목록 (박하) - API 대기
+	- [ ] 관심종목 단일목록 조회시 이름 필요
+- [ ] 이메일/회원가입 (제이) - API 대기
+	- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
+- [ ] Design System Font에 letter-spacing 적용 (박하) - Watchlist API 완성 후 PR 머지
+- 기타
+	- [ ] Toast Design 적용 (Jay) - Design 대기
+	- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게 - 진행 가능
 
 
 QA
