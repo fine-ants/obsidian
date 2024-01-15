@@ -97,7 +97,7 @@
 		- [ ] Button (https://dequeuniversity.com/rules/axe/4.7/button-name)
 		- [ ] Image (https://dequeuniversity.com/rules/axe/4.7/image-alt)
 
-- [ ] Table 관련 컴포넌트 refactor
+- [x] Table 관련 컴포넌트 refactor
 
 - [ ] **WatchlistsPage 및 WatchlistPage**
 
