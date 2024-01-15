@@ -150,5 +150,8 @@
 - Portfolios Dropdown 데이터가 오면 dropdown 전체 재렌더됨.
 
 - 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request
+- 매입 이력 추가시 해당 종목의 row의 평가금액이 update 안됨 (아마 invalidateQuery 필요).
 
-
+- 매입 이력 수정 DatePicker
+	- UI 수정.
+	- 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
