@@ -137,11 +137,9 @@
 		- [x] Router 관련 수정
 			- 지금 각 page에 header가 붙어 있어서 route가 진행될 때 마다 header가 새로 랜더링되고 있어서 깜빡거립니다 (TVTickerTapeWidget).
 
-<<<<<<< HEAD
 - `PortfolioPage`에 `PortfolioHoldingRow` 개수 font 수정
 
 - `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
 
-=======
-- PortfolioPage `PortfolioHoldingRow` 개수 font 수정
->>>>>>> origin/main
+- `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
+
