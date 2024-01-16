@@ -162,7 +162,13 @@ QA
 
 - Overview data
 	- `username` field? 대신 user 객체 사용?
-	- Data update 안됨?
+
+- 포트폴리오 상세페이지에서 삭제 후 이동이 안됨.
+	- 포트폴리오 목록 페이지로 이동해야 함.
+
+- 차트 데이터 정렬 부탁.
+	- DashboardPage 포트폴리오 비중 
+	- PortfolioPage 종목 구성 차트
 
 - `@fineants/demolition`
 	- `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
