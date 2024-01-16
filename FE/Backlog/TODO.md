@@ -130,6 +130,7 @@
 	- [ ] Overview data
 		- `username` field? 대신 user 객체 사용?
 	- [ ] SearchBar dropdown 빈문자열일 때 숨김
+	- [ ] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
 - [x] `@fineants/demolition` (카카모토비)
 	- [x] `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
 	- [x] `useImageInput`
