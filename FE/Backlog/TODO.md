@@ -127,6 +127,7 @@
 	- [ ] 계정 설정
 - [ ] 관심목록 (박하) - API 대기
 	- [ ] 관심종목 단일목록 조회시 이름 필요
+	- [ ] `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
 - [ ] 이메일/회원가입 (제이) - API 대기
 	- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
 - [ ] Design System Font에 letter-spacing 적용 (박하) - Watchlist API 완성 후 PR 머지
@@ -137,8 +138,6 @@
 
 QA
 - `PortfolioPage`에 `PortfolioHoldingRow` 개수 font 수정
-
-- `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
 
 - Portfolios Dropdown 데이터가 오면 dropdown 전체 재렌더됨.
 
