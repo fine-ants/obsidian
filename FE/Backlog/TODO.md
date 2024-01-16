@@ -127,7 +127,12 @@
 		- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 	- [ ] 프로필 설정
 	- [ ] 계정 설정
-- [ ] 관심목록 (박하) - API 대기
+	- [ ] Overview data
+		- `username` field? 대신 user 객체 사용?
+- [ ] `@fineants/demolition` (카카모토비)
+	- [ ] `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
+	- [ ] `useImageInput`의 `error` 정상 작동 확인 필요.
+- [ ] 관심목록 (박하)
 	- [ ] 관심종목 단일목록 조회시 이름 필요
 	- [ ] `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
 - [ ] Table 관련 수정 (박하)
@@ -142,16 +147,12 @@
 	- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게 - 진행 가능
 
 
-- Overview data
-	- `username` field? 대신 user 객체 사용?
-- `@fineants/demolition`
-	- `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
-	- `useImageInput`의 `error` 정상 작동 확인 필요.
-
-
-
-QA
+### QA
 - `PortfolioPage`에 `PortfolioHoldingRow` 개수 font 수정
+- `PortfolioListTable` 빈칸 `height` 조정 필요.
+- 종목 테이블 "연 배당금" 헤더 hover 시 tooltip ("예상 연 배당금")
+- 포트폴리오 상세페이지에서 삭제 후 이동이 안됨.
+	- 포트폴리오 목록 페이지로 이동해야 함.
 
 - Portfolios Dropdown 데이터가 오면 dropdown 전체 재렌더됨.
 
@@ -162,16 +163,9 @@ QA
 	- 매입 이력 수정 모드일 때 우리 DatePicker로 교체.
 	- 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
 
-- 종목 테이블 "연 배당금" 헤더 hover 시 tooltip ("예상 연 배당금")
-
-- `PortfolioListTable` 빈칸 `height` 조정 필요.
-
 - Charts
 	- Chart Legend 패딩 및 높이 조절 필요
 	- TallChartLegend에 "기타"가 없으면 divider 미표시.
-
-- 포트폴리오 상세페이지에서 삭제 후 이동이 안됨.
-	- 포트폴리오 목록 페이지로 이동해야 함.
 
 - To Backend
 	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
