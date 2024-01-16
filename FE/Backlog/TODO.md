@@ -132,7 +132,9 @@
 	- [ ] SearchBar dropdown 빈문자열일 때 숨김
 - [ ] `@fineants/demolition` (카카모토비)
 	- [ ] `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
-	- [ ] `useImageInput`의 `error` 정상 작동 확인 필요.
+	- [ ] `useImageInput`
+		- [ ] `error` 정상 작동 확인 필요.
+		- [ ] `onClearImage` 함수 추가
 - [ ] 관심목록 (박하)
 	- [ ] 관심종목 단일목록 조회시 이름 필요
 	- [ ] `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
