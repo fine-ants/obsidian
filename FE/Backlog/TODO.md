@@ -182,4 +182,7 @@
 		- SectorBar
 	- 배당금 데이터
 
+- MSW 1.x --> 2.x migration
+	- Form data
+	- https://mswjs.io/docs/migrations/1.x-to-2.x
 
