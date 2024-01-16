@@ -142,6 +142,14 @@
 	- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게 - 진행 가능
 
 
+- Overview data
+	- `username` field? 대신 user 객체 사용?
+- `@fineants/demolition`
+	- `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
+	- `useImageInput`의 `error` 정상 작동 확인 필요.
+
+
+
 QA
 - `PortfolioPage`에 `PortfolioHoldingRow` 개수 font 수정
 
@@ -158,18 +166,17 @@ QA
 
 - `PortfolioListTable` 빈칸 `height` 조정 필요.
 
-- Chart Legend 패딩 및 높이 조절 필요
-
-- Overview data
-	- `username` field? 대신 user 객체 사용?
+- Charts
+	- Chart Legend 패딩 및 높이 조절 필요
+	- TallChartLegend에 "기타"가 없으면 divider 미표시.
 
 - 포트폴리오 상세페이지에서 삭제 후 이동이 안됨.
 	- 포트폴리오 목록 페이지로 이동해야 함.
 
-- 차트 데이터 정렬 부탁.
-	- DashboardPage 포트폴리오 비중 
-	- PortfolioPage 종목 구성 차트
+- To Backend
+	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
+	- 차트 데이터 정렬 부탁.
+		- DashboardPage 포트폴리오 비중 
+		- PortfolioPage 종목 구성 차트
 
-- `@fineants/demolition`
-	- `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
-	- `useImageInput`의 `error` 정상 작동 확인 필요.
+
