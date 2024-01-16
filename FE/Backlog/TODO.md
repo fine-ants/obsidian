@@ -126,6 +126,9 @@
 	- [ ] `user` 객체 `profileUrl` 값
 		- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 	- [ ] 프로필 설정
+		- 변경 후, `user` 객체 정보 업데이트해야 함.
+			- 방법 1 - PUT /api/profile 응답에 update된 user 객체 받음.
+			- 방법 2 - `user` 정보를 가져올 수 있는 endpoint 생성.
 	- [ ] 계정 설정
 	- [ ] Overview data
 		- `username` field? 대신 user 객체 사용?
