@@ -129,6 +129,7 @@
 	- [ ] 계정 설정
 	- [ ] Overview data
 		- `username` field? 대신 user 객체 사용?
+	- [ ] SearchBar dropdown 빈문자열일 때 숨김
 - [ ] `@fineants/demolition` (카카모토비)
 	- [ ] `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
 	- [ ] `useImageInput`의 `error` 정상 작동 확인 필요.
@@ -172,5 +173,7 @@
 	- 차트 데이터 정렬 부탁.
 		- DashboardPage 포트폴리오 비중 
 		- PortfolioPage 종목 구성 차트
+		- SectorBar
+	- 배당금 데이터
 
 
