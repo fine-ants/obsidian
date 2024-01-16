@@ -96,6 +96,8 @@
 		- [ ] Navigate search result dropdown using arrow keys
 		- [ ] Button (https://dequeuniversity.com/rules/axe/4.7/button-name)
 		- [ ] Image (https://dequeuniversity.com/rules/axe/4.7/image-alt)
+	- [ ] Layout Shift
+		- [ ] SignInPage image layout shift
 
 - [x] Table 관련 컴포넌트 refactor
 
@@ -128,6 +130,10 @@
 - [ ] 관심목록 (박하) - API 대기
 	- [ ] 관심종목 단일목록 조회시 이름 필요
 	- [ ] `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
+- [ ] Table 관련 수정 (박하)
+	- [ ] `TablePagination`의 `rowsPerPageOptions` dropdown height 조정.
+	- [ ] `Select`의 `MenuProps`의 `minHeight` 수정 필요.
+		- 포트폴리오 추가 모달 부분에서 Select의 dropdown item 스타일 Figma design 적용.
 - [ ] 이메일/회원가입 (제이) - API 대기
 	- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
 - [ ] Design System Font에 letter-spacing 적용 (박하) - Watchlist API 완성 후 PR 머지
@@ -142,17 +148,13 @@ QA
 - Portfolios Dropdown 데이터가 오면 dropdown 전체 재렌더됨.
 
 - 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남)
-- 매입 이력 추가시 해당 종목의 row의 평가금액이 update 안됨 (아마 invalidateQuery 필요).
+- 매입 이력 추가시 해당 종목의 row의 평가금액이 update 안됨 (아마 정적 데이터 fetch에 대한 invalidateQuery 필요).
 
 - 매입 이력 수정 DatePicker
-	- UI 수정.
+	- 매입 이력 수정 모드일 때 우리 DatePicker로 교체.
 	- 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
 
-- 종목 테이블 "변동률" --> "당일 변동률"?
 - 종목 테이블 "연 배당금" 헤더 hover 시 tooltip ("예상 연 배당금")
-
-- `TablePagination`의 `rowsPerPageOptions` dropdown height 조정.
-	- `Select`의 `MenuProps`의 `minHeight` 수정 필요.
 
 - `PortfolioListTable` 빈칸 `height` 조정 필요.
 
