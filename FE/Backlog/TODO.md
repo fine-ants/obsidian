@@ -134,7 +134,7 @@
 		- [x] Account Delete MSW
 	- [ ] Overview data
 		- `username` field? 대신 user 객체 사용?
-	- [ ] SearchBar dropdown 빈문자열일 때 숨김
+	- [x] SearchBar dropdown 빈문자열일 때 숨김
 	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
 - [x] MSW 1.x --> 2.x migration
 	- https://mswjs.io/docs/migrations/1.x-to-2.x
