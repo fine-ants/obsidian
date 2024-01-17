@@ -156,13 +156,13 @@
 - 기타
 	- [ ] Toast Design 적용 (Jay) - Design 대기
 	- [ ] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게 - 진행 가능
-
+	``
 
 ### QA
-- `PortfolioPage`에 `PortfolioHoldingRow` 개수 font 수정
-- `PortfolioListTable` 빈칸 `height` 조정 필요.
-- 종목 테이블 "연 배당금" 헤더 hover 시 tooltip ("예상 연 배당금")
-- 포트폴리오 상세페이지에서 삭제 후 이동이 안됨.
+- [x] `PortfolioPage`에 `PortfolioHoldingRow` 개수 font 수정
+- [x] `PortfolioListTable` 빈칸 `height` 조정 필요.
+- [x] 종목 테이블 "연 배당금" 헤더 hover 시 tooltip ("예상 연 배당금")
+- [x] 포트폴리오 상세페이지에서 삭제 후 이동이 안됨.
 	- 포트폴리오 목록 페이지로 이동해야 함.
 
 - Portfolios Dropdown 데이터가 오면 dropdown 전체 재렌더됨.
