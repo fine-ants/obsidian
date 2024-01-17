@@ -126,10 +126,7 @@
 	- [ ] `user` 객체 `profileUrl` 값
 		- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 	- [ ] 프로필 설정
-		- [ ] 프로필 정보 저장 MSW
-			- 변경 요청/응답 후, `localStorage`에 있는 `user` 객체 정보 업데이트해야 함.
-				- 방법 1 - PUT /api/profile 응답에 update된 user 객체 받음.
-				- 방법 2 - `user` 정보를 가져올 수 있는 endpoint 생성.
+		- [x] 프로필 정보 변경 MSW
 	- [ ] 계정 설정
 		- [ ] "계정 삭제하기" dialog
 		- [ ] New Password MSW
