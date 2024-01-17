@@ -181,6 +181,12 @@
 - 이메일 회원가입
 	- 비밀번호 생성 단계(2 단계)에서 "다음" 누르면 닉네임 단계 넘기고 프로필 이미지 등록 단계(4단계)로 가짐.
 
+- Indices Page
+	- TradingView widget이 자동으로 dark mode됨.
+
+- SearchBar Placeholder
+	- "검색어를 입력하세요" --> "종목, 지수를 검색하세요"?
+
 - To Backend
 	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
 	- 차트 데이터 정렬 부탁.
@@ -189,4 +195,6 @@
 		- SectorBar
 	- 배당금 데이터
 
+- To Design
+	- Dark Mode
 
