@@ -127,10 +127,11 @@
 		- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 	- [x] 프로필 설정
 		- [x] 프로필 정보 변경 MSW
-	- [ ] 계정 설정
+	- [x] 계정 설정
 		- [ ] "계정 삭제하기" dialog
-		- [ ] New Password MSW
-		- [ ] Account Delete MSW
+			- [ ] 현재 비밀번호 입력??
+		- [x] New Password MSW
+		- [x] Account Delete MSW
 	- [ ] Overview data
 		- `username` field? 대신 user 객체 사용?
 	- [ ] SearchBar dropdown 빈문자열일 때 숨김
