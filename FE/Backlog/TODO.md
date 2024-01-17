@@ -125,7 +125,7 @@
 	- [x] `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
 	- [ ] `user` 객체 `profileUrl` 값
 		- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
-	- [ ] 프로필 설정
+	- [x] 프로필 설정
 		- [x] 프로필 정보 변경 MSW
 	- [ ] 계정 설정
 		- [ ] "계정 삭제하기" dialog
@@ -134,7 +134,9 @@
 	- [ ] Overview data
 		- `username` field? 대신 user 객체 사용?
 	- [ ] SearchBar dropdown 빈문자열일 때 숨김
-	- [ ] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
+	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
+- [x] MSW 1.x --> 2.x migration
+	- https://mswjs.io/docs/migrations/1.x-to-2.x
 - [x] `@fineants/demolition` (카카모토비)
 	- [x] `useText`의 값이 빈문자열일때는 `isError`가 `false`이 되도록 수정.
 	- [x] `useImageInput`
@@ -186,7 +188,4 @@
 		- SectorBar
 	- 배당금 데이터
 
-- MSW 1.x --> 2.x migration
-	- Form data
-	- https://mswjs.io/docs/migrations/1.x-to-2.x
 
