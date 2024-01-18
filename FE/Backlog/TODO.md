@@ -1,11 +1,10 @@
 # TODO
 
-- [x] **Landing Page**
-	- [x] 디자인은 없지만 BasePage 적용해 놓기
+- [ ] **Landing Page**
+	- [ ] Figma 디자인 적용
 	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
 
 - [ ] **Portfolio Page**
-	- [x] Overview 부분에 포트폴리오 평가금액 추가
 	- [ ] Overview 최대 손실율에 대한 논의
 	- [ ] Prevent adding duplicate 종목
 		- [ ] 에러메세지 수정 필요
@@ -13,8 +12,6 @@
 		- [x] 현재월 highlight 되도록 수정
 		- [x] 0일 경우 bar 없음
 	- [ ] 연배당률 소수점 포함
-	- [x] stomp 웹소켓 -> SSE 변경
-	- [ ] 실시간 변경 값 5초마다 상승 하락 플래그 다른색깔로 깜빡
 	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
 	- [x] Sector
 		- [x] 하드코딩 제거
@@ -128,8 +125,7 @@
 	- [x] 프로필 설정
 		- [x] 프로필 정보 변경 MSW
 	- [x] 계정 설정
-		- [ ] "계정 삭제하기" dialog
-			- [ ] 현재 비밀번호 입력??
+		- [x] "계정 삭제하기" dialog
 		- [x] New Password MSW
 		- [x] Account Delete MSW
 	- [ ] Overview data
