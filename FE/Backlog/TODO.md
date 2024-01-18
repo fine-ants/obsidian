@@ -106,11 +106,12 @@
 		- `username` field? 대신 user 객체 사용?
 	- [x] SearchBar dropdown 빈문자열일 때 숨김
 	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
-- [ ] SearchBar Placeholder "검색어를 입력하세요" --> "종목을 검색하세요"
-- [ ] Use PasswordTextField's `helperText` instead of `TextInputError` (`SignInForm`)
-- [ ] DatePicker
-	- "매입 이력 수정 모드"일 때 우리 DatePicker로 교체.
-	- DatePicker 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
+	- [ ] Use PasswordTextField's `helperText` instead of `TextInputError` (`SignInForm`)
+- [ ] 기타 수정 사항 반영
+	- [ ] SearchBar Placeholder "검색어를 입력하세요" --> "종목을 검색하세요"
+	- [ ] DatePicker
+		- "매입 이력 수정 모드"일 때 우리 DatePicker로 교체.
+		- DatePicker 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
 #### Bakha
 - [x] 관심목록
 	- [x] 관심종목 단일목록 조회시 이름 필요
