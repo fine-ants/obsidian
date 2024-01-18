@@ -46,9 +46,6 @@
 	- [ ] README 작성
 	- [ ] Open Source
 
-- [ ] **기타**
-	- [ ] 화폐단위 KRW
-
 - [ ] Optimization
 	- [ ] Performance
 		- [ ] FCP, LCP
@@ -61,6 +58,8 @@
 
 - [ ] **WatchlistsPage 및 WatchlistPage**
 
+- [ ] 화폐단위 KRW
+
 - [ ] Proprietary License
 
 - [ ] Received Dividends Record Feature
@@ -72,10 +71,6 @@
 
 - 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남)
 - 매입 이력 추가시 해당 종목의 row의 평가금액이 update 안됨 (아마 정적 데이터 fetch에 대한 invalidateQuery 필요).
-
-- 매입 이력 수정 DatePicker
-	- 매입 이력 수정 모드일 때 우리 DatePicker로 교체.
-	- 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
 
 - Charts
 	- Chart Legend 패딩 및 높이 조절 필요
@@ -113,6 +108,9 @@
 	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
 - [ ] SearchBar Placeholder "검색어를 입력하세요" --> "종목을 검색하세요"
 - [ ] Use PasswordTextField's `helperText` instead of `TextInputError` (`SignInForm`)
+- [ ] DatePicker
+	- "매입 이력 수정 모드"일 때 우리 DatePicker로 교체.
+	- DatePicker 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
 #### Bakha
 - [x] 관심목록
 	- [x] 관심종목 단일목록 조회시 이름 필요
