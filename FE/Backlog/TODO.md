@@ -64,8 +64,6 @@
 
 - [ ] Received Dividends Record Feature
 
-- [ ] PortfoliosDropdown 누를 시 stale 값으로 먼저 렌더(포트폴리오 이동, 포트폴리오 추가)된 후 포트폴리오 목록 렌더로 인한 layout/repaint 일어남.
-
 - [ ] 만료된 Refresh Token인 상태로 첫 페이지 로드시, "토큰이 존재하지 않습니다" 토스트 발생. <-- (현재 배포 상황. 확인 필요.)
 	- Refresh Token이 만료된 응답이 오면 localStorage에 있는 `user` 초기화 및 signin page으로 이동.
 
@@ -112,6 +110,7 @@
 	- [ ] DatePicker
 		- "매입 이력 수정 모드"일 때 우리 DatePicker로 교체.
 		- DatePicker 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
+	- [ ] PortfoliosDropdown 누를 시 stale 값으로 먼저 렌더(포트폴리오 이동, 포트폴리오 추가)된 후 포트폴리오 목록 렌더로 인한 layout/repaint 일어남.
 #### Bakha
 - [x] 관심목록
 	- [x] 관심종목 단일목록 조회시 이름 필요
