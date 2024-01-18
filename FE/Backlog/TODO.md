@@ -104,13 +104,13 @@
 		- `username` field? 대신 user 객체 사용?
 	- [x] SearchBar dropdown 빈문자열일 때 숨김
 	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
-- [ ] 기타 수정 사항 반영
+	- [x] 로그인 실패시 토스트.
+- [ ] PortfoliosDropdown relayout 방지 및 기타 수정 사항 반영
+	- [x] PortfoliosDropdown 누를 시 stale 값으로 먼저 렌더(포트폴리오 이동, 포트폴리오 추가)된 후 포트폴리오 목록 렌더로 인한 layout/repaint 일어남.
 	- [x] SearchBar Placeholder "검색어를 입력하세요" --> "종목을 검색하세요"
 	- [x] DatePicker
 		- "매입 이력 수정 모드"일 때 우리 DatePicker로 교체.
 		- DatePicker 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
-	- [x] PortfoliosDropdown 누를 시 stale 값으로 먼저 렌더(포트폴리오 이동, 포트폴리오 추가)된 후 포트폴리오 목록 렌더로 인한 layout/repaint 일어남.
-	- [x] 로그인 실패시 토스트.
 #### Bakha
 - [x] 관심목록
 	- [x] 관심종목 단일목록 조회시 이름 필요
