@@ -27,10 +27,6 @@
 	- [ ] 종목 추가 dialog에 우측 상단 닫기 버튼 추가
 	- [ ] 종목 추가 버튼 디자인과 동일하게 수정하기(디자인에는 + 아이콘있고, border가 없음)
 
-- [ ] **Signup Page**
-	- [ ] 이메일/비밀번호 가입
-	- [ ] 회원가입 페이지 디자인에 맞게 단계 구성
-
 - [ ] 공용 컴포넌트
 	- [ ] Button
 		- [ ] Refactoring
@@ -85,15 +81,6 @@
 	- Chart Legend 패딩 및 높이 조절 필요
 	- TallChartLegend에 "기타"가 없으면 divider 미표시.
 
-- 이메일 회원가입
-	- 비밀번호 생성 단계(2 단계)에서 "다음" 누르면 닉네임 단계 넘기고 프로필 이미지 등록 단계(4단계)로 가짐.
-
-- Indices Page
-	- TradingView widget이 자동으로 dark mode됨.
-
-- SearchBar Placeholder
-	- "검색어를 입력하세요" --> "종목, 지수를 검색하세요"?
-
 - To Backend
 	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
 	- 차트 데이터 정렬 부탁.
@@ -101,36 +88,31 @@
 		- PortfolioPage 종목 구성 차트
 		- SectorBar
 	- 배당금 데이터
+	- 이메일 인증 코드 발송 안됨
 
 - To Design
 	- Dark Mode
 
-- [ ] Use PasswordTextField's `helperText` instead of `TextInputError` (`SignInForm`)
-
-
-
-
-
-
-
 ### 1/19 배포 목표
 
 #### Kakamotobi
-- [ ] 프로필 페이지 (API 대기)
+- [ ] 설정 페이지 (API 대기)
 	- [x] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
 	- [x] `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
-	- [ ] `user` 객체 `profileUrl` 값
-		- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 	- [x] 프로필 설정
 		- [x] 프로필 정보 변경 MSW
 	- [x] 계정 설정
 		- [x] "계정 삭제하기" dialog
 		- [x] New Password MSW
 		- [x] Account Delete MSW
+	- [ ] `user` 객체 `profileUrl` 값
+		- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 	- [ ] Overview data
 		- `username` field? 대신 user 객체 사용?
 	- [x] SearchBar dropdown 빈문자열일 때 숨김
 	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
+- [ ] SearchBar Placeholder "검색어를 입력하세요" --> "종목을 검색하세요"
+- [ ] Use PasswordTextField's `helperText` instead of `TextInputError` (`SignInForm`)
 #### Bakha
 - [x] 관심목록
 	- [x] 관심종목 단일목록 조회시 이름 필요
@@ -140,8 +122,10 @@
 	- [ ] Figma 디자인 적용
 	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
 - [ ] **Indices Page**
+	- [ ] TradingView widget이 자동으로 dark mode됨.
 #### Jay
-- [ ] 이메일/회원가입 (API 대기)
+- [ ] **Signup Page** (이메일 회원가입 API 대기)
+	- [ ] 이메일/비밀번호 가입
 	- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
 	- [ ] 회원가입 페이지 디자인에 맞게 단계 구성
 - [ ] Toast Design 적용
