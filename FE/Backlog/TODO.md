@@ -111,6 +111,7 @@
 	- [x] DatePicker
 		- "매입 이력 수정 모드"일 때 우리 DatePicker로 교체.
 		- DatePicker 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
+- [x] 바뀐 Design System이 미적용된 부분 수정.
 #### Bakha
 - [x] 관심목록
 	- [x] 관심종목 단일목록 조회시 이름 필요
