@@ -1,9 +1,16 @@
-# Notifications
+# Push Notifications
+
+## Requirements
+- Title (FineAnts)
+- Body (Stock price description based on set alert price)
 
 ## Push API
 ### Browser Compatibility
-- Supported in Chrome, Edge, FireFox
+- Fully supported in Chrome, Edge, FireFox.
 - Supported in Safari on macOS 13 (Ventura) and later.
+## Notifications API
+- Supported in Chrome, Edge, FireFox, Safari.
+	- 
 
 
 ## Reference
