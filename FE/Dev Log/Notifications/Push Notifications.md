@@ -4,11 +4,19 @@
 - [[#FineAnts Notification Feature]]
 - [[#Push API]]
 - [[#Notifications API]]
+- [[#Flow]]
 
 ## FineAnts Notification Feature
 - 포트폴리오 목표 수익률 알림
 - 포트폴리오 최대 손실율 알림
 - 종목 현재가 알림
+
+## Prerequisites
+- Service Worker
+	- Act as proxies between browsers and servers.
+	- A JS script that runs in a worker context (no DOM access), and doesn't run on the main thread (non-blocking, fully async).
+	- Only works over HTTPS.
+	- List of running service workers on Chrome (chrome://serviceworker-internals/).
 
 ## Push API
 - Allows the Server to send a message to a Client even when the web application is not in the foreground on the browser.
@@ -44,16 +52,24 @@ https://www.w3.org/TR/push-api/
 - Allows the web app (browser) to display notifications on the OS even when the application is idle or in the background.
 ### FineAnts Requirements & Browser Compatibility
 - `Notification.title` ("FineAnts")
-- `Notification.body` (Alert content)
-- `Notification.icon` (FineAnts logo)
+- `Notification.options.body` (Alert content)
+- `Notification.options.icon` (FineAnts logo)
+- `Notification.options.timestamp`
+- `Notification.options.requireInteraction`
+	- Not supported in Chrome.
+	- Partially supported in FireFox (only on Windows).
 - `Notification.permission` (whether the user granted permission for FineAnts to display notifications)
 - `Notification.requestPermission()` (request notification permission)
 	- FireFox 72 requires `Notification.requestPermission()` to be called from a user invoked event (Ex: click).
 - Other
 	- Chrome 49 doesn't allow notifications in incognito mode.
-
 ### Reference
 https://www.w3.org/TR/notifications/
+
+## Flow
+
+1. Get user permission to send push notifications.
+2. Subscribe the Client to Push Service (Push API).
 
 ## Reference
 [Push API - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)  
