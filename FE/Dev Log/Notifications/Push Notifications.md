@@ -12,9 +12,11 @@
 - 종목 현재가 알림
 
 ## Prerequisites
+- Web push notifications can be implementing using a combination of the Push API, Notifications API, and Service Worker API.
 ### Service Worker
-- A browser API that acts as a proxy between web applications and servers.
+- A type of web worker (browser API) that acts as a proxy between web applications and servers.
 	- i.e. Service Workers can intercept network requests on behalf of the web application.
+	- Service Workers can be used to control and intercept network requests, cache resources, manage background tasks.
 - A JS script that runs in a worker context (no DOM access), and doesn't run on the main thread (non-blocking, fully async).
 - Only works over HTTPS.
 - A page needs to be within the registered Service Worker's scope.
@@ -22,7 +24,14 @@
 - List of running service workers on Chrome (chrome://serviceworker-internals/).
 - Service Worker Life Cycle
 	- Registration
+		- Check if service worker is supported in the User Agent.
 		- `navigator.serviceWorker.register("/sw.js")` when the page has fully loaded (using the main thread to register).
+		- Service Worker state is "installing".
+	- Installation
+		- "install" event is fired.
+		- Once installation finishes, Service Worker state becomes "activating"
+	- Activation
+		- "activate" event is fired.
 ### Reference
 https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 
@@ -77,6 +86,8 @@ https://www.w3.org/TR/notifications/
 ## Flow
 
 1. Get user permission to send push notifications.
+	1. Allow notifications for `https://fineants.co` in Chrome.
+	2. Allow notifications for Chrome in OS.
 2. Subscribe the Client to Push Service (Push API).
 
 ## Reference
