@@ -17,7 +17,7 @@
 - A type of web worker (browser API) that acts as a proxy between web applications and servers.
 	- i.e. Service Workers can intercept network requests on behalf of the web application.
 	- Service Workers can be used to control and intercept network requests, cache resources, manage background tasks.
-- A JS script that runs in a worker context (no DOM access), and doesn't run on the main thread (non-blocking, fully async).
+- A JS script that runs in a worker context (no DOM access) in the background, and doesn't run on the main thread (non-blocking, fully async).
 - Only works over HTTPS.
 - A page needs to be within the registered Service Worker's scope.
 	- Ex: a Service Worker loaded from `/subdir/sw.js` can only control pages located within `/subdir/`.
@@ -105,24 +105,28 @@ https://www.w3.org/TR/notifications/
 1. Get user permission to send push notifications.
 	1. Allow notifications for `https://fineants.co` in Chrome.
 	2. Allow notifications for Chrome in OS.
-2. The Client (hence, the browser) sends a subscribe request to a Push Service (using the Push API) using your **Public Authentication Key** (to which the Push Service will associate the resulting endpoint with).
-3. The Client receives a `PushSubscription` object (contains the subscription's URL endpoint) in the response.
+2. The Client (hence, the browser) sends a subscribe request to a Push Service (using the Push API) including your **Public Authentication Key** (to which the Push Service will associate the resulting endpoint with).
+3. The Push Service generates and sends a `PushSubscription` object that contains the subscription's URL endpoint, to which your **Public Key** is associated to.
 4. The Client sends the received `PushSubscription` object to the Server to be stored in a DB.
 5. The Server sends a message request (**web push protocol request**) to the Push Service (endpoint included in the `PushSubscription` object).
 	1. The **web push protocol request** includes the message content, the target Client to send the message to, and instructions on how the Push Service should deliver the message (Ex: Time-To-Live, delay time, etc).
 	2. Use your **Private Key** to sign the JSON information.
 	3. Web Service Request Java Library Ex: https://github.com/web-push-libs/webpush-java
 6. The Push Service receives and authenticates the Server's request using the stored **Public Key**, and then routes the message to the target Client.
-	1. If the Client is offline, the Push Service queues the push message until the Client comes online.
+	1. If the Client is offline, the Push Service queues the push message until the Client comes online or until the message expires.
+7. The Browser receives and decryptes the push message data and dispatches a `push` event to your Service Worker.
+	1. The `push` event handler should call `ServiceWorkerRegistration.showNotification()` to display the information as a notification.
 
 ### VAPID Keys
-> An application server can voluntarily identify itself to a push service using the described technique. This identification information can be used by the push service to attribute requests that are made by the same application server to a single entity. This can used to reduce the secrecy for push subscription URLs by being able to restrict subscriptions to a specific application server.  An application server is further able to include additional information that the operator of a push service can use to contactthe operator of the application server.
+> An application server can voluntarily identify itself to a push service using the described technique. This identification information can be used by the push service to attribute requests that are made by the same application server to a single entity. This can used to reduce the secrecy for push subscription URLs by being able to restrict subscriptions to a specific application server.  An application server is further able to include additional information that the operator of a push service can use to contact the operator of the application server. | IETF
+
+- Only allow your Server to be able to send notifications to a subscribing Client.
 #### Reference
 [Voluntary Application Server Identification for Web Push draft-thomson-webpush-vapid-02](https://datatracker.ietf.org/doc/html/draft-thomson-webpush-vapid-02)  
+[Vapid Key Generator | VapidKeys.com](https://vapidkeys.com/)  
 
 ## Reference
 [Push API - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)  
 [Notifications  |  web.dev](https://web.dev/explore/notifications)  
 [Push notifications overview  |  Articles  |  web.dev](https://web.dev/articles/push-notifications-overview)  
-
 [Add push notifications to a web app  |  Google Codelabs](https://codelabs.developers.google.com/codelabs/push-notifications#0)  
