@@ -1,8 +1,12 @@
 # Push Notifications
 
-## Requirements
-- Title (FineAnts)
-- Body (Stock price description based on set alert price)
+## Table of Contents
+- [FineAnts Notification Feature](#fineants-notification-feature)
+
+## FineAnts Notification Feature
+- 포트폴리오 목표 수익률 알림
+- 포트폴리오 최대 손실율 알림
+- 종목 현재가 알림
 
 ## Push API
 - Allows the Client to receive messages from the Server even when the web application is not in the foreground on the browser.
@@ -19,6 +23,7 @@
 	- If successful, the Push Service responds with 201 and a URI for the push message resource placed in the Location header. (Note: does not mean that the message has been delivered to UA).
 		- If the Application Server wants to know when the push message is delivered to the UA (push message receipt), it can include the `Prefer header` field with the `"respond-async"` preference, which the Push Service will confirm the delivery. (Note: the particular Push Service must support delivery confirmations).
 - The UA uses the subscription to monitor the Push Service for incoming messages.
+	- The UA sends a GET request to a push message subscription resource. The Push Service does not respond to this request; instead, it uses HTTP/2 server push to send the contents of the push messages send by the Application Server.
 ### Browser Compatibility
 - Fully supported in Chrome, Edge, FireFox.
 - Supported in Safari on macOS 13 (Ventura) and later.
@@ -28,9 +33,13 @@ https://www.w3.org/TR/push-api/
 
 ## Notifications API
 - Allows the web app (browser) to send notifications to the OS even when the application is idle or in the background.
+### FineAnts Requirements
+- Title (FineAnts)
+- Body (Stock price description based on set alert price)
 ### Browser Compatibility
 - Supported in Chrome, Edge, FireFox, Safari.
 	- 
+
 ### Reference
 https://www.w3.org/TR/notifications/
 

@@ -82,8 +82,6 @@
 	- TallChartLegend에 "기타"가 없으면 divider 미표시.
 	- 실시간 데이터 반영.
 
-- 종목 검색 패널에 InfiniteScroll 적용.
-
 - To Backend
 	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
 	- 차트 데이터 정렬 부탁.
