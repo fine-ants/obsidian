@@ -12,11 +12,19 @@
 - 종목 현재가 알림
 
 ## Prerequisites
-- Service Worker
-	- Act as proxies between browsers and servers.
-	- A JS script that runs in a worker context (no DOM access), and doesn't run on the main thread (non-blocking, fully async).
-	- Only works over HTTPS.
-	- List of running service workers on Chrome (chrome://serviceworker-internals/).
+### Service Worker
+- A browser API that acts as a proxy between web applications and servers.
+	- i.e. Service Workers can intercept network requests on behalf of the web application.
+- A JS script that runs in a worker context (no DOM access), and doesn't run on the main thread (non-blocking, fully async).
+- Only works over HTTPS.
+- A page needs to be within the registered Service Worker's scope.
+	- Ex: a Service Worker loaded from `/subdir/sw.js` can only control pages located within `/subdir/`.
+- List of running service workers on Chrome (chrome://serviceworker-internals/).
+- Service Worker Life Cycle
+	- Registration
+		- `navigator.serviceWorker.register("/sw.js")` when the page has fully loaded (using the main thread to register).
+### Reference
+https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 
 ## Push API
 - Allows the Server to send a message to a Client even when the web application is not in the foreground on the browser.
