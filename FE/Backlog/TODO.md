@@ -74,8 +74,10 @@
 	- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
 
 - Charts
-	- Chart Legend 패딩 및 높이 조절 필요
+	- Chart Legend 패딩 및 높이 조절 필요.
 	- TallChartLegend에 "기타"가 없으면 divider 미표시.
+	- 실시간 데이터 반영.
+
 
 - To Backend
 	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
