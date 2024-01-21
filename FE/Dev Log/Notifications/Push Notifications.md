@@ -20,10 +20,13 @@
 	- The Application Server sends an HTTP POST request to the Push Service with the message content in the `body` of the request.
 		- It must also include the Time-To-Live(TTL) header (value in seconds indicating how long a push message is retained by the Push Service) when requesting for push message delivery.
 			- Ex: if the user is offline, the Push Service can store the push messages for a period so that they can be displayed when they're back online.
-	- If successful, the Push Service responds with 201 and a URI for the push message resource placed in the Location header. (Note: does not mean that the message has been delivered to UA).
-		- If the Application Server wants to know when the push message is delivered to the UA (push message receipt), it can include the `Prefer header` field with the `"respond-async"` preference, which the Push Service will confirm the delivery. (Note: the particular Push Service must support delivery confirmations).
+		- If successful, the Push Service responds with 201 and a URI for the push message resource placed in the Location header. (Note: does not mean that the message has been delivered to UA).
+			- If the Application Server wants to know when the push message is delivered to the UA (push message receipt), it can include the `Prefer header` field with the `"respond-async"` preference, which the Push Service will confirm the delivery. (Note: the particular Push Service must support delivery confirmations).
+	- The Application Server 
 - The UA uses the subscription to monitor the Push Service for incoming messages.
 	- The UA sends a GET request to a push message subscription resource. The Push Service does not respond to this request; instead, it uses HTTP/2 server push to send the contents of the push messages send by the Application Server.
+	- The UA must send an HTTP DELETE request to the Push Service on the push message resource to indicate that it received the push message.
+		- If the DELETE request is not sent within some time, the Push Service considers the message not delivered and will retry deliverying the message until the message expires.
 ### Browser Compatibility
 - Fully supported in Chrome, Edge, FireFox.
 - Supported in Safari on macOS 13 (Ventura) and later.
