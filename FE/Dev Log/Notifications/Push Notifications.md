@@ -14,6 +14,8 @@
 - UA distributes the subscription (the push URI) to the Application Server.
 - The Application Server uses the subscription to send messages to the Push Service.
 	- The Application Server sends an HTTP POST request to the Push Service with the message content in the `body` of the request.
+		- It must also include the Time-To-Live(TTL) header (value in seconds indicating how long a push message is retained by the Push Service) when requesting for push message delivery.
+			- Ex: if the user is offline, the Push Service can store the push messages for a period so that they can be displayed when they're back online.
 	- If successful, the Push Service responds with 201 and a URI for the push message resource placed in the Location header. (Note: does not mean that the message has been delivered to UA).
 		- If the Application Server wants to know when the push message is delivered to the UA (push message receipt), it can include the `Prefer header` field with the `"respond-async"` preference, which the Push Service will confirm the delivery. (Note: the particular Push Service must support delivery confirmations).
 - The UA uses the subscription to monitor the Push Service for incoming messages.
