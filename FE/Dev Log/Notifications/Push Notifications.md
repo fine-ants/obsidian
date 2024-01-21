@@ -108,6 +108,7 @@ https://www.w3.org/TR/notifications/
 2. The Client (hence, the browser) sends a subscribe request to a Push Service (using the Push API) including your **Public Authentication Key** (to which the Push Service will associate the resulting endpoint with).
 3. The Push Service generates and sends a `PushSubscription` object that contains the subscription's URL endpoint, to which your **Public Key** is associated to.
 4. The Client sends the received `PushSubscription` object to the Server to be stored in a DB.
+---------------------------------------
 5. The Server sends a message request (**web push protocol request**) to the Push Service (endpoint included in the `PushSubscription` object).
 	1. The **web push protocol request** includes the message content, the target Client to send the message to, and instructions on how the Push Service should deliver the message (Ex: Time-To-Live, delay time, etc).
 	2. Use your **Private Key** to sign the JSON information.
