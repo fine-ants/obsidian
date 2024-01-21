@@ -32,6 +32,9 @@
 		- Once installation finishes, Service Worker state becomes "activating"
 	- Activation
 		- "activate" event is fired.
+- Push Service
+	- A web service controlled by the user's browser vendor.
+	- We as developers do not have or have to control the choice of the Push Service as it is standardized.
 ### Reference
 https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 
@@ -88,7 +91,12 @@ https://www.w3.org/TR/notifications/
 1. Get user permission to send push notifications.
 	1. Allow notifications for `https://fineants.co` in Chrome.
 	2. Allow notifications for Chrome in OS.
-2. Subscribe the Client to Push Service (Push API).
+2. Subscribe the Client to push notifications (using the Push API). Public authentication key is needed for the subscription process. The browser makes a network request to a Push Service. The browser receives a `PushSubscription` object (contains the subscription's URL endpoint) in the response. This object should be sent to the Server to be stored in a DB.
+3. The Server sends a message request (**web push protocol request**) to the Push Service. 
+	1. The **web push protocol request** includes the message content, the target Client to send the message to, and instructions on how the Push Service should deliver the message (Ex: delay time, etc).
+	2. Web Service Request Java Library Ex: https://github.com/web-push-libs/webpush-java
+4. The Push Service receives and authenticates the Server's request, and then routes the message to the target Client.
+	1. If the Client is offline, the Push Service queues the push message until the Client comes online.
 
 ## Reference
 [Push API - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)  
