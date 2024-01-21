@@ -1,7 +1,9 @@
 # Push Notifications
 
 ## Table of Contents
-- [FineAnts Notification Feature](#fineants-notification-feature)
+- [[#FineAnts Notification Feature]]
+- [[#Push API]]
+- [[#Notifications API]]
 
 ## FineAnts Notification Feature
 - 포트폴리오 목표 수익률 알림
@@ -9,8 +11,8 @@
 - 종목 현재가 알림
 
 ## Push API
-- Allows the Client to receive messages from the Server even when the web application is not in the foreground on the browser.
-- The Server can send push messages via a push service (service worker) at any time.
+- Allows the Server to send a message to a Client even when the web application is not in the foreground on the browser.
+- Done via a push service (service worker) at any time.
 ### Overview
 ![[webpush-architecture.png]]
 - UA creates a new message subscription by sending a POST request to the Push Service.
@@ -33,19 +35,22 @@
 
 ### Browser Compatibility
 - Fully supported in Chrome, Edge, FireFox.
-- Supported in Safari on macOS 13 (Ventura) and later.
+- Partially Supported in Safari - requires macOS 13 (Ventura) and later.
 ### Reference
 https://www.rfc-editor.org/rfc/rfc8030
 https://www.w3.org/TR/push-api/
 
 ## Notifications API
-- Allows the web app (browser) to send notifications to the OS even when the application is idle or in the background.
-### FineAnts Requirements
-- Title (FineAnts)
-- Body (Stock price description based on set alert price)
-### Browser Compatibility
-- Supported in Chrome, Edge, FireFox, Safari.
-	- 
+- Allows the web app (browser) to display notifications on the OS even when the application is idle or in the background.
+### FineAnts Requirements & Browser Compatibility
+- `Notification.title` ("FineAnts")
+- `Notification.body` (Alert content)
+- `Notification.icon` (FineAnts logo)
+- `Notification.permission` (whether the user granted permission for FineAnts to display notifications)
+- `Notification.requestPermission()` (request notification permission)
+	- FireFox 72 requires `Notification.requestPermission()` to be called from a user invoked event (Ex: click).
+- Other
+	- Chrome 49 doesn't allow notifications in incognito mode.
 
 ### Reference
 https://www.w3.org/TR/notifications/
