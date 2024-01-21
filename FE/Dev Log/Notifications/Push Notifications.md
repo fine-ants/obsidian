@@ -35,6 +35,20 @@
 - Push Service
 	- A web service controlled by the user's browser vendor.
 	- We as developers do not have or have to control the choice of the Push Service as it is standardized.
+	- We as developers only need to ensure that we are sending the web push protocol request to the correct Push Service (necessary information is provided in the `PushSubscription` data that the browser received during the subscription process), and that our web push protocol request follows the spec (Ex: certain mandatory headers, and data must be sent as a stream of bytes).
+		- `PushSubscription` object Example
+			```json
+			{
+				// "endpoint" is the client identifier information that helps the Push Service determine the target Client to push the message to.
+				"endpoint": "https://pushuri...",
+				"expirationTime": null,
+				// "keys" is used for the Server to encrypt the push message data when sending it to the Push Service
+				"keys": {
+					"p256dh": "blahblah",
+					"auth": "blahblah"
+				}
+			}
+			```
 ### Reference
 https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 
@@ -91,14 +105,24 @@ https://www.w3.org/TR/notifications/
 1. Get user permission to send push notifications.
 	1. Allow notifications for `https://fineants.co` in Chrome.
 	2. Allow notifications for Chrome in OS.
-2. Subscribe the Client to push notifications (using the Push API). Public authentication key is needed for the subscription process. The browser makes a network request to a Push Service. The browser receives a `PushSubscription` object (contains the subscription's URL endpoint) in the response. This object should be sent to the Server to be stored in a DB.
-3. The Server sends a message request (**web push protocol request**) to the Push Service. 
-	1. The **web push protocol request** includes the message content, the target Client to send the message to, and instructions on how the Push Service should deliver the message (Ex: delay time, etc).
-	2. Web Service Request Java Library Ex: https://github.com/web-push-libs/webpush-java
-4. The Push Service receives and authenticates the Server's request, and then routes the message to the target Client.
+2. The Client (hence, the browser) sends a subscribe request to a Push Service (using the Push API) using your **Public Authentication Key** (to which the Push Service will associate the resulting endpoint with).
+3. The Client receives a `PushSubscription` object (contains the subscription's URL endpoint) in the response.
+4. The Client sends the received `PushSubscription` object to the Server to be stored in a DB.
+5. The Server sends a message request (**web push protocol request**) to the Push Service (endpoint included in the `PushSubscription` object).
+	1. The **web push protocol request** includes the message content, the target Client to send the message to, and instructions on how the Push Service should deliver the message (Ex: Time-To-Live, delay time, etc).
+	2. Use your **Private Key** to sign the JSON information.
+	3. Web Service Request Java Library Ex: https://github.com/web-push-libs/webpush-java
+6. The Push Service receives and authenticates the Server's request using the stored **Public Key**, and then routes the message to the target Client.
 	1. If the Client is offline, the Push Service queues the push message until the Client comes online.
+
+### VAPID Keys
+> An application server can voluntarily identify itself to a push service using the described technique. This identification information can be used by the push service to attribute requests that are made by the same application server to a single entity. This can used to reduce the secrecy for push subscription URLs by being able to restrict subscriptions to a specific application server.  An application server is further able to include additional information that the operator of a push service can use to contactthe operator of the application server.
+#### Reference
+[Voluntary Application Server Identification for Web Push draft-thomson-webpush-vapid-02](https://datatracker.ietf.org/doc/html/draft-thomson-webpush-vapid-02)  
 
 ## Reference
 [Push API - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)  
 [Notifications  |  web.dev](https://web.dev/explore/notifications)  
+[Push notifications overview  |  Articles  |  web.dev](https://web.dev/articles/push-notifications-overview)  
+
 [Add push notifications to a web app  |  Google Codelabs](https://codelabs.developers.google.com/codelabs/push-notifications#0)  
