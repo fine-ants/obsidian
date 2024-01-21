@@ -28,6 +28,9 @@
 	- The UA sends a GET request to a push message subscription resource. The Push Service does not respond to this request; instead, it uses HTTP/2 server push to send the contents of the push messages send by the Application Server.
 	- The UA must send an HTTP DELETE request to the Push Service on the push message resource to indicate that it received the push message.
 		- If the DELETE request is not sent within some time, the Push Service considers the message not delivered and will retry deliverying the message until the message expires.
+### Flow of Events for Subscription
+![[push-api-sequence-diagram.png]]
+
 ### Browser Compatibility
 - Fully supported in Chrome, Edge, FireFox.
 - Supported in Safari on macOS 13 (Ventura) and later.
