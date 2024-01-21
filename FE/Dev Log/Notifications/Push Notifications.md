@@ -6,6 +6,14 @@
 
 ## Push API
 - Allows the Client to receive messages from the Server even when the web application is not in the foreground on the browser.
+- The Server can send push messages via a push service (service worker) at any time.
+### Overview
+![[webpush-architecture.png]]
+- UA creates a new message subscription by sending a POST request to the Push Service.
+	- If successful, a URI for the push message subscription is created.
+- UA distributes the subscription to the Application Server.
+- The Application Server uses the subscription to send messages to the Push Service.
+- The UA uses the subscription to monitor the Push Service for incoming messages.
 ### Browser Compatibility
 - Fully supported in Chrome, Edge, FireFox.
 - Supported in Safari on macOS 13 (Ventura) and later.
