@@ -22,7 +22,8 @@
 			- Ex: if the user is offline, the Push Service can store the push messages for a period so that they can be displayed when they're back online.
 		- If successful, the Push Service responds with 201 and a URI for the push message resource placed in the Location header. (Note: does not mean that the message has been delivered to UA).
 			- If the Application Server wants to know when the push message is delivered to the UA (push message receipt), it can include the `Prefer header` field with the `"respond-async"` preference, which the Push Service will confirm the delivery. (Note: the particular Push Service must support delivery confirmations).
-	- The Application Server 
+	- The Application Server can send an HTTP GET request to the receipt subscription resource to check the delivery of receipts from the Push Service. The Push Service does not respond to this request; instead, it uses HTTP/2 server push to send push receipts when messages are acknowledged by the UA.
+		- The response to the synthesized GET request includes a status code indicating the result of the message delivery and carries no data.
 - The UA uses the subscription to monitor the Push Service for incoming messages.
 	- The UA sends a GET request to a push message subscription resource. The Push Service does not respond to this request; instead, it uses HTTP/2 server push to send the contents of the push messages send by the Application Server.
 	- The UA must send an HTTP DELETE request to the Push Service on the push message resource to indicate that it received the push message.
