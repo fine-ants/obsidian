@@ -110,7 +110,7 @@ https://www.w3.org/TR/notifications/
 4. The Client sends the received `PushSubscription` object to the Server to be stored in a DB.
 ---------------------------------------
 5. The Server sends a message request (**web push protocol request**) to the Push Service (endpoint included in the `PushSubscription` object).
-	1. The **web push protocol request** includes the message content, the target Client to send the message to, and instructions on how the Push Service should deliver the message (Ex: Time-To-Live, delay time, etc).
+	1. The **web push protocol request** includes the message content, the target Client to send the message to, and instructions on how the Push Service should deliver the message (Ex: TTL header, delay time, etc).
 	2. Use your **Private Key** to sign the JSON information.
 	3. Web Service Request Java Library Ex: https://github.com/web-push-libs/webpush-java
 6. The Push Service receives and authenticates the Server's request using the stored **Public Key**, and then routes the message to the target Client.
