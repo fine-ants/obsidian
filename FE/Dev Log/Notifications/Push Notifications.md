@@ -4,6 +4,7 @@
 - [[#FineAnts Notification Feature]]
 - [[#Push API]]
 - [[#Notifications API]]
+- [[#Client API]]
 - [[#Flow]]
 
 ## FineAnts Notification Feature
@@ -81,6 +82,7 @@ https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 ### Reference
 https://www.rfc-editor.org/rfc/rfc8030
 https://www.w3.org/TR/push-api/
+https://developer.mozilla.org/en-US/docs/Web/API/Push_API
 
 ## Notifications API
 - Allows the web app (browser) to display notifications on the OS even when the application is idle or in the background.
@@ -99,6 +101,14 @@ https://www.w3.org/TR/push-api/
 	- Chrome 49 doesn't allow notifications in incognito mode.
 ### Reference
 https://www.w3.org/TR/notifications/
+
+## Client API
+- `postMessage()` - allows a Service Worker to send a message to a Client (a Window, Worker, or SharedWorker).
+	- The message is received in the `"message"` event on `navigator.serviceWorker`.
+### Browser Compatibility
+- Fully supported in all browsers.
+### Reference
+https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage
 
 ## Flow
 
@@ -123,11 +133,10 @@ https://www.w3.org/TR/notifications/
 
 - Only allow your Server to be able to send notifications to a subscribing Client.
 #### Reference
-[Voluntary Application Server Identification for Web Push draft-thomson-webpush-vapid-02](https://datatracker.ietf.org/doc/html/draft-thomson-webpush-vapid-02)  
-[Vapid Key Generator | VapidKeys.com](https://vapidkeys.com/)  
+https://datatracker.ietf.org/doc/html/draft-thomson-webpush-vapid-02
+https://vapidkeys.com/
 
 ## Reference
-[Push API - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)  
 [Notifications  |  web.dev](https://web.dev/explore/notifications)  
 [Push notifications overview  |  Articles  |  web.dev](https://web.dev/articles/push-notifications-overview)  
 [Add push notifications to a web app  |  Google Codelabs](https://codelabs.developers.google.com/codelabs/push-notifications#0)  
