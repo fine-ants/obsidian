@@ -131,7 +131,7 @@
 
 ### 1/26 배포 목표
 - [ ] OAuth 무한 로딩 문제 해결
-#### Kakamotobi
+#### Kakamotobi & Jay
 - [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
 #### Bakha
 - [ ] Stock Page
