@@ -106,8 +106,6 @@
 		- [x] "계정 삭제하기" dialog
 		- [x] New Password MSW
 		- [x] Account Delete MSW
-	- [ ] Overview data
-		- `username` field? 대신 user 객체 사용?
 	- [x] SearchBar dropdown 빈문자열일 때 숨김
 	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
 	- [x] 로그인 실패시 토스트.
@@ -123,15 +121,25 @@
 	- [x] 관심종목 단일목록 조회시 이름 필요
 	- [x] `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
 - [x] Design System Font에 letter-spacing 적용 (Watchlist API 완성 후 PR 머지)
-- [ ] **Landing Page**
-	- [ ] Figma 디자인 적용
-	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
-- [ ] **Indices Page**
-	- [ ] TradingView widget이 자동으로 dark mode됨.
 #### Jay
 - [ ] **Signup Page** (이메일 회원가입 API 대기)
-	- [ ] 이메일/비밀번호 가입
-	- [ ] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
-	- [ ] 회원가입 페이지 디자인에 맞게 단계 구성
+	- [x] 이메일/비밀번호 가입
+	- [x] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
+	- [x] 회원가입 페이지 디자인에 맞게 단계 구성
 - [x] Toast Design 적용
 - [x] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게
+
+### 1/26 배포 목표
+- [ ] OAuth 무한 로딩 문제 해결
+#### Kakamotobi
+- [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
+#### Bakha
+- [ ] Stock Page
+- [ ] Landing Page
+	- [ ] Figma 디자인 적용
+	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
+- [ ] Indices Page
+	- [ ] TradingView widget이 자동으로 dark mode됨.
+#### Jay
+- [ ] Toast
+
