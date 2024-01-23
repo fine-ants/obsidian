@@ -16,6 +16,7 @@
 ### Push Service Subscription 흐름
 ![[push-api-sequence-diagram.png]]
 
+#### Subscribe 과정
 1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
 	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
 	2. 비고: 사용자는 OS 설정에서 Chrome이 데스크탑 Notification을 보여줄 수 있도록 설정을 해줘야함.
@@ -25,12 +26,23 @@
 	1. 이 `PushSubscription` 객체는 받은 Publick Key와 연결된 Subscription URL Endpoint를 담고 있음.
 4. FE는 받은 `PushSubscription` 객체를 BE로 보냄.
 5. BE는 해당 정보를 DB에 저장함.
----------------------------------------
+#### Push Message 과정
 6. BE는 새로운 메시지를 **web push protocol request**에 맞게 Push Service(`PushSubscription` 객체에 들어있는 endpoint)로 보냄.
 	1. **Web push protocol request**은 메시지 내용, 메시지를 받을 타겟 Client, 그리고 Push Service가 "어떻게" 메시지를 전달할지(Ex: TTL header)를 포함.
 	2. **Private Key**로 JSON 내용을 sign해야 함.
 	3. Web Service Request Java Library Ex: https://github.com/web-push-libs/webpush-java
-7. Push Service는 BE로부터 받은 메시지를 들고 있는 **Public검증한** 후, The Push Service receives and authenticates the Server's request using the stored **Public Key**, and then routes the message to the target Client.
-	1. If the Client is offline, the Push Service queues the push message until the Client comes online or until the message expires.
-8. The Browser receives and decryptes the push message data and dispatches a `push` event to your Service Worker.
-	1. The `push` event handler should call `ServiceWorkerRegistration.showNotification()` to display the information as a notification.
+7. Push Service는 BE로부터 받은 메시지를 들고 있는 **Public Key**로 검증한 후, 타겟 Client로 메시지를 전달함.
+	1. Client가 현재 offline이면, Push Service는 메시지들을 queue에 저장해두고 Client가 online이 될 때 전달함. 또는, 설정해둔 메시지 시간이 만료되면 queue에서 제거함.
+8. Browser는 받은 push message을 decrypt하고 Service Worker에 `push` event을 통해 메시지를 전달함.
+9. Service Worker에 있는 `push` event handler는
+	1. `ServiceWorkerRegistration.showNofication()`을 통해 데스크탑 push notification을 보냄.
+	2. `Client.postMessage()`을 통해 FE로 메시지를 전달함.
+10. FE는 받은 메시지를 UI에 반영.
+
+
+## Reference
+### HTTP Web Push 관련
+https://www.rfc-editor.org/rfc/rfc8030
+### Public/Private Key 관련
+https://datatracker.ietf.org/doc/html/draft-thomson-webpush-vapid-02
+https://vapidkeys.com/
