@@ -1,3 +1,5 @@
+# Tech Stack and Code Convention
+
 ## FE Tech Stack
 - Vite
 - React, React Router
@@ -9,6 +11,7 @@
 - Jest, testing-library/react
 - MSW
 - AWS Amplify
+
 ## Code Convention
 - Props
 ```tsx
@@ -25,21 +28,21 @@ const StyledApp = styled.div``;
 
 ```tsx
 // Transient Props
-${({ theme: { opacity } }) => opacity.hover};
+${({ $isActive }) => $isActive ? "blue" : "black" };
 
 // Design System
-${designSystem.}
+${designSystem.color.primary.blue500};
 ```
 - Function Naming
-```
-ON TARGET EVENT
+```ts
+// ON TARGET EVENT
 
-Ex: onDropdownClick
+const onDropdownClick = () => {}
 ```
 - Function Declarations
-	- Component는 `function`
+	- Component은 `function`
 	- 내부 함수들은 const
-```
+```tsx
 export default function App({}: Props) {
 	const hamsu = () => {};
 	
