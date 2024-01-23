@@ -5,7 +5,12 @@
 - [[#Options]]
 	- [[#Long Polling]]
 	- [[#WebSocket]]
+	- [[#WebSocket - stomp]]
 	- [[#Server-Sent Events(SSE)]]
+	- [[#Push API]]
+- [[#기능 요구사항에 맞는 방법은?]]
+- [[#결론]]
+- [[#참고]]
 
 ## 기능 요구사항
 - 실시간 주식 데이터에 의한 종목 현재가, 포트폴리오 평가금액, 차트 정보 등을 업데이트.
@@ -71,7 +76,7 @@
 - 서버에서 클라이언트로의 단방향 통신
 - 브라우저의 지원 여부
 - 서버가 유저의 수를 감당 가능한지
-### Push api
+### Push API
 - Push API는 웹 애플리케이션에게 서버에서 클라이언트로 데이터를 푸시할 수 있는 기능을 제공하는 웹 표준입니다.
 - 사용자가 웹 사이트에 있지 않을 때에도 알림을 보낼 수 있습니다.
 - 이는 Service Worker API와 함께 사용되어, 백그라운드에서 데이터를 푸시할 수 있도록 합니다.
@@ -89,9 +94,8 @@
     - 네트워크가 다시 연결되었을 경우 알림을 다 받는다.
 - 데스크탑, 모바일 앱을 고려하고 있는 경우
 
-# FineAnts에 맞는 방법은?
-
-- long polling
+## 기능 요구사항에 맞는 방법은?
+- Long Polling
     - 주식 장이 열려 있다면 약 5초에 1번 서버로 부터 실시간으로 데이터를 받기 때문에 적절하지 못한 것 같다.
 - Websocket
     - 가장 평범한 방법이라고 생각이 된다.
@@ -107,24 +111,20 @@
         - Deno 브라우저를 지원하지 않는다.
         - https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
     - 실시간으로 서버와의 통신이 아닌 단방향으로 서버에게 받기만 하기 때문에 적절하다 생각이 든다.
-- Push api
+- Push API
 	- 데스크탑, 모바일 앱을 생각하고 있다고 서비스에 알림 기능이 필요하다면 적절한 선택이 될 것 같다.
+
 ## 결론
 
-미래의 저희 프로젝트에서 양방향 통신이 필요할 수 있다면 그 부분도 고려해서 websocket으로 구현하는 방법도 좋을 수 있지만 우선 지금 글을 쓰고 있는 지금(23/11/07) 이 순간에는 양방향 통신을 하게 될 경우가 생각 나지 않습니다.
-
-**그래서 Server-Sent Events와 Push api를 함께 사용하는게 가장 적합하다고 판단됩니다.**
-
-우선 아직 대중화 되어 있지 않은 Demo 브라우저를 굳 지원할 필요성을 느끼지 못하며 양방향 통신이 필요가 없기 때문에 서버로부터 일방적으로 전달 받는 SSE가 적합하다고 생각됩니다.
-
+- 미래의 저희 프로젝트에서 양방향 통신이 필요할 수 있다면 그 부분도 고려해서 websocket으로 구현하는 방법도 좋을 수 있지만 우선 지금 글을 쓰고 있는 지금(23/11/07) 이 순간에는 양방향 통신을 하게 될 경우가 생각 나지 않습니다.
+- **그래서 Server-Sent Events와 Push api를 함께 사용하는게 가장 적합하다고 판단됩니다.**
+- 우선 아직 대중화 되어 있지 않은 Demo 브라우저를 굳 지원할 필요성을 느끼지 못하며 양방향 통신이 필요가 없기 때문에 서버로부터 일방적으로 전달 받는 SSE가 적합하다고 생각됩니다.
 - 사용처로는 Dashboard, portfolio 등 주식의 가격의 변동으로 실시간으로 변경되어야 하는 페이지
+- 알림의 경우 저희 최종 목표인 데스크탑 앱, 모바일 앱을 생각 했을 경우 push api를 사용하는 게 적합하다 판단합니다.
 
-알림의 경우 저희 최종 목표인 데스크탑 앱, 모바일 앱을 생각 했을 경우 push api를 사용하는 게 적합하다 판단합니다.
-
-# 참고
+## 참고
 - https://www.karanpratapsingh.com/courses/system-design/long-polling-websockets-server-sent-events
 - https://velog.io/@msung99/%EC%9B%B9%EC%86%8C%EC%BC%93%EA%B3%BC-STOMP%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%8B%A4%EC%8B%9C%EA%B0%84-%ED%86%B5%EC%8B%A0-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0
 - https://stackoverflow.com/questions/40988030/what-is-the-difference-between-websocket-and-stomp-protocols
 - https://ably.com/blog/websockets-vs-sse
 - https://www.timeplus.com/post/websocket-vs-sse
-
