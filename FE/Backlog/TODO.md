@@ -44,11 +44,11 @@
 		- 종목마다 등록한 특정 가격에 도달하면 알림을 보내기.
 	- [ ] 포트폴리오 목표 수익률 및 최대 손실율 도달 알림
 
-- [ ] 반응형
-
 - [ ] `@fineants/demolition`
 	- [ ] README 작성
 	- [ ] Open Source
+
+- [ ] 반응형
 
 - [ ] Optimization
 	- [ ] Performance
