@@ -1,4 +1,3 @@
-
 # User Feedback Strategy
 
 ## Table of Contents
@@ -19,7 +18,5 @@
 - Toast 처리
 	- Query/Mutation Cache에서 에러 일괄 처리
 	- 각 query/mutation에서 meta 필드 이용해서 `toastErrorMessage`, `toastSuccessMessage` 설정
-- ErrorBoundary
-	- 사용처 근접한 
-- Suspense
-	- MUI Skeleton
+- ErrorBoundary 및 Suspense
+	- User Component에 가장 근접한 곳에서 처리
