@@ -134,6 +134,7 @@
 - [x] OAuth 무한 로딩 문제 해결
 	- 원인: Strict Mode에 의해서 같은 인가코드를 두번 전송 -> 401 받음 -> 로그아웃.
 	- 해결: 개발 모드에서 OAuth Login 테스트를 할때는 Strict Mode 해제.
+- [x] Portfolio holdings SSE 반영 안되는 문제 해결
 #### Kakamotobi & Jay
 - [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
 #### Bakha
@@ -144,5 +145,5 @@
 - [ ] Indices Page
 	- [ ] TradingView widget이 자동으로 dark mode됨.
 #### Jay
-- [ ] Toast
+- [x] Toast
 
