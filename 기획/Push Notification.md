@@ -55,7 +55,7 @@
 	1. `ServiceWorkerRegistration: showNofication()`을 통해 데스크탑 push notification을 보냄.
 	2. `Client: postMessage()`을 통해 FE로 메시지를 전달함.
 10. FE는 받은 메시지를 UI에 반영.
-	1. BE와 절절한 상태 관리(Ex: 읽음, 등) 필요.
+	1. BE와 적절한 상태 관리(Ex: 읽음, 등) 필요.
 #### Push Service Unsubscribe 과정
 11. FE는 BE로 Subscription 해제 요청을 보냄.
 12. BE는 사용자와 관련된 Subscription 정보를 제거함.
@@ -65,6 +65,7 @@
 ### HTTP Web Push 관련
 https://www.rfc-editor.org/rfc/rfc8030
 https://www.w3.org/TR/push-api/
+https://web.dev/articles/push-notifications-overview
 ### Public/Private Key 관련
 https://datatracker.ietf.org/doc/html/draft-thomson-webpush-vapid-02
 https://vapidkeys.com/

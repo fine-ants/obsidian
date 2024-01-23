@@ -11,20 +11,24 @@
 - AWS Amplify
 ## Code Convention
 - Props
-```
+```tsx
 type Props = {}
 
 export default function App({}: Props) {}
 ```
 - Styled Components
-```
+```tsx
 export default function App({}: Props) {}
 
 const StyledApp = styled.div``;
 ```
 
-```
+```tsx
+// Transient Props
 ${({ theme: { opacity } }) => opacity.hover};
+
+// Design System
+${designSystem.}
 ```
 - Function Naming
 ```
