@@ -1,8 +1,8 @@
 # TODO
 
 - [ ] **Dashboard Page**
-	- 대시보드 오버뷰 API 
-		- totalGain 필드 누락
+	- [ ] 대시보드 오버뷰 API totalGain 필드 누락됨
+	- [ ] SSE 적용
 
 - [ ] **Portfolio Page**
 	- [ ] Overview 최대 손실율에 대한 논의
