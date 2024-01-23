@@ -94,7 +94,7 @@
 - To Design
 	- Dark Mode
 
-### 1/19 배포 목표
+### 1/23 배포 목표
 
 #### Kakamotobi
 - [ ] 설정 페이지 (API 대기)
