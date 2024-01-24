@@ -8,6 +8,7 @@
 		- [[#Push Service Subscribe 과정]]
 		- [[#Push Message 과정]]
 		- [[#Push Service Unsubscribe 과정]]
+	- [[#Client-Server Push Notification 흐름]]
 - [[#Reference]]
 
 ## FineAnts Push Notification 기능 요구사항
@@ -60,6 +61,9 @@
 11. FE는 BE로 Subscription 해제 요청을 보냄.
 12. BE는 사용자와 관련된 Subscription 정보를 제거함.
 13. FE는 `PushSubscription: unsubscribe()`을 통해 Browser를 거치고 Push Service에서 unsubscribe함.
+
+### Client-Server Push Notification 흐름
+![[client-server-push-notification.png]]
 
 ## Reference
 ### HTTP Web Push 관련
