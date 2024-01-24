@@ -14,7 +14,7 @@
 ## FineAnts Push Notification 기능 요구사항
 - 포트폴리오 목표 수익률 알림
 - 포트폴리오 최대 손실율 알림
-- 종목 현재가 알림
+- 지정가 알림
 
 ## Overview
 ### Web Push 구조
