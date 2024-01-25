@@ -94,8 +94,7 @@
 - To Design
 	- Dark Mode
 
-### 1/23 배포 목표
-
+### 1/26 배포 목표
 #### Kakamotobi
 - [ ] 설정 페이지 (API 대기)
 	- [x] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
@@ -109,27 +108,13 @@
 	- [x] SearchBar dropdown 빈문자열일 때 숨김
 	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
 	- [x] 로그인 실패시 토스트.
-- [x] PortfoliosDropdown relayout 방지 및 기타 수정 사항 반영
-	- [x] PortfoliosDropdown 누를 시 stale 값으로 먼저 렌더(포트폴리오 이동, 포트폴리오 추가)된 후 포트폴리오 목록 렌더로 인한 layout/repaint 일어남.
-	- [x] SearchBar Placeholder "검색어를 입력하세요" --> "종목을 검색하세요"
-	- [x] DatePicker
-		- "매입 이력 수정 모드"일 때 우리 DatePicker로 교체.
-		- DatePicker 초기값을 오늘 날짜말고 매입이력 등록된 날짜 적용.
-- [x] 바뀐 Design System이 미적용된 부분 수정.
-#### Bakha
-- [x] 관심목록
-	- [x] 관심종목 단일목록 조회시 이름 필요
-	- [x] `StockPage`에서 로그인 되었을 때만 "관심 종목 해제/추가" 버튼 표시
-- [x] Design System Font에 letter-spacing 적용 (Watchlist API 완성 후 PR 머지)
 #### Jay
 - [ ] **Signup Page** (이메일 회원가입 API 대기)
 	- [x] 이메일/비밀번호 가입
 	- [x] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
 	- [x] 회원가입 페이지 디자인에 맞게 단계 구성
-- [x] Toast Design 적용
-- [x] 예산 0 가능하게, 목표 수익률 손실률도 설정안해도 가능하게
 
-### 1/26 배포 목표
+### 1/26 작업 목표
 #### Kakamotobi
 - [x] OAuth 무한 로딩 문제 해결
 	- 원인: Strict Mode에 의해서 같은 인가코드를 두번 전송 -> 401 받음 -> 로그아웃.
