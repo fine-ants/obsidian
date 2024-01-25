@@ -10,7 +10,11 @@
 ## FineAnts Notification Feature
 - 포트폴리오 목표 수익률 알림
 - 포트폴리오 최대 손실율 알림
-- 종목 현재가 알림
+- 지정가 알림
+	- 한 종목 당 최대 5개 제한
+- 알림 생명: 1달
+- 알림 패널을 여는 순간 모두 읽음 처리
+	- UI는 빨간점 유지. 새로고침 및 다른 페이지 가면 빨간점 사라짐.
 
 ## Prerequisites
 - Web push notifications can be implementing using a combination of the Push API, Notifications API, and Service Worker API.

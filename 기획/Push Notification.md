@@ -8,12 +8,15 @@
 		- [[#Push Service Subscribe 과정]]
 		- [[#Push Message 과정]]
 		- [[#Push Service Unsubscribe 과정]]
+	- [[#Client-Server Push Notification 흐름]]
 - [[#Reference]]
 
 ## FineAnts Push Notification 기능 요구사항
 - 포트폴리오 목표 수익률 알림
 - 포트폴리오 최대 손실율 알림
-- 종목 현재가 알림
+- 지정가 알림
+	- 한 종목 당 최대 5개 제한
+- 알림 생명: 1달
 
 ## Overview
 ### Web Push 구조
@@ -60,6 +63,9 @@
 11. FE는 BE로 Subscription 해제 요청을 보냄.
 12. BE는 사용자와 관련된 Subscription 정보를 제거함.
 13. FE는 `PushSubscription: unsubscribe()`을 통해 Browser를 거치고 Push Service에서 unsubscribe함.
+
+### Client-Server Push Notification 흐름
+![[client-server-push-notification.png]]
 
 ## Reference
 ### HTTP Web Push 관련
