@@ -122,6 +122,7 @@
 - [x] Portfolio holdings SSE 반영 안되는 문제 해결
 #### Kakamotobi & Jay
 - [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
+	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 #### Bakha
 - [ ] Stock Page
 - [ ] Landing Page
