@@ -65,7 +65,7 @@
 13. FE는 `PushSubscription: unsubscribe()`을 통해 Browser를 거치고 Push Service에서 unsubscribe함.
 
 ### Client-Server Push Notification 흐름
-![[client-server-push-notification.png]]
+
 
 ## Reference
 ### HTTP Web Push 관련
