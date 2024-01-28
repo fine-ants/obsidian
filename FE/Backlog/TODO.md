@@ -96,7 +96,7 @@
 
 ### 1/26 배포 목표
 #### Kakamotobi
-- [ ] 설정 페이지 (API 대기)
+- [x] 설정 페이지 (API 대기)
 	- [x] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
 	- [x] `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
 	- [x] 프로필 설정
@@ -109,7 +109,7 @@
 	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
 	- [x] 로그인 실패시 토스트.
 #### Jay
-- [ ] **Signup Page** (이메일 회원가입 API 대기)
+- [x] **Signup Page** (이메일 회원가입 API 대기)
 	- [x] 이메일/비밀번호 가입
 	- [x] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
 	- [x] 회원가입 페이지 디자인에 맞게 단계 구성
