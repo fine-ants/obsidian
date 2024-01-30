@@ -94,34 +94,12 @@
 - To Design
 	- Dark Mode
 
-### 1/26 배포 목표
-#### Kakamotobi
-- [ ] 설정 페이지 (API 대기)
-	- [x] `Header`에 있는 `SearchBar`에 search term highlight이 적용 안됨.
-	- [x] `UserDropdown`에 있는 `img`에 image가 없을시 (alt 표시) size 조정 필요.
-	- [x] 프로필 설정
-		- [x] 프로필 정보 변경 MSW
-	- [x] 계정 설정
-		- [x] "계정 삭제하기" dialog
-		- [x] New Password MSW
-		- [x] Account Delete MSW
-	- [x] SearchBar dropdown 빈문자열일 때 숨김
-	- [x] Nickname 중복 확인 로직 hook으로 분리 (`ProfileSettingsSubPage`, `NicknameSubPage`)
-	- [x] 로그인 실패시 토스트.
-#### Jay
-- [ ] **Signup Page** (이메일 회원가입 API 대기)
-	- [x] 이메일/비밀번호 가입
-	- [x] 로그인 페이지 이메일 input에 text가 있을 시 endAdornment 상시 표시로 수정
-	- [x] 회원가입 페이지 디자인에 맞게 단계 구성
-
-### 1/26 작업 목표
-#### Kakamotobi
-- [x] OAuth 무한 로딩 문제 해결
-	- 원인: Strict Mode에 의해서 같은 인가코드를 두번 전송 -> 401 받음 -> 로그아웃.
-	- 해결: 개발 모드에서 OAuth Login 테스트를 할때는 Strict Mode 해제.
-- [x] Portfolio holdings SSE 반영 안되는 문제 해결
+### 2/5 작업 목표
 #### Kakamotobi & Jay
 - [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
+	- [x] Service Worker 구현
+	- [ ] `user` API 분리 및 type 수정
+	- [ ] API 초안 구현
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 #### Bakha
 - [ ] Stock Page
@@ -130,6 +108,4 @@
 	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
 - [ ] Indices Page
 	- [ ] TradingView widget이 자동으로 dark mode됨.
-#### Jay
-- [x] Toast
 
