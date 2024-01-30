@@ -98,6 +98,8 @@
 #### Kakamotobi & Jay
 - [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
 	- [x] Service Worker 구현
+	- [ ] Notifications Panel, Notifications Modal UI - Jay
+	- [ ] Active Notifications UI - Kakamotobi
 	- [ ] Main application에 "message" listener 처리
 	- [ ] `user` API 분리 및 type 수정
 	- [ ] API 초안 구현
