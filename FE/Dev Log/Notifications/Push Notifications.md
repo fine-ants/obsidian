@@ -172,7 +172,14 @@ https://vapidkeys.com/
 		{
 			"message": {
 				"token": "blah",
+				// handled by FCM Client SDK
+				"notification": {
+					"title": "Portfolio Achievement",
+					"body": "Portfolio1 has reached its target valuation",
+				},
+				// handled by Client App
 				"data": {
+					"title": "Portfolio Achievement",
 					"body": "Portfolio1 has reached its target valuation",
 				}
 			}
