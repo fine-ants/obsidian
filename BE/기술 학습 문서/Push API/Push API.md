@@ -21,10 +21,26 @@ push message는 User Agent와 웹 애플리케이션 사이에 설립된 활성�
 ---
 정리하면 Push API는 웹 애플리케이션과 User Agent간에 비동기적으로 통신하는 것을 지원하는 API입니다. Push API를 통해서 User Agent가 먼저 웹 애플리케이션에 요청하고 응답을 받는 Pull 방식 대신 웹 애플리케이션 서버에서 먼저 데이터를 전송하는 방식을 제공합니다.
 
-위와 같은 방식을 수행하기 위해서 Push API는 push service를 통해서 push message를 User Agent에게 전송합니다. Push API의 장점은 push message를 User Agent가 오프라인 인 경우에도 전송할 수 있다는 점입니다. 전송하기 위해서 push message는 push service에 의해서 메시지를 받을 때까지 저장하다가 User Agent가 온라인 경우에 
+위와 같은 방식을 수행하기 위해서 Push API는 push service를 통해서 push message를 User Agent에게 전송합니다. Push API의 장점은 push message를 User Agent가 오프라인 인 경우에도 전송할 수 있다는 점입니다. 전송하기 위해서 push message는 push service에 의해서 메시지를 받을 때까지 저장하다가 User Agent가 온라인 경우(백그라운드 포함)에 push message를 전송받습니다.
+
+Push API의 push message의 단점은 직접적으로 통신하는 것보다 지연율이 높고 push service가 전송할 수 있는 push message의 크기와 개수에 제한을 가집니다.
 
 ## Dependencies
-web push protocol(RTC8030)은 User Agent, 애플리케이션 서버와 push service간에 통신 방법을 설명합니다.  
+web push protocol(RTC8030)은 User Agent, 애플리케이션 서버와 push service간에 통신 방법을 설명합니다.  대체적인 프로토콜들이 web push protocol들을 대신하여 사용될 수 있지만, 해당 스펙에서는 web push protocol의 사용을 가정합니다. 대체적인 프토콜들은 호환되는 의미들을 제공할 것으로 예상됩니다.
+
+RFC7231 3.1.2.2 섹션에 설명된 Content-Encoding HTTP Header는  push message의 payload에 적용되는 컨텐츠 코딩을 나타냅니다.
+
+## 3. Concepts
+### 3.1 Application Server
+Application Server는 웹 애플리케이션의 서버 사이드 컴포넌트를 의미합니다.
+
+### 3.2 Push Message
+push message는 애플리케이션 서버에서 웹 애플리케이션에 전송하는 데이터입니다.
+
+push message는 메시지가 제출된 push subscription과 관련된 active worker에게 전달됩니다. 만약 service worker가 현재 실행중이지 않다면, worker는 배송을 시작합니다.
+
+### 3.3 Push subscription
+
 
 
 
