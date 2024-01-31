@@ -8,6 +8,7 @@
 	- [[#Notifications API]]
 	- [[#Client API]]
 	- [[#VAPID Keys]]
+- [[#Firebase Cloud Messaging(FCM)]]
 
 ## FineAnts Notification Feature
 - 포트폴리오 목표 수익률 알림
@@ -112,6 +113,9 @@ https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 https://www.rfc-editor.org/rfc/rfc8030
 https://www.w3.org/TR/push-api/
 https://developer.mozilla.org/en-US/docs/Web/API/Push_API
+[Notifications  |  web.dev](https://web.dev/explore/notifications)  
+[Push notifications overview  |  Articles  |  web.dev](https://web.dev/articles/push-notifications-overview)  
+[Add push notifications to a web app  |  Google Codelabs](https://codelabs.developers.google.com/codelabs/push-notifications#0)  
 
 ### Notifications API
 - Allows the web app (browser) to display notifications on the OS even when the application is idle or in the background.
@@ -147,7 +151,12 @@ https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage
 https://datatracker.ietf.org/doc/html/draft-thomson-webpush-vapid-02
 https://vapidkeys.com/
 
-## Reference
-[Notifications  |  web.dev](https://web.dev/explore/notifications)  
-[Push notifications overview  |  Articles  |  web.dev](https://web.dev/articles/push-notifications-overview)  
-[Add push notifications to a web app  |  Google Codelabs](https://codelabs.developers.google.com/codelabs/push-notifications#0)  
+## Firebase Cloud Messaging(FCM)
+![[fcm-illustration.png]]
+
+
+
+
+### Reference
+[FCM Architectural Overview  |  Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/fcm-architecture)
+[Set up a JavaScript Firebase Cloud Messaging client app](https://firebase.google.com/docs/cloud-messaging/js/client)
