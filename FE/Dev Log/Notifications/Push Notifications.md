@@ -152,8 +152,10 @@ https://datatracker.ietf.org/doc/html/draft-thomson-webpush-vapid-02
 https://vapidkeys.com/
 
 ## Firebase Cloud Messaging(FCM)
+### Overview
 ![[fcm-illustration.png]]
-
+### 구독 과정
+1. FE
 
 
 
