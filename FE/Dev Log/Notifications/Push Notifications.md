@@ -162,9 +162,13 @@ https://vapidkeys.com/
 	1. 이때, **Public Key**를 포함하여 보냄.
 3. FCM은 Registration Token을 생성하여 FE로 응답함.
 	1. 
-4. dd
-
-
+4. FE는 받은 Registration Token을 BE로 보냄.
+5. BE는 해당 정보를 DB에 저장함.
+### Message 과정
+![[client-fcm-server-message-flow.png]]
+6. BE는 FCM Admin SDK를 사용하여 Message을 생성하여 FCM Backend으로 보냄.
+7. FCM Backend은 Message ID와 metadata를 생성하여 BE로부터 받은 Message와 함께 특정 platform transport layer로 보냄.
+Push Service는 BE로부터 받은 메시지를 들고 있는 **Public Key**로 검증한 후, 타겟 Client로 메시지를 전달함.
 ### Reference
 [FCM Architectural Overview  |  Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/fcm-architecture)
 [Set up a JavaScript Firebase Cloud Messaging client app](https://firebase.google.com/docs/cloud-messaging/js/client)
