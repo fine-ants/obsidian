@@ -178,17 +178,17 @@ https://vapidkeys.com/
 			}
 		}
 		```
-1. FCM Backend은 Message ID와 metadata를 생성하여 BE로부터 받은 Message와 함께 특정 platform transport layer (Ex: Web Push)로 보냄.
-2. 기기가 온라인이라면 해당 platform transport layer을 통해 기기로 보내짐.
-3. Client App의 Background/Foreground 상태에 따라 desktop notification을 보내거나 애플리케이션으로 전달함.
+7. FCM Backend은 Message ID와 metadata를 생성하여 BE로부터 받은 Message와 함께 특정 platform transport layer (Ex: Web Push)로 보냄.
+8. 기기가 온라인이라면 해당 platform transport layer을 통해 기기로 보내짐.
+9. Client App의 Background/Foreground 상태와 `data`/`notification` key 여부에 따라 desktop notification을 보내거나 애플리케이션으로 전달함.
 ### Message Type
 #### Notification Message
 - Set the `notification` key in the payload to send a Notification Message type.
-	- Optional인 `data` payload을 포함할시, `notification` payload은 FCM Client SDK가 핸들링하고 `data` payload은 Client App에서 핸들링해야 함.
-- Client App이 Background에 있을시, FCM SDK에서 자동으로 핸들링 함.
+	- `data` payload도 optional로 포함할 수 있음.
+- Client App이 Background에 있을시, FCM Client SDK가 자동으로 핸들링 함.
 	- `data` payload가 있다면, Client App에서 핸들링해야 함.
-- Client App이 Foreground에 있을시, Client App이 핸들링 함.
-
+- Client App이 Foreground에 있을시, Client App이 핸들링해야 함.
+	- `data` payload가 있다면, 그것도 Client App이 핸들링해야 함.
 - Firebase Console 또는 Admin SDK 및 FCM Server Protocol을 활용하여 보낼 수 있음.
 - Max. Payload = 4,000 bytes.
 	- 1000 character limit when sent from Firebase Console (Notifications Composer).
