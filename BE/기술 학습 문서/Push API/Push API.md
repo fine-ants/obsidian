@@ -65,7 +65,13 @@ push subscription을 생성하기 위해서 PushSubscriptionOptionsInit 가 주�
 ### 3.3.1 Subscription Refreshes
 User Agent나 push service는 어느때건 push subscription을 갱신할 수 있습니다. 에를 들어 push subscription이 특정한 나이에 도달하는 경우가 있습니다.
 
-이러한 경우가 발생하면, User Agent는 
+이러한 경우 User Agent는 현재 push subscription을 생성하기 위해 제공된 PushSubscriptionOptions이 지정된 경우 push subscription을 생성하는 단계를 실행해야 합니다. 새로운 push subscription은 기존의 subscription과는 다른 키페어를 가져야 합니다.
+
+성공적으로 새로운 push subscription이 생성되면, User Agent는 push subscription과 관련된 service worker 등록을 등록으로하는 "pushsubscriptionchange" 이벤트를 반드시 발생시켜야 합니다. PushSubscription 인스턴스는 초기의 push subscription을 oldSubscription으로서 나타내고 새로운 push subscription을 newSubscription으로 나타냅니다.
+
+애플리케이션 서버들에 변경을 전파하기 위한 시간을 허용하기 위해서 User Agent는 갱신후에 짧은 시간동안 old push subscription을 대상으로한 메시들을 접수할 수 있도록 지속되어야 합니다. 갱신된 push subscription에 대한 메시지가 수신되면 이전 push subscription은 비활성화해야 합니다.
+
+만약 User Agent가 push subscription 갱신을 하지 못한다면, User Agent는 주기적으로 갱신을 재시도해야 합니다. push subscription이 예를 들어 만료와 같은 이유로 더이상 사용되지 않는다면, User Agent는 
 
 
 
