@@ -9,6 +9,10 @@
 	- [[#Client API]]
 	- [[#VAPID Keys]]
 - [[#Firebase Cloud Messaging(FCM)]]
+	- [[#Overview]]
+	- [[#구독 과정]]
+	- [[#Message 과정]]
+	- [[#Message Type]]
 
 ## FineAnts Notification Feature
 - 포트폴리오 목표 수익률 알림
@@ -159,7 +163,7 @@ https://vapidkeys.com/
 	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
 	2. 비고: 사용자는 OS 설정에서 Chrome이 데스크탑 Notification을 보여줄 수 있도록 설정을 해줘야함.
 2. FE는 FCM으로 Subscribe 요청을 보내어 해당 기기를 등록.
-	1. 이때, **Public Key**를 포함하여 보냄.
+	1. 이때, **Vapid Key**를 포함하여 보냄.
 3. FCM은 Registration Token을 생성하여 FE로 응답함.
 	1. 
 4. FE는 받은 Registration Token을 BE로 보냄.
@@ -184,6 +188,7 @@ https://vapidkeys.com/
 				},
 				// Optional platform-specific options
 				"android": {
+					"TTL": "4500s",
 					"notification": {
 						"click_action": "OPEN_ACTIVITY_!"
 					},
@@ -251,7 +256,8 @@ https://vapidkeys.com/
 		}
 	};
 	```
-
+#### Notes
+- On Android and Web/JS, `TTL` can be set between 0 to 2,419,200 seconds (28 days). 
 ### Reference
 [FCM Architectural Overview  |  Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/fcm-architecture)
 [Set up a JavaScript Firebase Cloud Messaging client app](https://firebase.google.com/docs/cloud-messaging/js/client)
