@@ -165,7 +165,6 @@ https://vapidkeys.com/
 2. FE는 FCM으로 Subscribe 요청을 보내어 해당 기기를 등록.
 	1. 이때, **Vapid Key**를 포함하여 보냄.
 3. FCM은 Registration Token을 생성하여 FE로 응답함.
-	1. 
 4. FE는 받은 Registration Token을 BE로 보냄.
 5. BE는 해당 정보를 DB에 저장함.
 ### Message 과정
