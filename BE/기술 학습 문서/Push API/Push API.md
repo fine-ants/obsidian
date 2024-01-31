@@ -71,7 +71,18 @@ User Agent나 push service는 어느때건 push subscription을 갱신할 수 �
 
 애플리케이션 서버들에 변경을 전파하기 위한 시간을 허용하기 위해서 User Agent는 갱신후에 짧은 시간동안 old push subscription을 대상으로한 메시들을 접수할 수 있도록 지속되어야 합니다. 갱신된 push subscription에 대한 메시지가 수신되면 이전 push subscription은 비활성화해야 합니다.
 
-만약 User Agent가 push subscription 갱신을 하지 못한다면, User Agent는 주기적으로 갱신을 재시도해야 합니다. push subscription이 예를 들어 만료와 같은 이유로 더이상 사용되지 않는다면, User Agent는 
+만약 User Agent가 push subscription 갱신을 하지 못한다면, User Agent는 주기적으로 갱신을 재시도해야 합니다. push subscription이 예를 들어 만료와 같은 이유로 더이상 사용되지 않는다면, User Agent는 push subscription과 관련된 service worker 등록을 등록으로 하는 "pushsubscriptionchange" 이벤트를 발생하고 PushSubscription 인스턴스는 비활성화된 push subscription을 oldSubscription으로 나타내고 newSubscription을 null로 나타냅니다.
+
+### 3.3.2 Subscription Deactivation
+push subscription이 비활성화될때 User Agent와 push service 두곳 모두에서 저장된 push subscription이 삭제되어야 합니다. 이 push subscription에 대한 부차적인 push message들은 전송되면 안됩니다.
+
+push subscription은 관련 service worker 등록이 등록 해제되면 비활성화되지만 push subscription은 이전에 비활성화될 수 있습니다. 
+
+NOTE
+push subscription은 service worker 등록이 클리어(clear)되면 제거됩니다.
+
+### 3.4 Push Service
+
 
 
 
