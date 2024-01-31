@@ -12,8 +12,10 @@ Push API는 비동기적으로 User Agent와 통신하는 것을 웹 애플리�
 
 특히, push message는 웹 애플리케이션이 브라우저창이 닫혀있는데도 불구하고 전송됩니다. 이는 사용자가 웹 애플리케이션을 닫을 수 있지만, push message가 수신될때 웹 애플리케이션이 재시작될 수 있다는 이점으로부터 여전히 이익을 얻는 사례에 관한 것입니다. 예를 들어, push message는 수신되는 WebRTC(Web Real-Time Communication) 호출을 사용자에게 알리기 위해 사용될 수 있습니다.
 
-push message는 또한 User Agent가 오프라인일 때도 전송가능합니다. 이를 지원하기 위해 push service는 User Agent가 이용이 가능할 때까지 User Agent에 대한 메시지를 저장합니다.
+push message는 또한 User Agent가 오프라인일 때도 전송가능합니다. 이를 지원하기 위해 push service는 User Agent가 이용이 가능할 때까지 User Agent에 대한 메시지를 저장합니다. 이는 웹 애플리케이션이 사용자가 오프라인 상태에서 발생하는 변경 사항을 학습하고 User Agent가 적시에 관련된 정보를 제공받을 수 있도록 사용 사례를 지원합니다. push message는 push service에 의해서 User Agent가 메시지를 받을 때까지 저장됩니다.
 
+또한 Push API는 User Agent가 웹 애플리케이션을 능동적으로 사용하는 동안, push message의 신뢰성 있는 전송을 보장합니다. 예를 들어 사용자가 웹 애플리케이션을 능동적으로 사용하거나 웹 애플리케이션이 active worker, frame, 백그라운드 창을 통해 애플리케이션 서버와 통신하는 동안 push message의 신뢰성 있는 전송을 보장합니다. 이것은 Push API에 대한 주요한 사용 사례는 아닙니다. 웹 애플리케이션은 애플리케이션 서버와 지속적인 통신을 유지할 필요가 없도록 Push API를 사용하여 빈번하지 않은 메시지를 선택할 수 있습니다.
 
+push message는 User Agent와 웹 애플리케이션 사이에 설립된 활성화된 통신 채널이 준비되지 않을 때 적합합니다. 
 
 
