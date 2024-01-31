@@ -54,7 +54,18 @@ push subscription을 생성하기 위해서 PushSubscriptionOptionsInit 가 주�
 1. subscription을 새로운 PushSubscription으로 설정합니다.
 2. 옵션을 새로 생성한 PushSubscriptionOptions 객체로 설정하고 해당 객체 속성을 해당 멤버 및 optionsDictionary의 값으로 초기화합니다.
 3. subscription의 options 속성을 options로 설정합니다.
-4. 
+4. 새로운 P-256 ECDH(Elliptic Curve Diffie-Hellman) 키 페어를 생성합니다. subscription의 내부 슬롯에 있는 private key를 저장합니다. private key값은 애플리케이션들에서 사용가능하면 안됩니다. public key 또한 내부 슬롯에 저장되고 "p256dh"의 매개변수와 같이 PushSubscription의 메소드 getKey()를 호출함으로써 가져올 수 있습니다.
+5. 새로운 [RFC8291]에 정의된 8진수 시퀀스로 구성된 인증 비밀 정보를 생성합니다. subscription의 내부 슬롯에 인증 비밀 정보를 저장합니다. 이 인증 비밀 정보 키는 "auth" 매개변수와 같이 PushSubscription의 메소드 getKey()를 호출함으로써 가져올 수 있습니다.
+6. 새로운 push subscription을 요청합니다. 설정된 옵션의 applicationServerKey 속성을 포함합니다. 
+7. push subscription이 성공적으로 완료될 때
+	1. push subscription에 의해서 제공되는 URL을 subscription의 endpoint 속성에 설정합니다.
+	2. 만약 push subscription에 의해서 제공되면, subscription의 만료 시간을 설정합니다.
+8. subscription을 반환합니다.
+
+### 3.3.1 Subscription Refreshes
+User Agent나 push service는 어느때건 push subscription을 갱신할 수 있습니다. 에를 들어 push subscription이 특정한 나이에 도달하는 경우가 있습니다.
+
+이러한 경우가 발생하면, User Agent는 
 
 
 
