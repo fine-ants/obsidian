@@ -2,10 +2,12 @@
 
 ## Table of Contents
 - [[#FineAnts Notification Feature]]
-- [[#Push API]]
-- [[#Notifications API]]
-- [[#Client API]]
-- [[#Flow]]
+- [[#Prerequisites]]
+- [[#APIs]]
+	- [[#Push API]]
+	- [[#Notifications API]]
+	- [[#Client API]]
+	- [[#VAPID Keys]]
 
 ## FineAnts Notification Feature
 - 포트폴리오 목표 수익률 알림
@@ -57,40 +59,63 @@
 ### Reference
 https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 
-## Push API
+## APIs
+### Push API
 - Allows the Server to send a message to a Client even when the web application is not in the foreground on the browser.
 - Done via a push service (service worker) at any time.
-### Overview
+#### Web Push 구조
 ![[webpush-architecture.png]]
-- UA creates a new message subscription by sending a POST request to the Push Service.
-	- If successful, a URI for the push message subscription is created and responded in the Location header.
-- UA distributes the subscription (the push URI) to the Application Server.
-- The Application Server uses the subscription to send messages to the Push Service.
-	- The Application Server sends an HTTP POST request to the Push Service with the message content in the `body` of the request.
-		- It must also include the Time-To-Live(TTL) header (value in seconds indicating how long a push message is retained by the Push Service) when requesting for push message delivery.
-			- Ex: if the user is offline, the Push Service can store the push messages for a period so that they can be displayed when they're back online.
-		- If successful, the Push Service responds with 201 and a URI for the push message resource placed in the Location header. (Note: does not mean that the message has been delivered to UA).
-			- If the Application Server wants to know when the push message is delivered to the UA (push message receipt), it can include the `Prefer header` field with the `"respond-async"` preference, which the Push Service will confirm the delivery. (Note: the particular Push Service must support delivery confirmations).
-	- The Application Server can send an HTTP GET request to the receipt subscription resource to check the delivery of receipts from the Push Service. The Push Service does not respond to this request; instead, it uses HTTP/2 server push to send push receipts when messages are acknowledged by the UA.
-		- The response to the synthesized GET request includes a status code indicating the result of the message delivery and carries no data.
-- The UA uses the subscription to monitor the Push Service for incoming messages.
-	- The UA sends a GET request to a push message subscription resource. The Push Service does not respond to this request; instead, it uses HTTP/2 server push to send the contents of the push messages send by the Application Server.
-	- The UA must send an HTTP DELETE request to the Push Service on the push message resource to indicate that it received the push message.
-		- If the DELETE request is not sent within some time, the Push Service considers the message not delivered and will retry deliverying the message until the message expires.
-### Flow of Events for Subscription
+#### Push Service Subscription 및 Push Message 흐름
 ![[push-api-sequence-diagram.png]]
-
-### Browser Compatibility
+##### Push Service Subscribe 과정
+1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
+	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
+	2. 비고: 사용자는 OS 설정에서 Chrome이 데스크탑 Notification을 보여줄 수 있도록 설정을 해줘야함.
+2. FE는 Browser의 Push API를 통해 Push Service로 Subscribe 요청을 보냄.
+	1. 이때, **Public Key**를 포함하여 보냄.
+3. Push Service는 `PushSubscription` 객체를 생성하여 FE로 응답함.
+	1. 이 `PushSubscription` 객체는 받은 Publick Key와 연결된 Subscription URL Endpoint를 담고 있음.
+		```json
+		// PushSubscription Example
+		{
+			"endpoint": "https://push_service_endpoint...",
+			"expirationTime": null,
+			"keys": {
+				"p256dh": "BBFkhjj6iuxKoFTwl_l25xlUO4RaUHl6iXCXoBtsHCXQ9V4VVaMrZCF",
+				"auth": "pE6ZHrFS1bisuuW6hCowrA"
+			}
+		}
+		```
+4. FE는 받은 `PushSubscription` 객체를 BE로 보냄.
+5. BE는 해당 정보를 DB에 저장함.
+##### Push Message 과정
+6. BE는 새로운 메시지를 **web push protocol request**에 맞게 Push Service(`PushSubscription` 객체에 들어있는 endpoint)로 보냄.
+	1. **Web push protocol request**은 메시지 내용, 메시지를 받을 타겟 Client, 그리고 Push Service가 "어떻게" 메시지를 전달할지(Ex: TTL header)를 포함.
+	2. **Private Key**로 JSON 내용을 sign해야 함.
+	3. Web Service Request Java Library Ex: https://github.com/web-push-libs/webpush-java
+7. Push Service는 BE로부터 받은 메시지를 들고 있는 **Public Key**로 검증한 후, 타겟 Client로 메시지를 전달함.
+	1. Client가 현재 offline이면, Push Service는 메시지들을 queue에 저장해두고 Client가 online이 될 때 전달함. 또는, 설정해둔 메시지 시간이 만료되면 queue에서 제거함.
+8. Browser는 받은 push message을 decrypt하고 Service Worker에 `push` event을 통해 메시지를 전달함.
+9. Service Worker에 있는 `push` event handler는
+	1. `ServiceWorkerRegistration: showNofication()`을 통해 데스크탑 push notification을 보냄.
+	2. `Client: postMessage()`을 통해 FE로 메시지를 전달함.
+10. FE는 받은 메시지를 UI에 반영.
+	1. BE와 적절한 상태 관리(Ex: 읽음, 등) 필요.
+##### Push Service Unsubscribe 과정
+11. FE는 BE로 Subscription 해제 요청을 보냄.
+12. BE는 사용자와 관련된 Subscription 정보를 제거함.
+13. FE는 `PushSubscription: unsubscribe()`을 통해 Browser를 거치고 Push Service에서 unsubscribe함.
+#### Browser Compatibility
 - Fully supported in Chrome, Edge, FireFox.
 - Partially Supported in Safari - requires macOS 13 (Ventura) and later.
-### Reference
+#### Reference
 https://www.rfc-editor.org/rfc/rfc8030
 https://www.w3.org/TR/push-api/
 https://developer.mozilla.org/en-US/docs/Web/API/Push_API
 
-## Notifications API
+### Notifications API
 - Allows the web app (browser) to display notifications on the OS even when the application is idle or in the background.
-### FineAnts Requirements & Browser Compatibility
+#### FineAnts Requirements & Browser Compatibility
 - `Notification.title` ("FineAnts")
 - `Notification.options.body` (Alert content)
 - `Notification.options.icon` (FineAnts logo)
@@ -103,34 +128,16 @@ https://developer.mozilla.org/en-US/docs/Web/API/Push_API
 	- FireFox 72 requires `Notification.requestPermission()` to be called from a user invoked event (Ex: click).
 - Other
 	- Chrome 49 doesn't allow notifications in incognito mode.
-### Reference
+#### Reference
 https://www.w3.org/TR/notifications/
 
-## Client API
+### Client API
 - `postMessage()` - allows a Service Worker to send a message to a Client (a Window, Worker, or SharedWorker).
 	- The message is received in the `"message"` event on `navigator.serviceWorker`.
-### Browser Compatibility
+#### Browser Compatibility
 - Fully supported in all browsers.
-### Reference
+#### Reference
 https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage
-
-## Flow
-
-1. Get user permission to send push notifications.
-	1. Allow notifications for `https://fineants.co` in Chrome.
-	2. Allow notifications for Chrome in OS.
-2. The Client (hence, the browser) sends a subscribe request to a Push Service (using the Push API) including your **Public Authentication Key** (to which the Push Service will associate the resulting endpoint with).
-3. The Push Service generates and sends a `PushSubscription` object that contains the subscription's URL endpoint, to which your **Public Key** is associated to.
-4. The Client sends the received `PushSubscription` object to the Server to be stored in a DB.
----------------------------------------
-5. The Server sends a message request (**web push protocol request**) to the Push Service (endpoint included in the `PushSubscription` object).
-	1. The **web push protocol request** includes the message content, the target Client to send the message to, and instructions on how the Push Service should deliver the message (Ex: TTL header, delay time, etc).
-	2. Use your **Private Key** to sign the JSON information.
-	3. Web Service Request Java Library Ex: https://github.com/web-push-libs/webpush-java
-6. The Push Service receives and authenticates the Server's request using the stored **Public Key**, and then routes the message to the target Client.
-	1. If the Client is offline, the Push Service queues the push message until the Client comes online or until the message expires.
-7. The Browser receives and decryptes the push message data and dispatches a `push` event to your Service Worker.
-	1. The `push` event handler should call `ServiceWorkerRegistration.showNotification()` to display the information as a notification.
 
 ### VAPID Keys
 > An application server can voluntarily identify itself to a push service using the described technique. This identification information can be used by the push service to attribute requests that are made by the same application server to a single entity. This can used to reduce the secrecy for push subscription URLs by being able to restrict subscriptions to a specific application server.  An application server is further able to include additional information that the operator of a push service can use to contact the operator of the application server. | IETF
