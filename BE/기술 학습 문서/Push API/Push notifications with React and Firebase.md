@@ -342,3 +342,5 @@ Firebase 프로젝트의 Cloud Messaing에 접속합니다.
 ![[Pasted image 20240131141327.png]]
 
 테스트 버튼을 눌러서 클라이언트 화면에서 알림이 오는지 확인합니다.
+![[Pasted image 20240131142035.png]]
+
