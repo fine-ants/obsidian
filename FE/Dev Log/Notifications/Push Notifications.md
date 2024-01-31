@@ -176,6 +176,7 @@ https://vapidkeys.com/
 		{
 			"message": {
 				"token": "target client's registration token",
+				
 				// handled by FCM Client SDK
 				"notification": {
 					"title": "Portfolio Achievement",
@@ -186,6 +187,7 @@ https://vapidkeys.com/
 					"title": "Portfolio Achievement",
 					"body": "Portfolio1 has reached its target valuation"
 				},
+				
 				// Optional platform-specific options
 				"android": {
 					"TTL": "4500s",
