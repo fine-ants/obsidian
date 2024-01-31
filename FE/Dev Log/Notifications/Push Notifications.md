@@ -175,7 +175,7 @@ https://vapidkeys.com/
 		```json
 		{
 			"message": {
-				"token": "blah",
+				"token": "target client's registration token",
 				// handled by FCM Client SDK
 				"notification": {
 					"title": "Portfolio Achievement",
