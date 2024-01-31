@@ -32,3 +32,56 @@ $ npm install --save firebase react-bootstrap bootstrap
 ![[Pasted image 20240131133540.png]]
 
 7. firebase.js 파일을 생성하고 다음과 같이 Firebase 설정을 입력합니다.
+```js
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
+
+import { initializeApp } from 'firebase/app';
+
+  
+
+const firebaseConfig = {
+
+apiKey: "...",
+
+authDomain: "...",
+
+projectId: "...",
+
+storageBucket: "...",
+
+messagingSenderId: "...",
+
+appId: "...",
+
+measurementId: "..."
+
+};
+
+  
+
+const firebaseApp = initializeApp(firebaseConfig);
+```
+
+위 firebaseConfig 객체의 값들은 Firebase 프로젝트의 FineAnts 웹앱에 프로젝트 설정 - 일반 페이지에서 확인할 수 있습니다.
+
+## Integrate cloud messaing
+다음으로 우리는 웹 푸시 인증 키를 생성하여야 합니다. FineAnts 웹앱 페이지에서 클라우드 메시징 -> 웹 구성으로 이동합니다.
+![[Pasted image 20240131134038.png]]
+
+위 화면 웹 구성에서 Generate key pair 버튼을 클릭하여 웹 푸시 인증 키를 생성합니다.
+
+firebase.js 파일로 돌아와서 메시징을 활성화하기 위해서 다음과 같이 import합니다.
+```
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
+```
+
+그리고 나서 우리는 firebase 객체로부터 messaging 객체에 다음과 같이 접근할 수 있습니다.
+```
+const firebaseApp = initializeApp(firebaseConfig);
+const messaging = getMessaging(firebaseApp);
+```
+
+### Notification permissions and registering a client
+브라우저로 push notification을 전송하기 위해서 우리는 사용자로부터 알림 허용 권한을 얻어야 합니다. 그러면 다른 웹 사이트에서 봤을 법한 "Enable notifications?" 팝업이 열립니다.
+
+이 요청을 시작하는 방법은 Firebase가 제공하는 getToken 메소드를 호출하는 것입니다. 
