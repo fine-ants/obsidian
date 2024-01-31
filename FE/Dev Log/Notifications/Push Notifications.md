@@ -158,9 +158,9 @@ https://vapidkeys.com/
 1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
 	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
 	2. 비고: 사용자는 OS 설정에서 Chrome이 데스크탑 Notification을 보여줄 수 있도록 설정을 해줘야함.
-2. FE는 FCM으로 Subscribe 요청을 보냄.
+2. FE는 FCM으로 Subscribe 요청을 보내어 해당 기기를 등록.
 	1. 이때, **Public Key**를 포함하여 보냄.
-3. FCM은 token을 생성하여 FE로 응답함.
+3. FCM은 Registration Token을 생성하여 FE로 응답함.
 	1. 
 4. dd
 
