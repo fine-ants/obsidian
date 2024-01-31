@@ -16,6 +16,15 @@ push message는 또한 User Agent가 오프라인일 때도 전송가능합니�
 
 또한 Push API는 User Agent가 웹 애플리케이션을 능동적으로 사용하는 동안, push message의 신뢰성 있는 전송을 보장합니다. 예를 들어 사용자가 웹 애플리케이션을 능동적으로 사용하거나 웹 애플리케이션이 active worker, frame, 백그라운드 창을 통해 애플리케이션 서버와 통신하는 동안 push message의 신뢰성 있는 전송을 보장합니다. 이것은 Push API에 대한 주요한 사용 사례는 아닙니다. 웹 애플리케이션은 애플리케이션 서버와 지속적인 통신을 유지할 필요가 없도록 Push API를 사용하여 빈번하지 않은 메시지를 선택할 수 있습니다.
 
-push message는 User Agent와 웹 애플리케이션 사이에 설립된 활성화된 통신 채널이 준비되지 않을 때 적합합니다. 
+push message는 User Agent와 웹 애플리케이션 사이에 설립된 활성화된 통신 채널이 준비되지 않을 때 적합합니다. Fetch API 또는 WebSocket과 같은 직접적인 통신 방법과 비교했을 때 push message를 전송하는 것은 훨씬 더 많은 리소스를 필요로 합니다. push message는 보통 직접 통신보다 더 높은 지연율을 가지고 있고 사용에 제한을 받을 수 있습니다. 대부분의 push service는 전송할 수 있는 push message의 크기와 개수를 제한합니다.
+
+---
+정리하면 Push API는 웹 애플리케이션과 User Agent간에 비동기적으로 통신하는 것을 지원하는 API입니다. Push API를 통해서 User Agent가 먼저 웹 애플리케이션에 요청하고 응답을 받는 Pull 방식 대신 웹 애플리케이션 서버에서 먼저 데이터를 전송하는 방식을 제공합니다.
+
+위와 같은 방식을 수행하기 위해서 Push API는 push service를 통해서 push message를 User Agent에게 전송합니다. Push API의 장점은 push message를 User Agent가 오프라인 인 경우에도 전송할 수 있다는 점입니다. 전송하기 위해서 push message는 push service에 의해서 메시지를 받을 때까지 저장하다가 User Agent가 온라인 경우에 
+
+## Dependencies
+web push protocol(RTC8030)은 User Agent, 애플리케이션 서버와 push service간에 통신 방법을 설명합니다.  
+
 
 
