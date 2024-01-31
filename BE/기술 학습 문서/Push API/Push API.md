@@ -25,7 +25,7 @@ push message는 User Agent와 웹 애플리케이션 사이에 설립된 활성�
 
 Push API의 push message의 단점은 직접적으로 통신하는 것보다 지연율이 높고 push service가 전송할 수 있는 push message의 크기와 개수에 제한을 가집니다.
 
-## Dependencies
+## 2. Dependencies
 web push protocol(RTC8030)은 User Agent, 애플리케이션 서버와 push service간에 통신 방법을 설명합니다.  대체적인 프로토콜들이 web push protocol들을 대신하여 사용될 수 있지만, 해당 스펙에서는 web push protocol의 사용을 가정합니다. 대체적인 프토콜들은 호환되는 의미들을 제공할 것으로 예상됩니다.
 
 RFC7231 3.1.2.2 섹션에 설명된 Content-Encoding HTTP Header는  push message의 payload에 적용되는 컨텐츠 코딩을 나타냅니다.
@@ -40,7 +40,13 @@ push message는 애플리케이션 서버에서 웹 애플리케이션에 전송
 push message는 메시지가 제출된 push subscription과 관련된 active worker에게 전달됩니다. 만약 service worker가 현재 실행중이지 않다면, worker는 배송을 시작합니다.
 
 ### 3.3 Push subscription
+push subscription은 웹 애플리케이션 대신에 **User Agent와 push service 사이에 설립된 메시지 전송 컨텍스트**입니다. 각각의 push subscription은 service worker 등록과 관련이 있고, service worker 등록은 최소 하나 이상의 push subscription을 가지고 있습니다.
 
+push subscription에는 push endpoint가 있습니다. push endpoint는 애플리케이션 서버가 push message를 보낼 수 있는 push service에 의해서 노출되는 절대 경로 URL이어야 합니다. push endpoint는 push subscription을 고유하게 식별할 수 있어야 합니다.
+
+push subscription는 subscription 만료 시간을 가질 수 있습니다. 만료시간이 설정될 때, 만료시간은 1970년 1월 1일 00:00:00 UTC 이후 구독이 만료되는 시간(밀리초 단위)이어야 합니다. User Agent는 subscription 만료 전에 push subscription 갱신을 위해 갱신을 시도하여야 합니다. 
+
+push subscription은 P-256 ECDH 키페어 및 인증 비밀(authentication secret)을 위한 내부 슬롯을 
 
 
 
