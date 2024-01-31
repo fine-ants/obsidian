@@ -175,12 +175,39 @@ https://vapidkeys.com/
 				// handled by FCM Client SDK
 				"notification": {
 					"title": "Portfolio Achievement",
-					"body": "Portfolio1 has reached its target valuation",
+					"body": "Portfolio1 has reached its target valuation"
 				},
 				// handled by Client App
 				"data": {
 					"title": "Portfolio Achievement",
-					"body": "Portfolio1 has reached its target valuation",
+					"body": "Portfolio1 has reached its target valuation"
+				},
+				// Optional platform-specific options
+				"android": {
+					"notification": {
+						"click_action": "OPEN_ACTIVITY_!"
+					},
+					// ...
+				},
+				"apns": {
+					"payload": {
+						"aps": {
+							"category": "NEW_MESSAGE_CATEGORY"
+						}
+					},
+					// ...
+				},
+				"webpush": {
+					"headers": {
+						"TTL": "86400"
+					},
+					"notification": {
+						"requireInteraction": true,
+						"icon": "/icons/notification.png"
+					},
+					"fcm_options": {
+						"link": "https://fineants.co"
+					}
 				}
 			}
 		}
@@ -189,6 +216,8 @@ https://vapidkeys.com/
 8. 기기가 온라인이라면 해당 platform transport layer을 통해 기기로 보내짐.
 9. Client App의 Background/Foreground 상태와 `data`/`notification` key 여부에 따라 desktop notification을 보내거나 애플리케이션으로 전달함.
 ### Message Type
+- A message can be either of type notification or data or both.
+- Messages are handled differently depending on the message type and the Client App's Background/Foreground state.
 #### Notification Message
 - Set the `notification` key in the payload to send a Notification Message type.
 	- `data` payload도 optional로 포함할 수 있음.
