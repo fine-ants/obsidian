@@ -167,8 +167,17 @@ https://vapidkeys.com/
 ### Message 과정
 ![[client-fcm-server-message-flow.png]]
 6. BE는 FCM Admin SDK를 사용하여 Message을 생성하여 FCM Backend으로 보냄.
-7. FCM Backend은 Message ID와 metadata를 생성하여 BE로부터 받은 Message와 함께 특정 platform transport layer로 보냄.
-Push Service는 BE로부터 받은 메시지를 들고 있는 **Public Key**로 검증한 후, 타겟 Client로 메시지를 전달함.
+7. FCM Backend은 Message ID와 metadata를 생성하여 BE로부터 받은 Message와 함께 특정 platform transport layer (Ex: Web Push)로 보냄.
+8. 기기가 온라인이라면 해당 platform transport layer을 통해 기기로 보내짐.
+9. 애플리케이션의 Background/Foreground 상태에 따라 desktop notification을 보내거나 애플리케이션으로 전달함.
+### Message Type
+- Notification Message
+	- Client App이 Background에 있을시, FCM SDK에서 (Client App을 대신하여) 자동으로 핸들링 함.
+	- Client App이 Foreground에 있을시, Client App이 핸들링 함.
+	- Max. Payload = 4000 bytes.
+		- 1000 character limit when sent from Firebase Console (Notifications Composer).
+- Data Message
+	- Client App에서 핸들링함.
 ### Reference
 [FCM Architectural Overview  |  Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/fcm-architecture)
 [Set up a JavaScript Firebase Cloud Messaging client app](https://firebase.google.com/docs/cloud-messaging/js/client)
