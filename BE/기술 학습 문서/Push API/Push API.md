@@ -46,7 +46,15 @@ push subscription에는 push endpoint가 있습니다. push endpoint는 애플�
 
 push subscription는 subscription 만료 시간을 가질 수 있습니다. 만료시간이 설정될 때, 만료시간은 1970년 1월 1일 00:00:00 UTC 이후 구독이 만료되는 시간(밀리초 단위)이어야 합니다. User Agent는 subscription 만료 전에 push subscription 갱신을 위해 갱신을 시도하여야 합니다. 
 
-push subscription은 P-256 ECDH 키페어 및 인증 비밀(authentication secret)을 위한 내부 슬롯을 
+push subscription은 [RFC8291]에 따른 P-256 ECDH 키페어 및 인증 비밀(authentication secret)을 위한 내부 슬롯을 갖고 있습니다. 이 슬롯들은 push subscription이 생성될 때 채워져야 합니다. 
+
+If the [user agent](https://www.w3.org/TR/push-api/#dfn-user-agent) has to change the keys for any reason, it _MUST_ [fire the "`pushsubscriptionchange`" event](https://www.w3.org/TR/push-api/#dfn-fire-the-pushsubscriptionchange-event) with the [service worker registration](https://www.w3.org/TR/service-workers/#dfn-service-worker-registration) associated with the [push subscription](https://www.w3.org/TR/push-api/#dfn-push-subscription) as registration, a [`PushSubscription`](https://www.w3.org/TR/push-api/#dom-pushsubscription) instance representing the [push subscription](https://www.w3.org/TR/push-api/#dfn-push-subscription) having the old keys as oldSubscription and a [`PushSubscription`](https://www.w3.org/TR/push-api/#dom-pushsubscription) instance representing the [push subscription](https://www.w3.org/TR/push-api/#dfn-push-subscription) having the new keys as newSubscription.
+
+push subscription을 생성하기 위해서 PushSubscriptionOptionsInit 가 주어질때
+1. subscription을 새로운 PushSubscription으로 설정합니다.
+2. 옵션을 새로 생성한 PushSubscriptionOptions 객체로 설정하고 해당 객체 속성을 해당 멤버 및 optionsDictionary의 값으로 초기화합니다.
+3. subscription의 options 속성을 options로 설정합니다.
+4. 
 
 
 
