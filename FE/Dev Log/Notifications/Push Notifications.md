@@ -167,17 +167,52 @@ https://vapidkeys.com/
 ### Message 과정
 ![[client-fcm-server-message-flow.png]]
 6. BE는 FCM Admin SDK를 사용하여 Message을 생성하여 FCM Backend으로 보냄.
-7. FCM Backend은 Message ID와 metadata를 생성하여 BE로부터 받은 Message와 함께 특정 platform transport layer (Ex: Web Push)로 보냄.
-8. 기기가 온라인이라면 해당 platform transport layer을 통해 기기로 보내짐.
-9. Client App의 Background/Foreground 상태에 따라 desktop notification을 보내거나 애플리케이션으로 전달함.
+	- Message Example
+		```json
+		{
+			"message": {
+				"token": 
+			}
+		}
+		```
+1. FCM Backend은 Message ID와 metadata를 생성하여 BE로부터 받은 Message와 함께 특정 platform transport layer (Ex: Web Push)로 보냄.
+2. 기기가 온라인이라면 해당 platform transport layer을 통해 기기로 보내짐.
+3. Client App의 Background/Foreground 상태에 따라 desktop notification을 보내거나 애플리케이션으로 전달함.
 ### Message Type
 - Notification Message
 	- Client App이 Background에 있을시, FCM SDK에서 (Client App을 대신하여) 자동으로 핸들링 함.
 	- Client App이 Foreground에 있을시, Client App이 핸들링 함.
-	- Max. Payload = 4000 bytes.
+	- Set the `notification` key in the payload to send a Notification Message type.
+		- Optional인 `data` payload을 포함할시, `notification` payload은 FCM Client SDK가 핸들링하고 `data` payload은 Client App에서 핸들링해야 함.
+	- Firebase Console 또는 Admin SDK 및 FCM Server Protocol을 활용하여 보낼 수 있음.
+	- Max. Payload = 4,000 bytes.
 		- 1000 character limit when sent from Firebase Console (Notifications Composer).
+	- Example
+		```js
+		const payload = {
+			notification: {
+				title: "$FooCorp up 1.43% on the day",
+				body: "$FooCorp gained 11.80 points to close at 835.67, up 1.43% on the day."
+			}
+		};
+		```
+
 - Data Message
-	- Client App에서 핸들링함.
+	- Client App이 핸들링해야 함.
+	- Set the `data` key in the payload to send a Data Message type.
+	- Admin SDK 및 FCM Server Protocol을 활용하여 보낼 수 있음.
+	- Max. Payload = 4,000 bytes.
+	- Example
+		```js
+		const payload = {
+			data: {
+				score: "850",
+				time: "2:45"
+			}
+		};
+		```
+
 ### Reference
 [FCM Architectural Overview  |  Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/fcm-architecture)
 [Set up a JavaScript Firebase Cloud Messaging client app](https://firebase.google.com/docs/cloud-messaging/js/client)
+[About FCM messages  |  Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/concept-options)
