@@ -2,7 +2,7 @@
 
 ## Table of Contents
 - [[#FineAnts Push Notification 기능 요구사항]]
-- [[#Overview]]
+- [[#Web Push API 기반]]
 	- [[#Web Push 구조]]
 	- [[#Push Service Subscription 및 Push Message 흐름]]
 		- [[#Push Service Subscribe 과정]]
@@ -18,7 +18,7 @@
 	- 한 종목 당 최대 5개 제한
 - 알림 생명: 1달
 
-## Overview
+## Web Push API 기반
 ### Web Push 구조
 ![[webpush-architecture.png]]
 
@@ -66,6 +66,9 @@
 
 ### Client-Server Push Notification 흐름
 ![[client-server-push-notification.png]]
+
+## FCM 기반
+
 
 ## Reference
 ### HTTP Web Push 관련
