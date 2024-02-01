@@ -111,6 +111,6 @@
 - [x] Landing Page
 	- [x] Figma 디자인 적용
 	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
-- [ ] Indices Page
-	- [ ] TradingView widget이 자동으로 dark mode됨.
+- [x] Indices Page
+	- [x] TradingView widget이 자동으로 dark mode됨.
 
