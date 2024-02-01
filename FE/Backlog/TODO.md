@@ -107,9 +107,9 @@
 	- [ ] API 초안 구현
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 #### Bakha
-- [ ] Stock Page
-- [ ] Landing Page
-	- [ ] Figma 디자인 적용
+- [x] Stock Page
+- [x] Landing Page
+	- [x] Figma 디자인 적용
 	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
 - [ ] Indices Page
 	- [ ] TradingView widget이 자동으로 dark mode됨.
