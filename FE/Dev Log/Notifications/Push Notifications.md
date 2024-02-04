@@ -227,11 +227,11 @@ https://vapidkeys.com/
 - Messages are handled differently depending on the message type and the Client App's Background/Foreground state.
 #### Notification Message
 - Set the `notification` key in the payload to send a Notification Message type.
+	- Can only contain reserved keys (Ex: `title`, `body`).
 	- `data` payload도 optional로 포함할 수 있음.
 - Client App이 Background에 있을시, FCM Client SDK가 자동으로 핸들링 함.
-	- `data` payload가 있다면, Client App에서 핸들링해야 함.
-- Client App이 Foreground에 있을시, Client App이 핸들링해야 함.
-	- `data` payload가 있다면, 그것도 Client App이 핸들링해야 함.
+	- `data` payload가 있다면, User가 notification tray에 뜬 notification을 클릭 했을 시에만 Client App에서 callback을 통해 `data` payload을 핸들링할 수 있음.
+- Client App이 Foreground에 있을시, Client App이 callback 함수를 통해 `notification` 및 `data` payload 둘다를 핸들링할 수 있음.
 - Firebase Console 또는 Admin SDK 및 FCM Server Protocol을 활용하여 보낼 수 있음.
 - Max. Payload = 4,000 bytes.
 	- 1000 character limit when sent from Firebase Console (Notifications Composer).
@@ -247,6 +247,8 @@ https://vapidkeys.com/
 #### Data Message
 - Client App이 핸들링해야 함.
 - Set the `data` key in the payload to send a Data Message type.
+	- Can contain custom keys that are not reserved keys (Ex: `"notification"`, `"from"`, `"message_type"`).
+	- The `data` payload is received in a callback function in the Client App.
 - Admin SDK 및 FCM Server Protocol을 활용하여 보낼 수 있음.
 - Max. Payload = 4,000 bytes.
 - Example
