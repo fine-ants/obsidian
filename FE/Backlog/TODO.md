@@ -94,7 +94,7 @@
 - To Design
 	- Dark Mode
 
-### 2/5 작업 목표
+### 2/9 작업 목표
 #### Kakamotobi & Jay
 - [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
 	- [x] Service Worker 구현
@@ -106,6 +106,7 @@
 	- [ ] `user` API 분리 및 type 수정
 	- [ ] API 초안 구현
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
+- [ ] `user` Endpoint 추가
 #### Bakha
 - [x] Stock Page
 - [x] Landing Page
