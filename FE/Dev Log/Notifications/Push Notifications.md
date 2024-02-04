@@ -178,13 +178,14 @@ https://vapidkeys.com/
 				
 				// handled by FCM Client SDK
 				"notification": {
-					"title": "Portfolio Achievement",
-					"body": "Portfolio1 has reached its target valuation"
+					"title": "Portfolio Achievement", // predefined key
+					"body": "Portfolio1 has reached its target valuation" // predefined key
 				},
 				// handled by Client App
 				"data": {
-					"title": "Portfolio Achievement",
-					"body": "Portfolio1 has reached its target valuation"
+					"title": "Portfolio Achievement", // custom key
+					"body": "Portfolio1 has reached its target valuation", // custom key
+					"tu": "pac", // custom key
 				},
 				
 				// Optional platform-specific options
