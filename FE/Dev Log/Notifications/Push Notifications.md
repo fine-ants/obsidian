@@ -178,8 +178,8 @@ https://vapidkeys.com/
 				
 				// handled by FCM Client SDK
 				"notification": {
-					"title": "Portfolio Achievement", // predefined key
-					"body": "Portfolio1 has reached its target valuation" // predefined key
+					"title": "Portfolio Achievement", // reserved key
+					"body": "Portfolio1 has reached its target valuation" // reserved key
 				},
 				// handled by Client App
 				"data": {
