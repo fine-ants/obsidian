@@ -262,6 +262,7 @@ https://vapidkeys.com/
 	```
 #### Notes
 - On Android and Web/JS, `TTL` can be set between 0 to 2,419,200 seconds (28 days). 
+	- `TTL = 0` means that messages that cannot be delivered immediately are discarded.
 ### Reference
 [FCM Architectural Overview  |  Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/fcm-architecture)
 [Set up a JavaScript Firebase Cloud Messaging client app](https://firebase.google.com/docs/cloud-messaging/js/client)
