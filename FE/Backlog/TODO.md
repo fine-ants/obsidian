@@ -107,6 +107,7 @@
 	- [ ] API 초안 구현
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] `user` Endpoint 추가 및 반영 (query invalidation)
+- [ ] 활성 알림 목록 조회 API 분리 건의
 #### Bakha
 - [x] Stock Page
 - [x] Landing Page
