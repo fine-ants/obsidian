@@ -59,6 +59,7 @@
 		- [ ] Image (https://dequeuniversity.com/rules/axe/4.7/image-alt)
 	- [ ] Layout Shift
 		- [ ] SignInPage image layout shift
+	- [ ] Bundle size 줄이기
 
 - [ ] **WatchlistsPage 및 WatchlistPage**
 
