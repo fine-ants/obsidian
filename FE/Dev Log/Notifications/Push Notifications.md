@@ -75,11 +75,8 @@ https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 </div>
 #### Push Service Subscription 및 Push Message 흐름
 <div align="center">
-	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/webpush-architecture.png" alt="Web Push 구조"/>
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/push-api-sequence-diagram.png" alt="Push Service Subscription 및 Push Message 흐름"/>
 </div>
-
-
-![[push-api-sequence-diagram.png]]
 ##### Push Service Subscribe 과정
 1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
 	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
@@ -165,7 +162,9 @@ https://vapidkeys.com/
 
 ## Firebase Cloud Messaging(FCM)
 ### Overview
-![[fcm-illustration.png]]
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/fcm-illustration.png" alt="FCM Overview"/>
+</div>
 ### 구독 과정
 1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
 	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
@@ -176,7 +175,9 @@ https://vapidkeys.com/
 4. FE는 받은 Registration Token을 BE로 보냄.
 5. BE는 해당 정보를 DB에 저장함.
 ### Message 과정
-![[client-fcm-server-message-flow.png]]
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/client-fcm-server-message-flow.png" alt="FCM을 활용한 Message 과정"/>
+</div>
 6. BE는 FCM Admin SDK를 사용하여 Message을 생성하여 FCM Backend으로 보냄.
 	- Message Example
 		```json
