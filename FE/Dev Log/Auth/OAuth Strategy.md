@@ -131,7 +131,7 @@
 	- 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 OAuth 인증이 이루어진다.
 #### 전략
 - **대안 3**
-	- Sign in With Google SDK 미사용으로 Frontend에 Client ID를 포함하지 않는다.
+	- Sign in With Google SDK 미사용으로 Frontend에 Client ID를 포함하지 않는다.
 ### Kakao
 - Kakao는 OpenID Connect와 PKCE를 지원한다.
 - Reference
@@ -151,7 +151,7 @@
 ### Authorization Code Replay Attack ft. PKCE
 - a.k.a. Authorization Code Injection
 #### Authorization Code Replay Attack
-- Authorization Code Replay 공격이란, 유효한 Authorization Code의 무단 재사용을 의미한다.
+- Authorization Code Replay 공격이란, 유효한 Authorization Code의 무단 재사용을 의미한다.
 - Authorization Code Replay 공격자의 목적은 탈취한 Authorization Code로 OAuth Provider로부터 토큰을 발급받는 것이다.
 - Authorization Code Replay 공격 방어란, Authorization Code을 요청한 Client와 Authorization Code을 토큰으로 교환 요청을 하는 Client가 동일한지 확인하는 것이 목적이다.
 #### Proof Key for Code Exchange(PKCE) ft. Code Verifier, Code Challenge
@@ -176,7 +176,7 @@
 - CSRF 공격자는 위조된 요청에 대한 응답을 확인 할 수 없다.
 - CSRF 공격자의 목적은 사용자가 승인한 웹사이트로의 위조된 요청을 보내는 것이다.
 - CSRF 공격 방어란, Auth Request와 Response을 binding하는 것이다.
-	- i.e. OAuth Client가 보낸 Auth Request과 OAuth Provider가 보낸 Auth Response간의 세션을 유지한다.
+	- i.e. OAuth Client가 보낸 Auth Request과 OAuth Provider가 보낸 Auth Response간의 세션을 유지한다.
 #### `state` Parameter
 - a.k.a. CSRF Token
 - 매 요청마다 고유의 값을 갖는 `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
@@ -187,7 +187,7 @@
 - OAuth Provider는 Redirect URI로 Authorization Code와 받은 `state` parameter를 그대로 보낸다.
 - OAuth Client는 받은 `state` 값이 Authorization Code 요청을 할 때 보낸 `state` 값과 일치하는지 확인한다.
 	- *i.e. Authorization Response가 조작되지 않고 다른 서버가 아닌 자신이 Authorization Code 요청을 보낸 서버로부터 온게 맞는지 확인한다.*
-	- `state` 값이 다르다면, 자신이 보낸 요청에 대한 응답이 아니거나 OAuth Provider의 응답을 위조했다는 뜻이다.
+	- `state` 값이 다르다면, 자신이 보낸 요청에 대한 응답이 아니거나 OAuth Provider의 응답을 위조했다는 뜻이다.
 #### Reference
 - [RFC 6819 - OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819#section-4.4.1.8)
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
@@ -200,7 +200,7 @@
 	- 일회용 값을 사용하여 한번 인증에 사용한 ID Token을 무효화하여 ID Token을 재사용하여 인증을 하는 것을 방지한다.
 #### `nonce` Parameter
 - a.k.a. "number used once"
-- *OAuth Client가 `nonce`을 생성 및 검증한다.*
+- *OAuth Client가 `nonce`을 생성 및 검증한다.*
 - Implicit Grant에서는 `nonce` parameter가 필수다.
 - Authorization Code Grant에서는 `nonce` parameter를선택적으로 적용할 수 있다.
 - 한번 검증이 된 `nonce` 값은 더 이상 유효하지 않기 때문에 해커가 ID Token을 탈취하더라도 
