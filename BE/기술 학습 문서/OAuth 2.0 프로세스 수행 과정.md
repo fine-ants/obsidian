@@ -31,6 +31,7 @@ FineAnts 애플리케이션에서 소셜 로그인을 사용하기 위해서 Goo
 
 ### 왜 OpenID Connect를 사용하는가?
 
+
 ### 왜 스프링 서버 내에서 AuthorizationRequest 객체들을 관리하는가?
 
 
