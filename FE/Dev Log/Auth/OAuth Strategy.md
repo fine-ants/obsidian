@@ -2,19 +2,18 @@
 # OAuth Strategy
 
 ## Table of Contents
-- [[#초기 구현 방식]]
-	- [[#SPA와 OAuth 2.0 Authorization Code Grant]]
-	- [[#문제점]]
-- [[#대안 1 OAuth 2.0 Authorization Code Grant with PKCE]]
-	- [[#문제 및 참고점]]
-- [[#대안 2 OpenID Connect Authorization Code Grant with PKCE]]
-- [[#대안 3 Client ID 숨기기]]
-- [[#대안 4 `nonce` Parameter 추가]]
-- [[#FineAnts가 지원하는 OAuth Login]]
-- [[#기타 보안 내용]]
-	- [[#Authorization Code Replay Attack ft. PKCE]]
-	- [[#Cross Site Request Forgery(CSRF) ft. `state`]]
-	- [[#ID Token Replay Attack ft. `nonce`]]
+- [초기 구현 방식](#초기-구현-방식)
+	- [SPA와 OAuth 2.0 Authorization Code Grant](#spa와-oauth-20-authorization-code-grant)
+	- [문제점](#문제점)
+- [대안 1 OAuth 2.0 Authorization Code Grant with PKCE](#대안-1-oauth-20-authorization-code-grant-with-pkce)
+	- [문제 및 참고점](#문제-및-참고점)
+- [대안 2 OpenID Connect Authorization Code Grant with PKCE](#대안-2-openid-connect-authorization-code-grant-with-pkce)
+- [대안 3: Client ID 숨기기 및 `state`, `nonce` Parameter 추가](#대안-3-client-id-숨기기-및-state-nonce-parameter-추가)
+- [FineAnts가 지원하는 OAuth Login](#fineants가-지원하는-oauth-login)
+- [기타 보안 내용](#기타-보안-내용)
+	- [Authorization Code Replay Attack ft. PKCE](#authorization-code-replay-attack-ft-pkce)
+	- [Cross Site Request Forgery(CSRF) ft. `state`](#cross-site-request-forgerycsrf-ft-state)
+	- [ID Token Replay Attack ft. `nonce`](#id-token-replay-attack-ft-nonce)
 
 ## 초기 구현 방식
 ### SPA와 OAuth 2.0 Authorization Code Grant
@@ -23,7 +22,7 @@
 - *아래 그림과 같은 흐름이지만 authorization으로서 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받고 있다.*
 
 <div align="center">
-	<img src="https://images.ctfassets.net/cdy7uua7fh8z/2nbNztohyR7uMcZmnUt0VU/2c017d2a2a2cdd80f097554d33ff72dd/auth-sequence-auth-code.png" alt="OAuth Auth Code Grant" width="60%" />
+	<img src="https://images.ctfassets.net/cdy7uua7fh8z/2nbNztohyR7uMcZmnUt0VU/2c017d2a2a2cdd80f097554d33ff72dd/auth-sequence-auth-code.png" alt="OAuth Auth Code Grant" width="80%" />
 	<p><em>https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow</em></p>
 </div>
 
@@ -53,7 +52,7 @@
 - *아래 그림과 같은 흐름이지만 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받는다.*
 
 <div align="center">
-	<img src="https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="OIDC with PKCE" width="60%" />
+	<img src="https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="OIDC with PKCE" width="80%" />
 	<p><em>https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce</em></p>
 </div>
 
@@ -76,7 +75,7 @@
 	- [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth)
 ### Illustration
 <div align="center">
-	<img src="https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="OIDC with PKCE" width="60%" />
+	<img src="https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="OIDC with PKCE" width="80%" />
 	<p><em>https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce</em></p>
 </div>
 
@@ -107,7 +106,7 @@
 	- Frontend는 성공적으로 로그인된 화면을 보여준다.
 ### Illustration
 <div align="center">
-	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Auth/refImg/strategy-3.png" alt="OAuth Auth Code Grant" width="60%" />
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Auth/refImg/strategy-3.png" alt="OAuth Auth Code Grant" width="80%" />
 </div>
 
 ## FineAnts가 지원하는 OAuth Login
