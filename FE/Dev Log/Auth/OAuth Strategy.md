@@ -21,8 +21,12 @@
 - Client(SPA)에서 시작하는 기본 OAuth 2.0 Authorization Code Grant를 적용하여 Access Token과 Refresh Token을 발급받아서 서버에서 Access Token을 이용하여 사용자 정보를 가져오고 있다.
 ### Illustration
 - *아래 그림과 같은 흐름이지만 authorization으로서 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받고 있다.*
-![OAuth ](https://images.ctfassets.net/cdy7uua7fh8z/2nbNztohyR7uMcZmnUt0VU/2c017d2a2a2cdd80f097554d33ff72dd/auth-sequence-auth-code.png)
-- Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow
+
+<div align="center">
+	<img src="https://images.ctfassets.net/cdy7uua7fh8z/2nbNztohyR7uMcZmnUt0VU/2c017d2a2a2cdd80f097554d33ff72dd/auth-sequence-auth-code.png" alt="OAuth Auth Code Grant" width="60%" />
+	<p><em>https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow</em></p>
+</div>
+
 ### 문제점
 - Client ID, Client Secret, Authorization Code이 노출된다.
 	- 즉, 해커가 해당 정보를 탈취하여 해당 OAuth Client을 가장할 수 있다.
@@ -47,8 +51,12 @@
 	- [draft-ietf-oauth-security-topics-11](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-11#section-2.1.1)
 ### Illustration
 - *아래 그림과 같은 흐름이지만 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받는다.*
-![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
-- Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+
+<div align="center">
+	<img src="https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="OIDC with PKCE" width="60%" />
+	<p><em>https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce</em></p>
+</div>
+
 ### 문제 및 참고점
 - FineAnts는 OAuth Provider로 사용자를 대신하여 어떤 요청을 하지 않기 때문에, **OAuth을 Authorization(인가) 목적이 아닌 Authentication(인증) 목적으로 사용한다**.
 - OAuth 2.0의 identity layer인 **OpenID Connect을 사용하는 것이 더 적절하다**.
@@ -67,8 +75,10 @@
 - Reference
 	- [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth)
 ### Illustration
-![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
-- Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+<div align="center">
+	<img src="https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="OIDC with PKCE" width="60%" />
+	<p><em>https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce</em></p>
+</div>
 
 ## 대안 3: Client ID 숨기기 및 `state`, `nonce` Parameter 추가
 - 대안 2와의 차이점
@@ -96,7 +106,9 @@
 	- Backend는 받은 ID Token과 Nonce 값을 verify 한 후 Frontend로 로그인 응답을 한다.
 	- Frontend는 성공적으로 로그인된 화면을 보여준다.
 ### Illustration
-![[strategy-3.png]]
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Auth/refImg/strategy-3.png" alt="OAuth Auth Code Grant" width="60%" />
+</div>
 
 ## FineAnts가 지원하는 OAuth Login
 ### Google
