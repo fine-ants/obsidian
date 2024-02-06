@@ -69,8 +69,16 @@ https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 - Allows the Server to send a message to a Client even when the web application is not in the foreground on the browser.
 - Done via a push service (service worker) at any time.
 #### Web Push 구조
-![[webpush-architecture.png]]
+
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/webpush-architecture.png" alt="Web Push 구조"/>
+</div>
 #### Push Service Subscription 및 Push Message 흐름
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/webpush-architecture.png" alt="Web Push 구조"/>
+</div>
+
+
 ![[push-api-sequence-diagram.png]]
 ##### Push Service Subscribe 과정
 1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
