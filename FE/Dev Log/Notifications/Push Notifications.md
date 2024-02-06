@@ -8,7 +8,7 @@
 	- [Notifications API](#notifications-api)
 	- [Client API](#client-api)
 	- [VAPID Keys](#vapid-keys)
-- [#Firebase Cloud Messaging(FCM)](#firebase-cloud-messagingfcm)
+- [Firebase Cloud Messaging(FCM)](#firebase-cloud-messagingfcm)
 	- [Overview](#overview)
 	- [구독 과정](#구독-과정)
 	- [Message 과정](#message-과정)
