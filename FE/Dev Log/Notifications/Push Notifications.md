@@ -1,18 +1,18 @@
 # Push Notifications
 
 ## Table of Contents
-- [[#FineAnts Notification Feature]]
-- [[#Prerequisites]]
-- [[#APIs]]
-	- [[#Push API]]
-	- [[#Notifications API]]
-	- [[#Client API]]
-	- [[#VAPID Keys]]
-- [[#Firebase Cloud Messaging(FCM)]]
-	- [[#Overview]]
-	- [[#구독 과정]]
-	- [[#Message 과정]]
-	- [[#Message Type]]
+- [FineAnts Notification Feature](#fineants-notification-feature)
+- [Prerequisites](#prerequisites)
+- [APIs](#apis)
+	- [Push API](#push-api)
+	- [Notifications API](#notifications-api)
+	- [Client API](#client-api)
+	- [VAPID Keys](#vapid-keys)
+- [#Firebase Cloud Messaging(FCM)](#firebase-cloud-messagingfcm)
+	- [Overview](#overview)
+	- [구독 과정](#구독-과정)
+	- [Message 과정](#message-과정)
+	- [Message Type](#message-type)
 
 ## FineAnts Notification Feature
 - 포트폴리오 목표 수익률 알림
@@ -73,10 +73,12 @@ https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 <div align="center">
 	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/webpush-architecture.png" alt="Web Push 구조"/>
 </div>
+
 #### Push Service Subscription 및 Push Message 흐름
 <div align="center">
 	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/push-api-sequence-diagram.png" alt="Push Service Subscription 및 Push Message 흐름"/>
 </div>
+
 ##### Push Service Subscribe 과정
 1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
 	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
@@ -165,6 +167,7 @@ https://vapidkeys.com/
 <div align="center">
 	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/fcm-illustration.png" alt="FCM Overview"/>
 </div>
+
 ### 구독 과정
 1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
 	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
@@ -178,6 +181,7 @@ https://vapidkeys.com/
 <div align="center">
 	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/client-fcm-server-message-flow.png" alt="FCM을 활용한 Message 과정"/>
 </div>
+
 6. BE는 FCM Admin SDK를 사용하여 Message을 생성하여 FCM Backend으로 보냄.
 	- Message Example
 		```json
