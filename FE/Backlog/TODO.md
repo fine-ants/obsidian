@@ -103,6 +103,7 @@
 	- [ ] Active Notifications Page UI - Kakamotobi
 		- [ ] `CollapsibleTable` 구현
 			- [ ] `StockNotificationListTable` 구현
+			- [ ] 나머지 테이블에도 적용
 	- [ ] Main application에 "message" listener 처리
 	- [ ] API 초안 구현
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
