@@ -60,6 +60,10 @@
 	- [ ] Layout Shift
 		- [ ] SignInPage image layout shift
 	- [ ] Bundle size 줄이기
+	- [ ] Legacy JS Modern Browsers
+		![[legacy-js-modern-browsers.png]]
+	- [ ] Text Compression
+		- https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/?utm_source=lighthouse&utm_medium=devtools
 
 - [ ] **WatchlistsPage 및 WatchlistPage**
 
