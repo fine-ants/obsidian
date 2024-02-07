@@ -106,8 +106,8 @@
 	- [x] FCM 설정
 	- [ ] Notifications Panel, Notifications Modal UI - Jay
 	- [ ] Active Notifications Page UI - Kakamotobi
-		- [ ] `CollapsibleTable` 구현
-			- [ ] `StockNotificationListTable` 구현
+		- [x] `CollapsibleTable` 구현
+			- [x] `StockNotificationListTable` 구현
 			- [ ] 나머지 테이블에도 적용
 	- [ ] Main application에 "message" listener 처리
 	- [ ] API 초안 구현
