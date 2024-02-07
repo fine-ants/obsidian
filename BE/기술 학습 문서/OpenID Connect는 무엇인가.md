@@ -24,6 +24,21 @@ OpenID Connect는 추상적으로 다음과 같이 작동합니다.
 OIDC를 통해 클라이언트는 사용자를 식별하고 사용자의 정보를 전달하는 과정
 
 ### Client
-사용자의 정보에 접근하기를 원하는 
+사용자의 정보에 접근하기를 원하는 사람. 이 사람은 소프트웨어의 일부분일 수 있습니다.종종 RP(Relying Party)라고 부를 수 있습니다. 클라이언트는 OP(OpenID Provider)에 등록되어야 합니다. 클라이언트는 웹 애플리케이션이나 네이티브 모바일, 데스크톱 애플리케이션 등이 될 수 있습니다.
+
+### Relying Party
+RP는 Identity Provider에 사용자 인증 기능을 위임하는 애플리케이션이나 웹사이트인 Relying Party의 약자입니다.
+
+### OpenID Provider (OP) or Identity Provider (IDP)
+OpenID Provider(OP)는 OpenID Connect와 OAuth2.0 프로토콜을 구현한 엔티티입니다. OP는 보안 토큰 서비스, IDP(Identity Provider) 또는 인증 서버와 같은 역할로 언급될 수 있습니다.
+
+###  Identity Token
+Identity Token은 인증 프로세스의 결과물입니다. Identity Token은 사용자에 대한 최소한의 식별 정보를 가지고 있습니다. 
+
+### User
+리소스에 접근하기 위해 등록된 클라이언트를 사용하는 사람입니다.
+
+
+
 
 
