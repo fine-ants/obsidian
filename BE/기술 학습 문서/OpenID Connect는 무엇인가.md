@@ -13,4 +13,17 @@ OpenID Connect는 간편한 통합 및 지원, 보안 및 개인 정보 보호 �
 OpenID Connect는 추상적으로 다음과 같이 작동합니다.
 1. 사용자가 웹사이트나 웹 애플리케이션을 브라우저로 접근합니다.
 2. 사용자는 로그인 버튼을 누르고 유저이름과 비밀번호를 입력합니다.
-3. RP(Client)는 OpenID Provider를 전송합니다.
+3. RP(Client)는 OpenID Provider로 요청을 전송합니다.
+4. OpenID Provider는 사용자를 인증하고 인가를 얻습니다.
+5. OpenID Provider는 식별 토큰(Identity Token)과 AccessToken을 응답합니다.
+6. RP는 사용자 기기에 액세스 토큰과 같이 요청할 수 있습니다.
+7. UserInfo 엔드포인트는 최종 사용자에 대한 Claims을 응답합니다.
+![[Pasted image 20240207111514.png]]
+
+### Authentication
+OIDC를 통해 클라이언트는 사용자를 식별하고 사용자의 정보를 전달하는 과정
+
+### Client
+사용자의 정보에 접근하기를 원하는 
+
+
