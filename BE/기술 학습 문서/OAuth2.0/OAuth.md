@@ -34,7 +34,7 @@
 - [Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow#learn-more)
 
 ### 관련 링크
-- [[BE/기술 학습 문서/OAuth#Tokens]]
+- [[OAuth#Tokens]]
 
 ---
 
