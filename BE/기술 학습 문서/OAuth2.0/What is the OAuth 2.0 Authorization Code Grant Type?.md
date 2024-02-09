@@ -37,7 +37,28 @@ https://authorization-server.com/auth
 - scope : 한개이상의 공백으로 구성된 애플리케이션이 요청하는 권한들을 의미합니다.
 - state : 애플리케이션이 생성한 랜덤한 문자열이고 생성한 문자열은 요청의 쿼리 파라미터에 포함됩니다. state는 그런 다음에 사용자가 애플리케이션을 인가한 다음에 반환되는 값과 같은 값인지 검사합니다. state는 CSRF 공격을 예방하는데 사용됩니다.
 
-사용자가 위 URL에 방문한 다음에 authorization server는 이 애플리케이션의 요청을 인가하는 것과 같은 프롬프트 
+사용자가 위 URL에 방문한 다음에 authorization server는 이 애플리케이션의 요청을 인가하는 것과 같은 프롬프트 요청을  보여줄 것입니다.
+![[Pasted image 20240209140535.png]]
+
+## Redirect Back to the Application
+만약 사용자가 요청을 승인하면 authorization server는 애플리케이션에 의해서 명세된 redirect_uri 주소로 리다이렉트합니다. 이때 redirect_uri에는 쿼리 파라미터에 code와 state가 같이 포함되어 전송됩니다.
+
+예를 들어 사용자가 다음 URL과 같이 리다이렉트 된다고 가정합니다.
+```
+https://example-app.com/redirect
+ ?code=g0ZGZmNjVmOWIjNTk2NTk4ZTYyZGI3
+ &state=xcoiv98y2kd22vusuye3kch
+```
+`state` 값은 애플리케이션이 초기에 설정한 값(리퀘스트 쿼리 파라미터에 같이 첨부하여 전송한)과 같은 값일 것입니다. 애플리케이션은 초기에 요청에서 전달한 state값과 리다이렉트로 전달된 state값이 같은 값인지 검사할 것입니다. 이 검사는 CSRF 공격을 막을 것입니다.
+
+`code` 값은 authorization server에 의해서 생성된 **인가 코드(authorization code)** 입니다. 이 인가 코드는 상대적으로 짧게 살아있고 OAuth 서비스에 따라서 1~10분정도입니다.
+
+## Exchange the Authorization Code for an Access Token
+애플리케이션은 authorization code를 가지고 있고 이제 authorization code를 이용하여 액세스 토큰(Access Token)으로 교환할 할 수 있습니다.
+
+애플리케이션은 다음 파라미터를 포함하는 서비스의 액세스 토큰 엔드포인트로 전송할 POST 요청을 만듭니다.
+- grant_type=authorization_code : token 엔드포인트에게 애플리케이션이 Authorization Code Grant Type을 사용하고 있음을 알려줍니다.
+- code : 애플리케이션은 리다이렋
 
 
 
