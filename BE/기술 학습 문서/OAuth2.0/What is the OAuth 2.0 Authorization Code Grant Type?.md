@@ -58,7 +58,29 @@ https://example-app.com/redirect
 
 애플리케이션은 다음 파라미터를 포함하는 서비스의 액세스 토큰 엔드포인트로 전송할 POST 요청을 만듭니다.
 - grant_type=authorization_code : token 엔드포인트에게 애플리케이션이 Authorization Code Grant Type을 사용하고 있음을 알려줍니다.
-- code : 애플리케이션은 리다이렋
+- code : 애플리케이션이 리다이렉트시 받은 authorization code를 의미합니다.
+- redirect_uri : authorization code를 요청할 때 사용되었던 같은 redirect URI를 의미합니다. 몇몇 API들은 이 파라미터를 요구하지 않지만, 여러분들은 여러분들이 접근하는 특정 API의 문서를 다시 확인해서 redirect_uri 파라미터가 필수적인지 선택적인지, 아니면 없어도 되는지 확인해야합니다.
+- client_id : 애플리케이션의 client ID.
+- client_secret : 애플리케이션의 client secret입니다. 이 정보는 액세스 토큰을 얻고자 하는 요청이 애플리케이션으로부터 만들어진 것인지 보장하도록 합니다. 그리고 이 정보는 authorization code를 가로챈 해커가 아님을 보장합니다.
 
+token 엔드포인트는 code(authorization code)가 만료되지 않았는지, client ID와 client secret이 매치되는지 요청의 모든 파라미터를 검증할 것입니다.  만약 모든것이 일치하면, authorization server는 액세스 토큰을 생성하고 response에 담아서 반환합니다.
 
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Cache-Control: no-store
+Pragma: no-cache
 
+{
+  "access_token":"MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+  "token_type":"bearer",
+  "expires_in":3600,
+  "refresh_token":"IwOGYzYTlmM2YxOTQ5MGE3YmNmMDFkNTVk",
+  "scope":"create delete"
+}
+```
+
+위와 같은 http response를 받는하면 Authorization Code Flow는 완료입니다.
+
+## When to use the Authorization Code Flow
+Authorization Code Flow는 웹과 모바일 애플리케이션에서 가장 잘 사용됩니다. Authorization Code Grant는 액세스 토큰을 위해 authorization cod
