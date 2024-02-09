@@ -83,4 +83,13 @@ Pragma: no-cache
 위와 같은 http response를 받는하면 Authorization Code Flow는 완료입니다.
 
 ## When to use the Authorization Code Flow
-Authorization Code Flow는 웹과 모바일 애플리케이션에서 가장 잘 사용됩니다. Authorization Code Grant는 액세스 토큰을 위해 authorization cod
+Authorization Code Flow는 웹과 모바일 애플리케이션에서 가장 잘 사용됩니다. Authorization Code Grant는 액세스 토큰을 위해 authorization code를 교환하는 추가적인 단계를 가지기 때문에Implicit Grant Type에서 나오지 않는 추가적인 보안 레이어(security layer)가 제공됩니다.
+
+만약 여러분들이 모바일 애플리케이션이나 client secret를 저장할 수 없는 다른 애플리케이션 종류에서 Authorization Code Flow를 사용한다면, 여러분들은 [PKCE extension](https://www.oauth.com/oauth2-servers/pkce/)을 사용할 수 있습니다. PKCE extension은 authorization code가 가로챌 때와 같은 다른 공격을 방어하기 위해서 제공됩니다.
+
+authorization code를 액세스 토큰으로 교환하는 단계에서 해커는 액세스 토큰을 가로챌 수없도록 보장합니다. 액세스 토큰은 항상 애플리케이션과 OAuth server 간에 보안 백채널(secure backchannel)을 통해 전송되기 때문입니다.
+
+## References
+https://developer.okta.com/blog/2018/04/10/oauth-authorization-code-grant-type
+
+
