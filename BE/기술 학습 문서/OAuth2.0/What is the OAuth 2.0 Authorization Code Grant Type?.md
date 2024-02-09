@@ -32,7 +32,12 @@ https://authorization-server.com/auth
 
 위 URL의 쿼리 파라미터의 설명은 다음과 같습니다.
 - response_type=code : 이것은 authorization server(ex, 구글 인가 서버)에게 애플리케이션이 authorization code flow를 시작하고 있음을 알려줍니다.
-- client_id : 
+- client_id : client_id는 애플리케이션의 공개 식별자입니다. client_id는 개발자가 애플리케이션을 등록할때 얻습니다.
+- redirect_uri : authorization server에게 사용자가 권한 위임 요청을 승인한 다음에 사용자가 다시 돌아갈때 리다이렉션 주소입니다.
+- scope : 한개이상의 공백으로 구성된 애플리케이션이 요청하는 권한들을 의미합니다.
+- state : 애플리케이션이 생성한 랜덤한 문자열이고 생성한 문자열은 요청의 쿼리 파라미터에 포함됩니다. state는 그런 다음에 사용자가 애플리케이션을 인가한 다음에 반환되는 값과 같은 값인지 검사합니다. state는 CSRF 공격을 예방하는데 사용됩니다.
+
+사용자가 위 URL에 방문한 다음에 authorization server는 이 애플리케이션의 요청을 인가하는 것과 같은 프롬프트 
 
 
 
