@@ -12,4 +12,4 @@ OAuth 2.0이 4가지 역할들을 정의할 때(client, authorization server, re
 "two-legged"과 "three-legged" 용어는 Client Credentials Grant Type과 Authorization Code Grant Type과 같은 Grant Type이라는 용어로 대체되었습니다.
 
 ### Summary
-OAuth 2.0은 OAuth 1.0과는 호환되지 않는 완전히 다른 프로토콜입니다. OAuth 1.0 프로토콜은 개발자들이 구현하는데 어렵고 일부 특정 지역에서는 API 기능을 제한하거나 구현하기가 어려워 개선이 필요하였습니다. OAuth 1.0의 consumer는 OAuth 2.0의 client, user는 "resource owner"로, "service provider"는 "resource server"로 역할이 알려져 있습니다. OAuth 1.0은 resource server와 authorization server의 역할을 명확하게 구분짓지 않지만 OAuth 2.0은 명확하게 구분짓습니다. 마지막으로 
+OAuth 2.0은 OAuth 1.0과는 호환되지 않는 완전히 다른 프로토콜입니다. OAuth 1.0 프로토콜은 개발자들이 구현하는데 어렵고 일부 특정 지역에서는 API 기능을 제한하거나 구현하기가 어려워 개선이 필요하였습니다. OAuth 1.0의 consumer는 OAuth 2.0의 client, user는 "resource owner"로, "service provider"는 "resource server"로 역할이 알려져 있습니다. OAuth 1.0은 resource server와 authorization server의 역할을 명확하게 구분짓지 않지만 OAuth 2.0은 명확하게 구분짓습니다. 마지막으로 OAuth 1.0의 "two-legged"과 "three-legged"라는 용어는 OAuth 2.0에서는 Client Credentials Grant Type과 Authorization Code Grant Type라는 용어로 대체되었습니다.
