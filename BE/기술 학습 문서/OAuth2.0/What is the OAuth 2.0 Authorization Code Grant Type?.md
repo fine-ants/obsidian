@@ -18,4 +18,21 @@ Authorization Code Grant Type은 웹과 모바일 애플리케이션에서 사�
 - 애플리케이션은 액세스 토큰을 얻기 위해서 authorization code를 가지고 액세스 토큰과 교환합니다.
 
 ## Get the User’s Permission
+OAuth는 사용자가 애플리케이션에게 특정 리소스에 접근할 수 있는 권한을 부여할 수 있도록 하는 프로토콜입니다. 애플리케이션은 우선 리소스에 접근할 수 있는 권한을 결정한 다음에 사용자를 브라우저를 통하여 권한 선택 창으로 이동시키고 사용자로부터 권한을 받아야 합니다.
+
+인가 플로우를 진행하기 위해서는 애플리케이션은 다음과 같은 URL을 구성하고 URL을 브라우저로 엽니다.
+```
+https://authorization-server.com/auth
+ ?response_type=code
+ &client_id=29352915982374239857
+ &redirect_uri=https%3A%2F%2Fexample-app.com%2Fcallback
+ &scope=create+delete
+ &state=xcoiv98y2kd22vusuye3kch
+```
+
+위 URL의 쿼리 파라미터의 설명은 다음과 같습니다.
+- response_type=code : 이것은 authorization server(ex, 구글 인가 서버)에게 애플리케이션이 authorization code flow를 시작하고 있음을 알려줍니다.
+- client_id : 
+
+
 
