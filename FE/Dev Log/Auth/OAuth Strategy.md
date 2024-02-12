@@ -202,7 +202,7 @@
 - a.k.a. "number used once"
 - *OAuth Client가 `nonce`을 생성 및 검증한다.*
 - Implicit Grant에서는 `nonce` parameter가 필수다.
-- Authorization Code Grant에서는 `nonce` parameter를선택적으로 적용할 수 있다.
+- Authorization Code Grant에서는 `nonce` parameter를 선택적으로 적용할 수 있다.
 - 한번 검증이 된 `nonce` 값은 더 이상 유효하지 않기 때문에 해커가 ID Token을 탈취하더라도 
 ##### 흐름
 - OAuth Client는 Authorization Request에 `nonce` parameter를 추가하여 요청을 보낸다.
