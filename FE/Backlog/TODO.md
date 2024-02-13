@@ -109,14 +109,6 @@
 	- [ ] Main application에 "message" listener 처리
 		- [ ] Foreground 알림 UI
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
-- [ ] `user` Endpoint 추가 및 반영 (query invalidation)
-- [ ] 활성 알림 목록 조회 API 분리 건의
-- [ ] mutation key 제거
 #### Bakha
-- [x] Stock Page
-- [x] Landing Page
-	- [x] Figma 디자인 적용
-	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
-- [x] Indices Page
-	- [x] TradingView widget이 자동으로 dark mode됨.
-
+- [ ] mutation key 제거
+- [ ] 기타 사소한 수정 사항
