@@ -67,8 +67,6 @@
 
 - [ ] **WatchlistsPage 및 WatchlistPage**
 
-- [ ] 화폐단위 KRW
-
 - [ ] Proprietary License
 
 - [ ] Received Dividends Record Feature
@@ -112,3 +110,4 @@
 #### Bakha
 - [ ] mutation key 제거
 - [ ] 기타 사소한 수정 사항
+	- [ ] 화폐단위 KRW
