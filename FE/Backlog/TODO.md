@@ -59,6 +59,11 @@
 		- [ ] Image (https://dequeuniversity.com/rules/axe/4.7/image-alt)
 	- [ ] Layout Shift
 		- [ ] SignInPage image layout shift
+	- [ ] Bundle size 줄이기
+	- [ ] Legacy JS Modern Browsers
+		![[legacy-js-modern-browsers.png]]
+	- [ ] Text Compression
+		- https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/?utm_source=lighthouse&utm_medium=devtools
 
 - [ ] **WatchlistsPage 및 WatchlistPage**
 
@@ -94,18 +99,22 @@
 - To Design
 	- Dark Mode
 
-### 2/5 작업 목표
+### 2/9 작업 목표
 #### Kakamotobi & Jay
 - [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
 	- [x] Service Worker 구현
+	- [x] FCM 설정
 	- [ ] Notifications Panel, Notifications Modal UI - Jay
 	- [ ] Active Notifications Page UI - Kakamotobi
-		- [ ] `CollapsibleTable` 구현
-			- [ ] `StockNotificationListTable` 구현
+		- [x] `CollapsibleTable` 구현
+			- [x] `StockNotificationListTable` 구현
+			- [ ] 나머지 테이블에도 적용
 	- [ ] Main application에 "message" listener 처리
-	- [ ] `user` API 분리 및 type 수정
 	- [ ] API 초안 구현
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
+- [ ] `user` Endpoint 추가 및 반영 (query invalidation)
+- [ ] 활성 알림 목록 조회 API 분리 건의
+- [ ] mutation key 제거
 #### Bakha
 - [x] Stock Page
 - [x] Landing Page

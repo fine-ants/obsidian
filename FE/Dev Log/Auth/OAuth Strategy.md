@@ -2,27 +2,30 @@
 # OAuth Strategy
 
 ## Table of Contents
-- [[#초기 구현 방식]]
-	- [[#SPA와 OAuth 2.0 Authorization Code Grant]]
-	- [[#문제점]]
-- [[#대안 1 OAuth 2.0 Authorization Code Grant with PKCE]]
-	- [[#문제 및 참고점]]
-- [[#대안 2 OpenID Connect Authorization Code Grant with PKCE]]
-- [[#대안 3 Client ID 숨기기]]
-- [[#대안 4 `nonce` Parameter 추가]]
-- [[#FineAnts가 지원하는 OAuth Login]]
-- [[#기타 보안 내용]]
-	- [[#Authorization Code Replay Attack ft. PKCE]]
-	- [[#Cross Site Request Forgery(CSRF) ft. `state`]]
-	- [[#ID Token Replay Attack ft. `nonce`]]
+- [초기 구현 방식](#초기-구현-방식)
+	- [SPA와 OAuth 2.0 Authorization Code Grant](#spa와-oauth-20-authorization-code-grant)
+	- [문제점](#문제점)
+- [대안 1 OAuth 2.0 Authorization Code Grant with PKCE](#대안-1-oauth-20-authorization-code-grant-with-pkce)
+	- [문제 및 참고점](#문제-및-참고점)
+- [대안 2 OpenID Connect Authorization Code Grant with PKCE](#대안-2-openid-connect-authorization-code-grant-with-pkce)
+- [대안 3: Client ID 숨기기 및 `state`, `nonce` Parameter 추가](#대안-3-client-id-숨기기-및-state-nonce-parameter-추가)
+- [FineAnts가 지원하는 OAuth Login](#fineants가-지원하는-oauth-login)
+- [기타 보안 내용](#기타-보안-내용)
+	- [Authorization Code Replay Attack ft. PKCE](#authorization-code-replay-attack-ft-pkce)
+	- [Cross Site Request Forgery(CSRF) ft. `state`](#cross-site-request-forgerycsrf-ft-state)
+	- [ID Token Replay Attack ft. `nonce`](#id-token-replay-attack-ft-nonce)
 
 ## 초기 구현 방식
 ### SPA와 OAuth 2.0 Authorization Code Grant
 - Client(SPA)에서 시작하는 기본 OAuth 2.0 Authorization Code Grant를 적용하여 Access Token과 Refresh Token을 발급받아서 서버에서 Access Token을 이용하여 사용자 정보를 가져오고 있다.
 ### Illustration
 - *아래 그림과 같은 흐름이지만 authorization으로서 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받고 있다.*
-![OAuth ](https://images.ctfassets.net/cdy7uua7fh8z/2nbNztohyR7uMcZmnUt0VU/2c017d2a2a2cdd80f097554d33ff72dd/auth-sequence-auth-code.png)
-- Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow
+
+<div align="center">
+	<img src="https://images.ctfassets.net/cdy7uua7fh8z/2nbNztohyR7uMcZmnUt0VU/2c017d2a2a2cdd80f097554d33ff72dd/auth-sequence-auth-code.png" alt="OAuth Auth Code Grant" width="80%" />
+	<p><em>https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow</em></p>
+</div>
+
 ### 문제점
 - Client ID, Client Secret, Authorization Code이 노출된다.
 	- 즉, 해커가 해당 정보를 탈취하여 해당 OAuth Client을 가장할 수 있다.
@@ -47,8 +50,12 @@
 	- [draft-ietf-oauth-security-topics-11](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-11#section-2.1.1)
 ### Illustration
 - *아래 그림과 같은 흐름이지만 8번 단계에서 ID Token이 아니라 Access Token과 Refresh Token을 받는다.*
-![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
-- Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+
+<div align="center">
+	<img src="https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="OIDC with PKCE" width="80%" />
+	<p><em>https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce</em></p>
+</div>
+
 ### 문제 및 참고점
 - FineAnts는 OAuth Provider로 사용자를 대신하여 어떤 요청을 하지 않기 때문에, **OAuth을 Authorization(인가) 목적이 아닌 Authentication(인증) 목적으로 사용한다**.
 - OAuth 2.0의 identity layer인 **OpenID Connect을 사용하는 것이 더 적절하다**.
@@ -67,8 +74,10 @@
 - Reference
 	- [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth)
 ### Illustration
-![OIDC with PKCE](https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png)
-- Source: https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+<div align="center">
+	<img src="https://images.ctfassets.net/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="OIDC with PKCE" width="80%" />
+	<p><em>https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce</em></p>
+</div>
 
 ## 대안 3: Client ID 숨기기 및 `state`, `nonce` Parameter 추가
 - 대안 2와의 차이점
@@ -96,7 +105,9 @@
 	- Backend는 받은 ID Token과 Nonce 값을 verify 한 후 Frontend로 로그인 응답을 한다.
 	- Frontend는 성공적으로 로그인된 화면을 보여준다.
 ### Illustration
-![[strategy-3.png]]
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Auth/refImg/strategy-3.png" alt="OAuth Auth Code Grant" width="80%" />
+</div>
 
 ## FineAnts가 지원하는 OAuth Login
 ### Google
@@ -120,7 +131,7 @@
 	- 이 Client Secret을 Google Authorization Server로 authentication 요청과 함께 보내야지만 성공적으로 OAuth 인증이 이루어진다.
 #### 전략
 - **대안 3**
-	- Sign in With Google SDK 미사용으로 Frontend에 Client ID를 포함하지 않는다.
+	- Sign in With Google SDK 미사용으로 Frontend에 Client ID를 포함하지 않는다.
 ### Kakao
 - Kakao는 OpenID Connect와 PKCE를 지원한다.
 - Reference
@@ -140,7 +151,7 @@
 ### Authorization Code Replay Attack ft. PKCE
 - a.k.a. Authorization Code Injection
 #### Authorization Code Replay Attack
-- Authorization Code Replay 공격이란, 유효한 Authorization Code의 무단 재사용을 의미한다.
+- Authorization Code Replay 공격이란, 유효한 Authorization Code의 무단 재사용을 의미한다.
 - Authorization Code Replay 공격자의 목적은 탈취한 Authorization Code로 OAuth Provider로부터 토큰을 발급받는 것이다.
 - Authorization Code Replay 공격 방어란, Authorization Code을 요청한 Client와 Authorization Code을 토큰으로 교환 요청을 하는 Client가 동일한지 확인하는 것이 목적이다.
 #### Proof Key for Code Exchange(PKCE) ft. Code Verifier, Code Challenge
@@ -165,7 +176,7 @@
 - CSRF 공격자는 위조된 요청에 대한 응답을 확인 할 수 없다.
 - CSRF 공격자의 목적은 사용자가 승인한 웹사이트로의 위조된 요청을 보내는 것이다.
 - CSRF 공격 방어란, Auth Request와 Response을 binding하는 것이다.
-	- i.e. OAuth Client가 보낸 Auth Request과 OAuth Provider가 보낸 Auth Response간의 세션을 유지한다.
+	- i.e. OAuth Client가 보낸 Auth Request과 OAuth Provider가 보낸 Auth Response간의 세션을 유지한다.
 #### `state` Parameter
 - a.k.a. CSRF Token
 - 매 요청마다 고유의 값을 갖는 `state` parameter를 활용하여 CSRF 공격을 방어할 수 있다.
@@ -176,7 +187,7 @@
 - OAuth Provider는 Redirect URI로 Authorization Code와 받은 `state` parameter를 그대로 보낸다.
 - OAuth Client는 받은 `state` 값이 Authorization Code 요청을 할 때 보낸 `state` 값과 일치하는지 확인한다.
 	- *i.e. Authorization Response가 조작되지 않고 다른 서버가 아닌 자신이 Authorization Code 요청을 보낸 서버로부터 온게 맞는지 확인한다.*
-	- `state` 값이 다르다면, 자신이 보낸 요청에 대한 응답이 아니거나 OAuth Provider의 응답을 위조했다는 뜻이다.
+	- `state` 값이 다르다면, 자신이 보낸 요청에 대한 응답이 아니거나 OAuth Provider의 응답을 위조했다는 뜻이다.
 #### Reference
 - [RFC 6819 - OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819#section-4.4.1.8)
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
@@ -189,9 +200,9 @@
 	- 일회용 값을 사용하여 한번 인증에 사용한 ID Token을 무효화하여 ID Token을 재사용하여 인증을 하는 것을 방지한다.
 #### `nonce` Parameter
 - a.k.a. "number used once"
-- *OAuth Client가 `nonce`을 생성 및 검증한다.*
+- *OAuth Client가 `nonce`을 생성 및 검증한다.*
 - Implicit Grant에서는 `nonce` parameter가 필수다.
-- Authorization Code Grant에서는 `nonce` parameter를선택적으로 적용할 수 있다.
+- Authorization Code Grant에서는 `nonce` parameter를 선택적으로 적용할 수 있다.
 - 한번 검증이 된 `nonce` 값은 더 이상 유효하지 않기 때문에 해커가 ID Token을 탈취하더라도 
 ##### 흐름
 - OAuth Client는 Authorization Request에 `nonce` parameter를 추가하여 요청을 보낸다.

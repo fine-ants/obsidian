@@ -1,18 +1,18 @@
 # Push Notifications
 
 ## Table of Contents
-- [[#FineAnts Notification Feature]]
-- [[#Prerequisites]]
-- [[#APIs]]
-	- [[#Push API]]
-	- [[#Notifications API]]
-	- [[#Client API]]
-	- [[#VAPID Keys]]
-- [[#Firebase Cloud Messaging(FCM)]]
-	- [[#Overview]]
-	- [[#구독 과정]]
-	- [[#Message 과정]]
-	- [[#Message Type]]
+- [FineAnts Notification Feature](#fineants-notification-feature)
+- [Prerequisites](#prerequisites)
+- [APIs](#apis)
+	- [Push API](#push-api)
+	- [Notifications API](#notifications-api)
+	- [Client API](#client-api)
+	- [VAPID Keys](#vapid-keys)
+- [Firebase Cloud Messaging(FCM)](#firebase-cloud-messagingfcm)
+	- [Overview](#overview)
+	- [구독 과정](#구독-과정)
+	- [Message 과정](#message-과정)
+	- [Message Type](#message-type)
 
 ## FineAnts Notification Feature
 - 포트폴리오 목표 수익률 알림
@@ -69,9 +69,15 @@ https://developer.chrome.com/docs/workbox/service-worker-lifecycle
 - Allows the Server to send a message to a Client even when the web application is not in the foreground on the browser.
 - Done via a push service (service worker) at any time.
 #### Web Push 구조
-![[webpush-architecture.png]]
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/webpush-architecture.png" alt="Web Push 구조"/>
+</div>
+
 #### Push Service Subscription 및 Push Message 흐름
-![[push-api-sequence-diagram.png]]
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/push-api-sequence-diagram.png" alt="Push Service Subscription 및 Push Message 흐름"/>
+</div>
+
 ##### Push Service Subscribe 과정
 1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
 	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
@@ -157,7 +163,10 @@ https://vapidkeys.com/
 
 ## Firebase Cloud Messaging(FCM)
 ### Overview
-![[fcm-illustration.png]]
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/fcm-illustration.png" alt="FCM Overview"/>
+</div>
+
 ### 구독 과정
 1. FE는 사용자로부터 Push Notification 알림 승인을 받음.
 	1. 즉, `https://fineants.co` 가 Chrome을 통해 Notification을 보낼 수 있도록 승인.
@@ -168,7 +177,10 @@ https://vapidkeys.com/
 4. FE는 받은 Registration Token을 BE로 보냄.
 5. BE는 해당 정보를 DB에 저장함.
 ### Message 과정
-![[client-fcm-server-message-flow.png]]
+<div align="center">
+	<img src="https://raw.githubusercontent.com/fine-ants/obsidian/main/FE/Dev%20Log/Notifications/refImg/client-fcm-server-message-flow.png" alt="FCM을 활용한 Message 과정"/>
+</div>
+
 6. BE는 FCM Admin SDK를 사용하여 Message을 생성하여 FCM Backend으로 보냄.
 	- Message Example
 		```json
@@ -178,13 +190,14 @@ https://vapidkeys.com/
 				
 				// handled by FCM Client SDK
 				"notification": {
-					"title": "Portfolio Achievement",
-					"body": "Portfolio1 has reached its target valuation"
+					"title": "Portfolio Achievement", // reserved key
+					"body": "Portfolio1 has reached its target valuation" // reserved key
 				},
 				// handled by Client App
 				"data": {
-					"title": "Portfolio Achievement",
-					"body": "Portfolio1 has reached its target valuation"
+					"title": "Portfolio Achievement", // custom key
+					"body": "Portfolio1 has reached its target valuation", // custom key
+					"tu": "pac", // custom key
 				},
 				
 				// Optional platform-specific options
@@ -226,11 +239,11 @@ https://vapidkeys.com/
 - Messages are handled differently depending on the message type and the Client App's Background/Foreground state.
 #### Notification Message
 - Set the `notification` key in the payload to send a Notification Message type.
+	- Can only contain reserved keys (Ex: `title`, `body`).
 	- `data` payload도 optional로 포함할 수 있음.
 - Client App이 Background에 있을시, FCM Client SDK가 자동으로 핸들링 함.
-	- `data` payload가 있다면, Client App에서 핸들링해야 함.
-- Client App이 Foreground에 있을시, Client App이 핸들링해야 함.
-	- `data` payload가 있다면, 그것도 Client App이 핸들링해야 함.
+	- `data` payload가 있다면, User가 notification tray에 뜬 notification을 클릭 했을 시에만 Client App에서 callback을 통해 `data` payload을 핸들링할 수 있음.
+- Client App이 Foreground에 있을시, Client App이 callback 함수를 통해 `notification` 및 `data` payload 둘다를 핸들링할 수 있음.
 - Firebase Console 또는 Admin SDK 및 FCM Server Protocol을 활용하여 보낼 수 있음.
 - Max. Payload = 4,000 bytes.
 	- 1000 character limit when sent from Firebase Console (Notifications Composer).
@@ -246,6 +259,8 @@ https://vapidkeys.com/
 #### Data Message
 - Client App이 핸들링해야 함.
 - Set the `data` key in the payload to send a Data Message type.
+	- Can contain custom keys that are not reserved keys (Ex: `"notification"`, `"from"`, `"message_type"`).
+	- The `data` payload is received in a callback function in the Client App.
 - Admin SDK 및 FCM Server Protocol을 활용하여 보낼 수 있음.
 - Max. Payload = 4,000 bytes.
 - Example
@@ -259,6 +274,7 @@ https://vapidkeys.com/
 	```
 #### Notes
 - On Android and Web/JS, `TTL` can be set between 0 to 2,419,200 seconds (28 days). 
+	- `TTL = 0` means that messages that cannot be delivered immediately are discarded.
 ### Reference
 [FCM Architectural Overview  |  Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/fcm-architecture)
 [Set up a JavaScript Firebase Cloud Messaging client app](https://firebase.google.com/docs/cloud-messaging/js/client)
