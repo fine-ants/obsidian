@@ -286,6 +286,8 @@ https://vapidkeys.com/
 	data: {
 		title: "",
 		body: "",
+		type: "", // "stock" | "portfolio"
+		referenceId: "", // tickerSymbol or portfolioId
 		timestamp: "",
 	},
 	"webpush": {
