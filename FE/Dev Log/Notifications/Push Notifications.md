@@ -288,6 +288,11 @@ https://vapidkeys.com/
 		body: "",
 		timestamp: "",
 	},
+	"webpush": {
+		"fcm_options": {
+			"link": "" // link to open upon user clicking on notification
+		}
+	}
 }
 ```
 
