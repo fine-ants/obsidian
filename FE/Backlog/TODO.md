@@ -67,8 +67,6 @@
 
 - [ ] **WatchlistsPage 및 WatchlistPage**
 
-- [ ] 화폐단위 KRW
-
 - [ ] Proprietary License
 
 - [ ] Received Dividends Record Feature
@@ -99,27 +97,17 @@
 - To Design
 	- Dark Mode
 
-### 2/9 작업 목표
+### 2/16 배포 목표
 #### Kakamotobi & Jay
 - [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
-	- [x] Service Worker 구현
-	- [x] FCM 설정
-	- [ ] Notifications Panel, Notifications Modal UI - Jay
-	- [ ] Active Notifications Page UI - Kakamotobi
-		- [x] `CollapsibleTable` 구현
-			- [x] `StockNotificationListTable` 구현
-			- [ ] 나머지 테이블에도 적용
-	- [ ] Main application에 "message" listener 처리
-	- [ ] API 초안 구현
+	- [ ] Service Worker 구현
+	- [ ] 알림 설정 Modal API 연동 - Jay
+	- [ ] Foreground 알림 UI - Jay
+	- [ ] FCM Token API 구현 - Kakamotobi
+	- [ ] Active Notifications Page API 연동 - Kakamotobi
+	- [ ] Main application에 "message" listener 처리 - Kakamotobi
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
-- [ ] `user` Endpoint 추가 및 반영 (query invalidation)
-- [ ] 활성 알림 목록 조회 API 분리 건의
-- [ ] mutation key 제거
 #### Bakha
-- [x] Stock Page
-- [x] Landing Page
-	- [x] Figma 디자인 적용
-	- [ ] /api/portfolios으로 GET 요청 보내지고 있는 문제
-- [x] Indices Page
-	- [x] TradingView widget이 자동으로 dark mode됨.
-
+- [ ] mutation key 제거
+- [ ] 기타 사소한 수정 사항
+	- [ ] 화폐단위 KRW
