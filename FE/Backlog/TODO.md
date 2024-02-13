@@ -103,8 +103,8 @@
 	- [ ] Service Worker 구현
 	- [ ] 알림 설정 Modal API 연동 - Jay
 	- [ ] Foreground 알림 UI - Jay
-	- [ ] FCM Token API 구현 - Kakamotobi
-	- [ ] Active Notifications Page API 연동 - Kakamotobi
+	- [x] FCM Token API 구현 - Kakamotobi
+	- [ ] Active Notifications Page API 연동 확인 - Kakamotobi
 	- [ ] Main application에 "message" listener 처리 - Kakamotobi
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 #### Bakha
