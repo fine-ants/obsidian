@@ -1,14 +1,14 @@
 # TODO
 
 - [ ] **Dashboard Page**
-	- [ ] 대시보드 오버뷰 API totalGain 필드 누락됨
+	- [ ] 대시보드 오버뷰 API totalGain 필드 누락됨 (BE)
 	- [ ] SSE 적용
 
 - [ ] **Portfolio Page**
 	- [ ] Overview 최대 손실율에 대한 논의
 	- [ ] Prevent adding duplicate 종목
 		- [ ] 에러메세지 수정 필요
-	- [ ] 연배당률 소수점 포함
+	- [ ] 연배당률 소수점 포함 (BE)
 	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
 	- [ ] 포트폴리오 상세 조회 및 종목 조회
 		- `portfolioDetails`에서 실시간 항목이 6개.
@@ -110,4 +110,8 @@
 #### Bakha
 - [x] mutation key 제거
 - [x] 프로필 사진 밑에 원 제거
+- [ ] wide legend 바닥부분에 붙는 현상 수정
+- [ ] watchlist 헤드 별표 삭제
+- [ ] watchlist 이름 편집 기능 추가
+
 
