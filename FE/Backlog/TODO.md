@@ -108,6 +108,6 @@
 	- [ ] Main application에 "message" listener 처리 - Kakamotobi
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 #### Bakha
-- [ ] mutation key 제거
+- [x] mutation key 제거
 - [ ] 기타 사소한 수정 사항
 	- [ ] 화폐단위 KRW
