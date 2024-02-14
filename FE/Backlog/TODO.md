@@ -109,6 +109,5 @@
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 #### Bakha
 - [x] mutation key 제거
-- [ ] 프로필 사진 밑에 원 제거
-- [ ] 기타 사소한 수정 사항
-	- [ ] 화폐단위 KRW
+- [x] 프로필 사진 밑에 원 제거
+
