@@ -1,5 +1,6 @@
 # TODO
 
+
 - [ ] **Dashboard Page**
 	- [ ] 대시보드 오버뷰 API totalGain 필드 누락됨 (BE)
 	- [ ] SSE 적용
@@ -111,7 +112,7 @@
 - [x] mutation key 제거
 - [x] 프로필 사진 밑에 원 제거
 - [ ] wide legend 바닥부분에 붙는 현상 수정
-- [ ] watchlist 헤드 별표 삭제
+- [x] watchlist 헤드 별표 삭제
 - [ ] watchlist 이름 편집 기능 추가
 
 
