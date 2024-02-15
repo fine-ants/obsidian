@@ -13,7 +13,7 @@
 - [기타 보안 내용](#기타-보안-내용)
 	- [Authorization Code Replay Attack ft. PKCE](#authorization-code-replay-attack-ft-pkce)
 	- [Cross Site Request Forgery(CSRF) ft. `state`](#cross-site-request-forgerycsrf-ft-state)
-	- [ID Token Replay Attack ft. `nonce`](#id-token-replay-attack-ft-nonce)
+	- [ID Token Validity & Auth Code Injection Attack ft. `nonce`](#id-token-validity-&-auth-code-injection-attack-ft-nonce)
 
 ## 초기 구현 방식
 ### SPA와 OAuth 2.0 Authorization Code Grant
@@ -191,19 +191,19 @@
 #### Reference
 - [RFC 6819 - OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819#section-4.4.1.8)
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
-### ID Token Replay Attack Auth Code Replay Attack ft. `nonce`
-
-#### ID Token Replay Attack
-- ID Token Replay 공격이란, 유효한 ID Token의 무단 재사용을 의미한다.
-- ID Token Replay 공격자의 목적은 탈취한 ID Token을 활용하여 OAuth Client와 인증을 하는 것이다.
-- ID Token Replay 공격 방어란, OAuth Client와 ID Token을 binding하여 세션을 유지하여 replay 공격을 방어한다.
-	- 일회용 값을 사용하여 한번 인증에 사용한 ID Token을 무효화하여 ID Token을 재사용하여 인증을 하는 것을 방지한다.
+### ID Token Validity & Auth Code Injection Attack ft. `nonce`
 #### `nonce` Parameter
 - a.k.a. "number used once"
 - *OAuth Client가 `nonce`을 생성 및 검증한다.*
 - Implicit Grant에서는 `nonce` parameter가 필수다.
 - Authorization Code Grant에서는 `nonce` parameter를 선택적으로 적용할 수 있다.
 - 한번 검증이 된 `nonce` 값은 더 이상 유효하지 않기 때문에 해커가 ID Token을 탈취하더라도 
+#### ID Token Validity
+- OAuth Client와 ID Token을 binding하여 세션을 유지하여 ID Token의 유효성을 검사한다.
+- Authentication request을 실시할 때 보낸 `nonce` 값과 authentication response의 ID Token에 들어있는 `nonce` 값이 다르다면 "내 요청"에 대한 응답이 아니거나, ID Token이 조작되었을 가능성이 크다. 그러므로, 받은 OAuth Client은 ID Token 및 같이 받은 Access Token을 폐기하며 인증 절차를 중단한다.
+#### Auth Code Injection Attack
+- 공격자는 성공적으로 훔친 Auth Code을 자신의 기기에서 자신의 인증 절차에 주입을 하여 피해자인척을 하고 .
+- 공격자의 목적은 
 ##### 흐름
 - OAuth Client는 Authorization Request에 `nonce` parameter를 추가하여 요청을 보낸다.
 - OAuth Provider는 받은 `nonce`을 그대로 ID Token에 포함해서 응답한다.
