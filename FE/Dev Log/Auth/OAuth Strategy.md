@@ -202,8 +202,8 @@
 - OAuth Client와 ID Token을 binding하여 세션을 유지하여 ID Token의 유효성을 검사한다.
 - Authentication request을 실시할 때 보낸 `nonce` 값과 authentication response의 ID Token에 들어있는 `nonce` 값이 다르다면 "내 요청"에 대한 응답이 아니거나, ID Token이 조작되었을 가능성이 크다. 그러므로, 받은 OAuth Client은 ID Token 및 같이 받은 Access Token을 폐기하며 인증 절차를 중단한다.
 #### Auth Code Injection Attack
-- 공격자는 성공적으로 훔친 Auth Code을 자신의 기기에서 자신의 인증 절차에 주입을 하여 피해자인척을 하고 .
-- 공격자의 목적은 
+- 공격자는 성공적으로 훔친 Auth Code을 자신의 기기에서 자신의 인증 절차에 주입을 하여 피해자인척을 함으로써 피해자의 token을 받으려고 한다.
+- `nonce` 값이 이 공격을 완화할 수 있는 이유는, 피해자의 Auth Code으로 발급을 받은 ID Token에 들어있는 `nonce` 값(피해자의 `nonce` 값)이 본인의 세션에 있는 `nonce` 값과 다르면 OAuth Client가 인증 절차를 중단하기 때문이다.
 ##### 흐름
 - OAuth Client는 Authorization Request에 `nonce` parameter를 추가하여 요청을 보낸다.
 - OAuth Provider는 받은 `nonce`을 그대로 ID Token에 포함해서 응답한다.
@@ -212,6 +212,7 @@
 	- OAuth Client는 `nonce` 확인을 하기 전까지 발급 받은 token을 사용하지 말아야 한다.
 #### Reference
 - [Final: OpenID Connect Core 1.0 incorporating errata set 1](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
+- [draft-ietf-oauth-security-topics-25](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics?source=post_page-----08271bbd2f41--------------------------------#section-4.5.3.2)
 - [draft-ietf-oauth-security-topics-24](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#nonce_as_injection_protection)
 - [Difference between OAuth 2.0 "state" and OpenID "nonce" parameter? Why state could not be reused? - Stack Overflow](https://stackoverflow.com/questions/46844285/difference-between-oauth-2-0-state-and-openid-nonce-parameter-why-state-cou)
 - [security - what is the case of replay attack for which OIDC nonce is a protection - Stack Overflow](https://stackoverflow.com/questions/77250027/what-is-the-case-of-replay-attack-for-which-oidc-nonce-is-a-protection)
