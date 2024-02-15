@@ -101,12 +101,11 @@
 ### 2/16 배포 목표
 #### Kakamotobi & Jay
 - [ ] 포트폴리오 목표 수익륙/최대 손실율 알림 기능
-	- [ ] Service Worker 구현
+	- [x] Service Worker 구현
 	- [ ] 알림 설정 Modal API 연동 - Jay
-	- [ ] Foreground 알림 UI - Jay
+	- [ ] Main application에 "message" listener 처리 및 Foreground 알림 UI - Jay
 	- [x] FCM Token API 구현 - Kakamotobi
 	- [ ] Active Notifications Page API 연동 확인 - Kakamotobi
-	- [ ] Main application에 "message" listener 처리 - Kakamotobi
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 #### Bakha
 - [x] mutation key 제거
