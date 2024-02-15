@@ -191,7 +191,7 @@
 #### Reference
 - [RFC 6819 - OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819#section-4.4.1.8)
 - [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
-### ID Token Replay Attack ft. `nonce`
+### ID Token Replay Attack Auth Code Replay Attack ft. `nonce`
 
 #### ID Token Replay Attack
 - ID Token Replay 공격이란, 유효한 ID Token의 무단 재사용을 의미한다.
