@@ -108,7 +108,7 @@
 #### Bakha
 - [x] mutation key 제거
 - [x] 프로필 사진 밑에 원 제거
-- [ ] wide legend 바닥부분에 붙는 현상 수정
+- [x] wide legend 바닥부분에 붙는 현상 수정 (붙어있어도 괜찮다는 의견)
 - [x] watchlist 헤드 별표 삭제
 - [ ] watchlist 이름 편집 기능 추가 (디자인 대기)
 
