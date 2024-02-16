@@ -120,4 +120,5 @@ TODO
 - [ ] 종목 페이지 알림 설정 dropdown 추가된 알림 부분
 - [ ] Watchlist에 현재가 조회가 안되는 종목을 추가했을 때 문제 (BE)
 - [ ] NotificationPanel "알림이 없습니다" 문구 색상 변경
-- [ ] FF
+- [ ] FCM token delete request
+- [ ] 알림 설정 토글 문제
