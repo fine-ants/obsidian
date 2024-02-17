@@ -116,10 +116,11 @@ TODO
 - [ ] Main application에 "message" listener 처리 및 Foreground 알림 UI - Jay
 	- [ ] FCM message payload 논의
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
-- [ ] Watchlist breadcrumb 이름 수정
-- [ ] 종목 페이지 알림 설정 dropdown 추가된 알림 부분
+- [ ] Watchlist breadcrumb 이름 수정 - Bakha
+- [ ] 종목 페이지 알림 설정 dropdown 추가된 알림 부분 - Kakamotobi
 - [ ] Watchlist에 현재가 조회가 안되는 종목을 추가했을 때 문제 (BE)
-- [ ] NotificationPanel "알림이 없습니다" 문구 색상 변경
-- [x] 사용자가 알림을 활성화 했을 때만 FCM token setup
-- [ ] FCM token delete request
-- [ ] 알림 설정 토글 문제
+- [ ] NotificationPanel "알림이 없습니다" 문구 색상 변경 - Jay
+- [x] 사용자가 알림을 활성화 했을 때만 FCM token setup - Kakamotobi
+- [ ] FCM token delete request - Kakamotobi
+- [ ] 알림 설정 토글 문제 - Jay
+- [ ] Build에서 MSW 제외
