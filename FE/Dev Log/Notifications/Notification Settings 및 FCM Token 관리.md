@@ -74,4 +74,8 @@ try {
 	toast.error("FCM 토큰을 해제하는데 문제가 발생했습니다");
 }
 ```
+#### 고민
+- Rollback마저 실패한다면?
+### 2) Retry
+
 
