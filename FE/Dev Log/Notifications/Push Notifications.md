@@ -13,6 +13,7 @@
 	- [구독 과정](#구독-과정)
 	- [Message 과정](#message-과정)
 	- [Message Type](#message-type)
+	- [FineAnts Notification](#fineants-notification)
 
 ## FineAnts Notification Feature
 - 포트폴리오 목표 수익률 알림
