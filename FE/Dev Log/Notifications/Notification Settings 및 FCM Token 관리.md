@@ -7,7 +7,7 @@
 const onSubmit = async () => {
 	if (isDisabledButton) return;
 
-	const body = {
+	const newSettingsBody = {
 		browserNotify: newBrowserNotify,
 		maxLossNotify: newMaxLossNotify,
 		targetGainNotify: newTargetGainNotify,
@@ -17,11 +17,12 @@ const onSubmit = async () => {
 	
 	try {
 		// 1) 토글 상태값 반영
-		await mutateAsyncNotificationSettings(body);
+		await mutateAsyncNotificationSettings(newSettingsBody);
 
 		// 2) 토글 상태값에 따라 FCM Token 등록/해제
-		if (newBrowserNotify && !fcmTokenId) {
-				const newFCMTokenId = await onActivateNotification();
+		if (newBrowserNotify) {
+			// FCM에 subscribe하고 server로 token 등록 요청
+			const newFCMTokenId = await onActivateNotification();
 			if (newFCMTokenId) {
 				onSubscribePushNotification(newFCMTokenId); // user context update
 			}
@@ -52,4 +53,8 @@ const onSubmit = async () => {
 ## 문제
 - 만약, `mutateAsyncNotificationSettings`가 실패하면 FCM Token 로직이 실행이 안되기 때문에 이 부분은 괜찮다.
 - 만약, `mutateAsyncNotificationSettings`가 성공했는데 `onActivateNotification` 또는 `onDeactivateAllNotifications`가 실패하면 토글 상태값과 FCM Token간의 차이가 생길 수 있다.
-	- Ex: 
+	- Ex: 토글을 다 `false`로 하고 서버에 변경을 성공적으로 반영했는데 FCM에서 token unsubscribe을 실패하면, 사용자는 알림 기능을 비활성화해놨지만 FCM token은 남아있게 된다. 서버에서 알림을 보내기 전에 토글 상태값을 확인하겠지만, 불필요하게 FCM 채널이 2달 동안 유효하게 남게된다.
+
+
+
+
