@@ -79,4 +79,6 @@ try {
 - Rollback마저 실패한다면?
 ### 2) Retry
 - Retry 함수를 통해 실패시 몇번 더 시도하도록 구현.
+### 3) Retry + Rollback
+- 최대 3번  재시도  후 실패하면  rollback.
 

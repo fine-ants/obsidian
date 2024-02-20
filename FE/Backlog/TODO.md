@@ -99,9 +99,6 @@
 	- Dark Mode
 
 ### 2/23 배포 목표
-
-
-
 TODO
 - [ ] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI - Jay
 	- -> new Notification()으로 변경
@@ -111,5 +108,8 @@ TODO
 - [ ] 종목 페이지 알림 설정 dropdown 추가된 알림 부분 - Kakamotobi
 - [ ] Watchlist에 현재가 조회가 안되는 종목을 추가했을 때 문제 (BE)
 - [ ] NotificationPanel "알림이 없습니다" 문구 색상 변경 - Jay
-- [ ] FCM token delete request - Kakamotobi
+- [x] FCM token delete request - Kakamotobi
 - [ ] Build에서 MSW 제외
+- [ ] FCM token 오류
+	- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
+	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
