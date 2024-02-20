@@ -6,21 +6,28 @@
 ```ts
 const onSubmit = async () => {
 	if (isDisabledButton) return;
-
-	const newSettingsBody = {
-		browserNotify: newBrowserNotify,
-		maxLossNotify: newMaxLossNotify,
-		targetGainNotify: newTargetGainNotify,
-		targetPriceNotify: newTargetPriceNotify,
-		fcmTokenId,
-	};
 	
 	try {
+		const newSettingsBody = {
+			browserNotify: newBrowserNotify,
+			maxLossNotify: newMaxLossNotify,
+			targetGainNotify: newTargetGainNotify,
+			targetPriceNotify: newTargetPriceNotify,
+			fcmTokenId,
+		};
+
 		// 1) 토글 상태값 반영
 		await mutateAsyncNotificationSettings(newSettingsBody);
 
 		// 2) 토글 상태값에 따라 FCM Token 등록/해제
-		if (newBrowserNotify) {
+		const isAtleastOneActive = Object.values(newSettingsBody).some(
+			(val) => val === true
+		);
+		const isAllInactive = Object.values(newSettingsBody).every(
+			(val) => val === false
+		);
+
+		if (isAtleastOneActive) {
 			try {
 				// FCM에 subscribe하고 server로 token 등록 요청
 				const newFCMTokenId = await onActivateNotification();
@@ -30,13 +37,7 @@ const onSubmit = async () => {
 			} catch (error) {
 				toast.error("FCM 토큰을 등록하는데 문제가 발생했습니다");
 			}
-		} else if (
-			!newBrowserNotify &&
-			!newMaxLossNotify &&
-			!newTargetGainNotify &&
-			!newTargetPriceNotify &&
-			fcmTokenId
-		) {
+		} else if (isAllInactive && fcmTokenId) {
 			try {
 				// FCM에서 unsubscribe하고 server에 token 삭제 요청
 				await onDeactivateAllNotifications(fcmTokenId);
