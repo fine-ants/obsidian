@@ -111,5 +111,4 @@ TODO
 - [ ] Watchlist에 현재가 조회가 안되는 종목을 추가했을 때 문제 (BE)
 - [ ] NotificationPanel "알림이 없습니다" 문구 색상 변경 - Jay
 - [ ] FCM token delete request - Kakamotobi
-- [ ] 알림 설정 토글 문제 - Jay
 - [ ] Build에서 MSW 제외
