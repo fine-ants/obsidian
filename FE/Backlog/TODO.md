@@ -98,19 +98,9 @@
 - To Design
 	- Dark Mode
 
-### 2/16 배포 목표
-#### Kakamotobi & Jay
-- [x] 알림 기능
-	- [x] Service Worker 구현
-	- [x] 알림 설정 Modal API 연동 - Jay
-	- [x] FCM Token API 구현 - Kakamotobi
-	- [x] Active Notifications Page API 연동 확인 - Kakamotobi
-#### Bakha
-- [x] mutation key 제거
-- [x] 프로필 사진 밑에 원 제거
-- [x] wide legend 바닥부분에 붙는 현상 수정 (붙어있어도 괜찮다는 의견)
-- [x] watchlist 헤드 별표 삭제
-- [x] watchlist 이름 편집 기능 추가 
+### 2/23 배포 목표
+
+
 
 TODO
 - [ ] Main application에 "message" listener 처리 및 Foreground 알림 UI - Jay
@@ -120,7 +110,6 @@ TODO
 - [ ] 종목 페이지 알림 설정 dropdown 추가된 알림 부분 - Kakamotobi
 - [ ] Watchlist에 현재가 조회가 안되는 종목을 추가했을 때 문제 (BE)
 - [ ] NotificationPanel "알림이 없습니다" 문구 색상 변경 - Jay
-- [x] 사용자가 알림을 활성화 했을 때만 FCM token setup - Kakamotobi
 - [ ] FCM token delete request - Kakamotobi
 - [ ] 알림 설정 토글 문제 - Jay
 - [ ] Build에서 MSW 제외
