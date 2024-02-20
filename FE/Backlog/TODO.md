@@ -123,4 +123,5 @@ TODO
 - [x] 사용자가 알림을 활성화 했을 때만 FCM token setup - Kakamotobi
 - [ ] FCM token delete request - Kakamotobi
 - [ ] 알림 설정 토글 문제 - Jay
+	- 문제가 안 생기는중..
 - [ ] Build에서 MSW 제외

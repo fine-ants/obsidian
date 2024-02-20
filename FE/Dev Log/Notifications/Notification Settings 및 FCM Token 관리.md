@@ -21,10 +21,14 @@ const onSubmit = async () => {
 
 		// 2) 토글 상태값에 따라 FCM Token 등록/해제
 		if (newBrowserNotify) {
-			// FCM에 subscribe하고 server로 token 등록 요청
-			const newFCMTokenId = await onActivateNotification();
-			if (newFCMTokenId) {
-				onSubscribePushNotification(newFCMTokenId); // user context update
+			try {
+				// FCM에 subscribe하고 server로 token 등록 요청
+				const newFCMTokenId = await onActivateNotification();
+				if (newFCMTokenId) {
+					onSubscribePushNotification(newFCMTokenId); // user context update
+				}
+			} catch (error) {
+				toast.error("FCM 토큰을 등록하는데 문제가 발생했습니다");
 			}
 		} else if (
 			!newBrowserNotify &&
@@ -37,9 +41,8 @@ const onSubmit = async () => {
 				// FCM에서 unsubscribe하고 server에 token 삭제 요청
 				await onDeactivateAllNotifications(fcmTokenId);
 				onUnsubscribePushNotification(); // user context update
-				toast.success("알림 설정을 해제했습니다");
 			} catch (error) {
-				toast.error("알림 설정을 해제하는데 문제가 발생했습니다");
+				toast.error("FCM 토큰을 해제하는데 문제가 발생했습니다");
 			}
 		}
 		
@@ -55,6 +58,24 @@ const onSubmit = async () => {
 - 만약, `mutateAsyncNotificationSettings`가 성공했는데 `onActivateNotification` 또는 `onDeactivateAllNotifications`가 실패하면 토글 상태값과 FCM Token간의 차이가 생길 수 있다.
 	- Ex: 토글을 다 `false`로 하고 서버에 변경을 성공적으로 반영했는데 FCM에서 token unsubscribe을 실패하면, 사용자는 알림 기능을 비활성화해놨지만 FCM token은 남아있게 된다. 서버에서 알림을 보내기 전에 토글 상태값을 확인하겠지만, 불필요하게 FCM 채널이 2달 동안 유효하게 남게된다.
 
-
-
+## 해결 방법
+### 1) Rollback
+- `onDeactivateAllNotifications`가 실패했을 때, 사용자가 FCM 제거 과정을 다시 밟을 수 있도록 `browserNotify`를 `true`로 되돌리기.
+```ts
+try {
+	await onDeactivateAllNotifications(fcmTokenId);
+	onUnsubscribePushNotification();
+} catch (error) {
+	// Rollback
+	await mutateAsyncNotificationSettings({
+		...newSettingsBody,
+		browserNotify: true, // `browserNotify`를 `true`로 되돌리기
+	});
+	toast.error("FCM 토큰을 해제하는데 문제가 발생했습니다");
+}
+```
+#### 고민
+- Rollback마저 실패한다면?
+### 2) Retry
+- Retry 함수를 통해 실패시 몇번 더 시도하도록 구현.
 
