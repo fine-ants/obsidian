@@ -110,6 +110,7 @@
 - [ ] Watchlist breadcrumb 이름 수정
 
 #### TODO
+- [ ] Domain 옮기기
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] Watchlist에 현재가 조회가 안되는 종목을 추가했을 때 문제 (BE)
 - [ ] FCM token 오류 확인 필요
