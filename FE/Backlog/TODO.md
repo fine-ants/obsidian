@@ -100,20 +100,18 @@
 
 ### 2/23 배포 목표
 #### Kakamotobi
+- [x] FCM token delete request - Kakamotobi
 - [ ] 종목 페이지 알림 설정 dropdown 추가된 알림 부분
 #### Jay
-- [ ] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI - Jay
+- [ ] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI
 	- -> new Notification()으로 변경
+- [ ] NotificationPanel "알림이 없습니다" 문구 색상 변경
 #### Bakha
-- [ ] Watchlist breadcrumb 이름 수정 - Bakha
-TODO
+- [ ] Watchlist breadcrumb 이름 수정
 
+#### TODO
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
-
-
 - [ ] Watchlist에 현재가 조회가 안되는 종목을 추가했을 때 문제 (BE)
-- [ ] NotificationPanel "알림이 없습니다" 문구 색상 변경 - Jay
-- [x] FCM token delete request - Kakamotobi
 - [ ] FCM token 오류 확인 필요
 	- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
 	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
