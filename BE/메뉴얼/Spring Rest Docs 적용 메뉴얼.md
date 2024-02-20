@@ -1,6 +1,6 @@
 해당 문서는 Spring 프로젝트에서 Spring Rest Docs를 적용하기 위한 메뉴얼입니다.
 
-### 1. asciidoctor 플러그인 추가
+### 1. asciidoctor 플러그인 및 Rest Docs 의존성 추가
 spring 프로젝트의 build.gradle 파일의 플러그인 부분에 asciidoctor를 추가합니다.
 
 build.gradle
@@ -61,4 +61,18 @@ bootJar {
     //...
 }
 ```
+- ext는 전역변수를 선엄함을 의미합니다.
+    - snippetsDir = file('build/generated-snippets') : snippetsDir 디렉토리에 대한 정의를 선언합니다. 문서 조각에 대한 경로를 위와 같이 정의합니다. 파일 타입의 build/generated-snippets 경로의 파일로 생성합니다.
+- test 테스크에서는 테스트가 끝난 결과물을 snippetsDir 디렉토리에 저장함을 의미합니다.
+- asciidoctor 테스크
+    - “dependsOn test”의 의미는 test 테스크가 수행을 완료한 다음에 수행할 수 있다는 의미입니다.
+    - inputs.dir snippetsDir의 의미는 snippetsDir 디렉토리를 입력으로 받아서 문서를 만든다는 의미입니다. configurations ‘aciidoctorExt’를 적용하여 플러그인 확장을 적용합니다.
+- bootJar
+    - asciidoctor 테스크가 수행된 다음에 수행됩니다.
+    - from(”${asciidoctor.outputDir}”)을 통해서 나온 문서들을 static/docs 경로에 저장합니다.
+
+### 2. Intellij AsciiDoc Plugin 추가
+인텔리제이 IDE에서 asciidoc이라는 플러그인을 추가합니다. 해당 플러그인은 asciidoc 문법으로 작성한 결과를 볼 수 있는 플러그인입니다.
+
+![[Pasted image 20240220125447.png]]
 
