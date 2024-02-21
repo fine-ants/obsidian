@@ -3,6 +3,7 @@
 
 - [ ] **Dashboard Page**
 	- [ ] 대시보드 오버뷰 API totalGain 필드 누락됨 (BE)
+	- [ ] 포트폴리오 비중 파이차트 슬라이스 순서 수정
 	- [ ] SSE 적용
 
 - [ ] **Portfolio Page**
@@ -40,16 +41,14 @@
 	- [ ] Custom domain name (fineants) 적용. Docs 참고.
 
 - [ ] **알림 기능**
-	- [ ] 관심 종목 현재가 알림 ❌ 종목 현재가 알림 ✅
-		- 관심 종목을 기준으로 하면 여러 관심목록에 포함된 종목도 있으니 복잡해짐. 그리고 관심 목록에 들어있는 종목을 다 알림을 받는 것보다 특정한 종목에 대한 알림을 받는게 더 적절함.
-		- 종목마다 등록한 특정 가격에 도달하면 알림을 보내기.
-	- [ ] 포트폴리오 목표 수익률 및 최대 손실율 도달 알림
 
 - [ ] `@fineants/demolition`
 	- [ ] README 작성
 	- [ ] Open Source
 
 - [ ] 반응형
+
+- [ ] Test (E2E)
 
 - [ ] Optimization
 	- [ ] Performance
@@ -102,7 +101,7 @@
 #### Kakamotobi
 - [x] FCM token delete request
 - [x] 종목 페이지 알림 설정 dropdown 추가된 알림 부분
-- [ ] 
+- [ ] Domain 옮기기
 #### Jay
 - [ ] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI
 	- -> new Notification()으로 변경
@@ -111,7 +110,6 @@
 - [ ] Watchlist breadcrumb 이름 수정
 
 #### TODO
-- [ ] Domain 옮기기
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] Watchlist에 현재가 조회가 안되는 종목을 추가했을 때 문제 (BE)
 - [ ] FCM token 오류 확인 필요
