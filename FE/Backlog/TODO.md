@@ -102,6 +102,7 @@
 #### Kakamotobi
 - [x] FCM token delete request
 - [x] 종목 페이지 알림 설정 dropdown 추가된 알림 부분
+- [ ] 
 #### Jay
 - [ ] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI
 	- -> new Notification()으로 변경
