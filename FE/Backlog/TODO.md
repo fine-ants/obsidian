@@ -117,4 +117,9 @@
 	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
 - [ ] Query Key 정리
 - [ ] `invalidateQueries()` 정리
-
+- [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
+- [ ] Portfolio List Page `currentValuation` 누락됨 (BE)
+- [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
+- [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
+- [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
+- [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용.
