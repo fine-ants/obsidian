@@ -116,3 +116,6 @@
 - [ ] FCM token 오류 확인 필요
 	- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
 	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
+- [ ] Query Key 정리
+- [ ] `invalidateQueries()` 정리
+
