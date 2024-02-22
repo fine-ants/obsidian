@@ -2,6 +2,7 @@
 # State Management
 
 ## User State
+### 현재 User Context
 ```tsx
 export const UserContext = createContext<{
 	user: User | null;
