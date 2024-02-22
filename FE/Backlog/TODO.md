@@ -105,9 +105,9 @@
 - [ ] StockPage alert dialog에서 지정가 등록하고 targetprices invalidate 필요.
 - [ ] Domain 옮기기
 #### Jay
-- [ ] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI
+- [x] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI
 	- -> new Notification()으로 변경
-- [ ] NotificationPanel "알림이 없습니다" 문구 색상 변경
+- [x] NotificationPanel "알림이 없습니다" 문구 색상 변경
 #### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
 
