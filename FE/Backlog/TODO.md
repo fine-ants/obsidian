@@ -101,6 +101,8 @@
 #### Kakamotobi
 - [x] FCM token delete request
 - [x] 종목 페이지 알림 설정 dropdown 추가된 알림 부분
+- [ ] 알림 설정 토글 초기값 확인 (다 false로 하고 저장을 했는데 toggle은 true로 되어있음)
+- [ ] StockPage alert dialog에서 지정가 등록하고 targetprices invalidate 필요.
 - [ ] Domain 옮기기
 #### Jay
 - [ ] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI
