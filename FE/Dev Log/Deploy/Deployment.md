@@ -4,7 +4,7 @@
 - [[#Amplify]]
 	- [[#Amplify를 선택한 이유]]
 	- [[#SPA Redirect and Rewrites 설정]]
-- [[#Custom Domain (GoDaddy)]]
+- [[#Custom Domain]]
 
 ## Amplify
 ### Amplify를 선택한 이유
@@ -38,9 +38,9 @@
 #### Reference
 - [Using redirects - AWS Amplify Hosting](https://docs.aws.amazon.com/amplify/latest/userguide/redirects.html#redirects-for-single-page-web-apps-spa)
 
-## Custom Domain (GoDaddy)
+## Custom Domain
 - Domain: `fineants.co` 
-- GoDaddy는 ANAME/ALIAS record를 지원하지 않는다.
+- GoDaddy는 ANAME/ALIAS record을 지원하지 않는다.
 	- 즉, `fineants.co`로 입력을 하면 브라우저 주소창에 `release.blah.amplify.com` 주소가 뜬다.
 	- GoDaddy 설정에서 Forwarding with masking 설정이 있지만 이는 `release.blah.amplify.com`을 frame 또는 iframe에 로딩을 하려고 시도한다.
 		- 이렇게 설정하고 접속할 시 frame 관련하여 에러가 떠서 사이트 접속이 불가하다.
@@ -49,7 +49,6 @@
 	- AWS는 Route53로 migration을 추천한다.
 		- `co` TLD 등록 및 갱신 가격: $25
 		- GoDaddy 도메인 등록 60일 이후(2024년2월7일)에 transfer 가능.
-
 ### Reference
 - https://docs.aws.amazon.com/amplify/latest/userguide/understanding-dns-terminology-and-concepts.html
 - https://docs.aws.amazon.com/amplify/latest/userguide/to-add-a-custom-domain-managed-by-godaddy.html
