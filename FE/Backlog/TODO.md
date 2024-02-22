@@ -96,7 +96,6 @@
 - [x] StockPage alert dialog에서 지정가 등록하고 targetprices invalidate 필요.
 - [ ] Domain 옮기기
 - [ ] Collapsible Table row expand할 시에 horizontal scroll 생김
-- [ ] Table header column title 줄바꿈 됨
 #### Jay
 - [x] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI
 	- -> new Notification()으로 변경
@@ -123,10 +122,14 @@
 - [ ] 포트폴리오 상세 페이지  예상 월 배당금 막대그래프 호버시 tooltip 2024-NaN 해결
 - [ ] 포트폴리오 상세 페이지  섹터 구성 합계가 100%가 아님
 - [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
+- [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨
+- [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정
+	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 
 BE
 - [ ] Portfolio List Page `currentValuation` 누락됨 (BE)
 - [ ] Prevent adding duplicate 종목
 	- [ ] 에러메세지 수정 필요
 - [ ] 연배당률 소수점 포함 (BE)
-- [ ] 
+- [ ] 계정 삭제하기 500에러
+
