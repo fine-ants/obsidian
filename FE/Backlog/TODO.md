@@ -101,9 +101,11 @@
 #### Kakamotobi
 - [x] FCM token delete request
 - [x] 종목 페이지 알림 설정 dropdown 추가된 알림 부분
-- [ ] 알림 설정 토글 초기값 확인 (다 false로 하고 저장을 했는데 toggle은 true로 되어있음)
-- [ ] StockPage alert dialog에서 지정가 등록하고 targetprices invalidate 필요.
+- [x] 알림 설정 토글 초기값 확인 (다 false로 하고 저장을 했는데 toggle은 true로 되어있음)
+- [x] StockPage alert dialog에서 지정가 등록하고 targetprices invalidate 필요.
 - [ ] Domain 옮기기
+- [ ] Collapsible Table row expand할 시에 horizontal scroll 생김
+- [ ] Table header column title 줄바꿈 됨
 #### Jay
 - [x] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI
 	- -> new Notification()으로 변경
@@ -131,6 +133,3 @@
 - [ ] 포트폴리오 상세 페이지  예상 월 배당금 막대그래프 호버시 tooltip 2024-NaN 해결
 - [ ] 포트폴리오 상세 페이지  섹터 구성 합계가 100%가 아님
 - [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
-- [ ] 포트폴리오 상세 페이지 종목 테이블 아코디언 열면 가로 스크롤 생김
-- [ ] 포트폴리오 상세 페이지 종목 테이블 
-
