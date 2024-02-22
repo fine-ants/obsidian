@@ -2,15 +2,11 @@
 
 
 - [ ] **Dashboard Page**
-	- [ ] 대시보드 오버뷰 API totalGain 필드 누락됨 (BE)
 	- [ ] 포트폴리오 비중 파이차트 슬라이스 순서 수정
 	- [ ] SSE 적용
 
 - [ ] **Portfolio Page**
 	- [ ] Overview 최대 손실율에 대한 논의
-	- [ ] Prevent adding duplicate 종목
-		- [ ] 에러메세지 수정 필요
-	- [ ] 연배당률 소수점 포함 (BE)
 	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
 	- [ ] 포트폴리오 상세 조회 및 종목 조회
 		- `portfolioDetails`에서 실시간 항목이 6개.
@@ -117,7 +113,6 @@
 - [ ] Query Key 정리
 - [ ] `invalidateQueries()` 정리
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
-- [ ] Portfolio List Page `currentValuation` 누락됨 (BE)
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
@@ -129,3 +124,9 @@
 - [ ] 포트폴리오 상세 페이지  섹터 구성 합계가 100%가 아님
 - [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
 
+BE
+- [ ] Portfolio List Page `currentValuation` 누락됨 (BE)
+- [ ] Prevent adding duplicate 종목
+	- [ ] 에러메세지 수정 필요
+- [ ] 연배당률 소수점 포함 (BE)
+- [ ] 
