@@ -95,7 +95,7 @@
 - [x] 알림 설정 토글 초기값 확인 (다 false로 하고 저장을 했는데 toggle은 true로 되어있음)
 - [x] StockPage alert dialog에서 지정가 등록하고 targetprices invalidate 필요.
 - [x] Route53으로 Domain 옮기기
-- [ ] Collapsible Table row expand할 시에 horizontal scroll 생김
+- [x] Collapsible Table row expand할 시에 horizontal scroll 생김
 #### Jay
 - [ ] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
 - [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
