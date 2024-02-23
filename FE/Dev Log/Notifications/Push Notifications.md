@@ -289,7 +289,7 @@ https://vapidkeys.com/
 		body: "",
 	},
 	"webpush": {
-		"fcm_options": {
+		"fcm_options": { // fcmOptions
 			"link": "" // link to open upon user clicking on notification
 		}
 	}
