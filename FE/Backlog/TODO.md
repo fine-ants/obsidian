@@ -97,9 +97,12 @@
 - [x] Route53으로 Domain 옮기기
 - [ ] Collapsible Table row expand할 시에 horizontal scroll 생김
 #### Jay
-- [x] ~~Main application에 "message" listener 처리 및 Foreground 알림 UI
-	- -> new Notification()으로 변경
-- [x] NotificationPanel "알림이 없습니다" 문구 색상 변경
+- [ ] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
+- [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
+- [ ] 포트폴리오 상세 페이지 `main` 부분 (테이블 밑) height 수정
+- [ ] 포트폴리오 상세 페이지  예상 월 배당금 막대그래프 호버시 tooltip 2024-NaN 해결 (MSW)
+- [ ] 포트폴리오 상세 페이지  섹터 구성 합계가 100%가 아님 (MSW)
+- [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
 #### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
 
@@ -115,16 +118,12 @@
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용.
-- [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
-- [ ] 포트폴리오 상세 페이지 `main` 부분 (테이블 밑) height 수정
-- [ ] 포트폴리오 상세 페이지  예상 월 배당금 막대그래프 호버시 tooltip 2024-NaN 해결 (MSW)
-- [ ] 포트폴리오 상세 페이지  섹터 구성 합계가 100%가 아님 (MSW)
-- [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
 - [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨 (Window/MacOS Font 확인 필요)
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
-- [ ] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
+
+
 
 #### BE
 - [ ] Portfolio List Page `currentValuation` 누락됨
