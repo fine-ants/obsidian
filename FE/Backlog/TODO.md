@@ -100,7 +100,7 @@
 - [ ] 포트폴리오 상세 페이지  섹터 구성 합계가 100%가 아님 (MSW)
 - [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
 #### Bakha
-- [ ] Watchlist breadcrumb 이름 수정
+- [x] Watchlist breadcrumb 이름 수정
 
 
 #### TODO
