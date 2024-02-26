@@ -90,7 +90,7 @@
 
 ### 2/29 배포 목표
 #### Kakamotobi
-
+- [ ] User 상태 관리 refactoring
 #### Jay
 - [ ] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
 - [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
@@ -100,8 +100,9 @@
 - [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
 #### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
-
 #### TODO
+- [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
+	- media query (768px?)
 ##### Feature
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] Query Key 정리
