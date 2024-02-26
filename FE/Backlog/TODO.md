@@ -103,8 +103,8 @@
 - [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
 #### Bakha
 - [x] Watchlist breadcrumb 이름 수정
-- [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
-- [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
+- [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
+- [x] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 
 #### TODO
