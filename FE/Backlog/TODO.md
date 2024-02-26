@@ -91,6 +91,7 @@
 ### 2/29 배포 목표
 #### Kakamotobi
 - [ ] User 상태 관리 refactoring
+- [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 #### Jay
 - [ ] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
 - [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
@@ -100,9 +101,11 @@
 - [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
 #### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
+
+
 #### TODO
 - [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
-	- media query (768px?)
+	- media query (1200px?)
 ##### Feature
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] Query Key 정리
@@ -111,7 +114,6 @@
 	- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
 	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
 ##### UI
-- [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
