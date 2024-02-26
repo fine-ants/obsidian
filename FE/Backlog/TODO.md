@@ -101,7 +101,9 @@
 - [ ] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
 #### Bakha
 - [x] Watchlist breadcrumb 이름 수정
-
+- [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
+- [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
+- [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 
 #### TODO
 - [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
@@ -114,14 +116,12 @@
 	- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
 	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
 ##### UI
-- [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
-- [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
-- [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용.
 - [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨 (Window/MacOS Font 확인 필요)
-- [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정
-	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
+
+- [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
+	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 
 #### BE
 - [ ] Portfolio List Page `currentValuation` 누락됨
