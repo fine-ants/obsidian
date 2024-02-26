@@ -88,14 +88,9 @@
 - To Design
 	- Dark Mode
 
-### 2/23 배포 목표
+### 2/29 배포 목표
 #### Kakamotobi
-- [x] FCM token delete request
-- [x] 종목 페이지 알림 설정 dropdown 추가된 알림 부분
-- [x] 알림 설정 토글 초기값 확인 (다 false로 하고 저장을 했는데 toggle은 true로 되어있음)
-- [x] StockPage alert dialog에서 지정가 등록하고 targetprices invalidate 필요.
-- [x] Route53으로 Domain 옮기기
-- [x] Collapsible Table row expand할 시에 horizontal scroll 생김
+
 #### Jay
 - [ ] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
 - [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
@@ -107,12 +102,14 @@
 - [ ] Watchlist breadcrumb 이름 수정
 
 #### TODO
+##### Feature
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
+- [ ] Query Key 정리
+- [ ] `invalidateQueries()` 정리
 - [ ] FCM token 오류 확인 필요
 	- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
 	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
-- [ ] Query Key 정리
-- [ ] `invalidateQueries()` 정리
+##### UI
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -123,15 +120,14 @@
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
 
-
-
 #### BE
 - [ ] Portfolio List Page `currentValuation` 누락됨
 - [ ] Watchlist에 현재가가 조회가 안되는 종목을 추가했을 때 문제
 - [ ] Prevent adding duplicate 종목
 	- [ ] 에러메세지 수정 필요
 - [ ] 연배당률 소수점 포함
+- [ ] 포트폴리오에 종목은 있는데 매입이력이 없는 경우 Dashboard Overview에서 `500 java.lang.ArithmeticException: / by zero` 일어남.
+
 - [ ] 계정 삭제하기 500에러
 	- 추측: 500에러나지만 refresh token이 서버에서는 삭제가 되는 듯함.
-- [ ] 포트폴리오에 종목은 있는데 매입이력이 없는 경우 Dashboard Overview에서 `500 java.lang.ArithmeticException: / by zero` 일어남.
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
