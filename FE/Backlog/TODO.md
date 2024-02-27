@@ -156,11 +156,26 @@
 	- 사진 첨부 후 "지금은 건너뛰기" 누르면 400 에러 (Required request part 'signupData' is not present)
 		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동.
 
-### 알림 및 토큰 관련
+### 알림
 - 첫 회원가입 시 notificationPreferences 모두 false로 설정.
+- 알림 설정 Dialog
+	- 설정 변경 성공 및 실패시 토스트 띄우기.
+- 알림 패널에서 내용이 없을 시 PATCH 모두 읽음 API 호출 안하기.
 
-### "알림 설정" Dialog
-- 설정 변경 성공 및 실패시 토스트 띄우기.
+### Profile Settings Page
+- 프로필 이미지 "기본 이미지 사용" 후 저장할 때 400에러("변경할 회원 정보가 없습니다") 뜸.
+- 닉네임 input 비어있을 때 "저장" 버튼 비활성화하기.
+
+### 기타
+- Access token 만료 시 401에러가 뜨는지 토스트에 반영이 되는지 확인 및 방지.
+	- 비고: 401뜨고 해당 요청 정상 진행 되면 실패 토스트 다음에 성공 토스트가 뜨는지 확인.
+- `Third-party cookie will be blocked. Learn more in the Issues tab.`
+
+
+
+### BE
+- POST FCM Token 500에러 뜸 (캡처 배경화면에 있음)
+- 
 
 
 박하 취업 축하👏
