@@ -153,7 +153,14 @@
 - 프로필 이미지 등록
 	- 사이즈 2MB 초과시 에러 문구 한국어로 변경.
 	- 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present)
-- 
+	- 사진 첨부 후 "지금은 건너뛰기" 누르면 400 에러 (Required request part 'signupData' is not present)
+		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동.
+
+### 알림 및 토큰 관련
+- 첫 회원가입 시 notificationPreferences 모두 false로 설정.
+
+### "알림 설정" Dialog
+- 설정 변경 성공 및 실패시 토스트 띄우기.
 
 
 박하 취업 축하👏
