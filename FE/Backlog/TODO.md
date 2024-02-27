@@ -185,14 +185,21 @@
 	- "잠정 손실잔고", "투자대비 연 배당률" 툴팁 추가
 ### 활성 알림 페이지
 - 종목 알림
-	- `notificationPreferences`가 모두 false일 때 안내 문구 ("알림 설정이 비활성화 되어있습니다") 보여주기.
+	- `notificationPreferences`가 모두 false일 때 안내 문구 ("알림 설정이 비활성화 되어있습니다") 보여주기
+	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 오래전에 업데이트된 순서로 받아와서 UI shift가 생김
 - 포트폴리오 알림
 	- 포트폴리오 이름 왼쪽에 증권사 이미지 추가
+	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 최근 업데이트된 순서로 받아와서 UI shift가 생김
+
+### Watchlist
+- Table head에  별 제거
+- 
+
 ### 기타
 - Access token 만료 시 `401`에러가 뜨는지 토스트에 반영이 되는지 확인 및 방지.
 	- 비고: 401 뜨고 해당 요청 정상 진행 되면 실패 토스트 다음에 성공 토스트가 뜨는지 확인.
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
-
+- Percentage 소수점 둘째자리까지 보이도록.
 
 
 ### BE
