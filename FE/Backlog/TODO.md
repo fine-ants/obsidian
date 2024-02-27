@@ -192,8 +192,10 @@
 	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 최근 업데이트된 순서로 받아와서 UI shift가 생김
 
 ### Watchlist
-- Table head에  별 제거
-- 
+- Watchlist Table 디자인 수정
+	- 별 제거
+	- *Watchlist Table 단일 삭제 API 불필요*
+- Watchlist 변동률 정렬이 적용이 안됨
 
 ### 기타
 - Access token 만료 시 `401`에러가 뜨는지 토스트에 반영이 되는지 확인 및 방지.
