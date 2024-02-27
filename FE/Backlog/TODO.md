@@ -144,6 +144,9 @@
 ### HomePage
 - "포트폴리오로 이동"을 한 뒤 뒤로가기하면 homepage로 안돌아가고 signinpage에 머무르는 현상.
 - "포트폴리오 추가"를 클릭하면 signinpage로 이동해야 함 (현재는 모달을 띄우고 있음).
+- 주식 검색
+	- 로그인이 안되었을 때도 검색 가능하도록 token protection 제거
+	- 로그인이 안되었을 때, StockPage에서 "관심 종목 설정", "알림 설정" 버튼 누를시 SigninPage로 이동해야 함.
 
 
 
