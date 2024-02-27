@@ -95,10 +95,12 @@
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용.
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
 #### Jay
-- [x] 포트폴리오 상세 페이지 `main` 부분 (테이블 밑) height 수정
+- [x] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
 - [x] 포트폴리오 상세 페이지  예상 월 배당금 막대그래프 호버시 tooltip 2024-NaN 해결 (MSW)
 - [x] 포트폴리오 상세 페이지  섹터 구성 합계가 100%가 아님 (MSW)
 - [x] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
+- [ ] 포트폴리오 상세 페이지 `main` 부분 (테이블 밑) height 수정
+	- 박하가 해결
 #### Bakha
 - [x] Watchlist breadcrumb 이름 수정
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -108,9 +110,8 @@
 #### TODO
 - [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
 	- media query (1200px?)
-- [ ] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
 - [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
-	- [ ] 
+	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
 ##### Feature
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] Query Key 정리
