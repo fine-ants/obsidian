@@ -93,6 +93,18 @@
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용.
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
+#### Signup Page
+- 닉네임 2-10자  일때만 중복체크 요청하도록 수정.
+	- To BE: 중복체크할 때 2-10자 검증 필요.
+- 프로필 이미지 등록
+	- 사이즈 2MB 초과시 에러 문구 한국어로 변경.
+	- 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present)
+	- 사진 첨부 후 "지금은 건너뛰기" 누르면 400 에러 (Required request part 'signupData' is not present)
+		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동.
+#### Profile Settings Page
+- 프로필 이미지 "기본 이미지 사용" 후 저장할 때 400에러("변경할 회원 정보가 없습니다") 뜸
+- 닉네임 input 비어있을 때 "저장" 버튼 비활성화하기
+- 계정 삭제 실패했는데 signout 되는 현상
 ### Jay
 - [x] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
 - [x] 포트폴리오 상세 페이지  예상 월 배당금 막대그래프 호버시 tooltip 2024-NaN 해결 (MSW)
@@ -100,12 +112,30 @@
 - [x] 포트폴리오 상세 페이지  우측 구성 border-radius 없음
 - [ ] 포트폴리오 상세 페이지 `main` 부분 (테이블 밑) height 수정
 	- 박하가 해결
-#### Bakha
+#### 활성 알림 페이지
+- 종목 알림
+	- `notificationPreferences`가 모두 false일 때 안내 문구 ("알림 설정이 비활성화 되어있습니다") 보여주기
+	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 오래전에 업데이트된 순서로 받아와서 UI shift가 생김
+- 포트폴리오 알림
+	- 포트폴리오 이름 왼쪽에 증권사 이미지 추가
+	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 최근 업데이트된 순서로 받아와서 UI shift가 생김
+#### 알림
+- 첫 회원가입 시 notificationPreferences 모두 false로 설정.
+- 알림 설정 Dialog
+	- 설정 변경 성공 및 실패시 토스트 띄우기.
+- 알림 패널에서 내용이 없을 시 PATCH 모두 읽음 API 호출 안하기.
+#### HomePage
+- "포트폴리오로 이동"을 한 뒤 뒤로가기하면 homepage로 안돌아가고 signinpage에 머무르는 현상.
+- 로그인이 안됐을 때는 "포트폴리오 추가"를 클릭하면 signinpage로 이동해야 함 (현재는 모달을 띄우고 있음).
+- 주식 검색
+	- 로그인이 안되었을 때도 검색 가능하도록 token protection 제거
+	- 로그인이 안되었을 때, StockPage에서 "관심 종목 설정", "알림 설정" 버튼 누를시 SigninPage로 이동해야 함.
+### Bakha
 - [x] Watchlist breadcrumb 이름 수정
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [x] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
-### 포트폴리오 
+#### 포트폴리오 
 - 추가 Dialog
 	- 제목 폰트 적용 안됨
 	- 예산 및 금액 input에 `,` 적용
@@ -121,104 +151,38 @@
 - 포트폴리오 상세 페이지
 	- 목표 수익률 및 최대 손실율 알림 활성화 버튼 추가
 	- "잠정 손실잔고", "투자대비 연 배당률" 툴팁 추가
-### Watchlist
+- 매입 항목 추가시 인벨리데이트 안됨
+#### Watchlist
 - Watchlist Table 디자인 수정
 	- 별 제거
 	- *Watchlist Table 단일 삭제 API 불필요*
 - Watchlist 변동률 정렬이 적용이 안됨
-
-
-#### TODO
-- [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
-	- media query (1200px?)
-- [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
-	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
-##### Feature
-- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
-- [ ] Query Key 정리
-- [ ] `invalidateQueries()` 정리
-- [ ] FCM token 오류 확인 필요
-	- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
-	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
-##### UI
-- [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨 (Window/MacOS Font 확인 필요)
-
-- [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
-	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
-
-#### BE
-- [ ] 계정 삭제하기 500에러
-	- 추측: 500에러나지만 refresh token이 서버에서는 삭제가 되는 듯함.
-- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
-
-
-
-
-
-## QA
-### HomePage
-- "포트폴리오로 이동"을 한 뒤 뒤로가기하면 homepage로 안돌아가고 signinpage에 머무르는 현상.
-- "포트폴리오 추가"를 클릭하면 signinpage로 이동해야 함 (현재는 모달을 띄우고 있음).
-- 주식 검색
-	- 로그인이 안되었을 때도 검색 가능하도록 token protection 제거
-	- 로그인이 안되었을 때, StockPage에서 "관심 종목 설정", "알림 설정" 버튼 누를시 SigninPage로 이동해야 함.
-### Signup Page
-- 닉네임 2-10자  일때만 중복체크 요청하도록 수정.
-	- To BE: 중복체크할 때 2-10자 검증 필요.
-- 프로필 이미지 등록
-	- 사이즈 2MB 초과시 에러 문구 한국어로 변경.
-	- 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present)
-	- 사진 첨부 후 "지금은 건너뛰기" 누르면 400 에러 (Required request part 'signupData' is not present)
-		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동.
-### 알림
-- 첫 회원가입 시 notificationPreferences 모두 false로 설정.
-- 알림 설정 Dialog
-	- 설정 변경 성공 및 실패시 토스트 띄우기.
-- 알림 패널에서 내용이 없을 시 PATCH 모두 읽음 API 호출 안하기.
-### Profile Settings Page
-- 프로필 이미지 "기본 이미지 사용" 후 저장할 때 400에러("변경할 회원 정보가 없습니다") 뜸
-- 닉네임 input 비어있을 때 "저장" 버튼 비활성화하기
-- 계정 삭제 실패했는데 signout 되는 현상\
-
-### 활성 알림 페이지
-- 종목 알림
-	- `notificationPreferences`가 모두 false일 때 안내 문구 ("알림 설정이 비활성화 되어있습니다") 보여주기
-	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 오래전에 업데이트된 순서로 받아와서 UI shift가 생김
-- 포트폴리오 알림
-	- 포트폴리오 이름 왼쪽에 증권사 이미지 추가
-	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 최근 업데이트된 순서로 받아와서 UI shift가 생김
-### 기타
+#### 기타
 - Access token 만료 시 `401`에러가 뜨는지 토스트에 반영이 되는지 확인 및 방지.
 	- 비고: 401 뜨고 해당 요청 정상 진행 되면 실패 토스트 다음에 성공 토스트가 뜨는지 확인.
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
 - Percentage 소수점 둘째자리까지 보이도록.
 
 
-### BE
-- POST FCM Token 500에러 뜸 (캡처 배경화면에 있음)
-- 계정 삭제 500에러
-- 종목이 없는 포트폴리오 페이지 차트 조회할 때 `NaN`
-	```json
-	{
-		"pieChart": [
-			{
-				"name": "현금",
-				"valuation": 0,
-				"weight": NaN,
-				"totalGain": 0,
-				"totalGainRate": 0.00
-			}
-		],
-		"dividendChart": [],
-		"sectorChart": [
-			{
-				"sector": "현금",
-				"sectorWeight": NaN
-			}
-		]
-	}
-	```
-- 포트폴리오 당일 손익 금액이 마이너스일 때 손익률이 0%로 오고 있음.
 
-박하 취업 축하👏
+### TODO
+- [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
+	- media query (1200px?)
+- [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
+	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
+#### Feature
+- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
+- [ ] Query Key 정리
+- [ ] `invalidateQueries()` 정리
+- [ ] FCM token 오류 확인 필요
+	- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
+	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
+#### UI
+- [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨 (Window/MacOS Font 확인 필요)
 
+- [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
+	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요\
+#### BE
+- [ ] 계정 삭제하기 500에러
+	- 추측: 500에러나지만 refresh token이 서버에서는 삭제가 되는 듯함.
+- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
