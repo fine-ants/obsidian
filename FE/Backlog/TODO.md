@@ -147,7 +147,13 @@
 - 주식 검색
 	- 로그인이 안되었을 때도 검색 가능하도록 token protection 제거
 	- 로그인이 안되었을 때, StockPage에서 "관심 종목 설정", "알림 설정" 버튼 누를시 SigninPage로 이동해야 함.
-
+### Signup Page
+- 닉네임 2-10자  일때만 중복체크 요청하도록 수정.
+	- To BE: 중복체크할 때 2-10자 검증 필요.
+- 프로필 이미지 등록
+	- 사이즈 2MB 초과시 에러 문구 한국어로 변경.
+	- 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present)
+- 
 
 
 박하 취업 축하👏
