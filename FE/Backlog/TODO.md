@@ -87,13 +87,13 @@
 - To Design
 	- Dark Mode
 
-### 2/29 배포 목표
-#### Kakamotobi
+## 2/29 배포 목표
+### Kakamotobi
 - [ ] User 상태 관리 refactoring
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용.
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
-#### Jay
+### Jay
 - [x] 포트폴리오 상세 페이지 "종목 추가 모달"에서 `purchaseHistory` 항목이 누락된 채로 요청이 됨
 - [x] 포트폴리오 상세 페이지  예상 월 배당금 막대그래프 호버시 tooltip 2024-NaN 해결 (MSW)
 - [x] 포트폴리오 상세 페이지  섹터 구성 합계가 100%가 아님 (MSW)
@@ -105,6 +105,28 @@
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [x] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
+### 포트폴리오 
+- 추가 Dialog
+	- 제목 폰트 적용 안됨
+	- 예산 및 금액 input에 `,` 적용
+	- 예산, 목표 수익률, 최대 손실율 입력한 뒤 예산을 변경하면,
+		- 목표 수익률(%)이 변하는데 %가 아니라 금액이 변하도록 수정
+		- 최대 손실율 금액도 변하도록 수정
+	- 예산 입력했지만 목표 수익률 및 최대 손실율을 입력안해도 되게 수정
+- 포트폴리오 페이지 차트
+	-  종목이 없을 때 차트 요청이 성공하지만 ErrorBoundary가 적용되고 있음
+- 포트폴리오 삭제 후 portfolioList query invalidate 필요
+- 포트폴리오 삭제 Dialog
+	- "항목을" -> "포트폴리오를"로 변경
+- 포트폴리오 상세 페이지
+	- 목표 수익률 및 최대 손실율 알림 활성화 버튼 추가
+	- "잠정 손실잔고", "투자대비 연 배당률" 툴팁 추가
+### Watchlist
+- Watchlist Table 디자인 수정
+	- 별 제거
+	- *Watchlist Table 단일 삭제 API 불필요*
+- Watchlist 변동률 정렬이 적용이 안됨
+
 
 #### TODO
 - [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
@@ -125,13 +147,6 @@
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 
 #### BE
-- [ ] Portfolio List Page `currentValuation` 누락됨
-- [ ] Watchlist에 현재가가 조회가 안되는 종목을 추가했을 때 문제
-- [ ] Prevent adding duplicate 종목
-	- [ ] 에러메세지 수정 필요
-- [ ] 연배당률 소수점 포함
-- [ ] 포트폴리오에 종목은 있는데 매입이력이 없는 경우 Dashboard Overview에서 `500 java.lang.ArithmeticException: / by zero` 일어남.
-
 - [ ] 계정 삭제하기 500에러
 	- 추측: 500에러나지만 refresh token이 서버에서는 삭제가 되는 듯함.
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
@@ -155,34 +170,16 @@
 	- 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present)
 	- 사진 첨부 후 "지금은 건너뛰기" 누르면 400 에러 (Required request part 'signupData' is not present)
 		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동.
-
 ### 알림
 - 첫 회원가입 시 notificationPreferences 모두 false로 설정.
 - 알림 설정 Dialog
 	- 설정 변경 성공 및 실패시 토스트 띄우기.
 - 알림 패널에서 내용이 없을 시 PATCH 모두 읽음 API 호출 안하기.
-
 ### Profile Settings Page
 - 프로필 이미지 "기본 이미지 사용" 후 저장할 때 400에러("변경할 회원 정보가 없습니다") 뜸
 - 닉네임 input 비어있을 때 "저장" 버튼 비활성화하기
-- 계정 삭제 실패했는데 signout 되는 현상
+- 계정 삭제 실패했는데 signout 되는 현상\
 
-### 포트폴리오 
-- 추가 Dialog
-	- 제목 폰트 적용 안됨
-	- 예산 및 금액 input에 `,` 적용
-	- 예산, 목표 수익률, 최대 손실율 입력한 뒤 예산을 변경하면,
-		- 목표 수익률(%)이 변하는데 %가 아니라 금액이 변하도록 수정
-		- 최대 손실율 금액도 변하도록 수정
-	- 예산 입력했지만 목표 수익률 및 최대 손실율을 입력안해도 되게 수정
-- 포트폴리오 페이지 차트
-	-  종목이 없을 때 차트 요청이 성공하지만 ErrorBoundary가 적용되고 있음
-- 포트폴리오 삭제 후 portfolioList query invalidate 필요
-- 포트폴리오 삭제 Dialog
-	- "항목을" -> "포트폴리오를"로 변경
-- 포트폴리오 상세 페이지
-	- 목표 수익률 및 최대 손실율 알림 활성화 버튼 추가
-	- "잠정 손실잔고", "투자대비 연 배당률" 툴팁 추가
 ### 활성 알림 페이지
 - 종목 알림
 	- `notificationPreferences`가 모두 false일 때 안내 문구 ("알림 설정이 비활성화 되어있습니다") 보여주기
@@ -190,13 +187,6 @@
 - 포트폴리오 알림
 	- 포트폴리오 이름 왼쪽에 증권사 이미지 추가
 	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 최근 업데이트된 순서로 받아와서 UI shift가 생김
-
-### Watchlist
-- Watchlist Table 디자인 수정
-	- 별 제거
-	- *Watchlist Table 단일 삭제 API 불필요*
-- Watchlist 변동률 정렬이 적용이 안됨
-
 ### 기타
 - Access token 만료 시 `401`에러가 뜨는지 토스트에 반영이 되는지 확인 및 방지.
 	- 비고: 401 뜨고 해당 요청 정상 진행 되면 실패 토스트 다음에 성공 토스트가 뜨는지 확인.
