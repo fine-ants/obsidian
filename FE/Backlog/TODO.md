@@ -89,18 +89,17 @@
 
 ## 2/29 배포 목표
 ### Kakamotobi
-- [ ] User 상태 관리 refactoring
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
-- [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용.
+- [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
 #### Signup Page
-- 닉네임 2-10자  일때만 중복체크 요청하도록 수정.
-	- To BE: 중복체크할 때 2-10자 검증 필요.
+- 닉네임 2-10자  일때만 중복체크 요청하도록 수정
+	- To BE: 중복체크할 때 2-10자 검증 필요
 - 프로필 이미지 등록
-	- 사이즈 2MB 초과시 에러 문구 한국어로 변경.
+	- 사이즈 2MB 초과시 에러 문구 한국어로 변경
 	- 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present)
 	- 사진 첨부 후 "지금은 건너뛰기" 누르면 400 에러 (Required request part 'signupData' is not present)
-		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동.
+		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동
 #### Profile Settings Page
 - 프로필 이미지 "기본 이미지 사용" 후 저장할 때 400에러("변경할 회원 정보가 없습니다") 뜸
 - 닉네임 input 비어있을 때 "저장" 버튼 비활성화하기
