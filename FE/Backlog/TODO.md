@@ -172,7 +172,7 @@
 - [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
 	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
 - [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
-- [ ] 
+- [ ] Stock Page "알림 설정"의 "추가된 알림" 지정가 알림 추가 후 invalidate 필요
 #### Feature
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] Query Key 정리
