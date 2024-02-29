@@ -96,7 +96,7 @@
 - [x] 닉네임 2-10자  일때만 중복체크 요청하도록 수정
 - [ ] 프로필 이미지 등록
 	- [x] 사이즈 2MB 초과시 에러 문구 한국어로 변경
-	- [ ] 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present)
+	- [ ] 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present) - 아마 BE 문제
 	- [x] 사진 첨부 후 "지금은 건너뛰기" 누르면 400 에러 (Required request part 'signupData' is not present)
 		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동함
 - [ ] Enter로 다음 단계로 넘어갈 수 있도록 하기
@@ -171,6 +171,7 @@
 - [ ] FCM
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
 	- [ ] 배포 환경에서 serviceworker 안돌아감
+	- [ ] UserContext 및 FCM Token 관련 리팩토링 (재렌더에 의한 불필요한 setupFCMToken 요청)
 - [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
 	- media query (1200px?)
 - [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
