@@ -92,7 +92,6 @@
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
-- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
 #### Signup Page
 - [x] 닉네임 2-10자  일때만 중복체크 요청하도록 수정
 - [ ] 프로필 이미지 등록
@@ -168,6 +167,9 @@
 
 
 ### TODO
+- [ ] FCM
+	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
+	- [ ] 배포 환경에서 serviceworker 안돌아감
 - [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
 	- media query (1200px?)
 - [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
