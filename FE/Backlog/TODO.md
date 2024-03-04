@@ -93,14 +93,6 @@
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
 #### Signup Page
-- [x] 닉네임 2-10자  일때만 중복체크 요청하도록 수정
-- [x] 프로필 이미지 등록
-	- [x] 사이즈 2MB 초과시 에러 문구 한국어로 변경
-	- [x] 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present) - 아마 BE 문제
-	- [x] 사진 첨부 후 "지금은 건너뛰기" 누르면 400 에러 (Required request part 'signupData' is not present)
-		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동함
-- [x] Enter로 다음 단계로 넘어갈 수 있도록 하기
-- [x] AuthBasePage Header logo 사이즈 조정
 - To BE
 	- 회원가입 인증 코드가 `000006`만 오는 듯함
 	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
