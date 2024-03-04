@@ -94,9 +94,9 @@
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
 #### Signup Page
 - [x] 닉네임 2-10자  일때만 중복체크 요청하도록 수정
-- [ ] 프로필 이미지 등록
+- [x] 프로필 이미지 등록
 	- [x] 사이즈 2MB 초과시 에러 문구 한국어로 변경
-	- [ ] 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present) - 아마 BE 문제
+	- [x] 사진 첨부 후 "등록 완료" 버튼을 누를 시 400 에러 (Required request part 'signupData' is not present) - 아마 BE 문제
 	- [x] 사진 첨부 후 "지금은 건너뛰기" 누르면 400 에러 (Required request part 'signupData' is not present)
 		- 사진 첨부안하고 "지금은 건너뛰기" 눌렀을 때는 정상 작동함
 - [x] Enter로 다음 단계로 넘어갈 수 있도록 하기
@@ -108,6 +108,9 @@
 - [ ] 프로필 이미지 "기본 이미지 사용" 후 저장할 때 400에러("변경할 회원 정보가 없습니다") 뜸
 - [x] 닉네임 input 비어있을 때 "저장" 버튼 비활성화하기
 - [ ] 계정 삭제 실패했는데 signout 되는 현상
+#### FormData API 변경
+- [ ] 회원가입
+- [ ] 프로필 수정
 ### Jay
 #### 활성 알림 페이지
 - 종목 알림
