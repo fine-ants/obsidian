@@ -88,6 +88,10 @@
 	- Dark Mode
 
 ## 2/29 배포 목표
+### Kakamotobi & Jay
+- [ ] Demolition package
+	- [ ] Readme
+	- [ ] 훅 및 유틸 함수 추가
 ### Kakamotobi
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
@@ -96,13 +100,6 @@
 - To BE
 	- 회원가입 인증 코드가 `000006`만 오는 듯함
 	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
-#### Profile Settings Page
-- [x] 프로필 이미지 "기본 이미지 사용" 후 저장할 때 400에러("변경할 회원 정보가 없습니다") 뜸
-- [x] 닉네임 input 비어있을 때 "저장" 버튼 비활성화하기
-- [x] 계정 삭제 실패했는데 signout 되는 현상
-#### FormData API 변경
-- [x] 회원가입
-- [x] 프로필 수정
 ### Jay
 #### 활성 알림 페이지
 - 종목 알림
