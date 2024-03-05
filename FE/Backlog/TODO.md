@@ -86,12 +86,10 @@
 ## 2/29 배포 목표
 ### Kakamotobi & Jay
 - [ ] `@fineants/demolition`
-	- [ ] Chore
-		- [ ] docs site 배포 (demolition-docs repo)
-		- [ ] Contribution 관련 지침
 	- [ ] README 작성
+		- [ ] Contribution 관련 지침
 	- [ ] 훅 및 유틸 함수 추가
-	- [ ] Open Source
+	- [ ] Tree-shaking 도입
 ### Kakamotobi
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
