@@ -86,6 +86,9 @@
 ## 2/29 배포 목표
 ### Kakamotobi & Jay
 - [ ] `@fineants/demolition`
+	- [ ] Chore
+		- [ ] docs site 배포 (demolition-docs repo)
+		- [ ] Contribution 관련 지침
 	- [ ] README 작성
 	- [ ] 훅 및 유틸 함수 추가
 	- [ ] Open Source
