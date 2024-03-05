@@ -32,10 +32,6 @@
 
 - [ ] **알림 기능**
 
-- [ ] `@fineants/demolition`
-	- [ ] README 작성
-	- [ ] Open Source
-
 - [ ] 반응형
 
 - [ ] Test (E2E)
@@ -89,9 +85,10 @@
 
 ## 2/29 배포 목표
 ### Kakamotobi & Jay
-- [ ] Demolition package
-	- [ ] Readme
+- [ ] `@fineants/demolition`
+	- [ ] README 작성
 	- [ ] 훅 및 유틸 함수 추가
+	- [ ] Open Source
 ### Kakamotobi
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
@@ -101,24 +98,8 @@
 	- 회원가입 인증 코드가 `000006`만 오는 듯함
 	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
 ### Jay
-#### 활성 알림 페이지
-- 종목 알림
-	- `notificationPreferences`가 모두 false일 때 안내 문구 ("알림 설정이 비활성화 되어있습니다") 보여주기
-	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 오래전에 업데이트된 순서로 받아와서 UI shift가 생김
-- 포트폴리오 알림
-	- 포트폴리오 이름 왼쪽에 증권사 이미지 추가
-	- 알림 활성화/비활성화 버튼을 누를 시 서버에 반영이 되면서 list의 순서가 최근 업데이트된 순서로 받아와서 UI shift가 생김
-#### 알림
-- 첫 회원가입 시 notificationPreferences 모두 false로 설정.
-- 알림 설정 Dialog
-	- 설정 변경 성공 및 실패시 토스트 띄우기.
-- 알림 패널에서 내용이 없을 시 PATCH 모두 읽음 API 호출 안하기.
-#### HomePage
-- "포트폴리오로 이동"을 한 뒤 뒤로가기하면 homepage로 안돌아가고 signinpage에 머무르는 현상.
-- 로그인이 안됐을 때는 "포트폴리오 추가"를 클릭하면 signinpage로 이동해야 함 (현재는 모달을 띄우고 있음).
-- 주식 검색
-	- 로그인이 안되었을 때도 검색 가능하도록 token protection 제거
-	- 로그인이 안되었을 때, StockPage에서 "관심 종목 설정", "알림 설정" 버튼 누를시 SigninPage로 이동해야 함.
+
+
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
