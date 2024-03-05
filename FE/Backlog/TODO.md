@@ -132,20 +132,18 @@
 	- 비고: 401 뜨고 해당 요청 정상 진행 되면 실패 토스트 다음에 성공 토스트가 뜨는지 확인.
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
 - Percentage 소수점 둘째자리까지 보이도록.
-
-
+- [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
+	- media query (1200px?)
+- [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
+	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
+- [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
+- [ ] Stock Page "알림 설정"의 "추가된 알림" 지정가 알림 추가 후 invalidate 필요
 
 ### TODO
 - [ ] FCM
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
 	- [ ] 배포 환경에서 serviceworker 안돌아감
 	- [ ] UserContext 및 FCM Token 관련 리팩토링 (재렌더에 의한 불필요한 setupFCMToken 요청)
-- [ ] Mobile(태블릿 포함) 화면은 임시 안내문.
-	- media query (1200px?)
-- [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
-	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
-- [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
-- [ ] Stock Page "알림 설정"의 "추가된 알림" 지정가 알림 추가 후 invalidate 필요
 - [ ] 로그인 페이지 "내정보 기억하기" 구현
 - [ ] 로그인이 안되었을 때도 검색 가능하도록 token protection 제거(BE)
 #### Feature
