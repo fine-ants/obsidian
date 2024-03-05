@@ -88,7 +88,9 @@
 - [ ] `@fineants/demolition`
 	- [ ] Contribution 관련 지침
 	- [ ] 훅 및 유틸 함수 추가
-		- [ ] 
+		- [ ] formatTickValue <-- 업그레이드 필요
+		- [ ] getElapsedSince <-- 업그레이드 필요 (Jay)
+		- [ ] retryFn <-- 향상해보기 (Kakamotobi)
 	- [ ] Tree-shaking 도입
 ### Kakamotobi
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
