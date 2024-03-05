@@ -93,10 +93,6 @@
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
-#### Signup Page
-- To BE
-	- 회원가입 인증 코드가 `000006`만 오는 듯함
-	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
 ### Jay
 
 
@@ -139,25 +135,30 @@
 - [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
 - [ ] Stock Page "알림 설정"의 "추가된 알림" 지정가 알림 추가 후 invalidate 필요
 
+- To BE
+	- 회원가입 인증 코드가 `000006`만 오는 듯함
+	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
+	- 로그인이 안되었을 때도 종목 검색 가능하도록 token protection 제거 (BE)
+
 ### TODO
 - [ ] FCM
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
 	- [ ] 배포 환경에서 serviceworker 안돌아감
 	- [ ] UserContext 및 FCM Token 관련 리팩토링 (재렌더에 의한 불필요한 setupFCMToken 요청)
-- [ ] 로그인 페이지 "내정보 기억하기" 구현
-- [ ] 로그인이 안되었을 때도 검색 가능하도록 token protection 제거(BE)
-#### Feature
+	- [ ] FCM token 오류 확인 필요
+		- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
+		- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
+- [ ] 로그인 페이지 "내 정보 기억하기" 구현
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
-- [ ] Query Key 정리
-- [ ] `invalidateQueries()` 정리
-- [ ] FCM token 오류 확인 필요
-	- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
-	- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
+- [ ] TanStack Query
+	- [ ] Query Key 정리
+	- [ ] `invalidateQueries()` 정리
+
 #### UI
 - [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨 (Window/MacOS Font 확인 필요)
 
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
-	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요\
+	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 #### BE
 - [ ] 계정 삭제하기 500에러
 	- 추측: 500에러나지만 refresh token이 서버에서는 삭제가 되는 듯함.
