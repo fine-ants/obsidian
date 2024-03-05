@@ -124,8 +124,6 @@
 	- 서버에서 rate가 0으로 들어와서 안되는 것이었음 change로 바꾸면 값이 있어서 정렬됨
 - [ ] 와치리스트 리스트, 와치리스트 페이지 min-height 제거
 #### 기타
-- Access token 만료 시 `401`에러가 뜨는지 토스트에 반영이 되는지 확인 및 방지.
-	- 비고: 401 뜨고 해당 요청 정상 진행 되면 실패 토스트 다음에 성공 토스트가 뜨는지 확인.
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
 - Percentage 소수점 둘째자리까지 보이도록.
 - [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
@@ -156,7 +154,6 @@
 
 #### UI
 - [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨 (Window/MacOS Font 확인 필요)
-
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 #### BE
