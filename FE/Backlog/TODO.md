@@ -169,6 +169,7 @@
 - [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
 - [ ] Stock Page "알림 설정"의 "추가된 알림" 지정가 알림 추가 후 invalidate 필요
 - [ ] 로그인 페이지 "내정보 기억하기" 구현
+- [ ] 로그인이 안되었을 때도 검색 가능하도록 token protection 제거(BE)
 #### Feature
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] Query Key 정리
