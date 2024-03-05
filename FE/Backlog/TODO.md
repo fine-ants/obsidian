@@ -86,9 +86,9 @@
 ## 2/29 배포 목표
 ### Kakamotobi & Jay
 - [ ] `@fineants/demolition`
-	- [ ] README 작성
-		- [ ] Contribution 관련 지침
+	- [ ] Contribution 관련 지침
 	- [ ] 훅 및 유틸 함수 추가
+		- [ ] 
 	- [ ] Tree-shaking 도입
 ### Kakamotobi
 - [ ] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
