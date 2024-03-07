@@ -97,7 +97,6 @@
 - [ ] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
 - [ ] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
 - [ ] README update (알림 관련 내용 추가)
-- [ ] 
 ### Jay
 
 
@@ -156,7 +155,7 @@
 - [ ] TanStack Query
 	- [ ] Query Key 정리
 	- [ ] `invalidateQueries()` 정리
-
+- [ ] Percentage 값들 실수형으로 변경
 #### UI
 - [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨 (Window/MacOS Font 확인 필요)
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
