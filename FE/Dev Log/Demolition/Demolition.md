@@ -1,6 +1,6 @@
 
 Package Scripts
-- `npm version <patch|minor|major>` - Package version 하나 올림
+- `npm version <major|minor|patch>` - Package version 하나 올림
 	- `preversion` script 돌림
 		- Run test, and add any files that should be added to the commit (`git add`)
 	- `postversion` script 돌림
