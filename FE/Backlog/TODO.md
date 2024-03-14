@@ -92,10 +92,8 @@
 		- [x] retryFn <-- 향상해보기 (Kakamotobi)
 	- [ ] Tree-shaking 도입
 ### Kakamotobi
-- [x] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
-- [x] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
-- [x] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
-
+- [ ] FCM service worker 문제 해결
+- [ ] 최신 @fineants/demolition package 적용
 - [ ] README update (알림 관련 내용 추가)
 ### Jay
 - [x] DashboardOverview 예상 연배당률 (overviewData.totalAnnualDividendYield)에 RateBadge의 화살표가 없어야 함.
