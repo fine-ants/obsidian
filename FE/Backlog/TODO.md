@@ -104,6 +104,8 @@
 - [x] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
 	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
 - [x] 알림 패널 api 명세와 다른 부분 수정
+- [x]  "계정 삭제하기" 줄바꿈 됨
+- [ ] font 적용 제대로 안된 부분 
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -163,7 +165,7 @@
 - [ ] svgr 사용 여부 체크하기
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 #### UI
-- [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨 (Window/MacOS Font 확인 필요)
+- [ ] Table header column title (Window/MacOS Font 확인 필요)
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 #### BE
