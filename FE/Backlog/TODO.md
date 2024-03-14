@@ -25,10 +25,6 @@
 	- [ ] Text Compression
 		- https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/?utm_source=lighthouse&utm_medium=devtools
 
-
-- To Design
-	- Dark Mode
-
 ## 목표
 ### Kakamotobi
 - [ ] Demolition
@@ -98,8 +94,8 @@
 - [x] Percentage 값들 실수형으로 변경
 	-  백엔드에서 소수 2자리 까지 보내주고 있는 부분 이상 없음 확인 완료
 - 마이너스인 경우 화폐단위 앞으로 "-".
-- 특정 포트폴리오 페이지에서 다른 포트폴리오 페이지로 이동 했을 때 "총 손익" 데이터가 이전 포트폴리오 "총 손익"이 남아있다 (SSE 연결 안됐을 때).
-- "안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundar
+- **특정 포트폴리오 페이지에서 다른 포트폴리오 페이지로 이동 했을 때 "총 손익" 데이터가 이전 포트폴리오 "총 손익"이 남아있다 (SSE 연결 안됐을 때).**
+- **"안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.**
 
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 #### UI
@@ -107,7 +103,9 @@
 	- Table header column의 가로 사이즈 문제인듯?
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
-- [ ]  예상 월 배당금 막대 그래프 0원인 경우 hover시 tooltip 안나오게하기
+- [ ] 예상 월 배당금 그래프
+	- [ ] 예상 월 배당금 막대 그래프 0원인 경우 hover시 tooltip 안나오게하기
+	- [ ] 1000단위 "," 표시
 - [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 
 #### 기타
@@ -120,20 +118,3 @@
 
 #### BE
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
-
-- To BE
-	- 회원가입 인증 코드가 `000006`만 오는 듯함
-	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
-	- 로그인이 안되었을 때도 종목 검색 가능하도록 token protection 제거 (BE)
-	- 포트폴리오 비중 파이차트 슬라이스 순서 수정
-
-
-
-- To Backend
-	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
-	- 차트 데이터 정렬 부탁.
-		- DashboardPage 포트폴리오 비중 
-		- PortfolioPage 종목 구성 차트
-		- SectorBar
-	- 배당금 데이터
-	- 이메일 인증 코드 발송 안됨
