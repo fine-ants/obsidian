@@ -25,24 +25,6 @@
 	- [ ] Text Compression
 		- https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/?utm_source=lighthouse&utm_medium=devtools
 
-- [ ] 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남)
-- [ ] 매입 이력 추가시 해당 종목의 row의 평가금액이 update 안됨 (아마 정적 데이터 fetch에 대한 invalidateQuery 필요).
-
-- [ ] `user` 객체 `profileUrl` 값
-	- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
-
-- Charts
-	- Chart Legend 패딩 및 높이 조절 필요.
-	- 실시간 데이터 반영.
-
-- To Backend
-	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
-	- 차트 데이터 정렬 부탁.
-		- DashboardPage 포트폴리오 비중 
-		- PortfolioPage 종목 구성 차트
-		- SectorBar
-	- 배당금 데이터
-	- 이메일 인증 코드 발송 안됨
 
 - To Design
 	- Dark Mode
@@ -67,6 +49,7 @@
 	- [ ] Icon
 		- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
 - [ ] DashboardPage 포트폴리오 비중 차트 % 소수점 안보임.
+- [ ] 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남). 토스트 피드백 제공.
 
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
@@ -115,6 +98,8 @@
 - [x] Percentage 값들 실수형으로 변경
 	-  백엔드에서 소수 2자리 까지 보내주고 있는 부분 이상 없음 확인 완료
 - 마이너스인 경우 화폐단위 앞으로 "-".
+- 특정 포트폴리오 페이지에서 다른 포트폴리오 페이지로 이동 했을 때 "총 손익" 데이터가 이전 포트폴리오 "총 손익"이 남아있다 (SSE 연결 안됐을 때).
+- "안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundar
 
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 #### UI
@@ -141,3 +126,14 @@
 	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
 	- 로그인이 안되었을 때도 종목 검색 가능하도록 token protection 제거 (BE)
 	- 포트폴리오 비중 파이차트 슬라이스 순서 수정
+
+
+
+- To Backend
+	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
+	- 차트 데이터 정렬 부탁.
+		- DashboardPage 포트폴리오 비중 
+		- PortfolioPage 종목 구성 차트
+		- SectorBar
+	- 배당금 데이터
+	- 이메일 인증 코드 발송 안됨
