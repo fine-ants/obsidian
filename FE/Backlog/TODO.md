@@ -1,18 +1,14 @@
 # TODO
 
-- [ ] **Dashboard Page**
-	- [ ] 포트폴리오 비중 파이차트 슬라이스 순서 수정
-	- [ ] SSE 적용
-
-- [ ] **Portfolio Page**
-	- [ ] Overview 최대 손실율에 대한 논의
-	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
-
 - [ ] **알림 기능**
+
+- [ ] Test (E2E)
 
 - [ ] 반응형
 
-- [ ] Test (E2E)
+- [ ] SSE 적용
+	- [ ] Dashboard Page
+	- [ ] Portfolio Page의 PortfolioHoldingsPieChart
 
 - [ ] Optimization
 	- [ ] Performance
@@ -29,17 +25,8 @@
 	- [ ] Text Compression
 		- https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/?utm_source=lighthouse&utm_medium=devtools
 
-- [ ] **WatchlistsPage 및 WatchlistPage**
-
-- [ ] Proprietary License
-
-- [ ] Received Dividends Record Feature
-
-- [ ] 만료된 Refresh Token인 상태로 첫 페이지 로드시, "토큰이 존재하지 않습니다" 토스트 발생. <-- (현재 배포 상황. 확인 필요.)
-	- Refresh Token이 만료된 응답이 오면 localStorage에 있는 `user` 초기화 및 signin page으로 이동.
-
-- 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남)
-- 매입 이력 추가시 해당 종목의 row의 평가금액이 update 안됨 (아마 정적 데이터 fetch에 대한 invalidateQuery 필요).
+- [ ] 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남)
+- [ ] 매입 이력 추가시 해당 종목의 row의 평가금액이 update 안됨 (아마 정적 데이터 fetch에 대한 invalidateQuery 필요).
 
 - [ ] `user` 객체 `profileUrl` 값
 	- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
@@ -79,6 +66,7 @@
 		- [ ] 아이콘 버튼
 	- [ ] Icon
 		- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
+- [ ] DashboardPage 포트폴리오 비중 차트 % 소수점 안보임.
 
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
@@ -152,3 +140,4 @@
 	- 회원가입 인증 코드가 `000006`만 오는 듯함
 	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
 	- 로그인이 안되었을 때도 종목 검색 가능하도록 token protection 제거 (BE)
+	- 포트폴리오 비중 파이차트 슬라이스 순서 수정
