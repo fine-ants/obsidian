@@ -94,6 +94,7 @@
 ### Kakamotobi
 - [ ] FCM service worker 문제 해결
 - [ ] 잠정 손실잔고, 등 "?" helper 추가
+- [ ] Table 밑에 공백 수정
 - [ ] 포트폴리오 페이지 "종묵 추가" dialog "매입 날짜" 이전 날짜로 이동 버튼만 있음.
 - [ ] 최신 @fineants/demolition package 적용
 - [ ] README update (알림 관련 내용 추가)
@@ -158,7 +159,7 @@
 	- [ ] `invalidateQueries()` 정리
 - [x] Percentage 값들 실수형으로 변경
 	-  백엔드에서 소수 2자리 까지 보내주고 있는 부분 이상 없음 확인 완료
-
+- 마이너스인 경우 화폐단위 앞으로 "-".
 
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 #### UI
