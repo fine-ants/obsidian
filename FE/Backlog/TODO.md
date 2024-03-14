@@ -7,28 +7,6 @@
 - [ ] **Portfolio Page**
 	- [ ] Overview 최대 손실율에 대한 논의
 	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
-	- [ ] 포트폴리오 상세 조회 및 종목 조회
-		- `portfolioDetails`에서 실시간 항목이 6개.
-		- `portfolioHoldings`에서 실시간 항목이 6개.
-		- 나머지 정적인 데이터들을 SSE로 계속 받는 것에 대한 overhead 확인 필요.
-		- 문제: 매입 이력을 추가하는 등 CRUD 작업을 진행하면 다음 SSE message을 기다려야함.
-		- CRUD vs 실시간 분리.
-		- 현재 상황에서는 서버에서 부담스러움
-		- 대안
-			- REST API로 우선 화면 초기화.
-			- 이후 SSE로 실시간 데이터만 받아서 화면 업데이트.
-			- CUD 요청이 생길 시, SSE 연결 끊고, 1번, 2번 반복.
-
-- [ ] 공용 컴포넌트
-	- [ ] Button
-		- [ ] Refactoring
-			- [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
-		- [ ] 아이콘 버튼
-	- [ ] Icon
-		- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
-
-- [ ] 배포
-	- [ ] Custom domain name (fineants) 적용. Docs 참고.
 
 - [ ] **알림 기능**
 
@@ -82,31 +60,25 @@
 - To Design
 	- Dark Mode
 
-## 2/29 배포 목표
-### Kakamotobi & Jay
-- [ ] `@fineants/demolition`
-	- [ ] Contribution 관련 지침
-	- [ ] 훅 및 유틸 함수 추가
-		- [ ] formatTickValue <-- 업그레이드 필요
-		- [x] getElapsedSince <-- 업그레이드 필요 (Jay)
-		- [x] retryFn <-- 향상해보기 (Kakamotobi)
-	- [ ] Tree-shaking 도입
+## 목표
 ### Kakamotobi
-- [ ] FCM service worker 문제 해결
-- [ ] 잠정 손실잔고, 등 "?" helper 추가
-- [ ] Table 밑에 공백 수정
-- [ ] 포트폴리오 페이지 "종묵 추가" dialog "매입 날짜" 이전 날짜로 이동 버튼만 있음.
-- [ ] 최신 @fineants/demolition package 적용
-- [ ] README update (알림 관련 내용 추가)
+- [ ] Demolition
+	- [ ] formatTickValue
+- [ ] FineAnts
+	- [ ] FCM service worker 문제 해결
+	- [ ] 잠정 손실잔고, 등 "?" helper 추가
+	- [ ] Table 밑에 공백 수정
+	- [ ] 포트폴리오 페이지 "종묵 추가" dialog "매입 날짜" 이전 날짜로 이동 버튼만 있음.
+	- [ ] 최신 @fineants/demolition package 적용
+	- [ ] README update (알림 관련 내용 추가)
 ### Jay
-- [x] DashboardOverview 예상 연배당률 (overviewData.totalAnnualDividendYield)에 RateBadge의 화살표가 없어야 함.
-- [x] Stock Page "알림 설정"의 "추가된 알림" 지정가 알림 추가 후 invalidate 필요
-- [x] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
-	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
-- [x] 알림 패널 api 명세와 다른 부분 수정
-- [x]  "계정 삭제하기" 줄바꿈 됨
-- [x] font 적용 제대로 안된 부분 
-- [x] svgr 사용 여부 체크하기
+- [ ] 공용 컴포넌트
+	- [ ] Button
+		- [ ] Refactoring
+			- [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
+		- [ ] 아이콘 버튼
+	- [ ] Icon
+		- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
 
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
@@ -135,14 +107,9 @@
 - Watchlist 변동률 정렬이 적용이 안됨
 	- 서버에서 rate가 0으로 들어와서 안되는 것이었음 change로 바꾸면 값이 있어서 정렬됨
 - [ ] 와치리스트 리스트, 와치리스트 페이지 min-height 제거
-#### 기타
-- `Third-party cookie will be blocked. Learn more in the Issues tab.`
-- [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
-	- media query (1200px?)
-
-- [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
 
 
+---
 
 ### TODO
 - [ ] FCM
@@ -169,6 +136,14 @@
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 - [ ]  예상 월 배당금 막대 그래프 0원인 경우 hover시 tooltip 안나오게하기
 - [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
+
+#### 기타
+- `Third-party cookie will be blocked. Learn more in the Issues tab.`
+- [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
+	- media query (1200px?)
+- [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
+- [ ] `@fineants/demolition`
+	- [ ] Contribution 관련 지침
 
 #### BE
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
