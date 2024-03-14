@@ -99,8 +99,11 @@
 
 - [ ] README update (알림 관련 내용 추가)
 ### Jay
-
-
+- [x] DashboardOverview 예상 연배당률 (overviewData.totalAnnualDividendYield)에 RateBadge의 화살표가 없어야 함.
+- [x] Stock Page "알림 설정"의 "추가된 알림" 지정가 알림 추가 후 invalidate 필요
+- [x] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
+	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
+- [x] 알림 패널 api 명세와 다른 부분 수정
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -133,10 +136,9 @@
 - Percentage 소수점 둘째자리까지 보이도록.
 - [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
 	- media query (1200px?)
-- [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
-	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
+
 - [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
-- [ ] Stock Page "알림 설정"의 "추가된 알림" 지정가 알림 추가 후 invalidate 필요
+
 
 - To BE
 	- 회원가입 인증 코드가 `000006`만 오는 듯함
@@ -157,7 +159,7 @@
 	- [ ] Query Key 정리
 	- [ ] `invalidateQueries()` 정리
 - [ ] Percentage 값들 실수형으로 변경
-- [ ] DashboardOverview 예상 연배당률 (overviewData.totalAnnualDividendYield)에 RateBadge의 화살표가 없어야 함.
+
 - [ ] svgr 사용 여부 체크하기
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 #### UI
