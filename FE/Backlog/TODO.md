@@ -68,7 +68,6 @@
 
 - Charts
 	- Chart Legend 패딩 및 높이 조절 필요.
-	- TallChartLegend에 "기타"가 없으면 divider 미표시.
 	- 실시간 데이터 반영.
 
 - To Backend
@@ -107,7 +106,7 @@
 - [x]  "계정 삭제하기" 줄바꿈 됨
 - [x] font 적용 제대로 안된 부분 
 - [ ] svgr 사용 여부 체크하기
-- [ ]  예상 월 배당금 막대 그래프 0원인 경우 hover시 tooltip 안나오게하기
+
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -172,6 +171,8 @@
 	- Table header column의 가로 사이즈 문제인듯?
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
+- [ ]  예상 월 배당금 막대 그래프 0원인 경우 hover시 tooltip 안나오게하기
+- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 
 #### BE
 - [ ] 계정 삭제하기 500에러
