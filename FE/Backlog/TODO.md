@@ -105,7 +105,7 @@
 - [x] 알림 패널 api 명세와 다른 부분 수정
 - [x]  "계정 삭제하기" 줄바꿈 됨
 - [x] font 적용 제대로 안된 부분 
-- [ ] svgr 사용 여부 체크하기
+- [x] svgr 사용 여부 체크하기
 
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
@@ -136,17 +136,12 @@
 - [ ] 와치리스트 리스트, 와치리스트 페이지 min-height 제거
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
-- Percentage 소수점 둘째자리까지 보이도록.
 - [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
 	- media query (1200px?)
 
 - [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
 
 
-- To BE
-	- 회원가입 인증 코드가 `000006`만 오는 듯함
-	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
-	- 로그인이 안되었을 때도 종목 검색 가능하도록 token protection 제거 (BE)
 
 ### TODO
 - [ ] FCM
@@ -175,6 +170,9 @@
 - [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 
 #### BE
-- [ ] 계정 삭제하기 500에러
-	- 추측: 500에러나지만 refresh token이 서버에서는 삭제가 되는 듯함.
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
+
+- To BE
+	- 회원가입 인증 코드가 `000006`만 오는 듯함
+	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
+	- 로그인이 안되었을 때도 종목 검색 가능하도록 token protection 제거 (BE)
