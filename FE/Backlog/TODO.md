@@ -33,7 +33,7 @@
 	- [ ] FCM service worker 문제 해결
 
 	- [x] Table 밑에 공백 수정
-	- [ ] 포트폴리오 페이지 "종묵 추가" dialog "매입 날짜" 이후 월로 이동하는 버튼 추가
+	- [x] 포트폴리오 페이지 "종묵 추가" dialog "매입 날짜" 이후 월로 이동하는 버튼 추가
 	- [ ] 잠정 손실잔고, 등 "?" helper 추가
 
 	- [ ] 최신 @fineants/demolition package 적용
