@@ -117,6 +117,7 @@
 - [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
 - [ ] `@fineants/demolition`
 	- [ ] Contribution 관련 지침
+- [ ] 포트폴리오 상세 페이지 "총 손익", "당일 손익" 실시간 변동 시 색상 적용
 
 #### BE
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
