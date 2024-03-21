@@ -79,6 +79,9 @@
 	- [ ] FCM token 오류 확인 필요
 		- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
 		- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
+- [ ] **포트폴리오 상세 페이지**
+	- [ ] GET 요청에 대한 invalidate이 안되는 듯함.
+	- [ ] 특정 포트폴리오 페이지에서 다른 포트폴리오 페이지로 이동 했을 때 "평가 금액"과 총 손익" 데이터가 이전 포트폴리오 "평가 금액" 및 "총 손익"이 남아있다 (SSE 연결 안됐을 때).
 - [ ] 로그인 페이지 "내 정보 기억하기" 구현
 - [ ] IconButton, TextButton 구현되면 없을 때 구현한 부분 공용 컴포넌트로 교체하기
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
@@ -91,7 +94,6 @@
 - [x] Percentage 값들 실수형으로 변경
 	-  백엔드에서 소수 2자리 까지 보내주고 있는 부분 이상 없음 확인 완료
 - 마이너스인 경우 화폐단위 앞으로 "-".
-- **특정 포트폴리오 페이지에서 다른 포트폴리오 페이지로 이동 했을 때 "총 손익" 데이터가 이전 포트폴리오 "총 손익"이 남아있다 (SSE 연결 안됐을 때).**
 - **"안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.**
 
 
