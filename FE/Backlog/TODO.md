@@ -34,13 +34,9 @@
 	- [ ] 최신 @fineants/demolition package 적용
 	- [ ] README update (알림 관련 내용 추가)
 ### Jay
-- [ ] 공용 컴포넌트
-	- [ ] Button
-		- [ ] Refactoring
-			- [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
-		- [ ] 아이콘 버튼
 - [ ] Icon
 	- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
+- [ ] TextButton, IconButton 사용처에 맞게 추가하기
 - [ ] DashboardPage 포트폴리오 비중 차트 % 소수점 안보임.
 - [ ] 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남). 토스트 피드백 제공.
 
@@ -86,6 +82,9 @@
 - [ ] 로그인 페이지 "내 정보 기억하기" 구현
 - [ ] IconButton, TextButton 구현되면 없을 때 구현한 부분 공용 컴포넌트로 교체하기
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
+- [ ] GIthub PR bot 생각해보기
+	- 릴리즈, 메인 배포시 PR 내용을 간단하게 요약해서 pr 만들어줄 수 있는 봇?
+	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
 - [ ] TanStack Query
 	- [ ] Query Key 정리
 	- [ ] `invalidateQueries()` 정리
