@@ -1,40 +1,14 @@
 # TODO
 
-- [ ] **Dashboard Page**
-	- [ ] 포트폴리오 비중 파이차트 슬라이스 순서 수정
-	- [ ] SSE 적용
-
-- [ ] **Portfolio Page**
-	- [ ] Overview 최대 손실율에 대한 논의
-	- [ ] PortfolioHoldingsPieChart 실시간으로 변경
-	- [ ] 포트폴리오 상세 조회 및 종목 조회
-		- `portfolioDetails`에서 실시간 항목이 6개.
-		- `portfolioHoldings`에서 실시간 항목이 6개.
-		- 나머지 정적인 데이터들을 SSE로 계속 받는 것에 대한 overhead 확인 필요.
-		- 문제: 매입 이력을 추가하는 등 CRUD 작업을 진행하면 다음 SSE message을 기다려야함.
-		- CRUD vs 실시간 분리.
-		- 현재 상황에서는 서버에서 부담스러움
-		- 대안
-			- REST API로 우선 화면 초기화.
-			- 이후 SSE로 실시간 데이터만 받아서 화면 업데이트.
-			- CUD 요청이 생길 시, SSE 연결 끊고, 1번, 2번 반복.
-
-- [ ] 공용 컴포넌트
-	- [ ] Button
-		- [ ] Refactoring
-			- [ ] Button 컴포넌트 `"text"` variant 스타일 확인 필요
-		- [ ] 아이콘 버튼
-	- [ ] Icon
-		- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
-
-- [ ] 배포
-	- [ ] Custom domain name (fineants) 적용. Docs 참고.
-
 - [ ] **알림 기능**
+
+- [ ] Test (E2E)
 
 - [ ] 반응형
 
-- [ ] Test (E2E)
+- [ ] SSE 적용
+	- [ ] Dashboard Page
+	- [ ] Portfolio Page의 PortfolioHoldingsPieChart
 
 - [ ] Optimization
 	- [ ] Performance
@@ -51,55 +25,20 @@
 	- [ ] Text Compression
 		- https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/?utm_source=lighthouse&utm_medium=devtools
 
-- [ ] **WatchlistsPage 및 WatchlistPage**
-
-- [ ] Proprietary License
-
-- [ ] Received Dividends Record Feature
-
-- [ ] 만료된 Refresh Token인 상태로 첫 페이지 로드시, "토큰이 존재하지 않습니다" 토스트 발생. <-- (현재 배포 상황. 확인 필요.)
-	- Refresh Token이 만료된 응답이 오면 localStorage에 있는 `user` 초기화 및 signin page으로 이동.
-
-- 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남)
-- 매입 이력 추가시 해당 종목의 row의 평가금액이 update 안됨 (아마 정적 데이터 fetch에 대한 invalidateQuery 필요).
-
-- [ ] `user` 객체 `profileUrl` 값
-	- http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_640x640.jpg <-- ?
-
-- Charts
-	- Chart Legend 패딩 및 높이 조절 필요.
-	- TallChartLegend에 "기타"가 없으면 divider 미표시.
-	- 실시간 데이터 반영.
-
-- To Backend
-	- PortfolioPage 당일손익금 및 당일손익률 데이터 확인 필요.
-	- 차트 데이터 정렬 부탁.
-		- DashboardPage 포트폴리오 비중 
-		- PortfolioPage 종목 구성 차트
-		- SectorBar
-	- 배당금 데이터
-	- 이메일 인증 코드 발송 안됨
-
-- To Design
-	- Dark Mode
-
-## 2/29 배포 목표
-### Kakamotobi & Jay
-- [ ] `@fineants/demolition`
-	- [ ] Contribution 관련 지침
-	- [ ] 훅 및 유틸 함수 추가
-		- [ ] formatTickValue <-- 업그레이드 필요
-		- [ ] getElapsedSince <-- 업그레이드 필요 (Jay)
-		- [ ] retryFn <-- 향상해보기 (Kakamotobi)
-	- [ ] Tree-shaking 도입
+## 목표
 ### Kakamotobi
-- [x] Watchlist 선택 후 삭제 시 table head checkbox deselect 안됨
-- [x] 새 리스트 추가 모달 "추가" 버튼 disabled 적용
-- [x] "종목 추가 모달"에서 "추가" 버튼 누른 후 spinner 적용
-
-- [ ] README update (알림 관련 내용 추가)
+- [ ] Demolition
+	- [ ] formatTickValue
+- [ ] FineAnts
+	- [ ] FCM service worker 문제 해결
+	- [ ] 최신 @fineants/demolition package 적용
+	- [ ] README update (알림 관련 내용 추가)
 ### Jay
-
+- [ ] Icon
+	- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
+- [ ] TextButton, IconButton 사용처에 맞게 추가하기
+- [ ] DashboardPage 포트폴리오 비중 차트 % 소수점 안보임.
+- [ ] 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남). 토스트 피드백 제공.
 
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
@@ -128,20 +67,9 @@
 - Watchlist 변동률 정렬이 적용이 안됨
 	- 서버에서 rate가 0으로 들어와서 안되는 것이었음 change로 바꾸면 값이 있어서 정렬됨
 - [ ] 와치리스트 리스트, 와치리스트 페이지 min-height 제거
-#### 기타
-- `Third-party cookie will be blocked. Learn more in the Issues tab.`
-- Percentage 소수점 둘째자리까지 보이도록.
-- [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
-	- media query (1200px?)
-- [ ] 포트폴리오 상세 페이지 "종목 구성 차트 레전드" 내부 아이템 사이즈 UI 수정
-	- 폰트 관련 문제와 연관도 있을 것 같아 폰트 문제와 함께 해결하기
-- [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
-- [ ] Stock Page "알림 설정"의 "추가된 알림" 지정가 알림 추가 후 invalidate 필요
 
-- To BE
-	- 회원가입 인증 코드가 `000006`만 오는 듯함
-	- 2-10자를 벗어날 때 client에서 요청을 안보내긴할거지만 중복체크 요청할 때 서버에서 2-10자 검증 필요
-	- 로그인이 안되었을 때도 종목 검색 가능하도록 token protection 제거 (BE)
+
+---
 
 ### TODO
 - [ ] FCM
@@ -151,17 +79,43 @@
 	- [ ] FCM token 오류 확인 필요
 		- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
 		- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
+- [ ] **포트폴리오 상세 페이지**
+	- [ ] GET 요청에 대한 invalidate이 안되는 듯함.
+	- [ ] 특정 포트폴리오 페이지에서 다른 포트폴리오 페이지로 이동 했을 때 "평가 금액"과 총 손익" 데이터가 이전 포트폴리오 "평가 금액" 및 "총 손익"이 남아있다 (SSE 연결 안됐을 때).
 - [ ] 로그인 페이지 "내 정보 기억하기" 구현
+- [ ] IconButton, TextButton 구현되면 없을 때 구현한 부분 공용 컴포넌트로 교체하기
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
+- [ ] GIthub PR bot 생각해보기
+	- 릴리즈, 메인 배포시 PR 내용을 간단하게 요약해서 pr 만들어줄 수 있는 봇?
+	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
 - [ ] TanStack Query
 	- [ ] Query Key 정리
 	- [ ] `invalidateQueries()` 정리
-- [ ] Percentage 값들 실수형으로 변경
+- [x] Percentage 값들 실수형으로 변경
+	-  백엔드에서 소수 2자리 까지 보내주고 있는 부분 이상 없음 확인 완료
+- 마이너스인 경우 화폐단위 앞으로 "-".
+- **"안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.**
+- [ ] 포트폴리오 목록 페이지에서 포트폴리오 삭제 시 화면 재렌더링 안됨
+
+- [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 #### UI
-- [ ] Table header column title, "계정 삭제하기" 줄바꿈 됨 (Window/MacOS Font 확인 필요)
+- [ ] Table header column title (Window/MacOS Font 확인 필요)
+	- Table header column의 가로 사이즈 문제인듯?
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
+- [ ] 예상 월 배당금 그래프
+	- [ ] 예상 월 배당금 막대 그래프 0원인 경우 hover시 tooltip 안나오게하기
+	- [ ] 1000단위 "," 표시
+- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
+
+#### 기타
+- `Third-party cookie will be blocked. Learn more in the Issues tab.`
+- [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
+	- media query (1200px?)
+- [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
+- [ ] `@fineants/demolition`
+	- [ ] Contribution 관련 지침
+- [ ] 포트폴리오 상세 페이지 "총 손익", "당일 손익" 실시간 변동 시 색상 적용
+
 #### BE
-- [ ] 계정 삭제하기 500에러
-	- 추측: 500에러나지만 refresh token이 서버에서는 삭제가 되는 듯함.
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
