@@ -76,6 +76,7 @@
 
 ### TODO
 - [ ] FCM
+	- [ ] OS 알림 두개 (foreground, background) 보내지는 듯 
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
 	- [ ] 배포 환경에서 serviceworker 안돌아감
 	- [ ] UserContext 및 FCM Token 관련 리팩토링 (재렌더에 의한 불필요한 setupFCMToken 요청)
