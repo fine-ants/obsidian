@@ -39,7 +39,7 @@
 - [ ] TextButton, IconButton 사용처에 맞게 추가하기
 - [ ] DashboardPage 포트폴리오 비중 차트 % 소수점 안보임.
 - [ ] 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남). 토스트 피드백 제공.
-
+- [ ] 포트폴리오 목록 페이지에서 포트폴리오 삭제 시 화면 재렌더링 안됨
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -93,7 +93,7 @@
 	-  백엔드에서 소수 2자리 까지 보내주고 있는 부분 이상 없음 확인 완료
 - 마이너스인 경우 화폐단위 앞으로 "-".
 - **"안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.**
-- [ ] 포트폴리오 목록 페이지에서 포트폴리오 삭제 시 화면 재렌더링 안됨
+
 
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 #### UI
