@@ -30,6 +30,7 @@
 - [ ] FineAnts
 	- [ ] FCM service worker 문제 해결
 	- [ ] README update (알림 관련 내용 추가)
+	- [ ] OS 알림 두개 (foreground, background) 보내지는 듯 
 ### Jay
 - [ ] Icon
 	- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
@@ -70,9 +71,7 @@
 
 ### TODO
 - [ ] FCM
-	- [ ] OS 알림 두개 (foreground, background) 보내지는 듯 
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
-	- [ ] 배포 환경에서 serviceworker 안돌아감
 	- [ ] UserContext 및 FCM Token 관련 리팩토링 (재렌더에 의한 불필요한 setupFCMToken 요청)
 	- [ ] FCM token 오류 확인 필요
 		- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
@@ -92,6 +91,8 @@
 - **"안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.**
 - [ ] 숫자 input에 최대 제한 적용
 - [ ] 매입 이력 등 input에 음수를 입력하지 못하도록 적용
+- [ ] 종목 추가 모달에서 검색 input 후 enter 누를 시, "X" 아이콘이 하나더 뜸.
+	- [ ] Enter로 선택이 가능하도록 수정
 
 
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
