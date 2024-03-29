@@ -27,11 +27,8 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] Demolition
-	- [ ] formatTickValue
 - [ ] FineAnts
 	- [ ] FCM service worker 문제 해결
-	- [ ] 최신 @fineants/demolition package 적용
 	- [ ] README update (알림 관련 내용 추가)
 ### Jay
 - [ ] Icon
