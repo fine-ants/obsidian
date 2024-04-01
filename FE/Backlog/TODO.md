@@ -38,6 +38,7 @@
 - [ ] DashboardPage 포트폴리오 비중 차트 % 소수점 안보임.
 - [ ] 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남). 토스트 피드백 제공.
 - [ ] 포트폴리오 목록 페이지에서 포트폴리오 삭제 시 화면 재렌더링 안됨
+- [ ] 포트폴리오 페이지 매입이력 추가, 수정에서 포트폴리오 GET요청 invalidate
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
