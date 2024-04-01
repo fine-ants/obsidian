@@ -30,7 +30,7 @@
 - [ ] FineAnts
 	- [ ] FCM service worker 문제 해결
 	- [ ] README update (알림 관련 내용 추가)
-	- [ ] OS 알림 두개 (foreground, background) 보내지는 듯 
+	- [ ] OS 알림 두개 (foreground, background) 보내지는 듯
 ### Jay
 - [ ] Icon
 	- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
