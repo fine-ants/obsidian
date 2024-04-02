@@ -56,7 +56,6 @@
 - [x] 포트폴리오 삭제 후 portfolioList query invalidate 필요
 - [x] 포트폴리오 삭제 Dialog
 	- "항목을" -> "포트폴리오를"로 변경
-- [ ] 매입이력 추가 테이블에서 메모부분 trim() 때문에 스페이스 안되는 듯
 #### Watchlist
 - [ ] Watchlist Table 디자인 수정
 	- [x] 별 제거
