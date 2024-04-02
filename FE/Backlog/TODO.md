@@ -39,6 +39,7 @@
 - [ ] 매입 이력 추가했는데 현금이 부족 하면 400 Bad Request (사용자 입장에서는 아무 일이 안일어남). 토스트 피드백 제공.
 - [ ] 포트폴리오 목록 페이지에서 포트폴리오 삭제 시 화면 재렌더링 안됨
 - [ ] 포트폴리오 페이지 매입이력 추가, 수정에서 포트폴리오 GET요청 invalidate 필요
+- [ ] header에 파인앤츠 로고 onClick Link로 변경하기
 ### Bakha
 - [x] Watchlist breadcrumb 이름 수정
 - [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -94,7 +95,7 @@
 - [ ] 매입 이력 등 input에 음수를 입력하지 못하도록 적용
 - [ ] 종목 추가 모달에서 검색 input 후 enter 누를 시, "X" 아이콘이 하나더 뜸.
 	- [ ] Enter로 선택이 가능하도록 수정
-- [ ] header에 파인앤츠 로고 onClick Link로 변경하기
+
 
 
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
