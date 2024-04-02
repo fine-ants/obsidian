@@ -276,17 +276,19 @@ https://vapidkeys.com/
 #### Notes
 - On Android and Web/JS, `TTL` can be set between 0 to 2,419,200 seconds (28 days). 
 	- `TTL = 0` means that messages that cannot be delivered immediately are discarded.
+- `data` messages don't support `fcm_options.link`.
+	- Therefore, if using `data` messages, it is recommended to add a `notification` payload to all `data` messages.
 ### FineAnts Notification
+- Foreground Message
+	- `notification` payload을 활용하여 `new Notification()`.
+- Background Message
+	- `notification` payload을 활용하여 FCM SDK가 자동으로 알림을 발생하여 service worker에서 `onBackgroundMessage` 미사용.
 
 ```json
 {
 	notification: {
 		title: "",
 		body: ""
-	},
-	data: {
-		title: "",
-		body: "",
 	},
 	"webpush": {
 		"fcm_options": { // fcmOptions
