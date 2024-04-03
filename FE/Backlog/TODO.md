@@ -75,6 +75,7 @@
 		- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
 		- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
 - [ ] 로그인 페이지 "내 정보 기억하기" 구현
+- [ ] StockPage Suspense 및 ErrorBoundary 적용
 - [ ] IconButton, TextButton 구현되면 없을 때 구현한 부분 공용 컴포넌트로 교체하기
 - [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] GIthub PR bot 생각해보기
