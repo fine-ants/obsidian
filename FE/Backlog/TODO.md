@@ -32,6 +32,7 @@
 	- [ ] README update (알림 관련 내용 추가)
 	- [x] OS 알림 두개 (foreground, background) 보내지는 현상
 	- [x] 종목 지정가 최대 5개 초과 등록 시도 시 토스트 보여주기
+	- [x] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
 ### Jay
 - [ ] Icon
 	- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
@@ -106,7 +107,6 @@
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
 - [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
 	- media query (1200px?)
-- [ ] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
 - [ ] `@fineants/demolition`
 	- [ ] Contribution 관련 지침
 - [ ] 포트폴리오 상세 페이지 "총 손익", "당일 손익" 실시간 변동 시 색상 적용
