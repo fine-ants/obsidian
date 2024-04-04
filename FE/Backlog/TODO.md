@@ -30,7 +30,7 @@
 - [ ] FineAnts
 	- [ ] FCM service worker 문제 해결
 	- [ ] README update (알림 관련 내용 추가)
-	- [ ] OS 알림 두개 (foreground, background) 보내지는 현상
+	- [x] OS 알림 두개 (foreground, background) 보내지는 현상
 	- [ ] 종목 지정가 최대 5개 초과 등록 시도 시 토스트 보여주기
 ### Jay
 - [ ] Icon
