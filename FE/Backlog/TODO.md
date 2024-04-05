@@ -30,7 +30,6 @@
 - [ ] FineAnts
 	- [ ] FCM service worker 문제 해결
 	- [ ] README update (알림 관련 내용 추가)
-	- [x] OS 알림 두개 (foreground, background) 보내지는 현상
 	- [x] 종목 지정가 최대 5개 초과 등록 시도 시 토스트 보여주기
 	- [x] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
 ### Jay
@@ -38,20 +37,20 @@
 	- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
 - [ ] TextButton, IconButton 사용처에 맞게 추가하기
 ### Bakha
-- [x] Watchlist breadcrumb 이름 수정
-- [x] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
-- [x] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
-- [x] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
+- [ ] Watchlist breadcrumb 이름 수정
+- [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
+- [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
+- [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 #### 포트폴리오 
 - 추가 Dialog
-	- [x] 제목 폰트 적용 안됨
+	- [ ] 제목 폰트 적용 안됨
 	- [ ] 예산 및 금액 input에 `,` 적용
 	- [ ] 예산, 목표 수익률, 최대 손실율 입력한 뒤 예산을 변경하면,
 		- 목표 수익률(%)이 변하는데 %가 아니라 금액이 변하도록 수정
 		- 최대 손실율 금액도 변하도록 수정
 	- 예산 입력했지만 목표 수익률 및 최대 손실율을 입력안해도 되게 수정
-- [x] 포트폴리오 삭제 후 portfolioList query invalidate 필요
-- [x] 포트폴리오 삭제 Dialog
+- [ ] 포트폴리오 삭제 후 portfolioList query invalidate 필요
+- [ ] 포트폴리오 삭제 Dialog
 	- "항목을" -> "포트폴리오를"로 변경
 #### Watchlist
 - [ ] Watchlist Table 디자인 수정
