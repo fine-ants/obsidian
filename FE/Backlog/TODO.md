@@ -102,7 +102,7 @@
 	- [ ] 1000단위 "," 표시
 - [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
-
+- [ ] alignitems
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
 - [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
