@@ -29,6 +29,7 @@
 ### Kakamotobi
 - [ ] FineAnts
 	- [ ] README update (알림 관련 내용 추가)
+	- [ ] StockPage Suspense 및 ErrorBoundary 적용
 ### Jay
 
 ### Bakha
@@ -60,16 +61,14 @@
 
 ### TODO
 - [ ] FCM
-	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버림
+	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
 	- [ ] UserContext 및 FCM Token 관련 리팩토링 (재렌더에 의한 불필요한 setupFCMToken 요청)
 	- [ ] FCM token 오류 확인 필요
 		- 종종 FCM으로부터 발급 받은 토큰이 `404 UNREGISTERED` 오류가 날 때 해당 토큰을 제거하고 새로운 토큰을 발급받아야 함.
 		- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
+	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] 로그인 페이지 "내 정보 기억하기" 구현
-- [ ] StockPage Suspense 및 ErrorBoundary 적용
-- [ ] IconButton, TextButton 구현되면 없을 때 구현한 부분 공용 컴포넌트로 교체하기
-- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] GIthub PR bot 생각해보기
 	- 릴리즈, 메인 배포시 PR 내용을 간단하게 요약해서 pr 만들어줄 수 있는 봇?
 	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
