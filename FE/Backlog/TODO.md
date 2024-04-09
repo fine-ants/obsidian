@@ -27,15 +27,15 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] FineAnts
-	- [ ] StockPage Suspense 및 ErrorBoundary 적용
+- [ ] StockPage Suspense 및 ErrorBoundary 적용
+- [ ] 기타 수정
 	- [ ] 예상 월 배당금 그래프
 	- [ ] 1000단위 "," 표시
 	- [ ] alignitems
-	- [ ] README update (알림 관련 내용 추가)
 	- [ ] MSW portfolioHandlers Add Portfolio `?? 0` 추가
+- [ ] README update (알림 관련 내용 추가)
 ### Jay
-
+- [ ] demolition `executeIfNumeric` 유틸 함수 추가
 ### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
