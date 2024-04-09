@@ -28,8 +28,12 @@
 ## 목표
 ### Kakamotobi
 - [ ] FineAnts
-	- [ ] README update (알림 관련 내용 추가)
 	- [ ] StockPage Suspense 및 ErrorBoundary 적용
+	- [ ] 예상 월 배당금 그래프
+	- [ ] 1000단위 "," 표시
+	- [ ] alignitems
+	- [ ] README update (알림 관련 내용 추가)
+	- [ ] MSW portfolioHandlers Add Portfolio `?? 0` 추가
 ### Jay
 
 ### Bakha
@@ -83,7 +87,7 @@
 - [ ] 매입 이력 등 input에 음수를 입력하지 못하도록 적용
 - [ ] 종목 추가 모달에서 검색 input 후 enter 누를 시, "X" 아이콘이 하나더 뜸.
 	- [ ] Enter로 선택이 가능하도록 수정
-- [ ] 포트폴리오 홀딩 테이블의 body setTimeout돌아 가는 조건문 추가
+- [ ] 포트폴리오 홀딩 테이블의 body setTimeout 돌아가는 조건문 추가
 
 
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
@@ -92,12 +96,8 @@
 	- Table header column의 가로 사이즈 문제인듯?
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
-- [ ] 예상 월 배당금 그래프
-	- [ ] 예상 월 배당금 막대 그래프 0원인 경우 hover시 tooltip 안나오게하기
-	- [ ] 1000단위 "," 표시
 - [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
-- [ ] alignitems
 - [ ] Button 컴포넌트 width를 100% 대신 auto로 리팩터링하기
 - [ ] Header에 와치리스트, 인덱스 새탭열기 안됨 div로 되어 있는것 같다
 #### 기타
