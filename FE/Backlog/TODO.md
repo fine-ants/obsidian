@@ -28,14 +28,9 @@
 ## 목표
 ### Kakamotobi
 - [ ] FineAnts
-	- [ ] FCM service worker 문제 해결
 	- [ ] README update (알림 관련 내용 추가)
-	- [x] 종목 지정가 최대 5개 초과 등록 시도 시 토스트 보여주기
-	- [x] input 내에 숫자 1천 단위 `,`  표시해주는 util 함수 구현
 ### Jay
-- [ ] Icon
-	- [ ] Hover 필요한 icon 사용처 수정 (`hoverColor` prop 사용)
-- [ ] TextButton, IconButton 사용처에 맞게 추가하기
+
 ### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -65,6 +60,7 @@
 
 ### TODO
 - [ ] FCM
+	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버림
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
 	- [ ] UserContext 및 FCM Token 관련 리팩토링 (재렌더에 의한 불필요한 setupFCMToken 요청)
 	- [ ] FCM token 오류 확인 필요
