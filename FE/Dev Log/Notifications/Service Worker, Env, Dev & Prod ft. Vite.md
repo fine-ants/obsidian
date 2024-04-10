@@ -11,7 +11,7 @@ https://www.reddit.com/r/Firebase/comments/18fj4zp/how_do_you_handle_sensitive_v
 - 하지만, GitHub repo에는 안올라갔으면 함.
 - 즉, 환경변수를 사용하려 함.
 
-## `public/firebase-messaging-sw.js`
+## Approach 1 - `public/firebase-messaging-sw.js`
 - Service worker 파일에서 환경 변수 접근(import.meta.env 또는 process.env)이 안됨.
 - 개발 모드 (문제 없음)
 	- Custom plugin에서 dotenv를 활용하여 `process.env`가 가능함.
@@ -22,7 +22,7 @@ https://www.reddit.com/r/Firebase/comments/18fj4zp/how_do_you_handle_sensitive_v
 		- `”build”: “node —env-file=.env scripts/sw.js && tsc && vite build“`
 		- 하지만, 이 방법은 실제 파일 자체를 변경하기 때문에 이상적이지 않음.
 
-## `src/firebase-messaging-sw.js`
+## Approach 2 `src/firebase-messaging-sw.js`
 - Service worker 파일에서 환경 변수 접근(`import.meta.env`) 가능.
 - 개발 모드 (문제 있음)
 	- Service worker 경로가 안맞음.
