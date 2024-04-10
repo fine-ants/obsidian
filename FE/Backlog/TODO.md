@@ -29,7 +29,7 @@
 ### Kakamotobi
 - [x] StockPage Suspense 및 ErrorBoundary 적용
 - [ ] 기타 수정
-	- [ ] 예상 월 배당금 그래프 1000단위 "," 표시
+	- [x] 예상 월 배당금 그래프 1000단위 "," 표시
 	- [x] NavBar alignitems
 	- [ ] MSW portfolioHandlers Add Portfolio `?? 0` 추가
 - [ ] README update (알림 관련 내용 추가)
