@@ -35,4 +35,9 @@ https://www.reddit.com/r/Firebase/comments/18fj4zp/how_do_you_handle_sensitive_v
 	- Service worker 파일이 src 안에 있으므로, dist의 루트 레벨로 output되지 않고 메인 애플리케이션 코드와 같이 번들링이 되기 때문에 build config에서 메인 애플리케이션과 service worker 파일을 구분하여 두개의 entry point와 output을 설정하면 됨.
 
 ## Solution - `src/firebase-messaging-sw.js` + `writeFileSync`
-- Attempt 2를 
+- Attempt 1과 Attempt 2를 병합하여 개선.
+- 개발 모드 (문제 없음)
+	- `firebase-messaging-sw.js` 파일을 읽고 정규식을 사용하여 "import.meta.env.xyz"를 `process.env.[varName]`을 통해 실제 환경 변수 값으로 대체한 후 `fs.writeFileSync`으로 `public/firebase-messaging-sw.js`에 개발용 service worker 파일을 생성.
+	- 해당 `public/firebase-messaging-sw.js` 파일은 개발 모드일 때만 사용하는 임시적인 파일이므로, vite config에서 개발 모드일 때만 해당 custom plugin 적용하고 .gitignore에 추가.
+- 빌드 (문제 없음)
+	- Attempt 2와 동일
