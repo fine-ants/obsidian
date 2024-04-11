@@ -27,7 +27,6 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] FCM SW Custom Plugin 개선
 - [ ] README update (알림 관련 내용 추가)
 ### Jay
 - [ ] demolition `executeIfNumeric` 유틸 함수 추가
