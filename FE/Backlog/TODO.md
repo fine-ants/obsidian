@@ -27,11 +27,7 @@
 
 ## 목표
 ### Kakamotobi
-- [x] StockPage Suspense 및 ErrorBoundary 적용
-- [x] 기타 수정
-	- [x] 예상 월 배당금 그래프 1000단위 "," 표시
-	- [x] NavBar alignitems
-	- [x] MSW portfolioHandlers Add Portfolio `?? 0` 추가
+- [ ] FCM SW Custom Plugin 개선
 - [ ] README update (알림 관련 내용 추가)
 ### Jay
 - [ ] demolition `executeIfNumeric` 유틸 함수 추가
