@@ -28,6 +28,9 @@
 ## 목표
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
+- [ ] TanStack Query
+	- [ ] Query Key 정리
+	- [ ] `invalidateQueries()` 정리
 ### Jay
 - [ ] demolition `executeIfNumeric` 유틸 함수 추가
 ### Bakha
@@ -70,9 +73,6 @@
 - [ ] GIthub PR bot 생각해보기
 	- 릴리즈, 메인 배포시 PR 내용을 간단하게 요약해서 pr 만들어줄 수 있는 봇?
 	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
-- [ ] TanStack Query
-	- [ ] Query Key 정리
-	- [ ] `invalidateQueries()` 정리
 - [x] Percentage 값들 실수형으로 변경
 	-  백엔드에서 소수 2자리 까지 보내주고 있는 부분 이상 없음 확인 완료
 - 마이너스인 경우 화폐단위 앞으로 "-".
