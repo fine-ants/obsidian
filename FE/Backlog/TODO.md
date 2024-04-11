@@ -30,6 +30,7 @@
 - [ ] README update (알림 관련 내용 추가)
 - [x] TanStack Query
 	- [x] Query Key 정리
+- [ ] Form enter 처리
 ### Jay
 - [ ] demolition `executeIfNumeric` 유틸 함수 추가
 ### Bakha
