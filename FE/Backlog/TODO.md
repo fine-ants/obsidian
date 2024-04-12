@@ -36,6 +36,7 @@
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
+	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 #### 포트폴리오 
 - 추가 Dialog
 	- [ ] 제목 폰트 적용 안됨
@@ -88,7 +89,6 @@
 	- Table header column의 가로 사이즈 문제인듯?
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
-- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
 - [ ] Button 컴포넌트 width를 100% 대신 auto로 리팩터링하기
 - [ ] Header에 와치리스트, 인덱스 새탭열기 안됨 div로 되어 있는것 같다
