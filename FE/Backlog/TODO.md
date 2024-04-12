@@ -28,6 +28,7 @@
 ## 목표
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
+- [ ] AsyncButton 구현
 ### Jay
 
 ### Bakha
