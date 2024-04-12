@@ -29,7 +29,7 @@
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
 ### Jay
-- [ ] demolition `executeIfNumeric` 유틸 함수 추가
+
 ### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
