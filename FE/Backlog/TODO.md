@@ -28,6 +28,7 @@
 ## 목표
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
+- [ ] MUI Search Autocomplete enter 누르면 선택 또는 이동이 되도록 수정.
 ### Jay
 
 ### Bakha
