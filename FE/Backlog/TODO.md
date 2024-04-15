@@ -28,7 +28,7 @@
 ## 목표
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
-- [ ] MUI Search Autocomplete enter 누르면 선택 또는 이동이 되도록 수정.
+- [x] MUI Search Autocomplete enter 누르면 선택 또는 이동이 되도록 수정.
 ### Jay
 - [ ] 포트폴리오 홀딩 테이블의 body setTimeout 돌아가는 조건문 추가
 - [ ] 포트폴리오 상세 페이지 "총 손익", "당일 손익" 실시간 변동 시 색상 적용
