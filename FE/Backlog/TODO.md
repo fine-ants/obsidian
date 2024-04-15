@@ -30,7 +30,8 @@
 - [ ] README update (알림 관련 내용 추가)
 - [ ] MUI Search Autocomplete enter 누르면 선택 또는 이동이 되도록 수정.
 ### Jay
-
+- [ ] 포트폴리오 홀딩 테이블의 body setTimeout 돌아가는 조건문 추가
+- [ ] 포트폴리오 상세 페이지 "총 손익", "당일 손익" 실시간 변동 시 색상 적용
 ### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -80,7 +81,6 @@
 - [ ] 매입 이력 등 input에 음수를 입력하지 못하도록 적용
 - [ ] 종목 추가 모달에서 검색 input 후 enter 누를 시, "X" 아이콘이 하나더 뜸.
 	- [ ] Enter로 선택이 가능하도록 수정
-- [ ] 포트폴리오 홀딩 테이블의 body setTimeout 돌아가는 조건문 추가
 
 
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
@@ -99,7 +99,7 @@
 	- media query (1200px?)
 - [ ] `@fineants/demolition`
 	- [ ] Contribution 관련 지침
-- [ ] 포트폴리오 상세 페이지 "총 손익", "당일 손익" 실시간 변동 시 색상 적용
+
 
 #### BE
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
