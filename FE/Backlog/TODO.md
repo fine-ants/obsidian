@@ -98,4 +98,3 @@
 
 #### BE
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
-- [x] `GET /api/watchlists/{watchlistId}` dailyChangeRate이 `null`로 들어옴.
