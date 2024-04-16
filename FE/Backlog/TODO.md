@@ -31,8 +31,8 @@
 - [ ] 마이너스인 경우 화폐단위 앞으로 "-".
 - [x] 알림 패널 톱니바퀴 아이콘 사이즈 조정 필요
 ### Jay
-- [ ] 포트폴리오 홀딩 테이블의 body setTimeout 돌아가는 조건문 추가
-- [ ] 포트폴리오 상세 페이지 "총 손익", "당일 손익" 실시간 변동 시 색상 적용
+- [x] 포트폴리오 홀딩 테이블의 body setTimeout 돌아가는 조건문 추가
+- [x] 포트폴리오 상세 페이지 "총 손익", "당일 손익" 실시간 변동 시 색상 적용
 ### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -74,15 +74,12 @@
 - [ ] GIthub PR bot 생각해보기
 	- 릴리즈, 메인 배포시 PR 내용을 간단하게 요약해서 pr 만들어줄 수 있는 봇?
 	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
-- [x] Percentage 값들 실수형으로 변경
-	-  백엔드에서 소수 2자리 까지 보내주고 있는 부분 이상 없음 확인 완료
 - **"안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.**
-- [ ] 숫자 input에 최대 제한 적용
 
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 #### UI
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
-	- Table header column의 가로 사이즈 문제인듯?
+	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정 (BE 협의 필요)
 	- [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
@@ -90,11 +87,6 @@
 - [ ] Header에 와치리스트, 인덱스 새탭열기 안됨 div로 되어 있는것 같다
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
-- [ ] Mobile(태블릿 포함) 화면을 위한 임시 안내문 (모달).
-	- media query (1200px?)
-- [ ] `@fineants/demolition`
-	- [ ] Contribution 관련 지침
-
 
 #### BE
 - [ ] User 객체에 OAuth 및 이메일/비밀번호 가입 구분 필요
