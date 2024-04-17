@@ -28,11 +28,10 @@
 ## 목표
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
-- [x] "계정 설정" 탭은 이메일/비밀번호 계정일 때만 보이도록 수정
 - [ ] 최근 로그인한 방식 UI 제공
+- [ ] Fallback Page
 ### Jay
-- [x] 포트폴리오 홀딩 테이블의 body setTimeout 돌아가는 조건문 추가
-- [x] 포트폴리오 상세 페이지 "총 손익", "당일 손익" 실시간 변동 시 색상 적용
+
 ### Bakha
 - [ ] Watchlist breadcrumb 이름 수정
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -83,7 +82,6 @@
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
 - [ ] Button 컴포넌트 width를 100% 대신 auto로 리팩터링하기
-- [ ] Header에 와치리스트, 인덱스 새탭열기 안됨 div로 되어 있는것 같다
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
 
