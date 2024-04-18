@@ -81,7 +81,8 @@
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
-- [ ] 3
+- [ ] 관심 종목 페이지 스켈레톤 사이즈 변경
+	- 실제 테이블 보다 넓은 범위를 가지고 있어서 로딩이 끝나고 실제 테이블이 보였을 때 부자연스럽다
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
 
