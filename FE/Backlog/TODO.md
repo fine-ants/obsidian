@@ -28,7 +28,6 @@
 ## 목표
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
-- [ ] 최근 로그인한 방식 UI 제공
 ### Jay
 
 ### Bakha
@@ -80,7 +79,6 @@
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
-- [ ] 3
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
 
