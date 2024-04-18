@@ -29,9 +29,10 @@
 ## 목표
 
 ### Kakamotobi
-
 - [ ] README update (알림 관련 내용 추가)
-
+- [ ] 포트폴리오 삭제 Dialog
+  - "항목을" -> "포트폴리오를"로 변경
+- [ ] 예산 입력했지만 목표 수익률 및 최대 손실율을 입력안해도 되게 수정
 ### Jay
 
 ### Bakha
@@ -41,28 +42,10 @@
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
   - [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
-
-#### 포트폴리오
-
-- 추가 Dialog
-  - [ ] 제목 폰트 적용 안됨
-  - [ ] 예산 및 금액 input에 `,` 적용
-  - [ ] 예산, 목표 수익률, 최대 손실율 입력한 뒤 예산을 변경하면,
-    - 목표 수익률(%)이 변하는데 %가 아니라 금액이 변하도록 수정
-    - 최대 손실율 금액도 변하도록 수정
-  - 예산 입력했지만 목표 수익률 및 최대 손실율을 입력안해도 되게 수정
-- [ ] 포트폴리오 삭제 후 portfolioList query invalidate 필요
-- [ ] 포트폴리오 삭제 Dialog
-  - "항목을" -> "포트폴리오를"로 변경
-
 #### Watchlist
-
 - [ ] Watchlist Table 디자인 수정
   - [x] 별 제거
-  - _Watchlist Table 단일 삭제 API 불필요_
-- Watchlist 변동률 정렬이 적용이 안됨
-  - 서버에서 rate가 0으로 들어와서 안되는 것이었음 change로 바꾸면 값이 있어서 정렬됨
-- [ ] 와치리스트 리스트, 와치리스트 페이지 min-height 제거
+  - [ ] Watchlist Table 단일 삭제 API 불필요
 
 ---
 
@@ -84,7 +67,7 @@
 - [ ] "PortfolioAddOrEditDialog" 목표 수익률 및 최대 손실율 input 및 계산 문제.
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
-
+- [ ] PortfolioNotificationListTable에서 
 #### UI
 
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
