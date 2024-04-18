@@ -29,7 +29,6 @@
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
 - [ ] 최근 로그인한 방식 UI 제공
-- [ ] Fallback Page
 ### Jay
 
 ### Bakha
