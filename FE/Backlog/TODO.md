@@ -27,9 +27,9 @@
 ## 목표
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
-- [x] 포트폴리오 삭제 Dialog
-	- "항목을" -> "포트폴리오를"로 변경
-- [x] 예산 입력했지만 목표 수익률 및 최대 손실율을 입력안해도 되게 수정
+- [ ] PortfolioNotificationListTable에서 알림 활성화/비활성화할 때 정렬 순서 바뀌는 문제
+	- `lastUpdated` --> `createdAt`으로 변경하면 될 듯함 (BE 요청)
+- [ ] OAuth 회원일 때에도 "계정 삭제" 버튼 제공
 ### Jay
 
 ### Bakha
@@ -44,7 +44,6 @@
 	- [ ] Watchlist Table 단일 삭제 API 불필요 (BE 전달)
 
 ---
-
 ### TODO
 - [ ] FCM
 	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
@@ -62,8 +61,6 @@
 - [ ] "PortfolioAddOrEditDialog" 목표 수익률 및 최대 손실율 input 및 계산 문제.
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
-- [ ] PortfolioNotificationListTable에서 알림 활성화/비활성화할 때 정렬 순서 바뀌는 문제
-	- `lastUpdated` --> `createdAt`으로 변경하면 될 듯함 (BE 요청)
 #### UI
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
