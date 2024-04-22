@@ -30,7 +30,7 @@
 - [ ] PortfolioNotificationListTable에서 알림 활성화/비활성화할 때 정렬 순서 바뀌는 문제
 	- `lastUpdated` --> `createdAt`으로 변경하면 될 듯함 (BE 요청)
 ### Jay
-
+- [ ] TextButton 리팩토링 (ETC 고려 등)
 ### Bakha
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
@@ -59,7 +59,6 @@
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
 - [ ] Synchronize MSW Handlers
 #### UI
-- [ ] TextButton 리팩토링 (ETC 고려 등)
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
