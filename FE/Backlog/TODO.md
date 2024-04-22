@@ -29,7 +29,8 @@
 - [ ] README update (알림 관련 내용 추가)
 - [ ] PortfolioNotificationListTable에서 알림 활성화/비활성화할 때 정렬 순서 바뀌는 문제
 	- `lastUpdated` --> `createdAt`으로 변경하면 될 듯함 (BE 요청)
-- [x] OAuth 회원일 때에도 "계정 삭제" 버튼 제공
+- [ ] "안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.
+- [ ] "PortfolioAddOrEditDialog" 목표 수익률 및 최대 손실율 input 및 계산 문제.
 ### Jay
 - [ ] TextButton 리팩토링 (ETC 고려 등)
 ### Bakha
@@ -57,8 +58,6 @@
 - [ ] GIthub PR bot 생각해보기
 	- 릴리즈, 메인 배포시 PR 내용을 간단하게 요약해서 pr 만들어줄 수 있는 봇?
 	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
-- [ ] **"안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.**
-- [ ] "PortfolioAddOrEditDialog" 목표 수익률 및 최대 손실율 input 및 계산 문제.
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
 - [ ] Synchronize MSW Handlers
