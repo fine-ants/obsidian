@@ -29,19 +29,15 @@
 - [ ] README update (알림 관련 내용 추가)
 - [ ] PortfolioNotificationListTable에서 알림 활성화/비활성화할 때 정렬 순서 바뀌는 문제
 	- `lastUpdated` --> `createdAt`으로 변경하면 될 듯함 (BE 요청)
-- [x] OAuth 회원일 때에도 "계정 삭제" 버튼 제공
 ### Jay
 
 ### Bakha
-- [ ] Watchlist breadcrumb 이름 수정
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 #### Watchlist
-- [ ] Watchlist Table 디자인 수정
-	- [x] 별 제거
-	- [ ] Watchlist Table 단일 삭제 API 불필요 (BE 전달)
+- [ ] Watchlist Table 단일 삭제 API 불필요 (BE 전달)
 
 ---
 ### TODO
@@ -63,6 +59,7 @@
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
 - [ ] Synchronize MSW Handlers
 #### UI
+- [ ] TextButton 리팩토링 (ETC 고려 등)
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
