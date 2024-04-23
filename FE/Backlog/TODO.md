@@ -29,8 +29,6 @@
 - [ ] README update (알림 관련 내용 추가)
 - [ ] PortfolioNotificationListTable에서 알림 활성화/비활성화할 때 정렬 순서 바뀌는 문제
 	- `lastUpdated` --> `createdAt`으로 변경하면 될 듯함 (BE 요청)
-- [x] "안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.
-- [x] "PortfolioAddOrEditDialog" 목표 수익률 및 최대 손실율 input 및 계산 문제.
 ### Jay
 - [ ] 관심 종목 페이지 스켈레톤 사이즈 변경
 	- 실제 테이블 보다 넓은 범위를 가지고 있어서 로딩이 끝나고 실제 테이블이 보였을 때 부자연스럽다
@@ -67,6 +65,9 @@
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
+- [ ] PortfolioAddOrEditDialog
+	- [ ] 목표 수익률 및 최대 손실율 toast를 input 아래 문구로 변경
+	- [ ] Submit button `disabled` 조건 추가 (목표 수익률 및 최대 손실율)
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
