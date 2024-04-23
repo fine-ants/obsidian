@@ -29,8 +29,8 @@
 - [ ] README update (알림 관련 내용 추가)
 - [ ] PortfolioNotificationListTable에서 알림 활성화/비활성화할 때 정렬 순서 바뀌는 문제
 	- `lastUpdated` --> `createdAt`으로 변경하면 될 듯함 (BE 요청)
-- [ ] "안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.
-- [ ] "PortfolioAddOrEditDialog" 목표 수익률 및 최대 손실율 input 및 계산 문제.
+- [x] "안되는" 포트폴리오(ErrorBoundary component가 적용 됨)에서 "되는" 포트폴리오로 이동할 때 holdings 패널이 그대로 ErrorBoundary component가 남아있음. "새로고침" 버튼을 눌러야 갱신 됨.
+- [x] "PortfolioAddOrEditDialog" 목표 수익률 및 최대 손실율 input 및 계산 문제.
 ### Jay
 - [ ] 관심 종목 페이지 스켈레톤 사이즈 변경
 	- 실제 테이블 보다 넓은 범위를 가지고 있어서 로딩이 끝나고 실제 테이블이 보였을 때 부자연스럽다
