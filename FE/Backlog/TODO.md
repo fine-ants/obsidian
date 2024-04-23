@@ -27,8 +27,7 @@
 ## 목표
 ### Kakamotobi
 - [ ] README update (알림 관련 내용 추가)
-- [ ] PortfolioNotificationListTable에서 알림 활성화/비활성화할 때 정렬 순서 바뀌는 문제
-	- `lastUpdated` --> `createdAt`으로 변경하면 될 듯함 (BE 요청)
+- [ ] 포트폴리오 활성 알림 페이지 알림 토글 버튼 disabled 조건 추가
 ### Jay
 - [ ] 관심 종목 페이지 스켈레톤 사이즈 변경
 	- 실제 테이블 보다 넓은 범위를 가지고 있어서 로딩이 끝나고 실제 테이블이 보였을 때 부자연스럽다
