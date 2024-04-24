@@ -24,7 +24,6 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] README update (알림 관련 내용 추가)
 - [ ] 포트폴리오 활성 알림 페이지 알림 토글 버튼 disabled 조건 추가
 - [ ] PortfolioAddOrEditDialog
 	- [ ] 목표 수익률 및 최대 손실율 toast를 input 아래 문구로 변경
