@@ -1,6 +1,4 @@
 # TODO
-- [ ] Test (E2E)
-
 - [ ] 반응형
 
 - [ ] SSE 적용
@@ -22,8 +20,11 @@
 	- [ ] Text Compression
 		- https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/?utm_source=lighthouse&utm_medium=devtools
 
+- [ ] Test (E2E)
+
 ## 목표
 ### Kakamotobi
+- [ ] 반응형
 - [ ] 포트폴리오 활성 알림 페이지 알림 토글 버튼 disabled 조건 추가
 - [ ] PortfolioAddOrEditDialog
 	- [ ] 목표 수익률 및 최대 손실율 toast를 input 아래 문구로 변경
@@ -43,6 +44,7 @@
 
 ---
 ### TODO
+- [ ] Synchronize MSW Handlers
 - [ ] FCM
 	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
@@ -57,7 +59,6 @@
 	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
-- [ ] Synchronize MSW Handlers
 #### UI
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
