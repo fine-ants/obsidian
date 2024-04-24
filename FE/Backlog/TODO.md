@@ -1,6 +1,4 @@
 # TODO
-- [x] **알림 기능**
-
 - [ ] Test (E2E)
 
 - [ ] 반응형
@@ -33,14 +31,12 @@
 	- 실제 테이블 보다 넓은 범위를 가지고 있어서 로딩이 끝나고 실제 테이블이 보였을 때 부자연스럽다
 - [ ] PieChartLegendSkeleton 구현
 ### Bakha
-- [ ] Watchlist breadcrumb 이름 수정
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 #### Watchlist
 - [ ] Watchlist Table 디자인 수정
-	- [x] 별 제거
 	- [ ] Watchlist Table 단일 삭제 API 불필요 (BE 전달)
 
 ---
