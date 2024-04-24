@@ -1,5 +1,8 @@
 # TODO
 - [ ] 반응형
+	-  < 768px: Mobile
+	- < 1024px: Tablet
+	- >= 1024px: Desktop
 
 - [ ] SSE 적용
 	- [ ] Dashboard Page
