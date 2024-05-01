@@ -68,6 +68,7 @@
 - [ ] StockPage 관심 종목 설정 Dialog
 	- [ ] Debounce 적용
 	- [ ] To BE: 같은 watchlist가 여러개 발생함
+- [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
