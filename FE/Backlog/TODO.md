@@ -69,6 +69,7 @@
 	- [ ] Debounce 적용
 	- [ ] To BE: 같은 watchlist가 여러개 발생함
 - [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
+- [ ] NotificationControl suspense 적용 필요 또는 구조 맆팩터링
 - [ ] useBoolean 사용처 적용하기
 - [ ] mui에서 지정된 z-index 다르게 사용이 필요할 경우가 있다.
 	- 어떻게 지정하면 좋을지 컨벤션이 있으면 좋을것 같다.
