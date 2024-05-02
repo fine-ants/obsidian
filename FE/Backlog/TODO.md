@@ -31,7 +31,6 @@
 - [ ] PortfolioAddOrEditDialog
 	- [ ] 목표 수익률 및 최대 손실율 toast를 input 아래 문구로 변경
 	- [ ] Submit button `disabled` 조건 추가 (목표 수익률 및 최대 손실율)
-- [ ] 포트폴리오 활성 알림 페이지 알림 토글 버튼 disabled 조건 추가
 ### Jay
 - [ ] 알림 패널 반응형 적용
 ### Bakha
@@ -74,6 +73,20 @@
 	- 어떻게 지정하면 좋을지 컨벤션이 있으면 좋을것 같다.
 	- https://mui.com/material-ui/customization/z-index/
 	- ex) 알림 패널에서 drawer가 modal 위에 떠야 하는 경우가 있음
+```ts
+// Example
+
+const base = 0;
+const above = 1;
+// const below = -1;
+
+export const zInput = base + above;
+export const zImageSlider = base + above;
+export const zAppBar = zImageSlider + above;
+export const zDropdown = zAppBar + above;
+export const zModal = zDropdown + above;
+export const zAlert = zModal + above;
+```
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
