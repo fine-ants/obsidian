@@ -31,7 +31,6 @@
 - [ ] PortfolioAddOrEditDialog
 	- [ ] 목표 수익률 및 최대 손실율 toast를 input 아래 문구로 변경
 	- [ ] Submit button `disabled` 조건 추가 (목표 수익률 및 최대 손실율)
-- [ ] 포트폴리오 활성 알림 페이지 알림 토글 버튼 disabled 조건 추가
 ### Jay
 - [ ] 알림 패널 반응형 적용
 ### Bakha
