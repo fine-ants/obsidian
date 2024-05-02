@@ -73,7 +73,7 @@
 - [ ] mui에서 지정된 z-index 다르게 사용이 필요할 경우가 있다.
 	- 어떻게 지정하면 좋을지 컨벤션이 있으면 좋을것 같다.
 	- https://mui.com/material-ui/customization/z-index/
-	- ex) 알림 패널에서 drawer가 modal 위에 떠야 하는 경우가 있음
+	- ~~ex) 알림 패널에서 drawer가 modal 위에 떠야 하는 경우가 있음
 ```ts
 // Example
 
