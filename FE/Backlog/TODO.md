@@ -29,8 +29,8 @@
 ### Kakamotobi
 - [ ] 로그인 및 회원가입 반응형 적용
 - [ ] PortfolioAddOrEditDialog
-	- [ ] 목표 수익률 및 최대 손실율 toast를 input 아래 문구로 변경
-	- [ ] Submit button `disabled` 조건 추가 (목표 수익률 및 최대 손실율)
+	- [x] 목표 수익률 및 최대 손실율 toast를 input 아래 문구로 변경
+	- [x] Submit button `disabled` 조건 추가 (목표 수익률 및 최대 손실율)
 ### Jay
 - [ ] 알림 패널 반응형 적용
 ### Bakha
