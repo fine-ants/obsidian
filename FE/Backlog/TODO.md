@@ -38,6 +38,9 @@
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
+- [ ] StockPage 관심 종목 설정 Dialog
+	- [ ] Debounce 적용
+	- [ ] To BE: 같은 watchlist가 여러개 발생함
 #### Watchlist
 - [ ] Watchlist Table 디자인 수정
 	- [ ] Watchlist Table 단일 삭제 API 불필요 (BE 전달)
@@ -64,9 +67,6 @@
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
-- [ ] StockPage 관심 종목 설정 Dialog
-	- [ ] Debounce 적용
-	- [ ] To BE: 같은 watchlist가 여러개 발생함
 - [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
 - [ ] NotificationControl suspense 적용 필요 또는 구조 맆팩터링
 - [ ] useBoolean 사용처 적용하기
