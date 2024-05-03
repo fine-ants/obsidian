@@ -48,6 +48,8 @@
 ---
 ### TODO
 - [ ] Synchronize MSW Handlers
+- [ ] `useNumber` demolition package로 이동
+- [ ] `useBoolean` demoltion package로 이동
 - [ ] FCM
 	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
@@ -63,6 +65,8 @@
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
 - [ ] 특정 포트폴리오의 목표 수익률 및 최대 손실율이 설정이 안되어있는 경우, 해당 PortfolioAddOrEditDialog을 열었을때 수익률 및 손실율이 -100%가 되고 금액은 0이 됨. 설정이 안되어있는 경우 빈문자열로 해야됨.
+- [ ] PortfolioAddOrEditDialog Refactor
+	- [ ] 각 input(Ex: targetGain, targetReturnRate, maximumLoss, maximumLossRate) 관련 로직을 hook으로 분리
 #### UI
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
