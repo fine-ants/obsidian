@@ -73,7 +73,9 @@
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
 - [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
 - [ ] NotificationControl suspense 적용 필요 또는 구조 맆팩터링
-- [ ] useBoolean 사용처 적용하기
+- [x] useBoolean 사용처 적용하기
+- [ ] 알림 패널 아이템 내용이 길어지는 경우 랜더링 이상한 부분 수정하기
+	- flex-wrap : wrap 활용하기
 - [ ] mui에서 지정된 z-index 다르게 사용이 필요할 경우가 있다.
 	- 어떻게 지정하면 좋을지 컨벤션이 있으면 좋을것 같다.
 	- https://mui.com/material-ui/customization/z-index/
