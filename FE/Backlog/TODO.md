@@ -28,8 +28,10 @@
 ## 목표
 ### Kakamotobi
 - [ ] 로그인 및 회원가입 반응형 적용
-- [ ] PortfolioAddOrEditDialog
-	- [ ] 목표 수익 및 최대 손실 미설정 시 초기값 처리 (현재 0으로 되버림).
+- [x] PortfolioAddOrEditDialog
+	- [x] 목표 수익 및 최대 손실 미설정 시 초기값 처리 (현재 0으로 되버림).
+- [ ] Demolition
+	- [ ] useNumber hook
 ### Jay
 - [ ] 알림 패널 반응형 적용
 ### Bakha
