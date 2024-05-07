@@ -28,10 +28,6 @@
 ## 목표
 ### Kakamotobi
 - [ ] 로그인 및 회원가입 반응형 적용
-- [x] PortfolioAddOrEditDialog
-	- [x] 목표 수익 및 최대 손실 미설정 시 초기값 처리 (현재 0으로 되버림).
-- [x] Demolition
-	- [x] useNumber hook
 ### Jay
 - [ ] 알림 패널 반응형 적용
 ### Bakha
@@ -49,7 +45,6 @@
 ---
 ### TODO
 - [ ] Synchronize MSW Handlers
-- [ ] `useNumber` demolition package로 이동
 - [ ] `useBoolean` demoltion package로 이동
 - [ ] FCM
 	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
