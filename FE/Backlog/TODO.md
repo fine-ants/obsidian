@@ -49,6 +49,7 @@
 
 ---
 ### TODO
+- [ ] 모바일에서 OAuth 로그인 로딩 화면에서 멈춤.
 - [ ] Synchronize MSW Handlers
 - [ ] `useBoolean` demoltion package로 이동
 - [ ] FCM
