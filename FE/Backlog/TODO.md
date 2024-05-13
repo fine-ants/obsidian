@@ -32,7 +32,8 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] 대시보드 페이지 반응형 적용
+- [ ] Dashboard Page 반응형 적용
+- [ ] Remove Landing Page image repeat
 ### Jay
 - [ ] 알림 패널 반응형 적용
 ### Bakha
@@ -51,7 +52,7 @@
 ### TODO
 - [ ] 모바일에서 OAuth 로그인 로딩 화면에서 멈춤.
 - [ ] Synchronize MSW Handlers
-- [ ] `useBoolean` demoltion package로 이동
+- [ ] `useBoolean` demolition package로 이동
 - [ ] FCM
 	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
