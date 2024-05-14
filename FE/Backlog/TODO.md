@@ -32,10 +32,9 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] Dashboard Page 반응형 적용
-- [ ] Remove Landing Page image repeat
+- [ ] 프로필 페이지 반응형 작업
 ### Jay
-- [ ] 알림 패널 반응형 적용
+- [ ] Dashboard Page 반응형 적용
 ### Bakha
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
