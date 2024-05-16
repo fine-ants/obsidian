@@ -30,6 +30,10 @@
 
 - [ ] Test (E2E)
 
+- [ ] Token Studios Plugin
+	- [ ] https://docs.tokens.studio/getting-started
+	- [ ] https://velog.io/@seo__namu/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%EC%97%90-%EB%94%94%EC%9E%90%EC%9D%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0#%EA%B7%B8%EB%9E%98%EC%84%9C-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%EB%8A%94-%EB%AD%98-%ED%95%B4%EC%95%BC%ED%95%98%EB%8A%94%EB%8D%B0
+
 ## 목표
 ### Kakamotobi
 - [ ] 프로필 페이지 반응형 작업
