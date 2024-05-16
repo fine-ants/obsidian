@@ -74,6 +74,7 @@
 - [ ] PortfolioAddOrEditDialog Refactor
 	- [ ] 각 input(Ex: targetGain, targetReturnRate, maximumLoss, maximumLossRate) 관련 로직을 hook으로 분리
 #### UI
+- [ ] Mobile 화면 toast 위치 조정
 - [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
