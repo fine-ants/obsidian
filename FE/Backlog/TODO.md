@@ -36,8 +36,7 @@
 
 ## 목표
 ### Kakamotobi
-- [x] 프로필 페이지 반응형 작업
-- [ ] 모바일 검색 화면
+- [x] 모바일 검색 화면
 ### Jay
 - [ ] Dashboard Page 반응형 적용
 ### Bakha
@@ -54,7 +53,7 @@
 
 ---
 ### TODO
-- [ ] 모바일에서 OAuth 로그인 로딩 화면에서 멈춤.
+- [ ] // TODO 주석 확인
 - [ ] Synchronize MSW Handlers
 - [ ] `useBoolean` demolition package로 이동
 - [ ] FCM
