@@ -36,7 +36,7 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] 프로필 페이지 반응형 작업
+- [x] 프로필 페이지 반응형 작업
 ### Jay
 - [ ] Dashboard Page 반응형 적용
 ### Bakha
