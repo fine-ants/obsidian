@@ -37,6 +37,8 @@
 ## 목표
 ### Kakamotobi
 - [x] 모바일 검색 화면
+- [ ] demolition package update & publish (version update)
+	- [ ] FineAnts demolition migration (useBoolean)
 ### Jay
 - [ ] Dashboard Page 반응형 적용
 ### Bakha
@@ -55,7 +57,6 @@
 ### TODO
 - [ ] // TODO 주석 확인
 - [ ] Synchronize MSW Handlers
-- [ ] `useBoolean` demolition package로 이동
 - [ ] FCM
 	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
 	- [ ] FCM token 삭제 확인 (NotificationSettingsDialog)
