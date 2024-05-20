@@ -36,7 +36,6 @@
 
 ## 목표
 ### Kakamotobi
-- [x] 모바일 검색 화면
 - [ ] demolition package update & publish (version update)
 	- [ ] FineAnts demolition migration (useBoolean)
 ### Jay
