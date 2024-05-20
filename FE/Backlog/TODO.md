@@ -36,7 +36,7 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] // TODO 주석 확인
+- [x] // TODO 주석 확인
 ### Jay
 - [ ] Dashboard Page 반응형 적용
 ### Bakha
