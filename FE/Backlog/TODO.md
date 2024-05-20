@@ -36,8 +36,7 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] demolition package update & publish (version update)
-	- [ ] FineAnts demolition migration (useBoolean)
+- [ ] 
 ### Jay
 - [ ] Dashboard Page 반응형 적용
 ### Bakha
