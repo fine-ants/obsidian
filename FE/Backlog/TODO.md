@@ -36,7 +36,7 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] 
+- [ ] // TODO 주석 확인
 ### Jay
 - [ ] Dashboard Page 반응형 적용
 ### Bakha
@@ -53,7 +53,8 @@
 
 ---
 ### TODO
-- [ ] // TODO 주석 확인
+- [ ] OAuth 절차 수정
+	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] Synchronize MSW Handlers
 - [ ] FCM
 	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
