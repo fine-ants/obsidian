@@ -36,7 +36,7 @@
 
 ## 목표
 ### Kakamotobi
-
+- [ ] Mobile Footer
 ### Jay
 ### Bakha
 - [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
