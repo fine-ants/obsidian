@@ -81,7 +81,7 @@
 - [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
 - [ ] NotificationControl suspense 적용 필요 또는 구조 리팩터링
 - [x] useBoolean 사용처 적용하기
-- [ ] 알림 패널 아이템 내용이 길어지는 경우 랜더링 이상한 부분 수정하기
+- [x] 알림 패널 아이템 내용이 길어지는 경우 랜더링 이상한 부분 수정하기
 	- flex-wrap : wrap 활용하기
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
