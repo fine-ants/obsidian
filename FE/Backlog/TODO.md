@@ -36,11 +36,10 @@
 
 ## 목표
 ### Kakamotobi
-- [x] Mobile Footer
+- [ ] PortfolioAddOrEditDialog Refactor
+	- [ ] 각 input(Ex: targetGain, targetReturnRate, maximumLoss, maximumLossRate) 관련 로직을 hook으로 분리
 ### Jay
 ### Bakha
-- [ ] Portfolio List Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
-- [ ] Watchlist Page `main` height 조정 필요 (scroll이 필요할 때만 되게)
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
 - [ ] StockPage 관심 종목 설정 Dialog
@@ -70,18 +69,12 @@
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
 - [ ] 특정 포트폴리오의 목표 수익률 및 최대 손실율이 설정이 안되어있는 경우, 해당 PortfolioAddOrEditDialog을 열었을때 수익률 및 손실율이 -100%가 되고 금액은 0이 됨. 설정이 안되어있는 경우 빈문자열로 해야됨.
-- [ ] PortfolioAddOrEditDialog Refactor
-	- [ ] 각 input(Ex: targetGain, targetReturnRate, maximumLoss, maximumLossRate) 관련 로직을 hook으로 분리
 #### UI
-- [ ] Mobile 화면 toast 위치 조정
 - [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
 - [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
 - [ ] NotificationControl suspense 적용 필요 또는 구조 리팩터링
-- [x] useBoolean 사용처 적용하기
-- [ ] 알림 패널 아이템 내용이 길어지는 경우 랜더링 이상한 부분 수정하기
-	- flex-wrap : wrap 활용하기
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
