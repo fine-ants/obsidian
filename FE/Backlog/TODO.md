@@ -36,8 +36,7 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] PortfolioAddOrEditDialog Refactor
-	- [ ] 각 input(Ex: targetGain, targetReturnRate, maximumLoss, maximumLossRate) 관련 로직을 hook으로 분리
+- [ ] Portfolio List Page 모바일 화면
 ### Jay
 ### Bakha
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
@@ -51,6 +50,8 @@
 
 ---
 ### TODO
+- [ ] PortfolioAddOrEditDialog Refactor
+	- [ ] 각 input(Ex: targetGain, targetReturnRate, maximumLoss, maximumLossRate) 관련 로직을 hook으로 분리
 - [ ] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] 서버 데이터와 MSW 데이터 및 핸들러 맞추기
