@@ -38,9 +38,11 @@
 ### Kakamotobi
 - [x] PortfolioAddOrEditDialog Refactor
 	- [x] 각 input(Ex: targetGain, targetReturnRate, maximumLoss, maximumLossRate) 관련 로직을 hook으로 분리
-- [ ] SelectableTable Bug
+- [x] SelectableTable Bug
 	- Pagination 여러개가 있을 때, 전체 체크한 뒤 다른 페이지에서 또 전체 체크하면 이전 전체 체크가 날라가는 현상.
 	- 전체 체크한 뒤 다른 페이지에서 특정 항목을 체크한 후, 원래 페이지로 돌아가면 전체 체크가 날라가는 현상.
+- [ ] CollapsibleSelectableTable Bug
+	- 전체 선택 후 새 데이터가 들어올 때 전체 체크박스가 해제 되는 현상.
 ### Jay
 - [ ] Portfolio List Page 모바일 화면
 ### Bakha
