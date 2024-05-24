@@ -90,5 +90,7 @@
 	- carTableToolbar에 삭제 버튼 사이즈 수정 필요 (디자인 확인 필요)
 	- 포트폴리오 리스트 페이지 header에 추가 
 - [ ] Open Graph 디자인 요청하기
+- [ ] TallLegend에서 0랜더링되는 부분 수정하기
+	- etcOptions && etcList && etcPercent && 부분 수정하기
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
