@@ -7,18 +7,49 @@
 
 ## What is PWA?
 - It combines traditional websites and platform-specific apps.
-- PWA를 사용할 수 있는 경우, 바로가기에서 앱이 열린다.
-- PWA를 사용할 수 없는 경우, 바로가기가 기본 브라우저에서 열린다.
 ### Characteristics
 #### That of Traditional Websites
 - PWAs are developed based on web platform technologies. Hence, they can run on different operating systems and devices from a *single codebase*.
 - PWAs can be accessed directly from the web.
 #### That of Platform-specific Apps
 - PWAs can be installed directly on the device. Once installed, it can be launched as a standalone app.
+	- When a web app is "added/installed to home":
+		- If it is a PWA, it opens as a standalone app.
+		- If it is not a PWA, it opens in the default browser of the device.
+- PWAs can operate in the background and offline (through service workers).
 
+## PWA and the Browser
+- Although PWAs usually look like a standalone application, they are still websites. Therefore, they need a browser engine to manage and run them.
+	- cf. in a platform-specific app, the OS runs them.
+![Diagram comparing the runtime environment for traditional websites, PWAs, and platform-specific apps](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app/pwa-environment.svg)
 
+## PWA Technical Requirements
+- Must have a web app manifest file for browsers to display things like the app name, icon for the PWA install prompt.
+	- Chromium-based browsers require `name`, `icons`, `start_url`, `display` and/or `display_override` manifest members.
+- Must have a service worker for basic offline experience.
+	- The service worker implements a backend which can support offline and background operation, making PWAs behave more like an app than a website.
+	- Must have a `fetch` event handler that provides basic offline experience.
+- Must be served in a secure context (served over https).
 
+## Browser Support
+- Desktop
+	- Firefox and Safari do not support installing PWAs in any OS.
+	- Chromium-based browsers support installing PWAs in Linux, Windows, MacOS, Chromebook.
+- Mobile
+	- Android 
+		- Firefox and Chromium-based browsers support installing PWAs.
+	- iOS
+		- For iOS 16.3 >=, PWAs can only be installed with Safari.
+		- For iOS 16.4 <=, PWAs can be installed from the "share" menu in Safari, Firefox, and Chromium-based browsers.
 
+## Install Prompt
+- `beforeinstallprompt` event (fired in the global `Window` object) has a `prompt()` method that shows a customizable install prompt.
+	- Is not supported in iOS.
+
+## References
+- https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app
+- https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable
+- https://vite-pwa-org.netlify.app/guide/
 
 
 
