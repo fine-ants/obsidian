@@ -7,18 +7,25 @@
 
 ## What is PWA?
 - It combines traditional websites and platform-specific apps.
-- PWA를 사용할 수 있는 경우, 바로가기에서 앱이 열린다.
-- PWA를 사용할 수 없는 경우, 바로가기가 기본 브라우저에서 열린다.
 ### Characteristics
 #### That of Traditional Websites
 - PWAs are developed based on web platform technologies. Hence, they can run on different operating systems and devices from a *single codebase*.
 - PWAs can be accessed directly from the web.
 #### That of Platform-specific Apps
 - PWAs can be installed directly on the device. Once installed, it can be launched as a standalone app.
+	- When a web app is "added/installed to home":
+		- If it is a PWA, it opens as a standalone app.
+		- If it is not a PWA, it opens in the default browser of the device.
+- PWAs can operate in the background and offline (through service workers).
+
+## PWA and the Browser
+- Although PWAs usually look like a standalone application, they are still websites. Therefore, they need a browser engine to manage and run them.
+	- cf. in a platform-specific app, the OS runs them.
+![Diagram comparing the runtime environment for traditional websites, PWAs, and platform-specific apps](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app/pwa-environment.svg)
 
 
-
-
+## References
+- https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app
 
 
 
