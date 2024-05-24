@@ -23,9 +23,15 @@
 	- cf. in a platform-specific app, the OS runs them.
 ![Diagram comparing the runtime environment for traditional websites, PWAs, and platform-specific apps](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app/pwa-environment.svg)
 
+## PWA Technicals
+- Must have a web app manifest file for browsers to display things like the app name, icon for the PWA when attempting to install.
+- Must have a service worker for basic offline experience.
+	- The service worker implements a backend which can support offline and background operation, making PWAs behave more like an app than a website.
+
 
 ## References
 - https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app
+- https://vite-pwa-org.netlify.app/guide/
 
 
 
