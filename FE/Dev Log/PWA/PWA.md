@@ -24,12 +24,27 @@
 ![Diagram comparing the runtime environment for traditional websites, PWAs, and platform-specific apps](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app/pwa-environment.svg)
 
 ## PWA Technical Requirements
-- Must have a web app manifest file for browsers to display things like the app name, icon for the PWA when attempting to install.
+- Must have a web app manifest file for browsers to display things like the app name, icon for the PWA install prompt.
 	- Chromium-based browsers require `name`, `icons`, `start_url`, `display` and/or `display_override` manifest members.
 - Must have a service worker for basic offline experience.
 	- The service worker implements a backend which can support offline and background operation, making PWAs behave more like an app than a website.
-	- Must have a `fetch` event handler.
+	- Must have a `fetch` event handler that provides basic offline experience.
 - Must be served in a secure context (served over https).
+
+## Browser Support
+- Desktop
+	- Firefox and Safari do not support installing PWAs in any OS.
+	- Chromium-based browsers support installing PWAs in Linux, Windows, MacOS, Chromebook.
+- Mobile
+	- Android 
+		- Firefox and Chromium-based browsers support installing PWAs.
+	- iOS
+		- For iOS 16.3 >=, PWAs can only be installed with Safari.
+		- For iOS 16.4 <=, PWAs can be installed from the "share" menu in Safari, Firefox, and Chromium-based browsers.
+
+## Install Prompt
+- `beforeinstallprompt` event (fired in the global `Window` object) has a `prompt()` method that shows a customizable install prompt.
+	- Is not supported in iOS.
 
 ## References
 - https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app
