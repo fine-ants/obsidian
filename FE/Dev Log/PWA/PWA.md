@@ -23,14 +23,17 @@
 	- cf. in a platform-specific app, the OS runs them.
 ![Diagram comparing the runtime environment for traditional websites, PWAs, and platform-specific apps](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app/pwa-environment.svg)
 
-## PWA Technicals
+## PWA Technical Requirements
 - Must have a web app manifest file for browsers to display things like the app name, icon for the PWA when attempting to install.
+	- Chromium-based browsers require `name`, `icons`, `start_url`, `display` and/or `display_override` manifest members.
 - Must have a service worker for basic offline experience.
 	- The service worker implements a backend which can support offline and background operation, making PWAs behave more like an app than a website.
-
+	- Must have a `fetch` event handler.
+- Must be served in a secure context (served over https).
 
 ## References
 - https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app
+- https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable
 - https://vite-pwa-org.netlify.app/guide/
 
 
