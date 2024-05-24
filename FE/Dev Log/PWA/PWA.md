@@ -3,9 +3,25 @@
 
 ## Background
 - Mobile browser에서는 데스크탑에서 하는 것 처럼 기존 알림 기능을 사용하지 못한다.
-- PWA는 해당 디바이스/플랫폼의 앱처럼 설치가 되고, 오프라인 및 백그라운드에서도 실행이 가능하다.
+- PWA는 해당 디바이스/플랫폼의 앱처럼 설치가 되고, 오프라인 및 백그라운드에서도 실행이 가능하다.
 
-- PWA를 사용할 수 있는 경우
+## What is PWA?
+- It combines traditional websites and platform-specific apps.
+- PWA를 사용할 수 있는 경우, 바로가기에서 앱이 열린다.
+- PWA를 사용할 수 없는 경우, 바로가기가 기본 브라우저에서 열린다.
+### Characteristics
+#### That of Traditional Websites
+- PWAs are developed based on web platform technologies. Hence, they can run on different operating systems and devices from a *single codebase*.
+- PWAs can be accessed directly from the web.
+#### That of Platform-specific Apps
+- PWAs can be installed directly on the device. Once installed, it can be launched as a standalone app.
+
+
+
+
+
+
+
 
 
 - [ ] Mobile browser 알림
