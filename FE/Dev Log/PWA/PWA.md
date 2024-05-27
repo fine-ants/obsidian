@@ -45,22 +45,25 @@
 ## Install Prompt
 - `beforeinstallprompt` event (fired in the global `Window` object) has a `prompt()` method that shows a customizable install prompt.
 	- Is not supported in iOS.
-
 ## Vite PWA Plugin
-### Vite Build CLI Order of Execution (Vite PWA)
+### Vite Build CLI Order of Execution
 - ...
-- `vite-plugin-pwa:build` plugin
+- PWA | `vite-plugin-pwa:build` plugin
+	- Place this plugin at the last in the pipeline.
+- ...
+- PWA | `vite-plugin-pwa:build` plugin
 	- Inject web manifest (mandatory) to html.
 	- Inject registerSw script (if needed) to html.
 	- Create and emit registerSw script if required.
-- `vite-plugin-pwa:info` plugin
+- PWA | `vite-plugin-pwa:info` plugin
 	- Resolve and load virtual:pwa-info when required.
-- `vite-plugin-pwa:main` plugin
+- PWA | `vite-plugin-pwa:main` plugin
 	- Resolve and load any virtual module (virtual:pwa-register, virtual:pwa-register/\<fw>) when required.
-- `closeBundle` in `vite-plugin-pwa:build` plugin
-- `buildEnd` in `vite-plugin-pwa:build` hook
-- Copy `public/` folder content to `dist/`.
-
+- PWA | `closeBundle` in `vite-plugin-pwa:build` plugin
+	- 
+- PWA | `buildEnd` in `vite-plugin-pwa:build` hook
+- ...
+- VITE | Copy `public/` folder content to `dist/`
 ## References
 - https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app
 - https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable
