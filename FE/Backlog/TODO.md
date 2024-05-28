@@ -36,9 +36,12 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] SearchBar enter key로 이동 가능하도록 수정
+- [x] PWA
+- [x] SearchBar enter key로 이동 가능하도록 수정
+- [ ] useImageInput initialImageUrl `null` 도 받을 수 있도록 수정
 ### Jay
-- [ ] 종목 지정가 알림 전체 삭제 안됨
+- [x] PWA
+- [x] 종목 지정가 알림 전체 삭제 안됨
 - [ ] Portfolio List Page 모바일 화면
 ### Bakha
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
@@ -52,7 +55,6 @@
 
 ---
 ### TODO
-- [ ] useImageInput initialImageUrl `null` 도 받을 수 있도록 수정
 - [ ] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] 서버 데이터와 MSW 데이터 및 핸들러 맞추기
@@ -65,26 +67,22 @@
 		- https://firebase.google.com/docs/reference/fcm/rest/v1/ErrorCode
 	- [ ] Push Service Queue된 메시지 고려 (`install` event 필요할 수도)
 - [ ] 로그인 페이지 "내 정보 기억하기" 구현
-- [ ] GIthub PR bot 생각해보기
+- [ ] Github PR bot 생각해보기
 	- 릴리즈, 메인 배포시 PR 내용을 간단하게 요약해서 pr 만들어줄 수 있는 봇?
 	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
-- [ ] 특정 포트폴리오의 목표 수익률 및 최대 손실율이 설정이 안되어있는 경우, 해당 PortfolioAddOrEditDialog을 열었을때 수익률 및 손실율이 -100%가 되고 금액은 0이 됨. 설정이 안되어있는 경우 빈문자열로 해야됨.
-- [ ] 내포트폴리오 페이지 포트폴리오 추가 버튼 수정 필요
+- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
 #### UI
 - [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
 - [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
-- [ ] NotificationControl suspense 적용 필요 또는 구조 리팩터링
 - [ ] 포트폴리오 리스트 페이지
 	- 정렬 기능 구현 필요 (디자인 추가 되면)
 	- carTableToolbar에 삭제 버튼 사이즈 수정 필요 (디자인 확인 필요)
 	- 포트폴리오 리스트 페이지 header에 추가 
 - [ ] Open Graph 디자인 요청하기
-- [ ] TallLegend에서 0랜더링되는 부분 수정하기
-	- etcOptions && etcList && etcPercent && 부분 수정하기
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
