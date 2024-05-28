@@ -69,6 +69,7 @@
 - https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable
 - https://vite-pwa-org.netlify.app/guide/
 - https://vite-pwa-org.netlify.app/guide/cookbook.html
+- [Badging API](https://github.com/w3c/badging/blob/main/explainer.md)
 
 
 
