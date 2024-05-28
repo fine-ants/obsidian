@@ -36,10 +36,9 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] PWA 학습
-- [ ] 종목 지정가 알림 전체 삭제 안됨
 - [ ] SearchBar enter key로 이동 가능하도록 수정
 ### Jay
+- [ ] 종목 지정가 알림 전체 삭제 안됨
 - [ ] Portfolio List Page 모바일 화면
 ### Bakha
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
