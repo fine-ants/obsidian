@@ -73,6 +73,8 @@
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
 - [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
+- [ ] 모바일 "내 포트폴리오" 페이지  정렬 drawer 뒤로가기 디자인 추가될 예정
+- [ ] drawer 중복적으로 사용하는 styled component 고민해 보기
 #### UI
 - [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
@@ -84,5 +86,6 @@
 	- carTableToolbar에 삭제 버튼 사이즈 수정 필요 (디자인 확인 필요)
 	- 포트폴리오 리스트 페이지 header에 추가 
 - [ ] Open Graph 디자인 요청하기
+
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
