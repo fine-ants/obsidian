@@ -75,6 +75,7 @@
 - [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
 - [ ] 모바일 "내 포트폴리오" 페이지  정렬 drawer 뒤로가기 디자인 추가될 예정
 - [ ] drawer 중복적으로 사용하는 styled component 고민해 보기
+- [ ] 페이지 네이션이 있는 테이블 페이지에서 마지막 페이지인 상태에서 마지막 페이지의 모든 테이블 내용을 지우면 마지막 페이지에 화면이 남으면 비어 있는 테이블이 보인ㄷ
 #### UI
 - [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
