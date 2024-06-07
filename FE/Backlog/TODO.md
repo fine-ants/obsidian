@@ -54,6 +54,7 @@
 ### TODO
 - [ ] Release domain을 Release server와 연동
 - [ ] 인증 bearer token -> cookie로 변경
+- [ ] PWA인 경우 Navbar가 iOS home bar와 겹치므로
 - [ ] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] 서버 데이터와 MSW 데이터 및 핸들러 맞추기
