@@ -32,9 +32,10 @@
 ## 목표
 ### Kakamotobi
 - [ ] Demolition `useImageInput` `initialImageUrl` `null` 도 받을 수 있도록 수정
+- [ ] OAuth 절차 변경
+	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 ### Jay
-- [ ] Portfolio List Page 모바일 화면
-- [ ] Portfoilio Add/Edit Dialog 모바일 화면
+
 ### Bakha
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
@@ -47,11 +48,7 @@
 
 ---
 ### TODO
-- [ ] Release domain을 Release server와 연동
-- [ ] 인증 bearer token -> cookie로 변경
 - [ ] PWA인 경우 Navbar가 iOS home bar와 겹치므로 아래 여백 추가
-- [ ] OAuth 절차 변경
-	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] 서버 데이터와 MSW 데이터 및 핸들러 맞추기
 - [ ] FCM
 	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
