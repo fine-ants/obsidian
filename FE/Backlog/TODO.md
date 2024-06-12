@@ -35,7 +35,8 @@
 - [x] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 ### Jay
-
+- [ ] PWA인 경우 Navbar가 iOS home bar와 겹치므로 아래 여백 추가
+	- 모바일 환경 쿠키 로그인 성공 후 확인 필요.
 ### Bakha
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
@@ -48,7 +49,6 @@
 
 ---
 ### TODO
-- [ ] PWA인 경우 Navbar가 iOS home bar와 겹치므로 아래 여백 추가
 - [ ] 서버 데이터와 MSW 데이터 및 핸들러 맞추기
 - [ ] FCM
 	- [ ] 첫 접속시 FCM SW가 설치되기 전에 에러 토스트가 발생해버리고 FCM Token 등록을 진행하지 않음 (새로고침 하기 전까지는).
