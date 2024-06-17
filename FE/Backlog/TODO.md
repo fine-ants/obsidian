@@ -10,8 +10,8 @@
 
 - [ ] Optimization
 	- [ ] Performance
-	    - [ ] FCP, LCP
-	- [ ] Accessibility
+	    - [x] FCP, LCP
+	- [x] Accessibility
 		- [ ] Navigate search result dropdown using arrow keys
 		- [ ] Button (https://dequeuniversity.com/rules/axe/4.7/button-name)
 		- [ ] Image (https://dequeuniversity.com/rules/axe/4.7/image-alt)
