@@ -80,5 +80,7 @@
 	- 포트폴리오 리스트 페이지 header에 추가 
 - [ ] Open Graph 디자인 요청하기
 
+- [ ] skeleton UI,  error Fallback 반응형 작업한 것에 맞게 리팩터링
+
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
