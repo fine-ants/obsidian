@@ -82,7 +82,7 @@
 - [ ] skeleton UI,  error Fallback 반응형 작업한 것에 맞게 리팩터링
 - [ ] 포트폴리오 상세 테이블 총 손익 이상함..
 - [ ] 포트폴리오 상세 테이블 변동률 디자인은 둘다 %인데 개발은 금액 + %임 확인 필요
-- [ ] RateBadge 디자인은 -인 경우 - 부호 없이 빨간색이기만 하다.
+- [ ] RateBadge 디자인은 -인 경우 - 부호 없이 빨간색이기만 하다. 하지만 개발에는 - 부호가 추가되어있다
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
