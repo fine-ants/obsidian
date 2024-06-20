@@ -83,6 +83,7 @@
 - [ ] 포트폴리오 상세 테이블 총 손익 이상함..
 - [ ] 포트폴리오 상세 테이블 변동률 디자인은 둘다 %인데 개발은 금액 + %임 확인 필요
 - [ ] RateBadge 디자인은 -인 경우 - 부호 없이 빨간색이기만 하다. 하지만 개발에는 - 부호가 추가되어있다
+- [ ] recharts BarChart에서 width가 일정 크기 이하가 되면 11월이 사라짐.. DividendBarChart 파일 참고
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
