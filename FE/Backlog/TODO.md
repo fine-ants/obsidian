@@ -35,8 +35,7 @@
 - [x] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 ### Jay
-- [ ] PWA인 경우 Navbar가 iOS home bar와 겹치므로 아래 여백 추가
-	- 모바일 환경 쿠키 로그인 성공 후 확인 필요.
+
 ### Bakha
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
@@ -81,6 +80,9 @@
 - [ ] Open Graph 디자인 요청하기
 
 - [ ] skeleton UI,  error Fallback 반응형 작업한 것에 맞게 리팩터링
+- [ ] 포트폴리오 상세 테이블 총 손익 이상함..
+- [ ] 포트폴리오 상세 테이블 변동률 디자인은 둘다 %인데 개발은 금액 + %임 확인 필요
+- [ ] RateBadge 디자인은 -인 경우 - 부호 없이 빨간색이기만 하다.
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
