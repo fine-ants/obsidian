@@ -83,7 +83,6 @@
 - [ ] Open Graph 디자인 요청하기
 
 - [ ] skeleton UI,  error Fallback 반응형 작업한 것에 맞게 리팩터링
-- [ ] recharts BarChart에서 width가 일정 크기 이하가 되면 11월이 사라짐.. DividendBarChart 파일 참고
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
