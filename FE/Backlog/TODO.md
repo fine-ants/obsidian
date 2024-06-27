@@ -73,6 +73,7 @@
 - [ ] form으로 감싸진 곳에서 submit을 하면 화면 새로고침이 일어난다. SPA스럽지 못한 기분?
 	- ex) 전체 관심 목록 페이지 이름 변경	
 - [ ] 포트폴리오 CardTable 종목명 옆에 tickerSymbol 빠짐
+- [ ] Button 컴포넌트 gap 디자인과 구현 상태 확인이 필요
 #### UI
 - [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
