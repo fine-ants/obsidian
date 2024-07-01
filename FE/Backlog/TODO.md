@@ -34,10 +34,7 @@
 - [ ] Demolition `useImageInput` `initialImageUrl` `null` 도 받을 수 있도록 수정
 - [x] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
-- [ ] 페이지 네이션이 있는 테이블 페이지에서 마지막 페이지인 상태에서 마지막 페이지의 모든 테이블 내용을 지우면 마지막 페이지에 화면이 남으면 비어 있는 테이블이 보인다.
-- [ ] 포트폴리오 상세 테이블 총 손익 이상함..
 - [ ] 포트폴리오 상세 테이블 변동률 디자인은 둘다 %인데 개발은 금액 + %임 확인 필요
-- [ ] RateBadge 디자인은 -인 경우 - 부호 없이 빨간색이기만 하다. 하지만 개발에는 - 부호가 추가되어있다
 ### Jay
 
 ### Bakha
