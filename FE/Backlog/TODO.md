@@ -73,6 +73,7 @@
 - [ ] 포트폴리오 CardTable 종목명 옆에 tickerSymbol 빠짐
 - [ ] Button 컴포넌트 gap 디자인과 구현 상태 확인이 필요
 - [ ] PortfolioListPage에서 isEmpty 없이 구현 가능 할 것 같음
+- [ ] Mutate 함수 실행 후 특정 로직이 이어서 작업되는 경우 Mutate가 실패 시 다음 동작을 안하도록 고려하기
 #### UI
 - [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
