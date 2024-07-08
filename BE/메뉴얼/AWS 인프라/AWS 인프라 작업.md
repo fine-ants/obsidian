@@ -736,7 +736,7 @@ $ sudo mkswap ./swapfile
 
 ```jsx
 $ sudo swapon ./swapfile
-```
+	```
 
 1. /etc/fstab에 추가
 
