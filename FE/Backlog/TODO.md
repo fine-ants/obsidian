@@ -36,11 +36,7 @@
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] 포트폴리오 상세 테이블 변동률 디자인은 둘다 %인데 개발은 금액 + %임 확인 필요
 ### Jay
-- 포트폴리오 텝 폰트사이즈
-- CardTable 페이지네이션 최소 높이(화면의 최하단으로)
-- 포트폴리오 상세 holdings 반응형 작업
-	- add/edit/read
-- toolbar에 페이지 개수 수정 select 가로 크기 수정
+
 ### Bakha
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
