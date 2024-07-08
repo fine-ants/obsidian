@@ -95,6 +95,8 @@
 - [ ] skeleton UI,  error Fallback 반응형 작업한 것에 맞게 리팩터링
 - [ ] TVTickerTapeWidget 유무에 따라서 BasePage 컴포넌트의 높이가 달라져야한다.
 	- ActiveNotificationsPage의 경우 조금 이상하게 적용중(확인 필요)
+- [ ] StockPage, 관심 종목 추가 페이지 아이템 선택 후 저장 버튼 일관성 있게 수정하게
+	- 어는 곳은 저장(추가) 버튼이 있고 없는 어느 곳은 없음
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
