@@ -93,6 +93,8 @@
 - [ ] Open Graph 디자인 요청하기
 
 - [ ] skeleton UI,  error Fallback 반응형 작업한 것에 맞게 리팩터링
+- [ ] TVTickerTapeWidget 유무에 따라서 BasePage 컴포넌트의 높이가 달라져야한다.
+	- ActiveNotificationsPage의 경우 조금 이상하게 적용중(확인 필요)
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
