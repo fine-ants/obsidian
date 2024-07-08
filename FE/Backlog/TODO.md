@@ -35,6 +35,7 @@
 - [x] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] 포트폴리오 상세 테이블 변동률 디자인은 둘다 %인데 개발은 금액 + %임 확인 필요
+- [ ] z-index
 - [ ] 종목 페이지 반응형
 ### Jay
 - 포트폴리오 텝 폰트사이즈
