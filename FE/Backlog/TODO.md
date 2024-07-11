@@ -38,23 +38,18 @@
 - [ ] 검색 결과 무한 스크롤 적용
 
 - [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
+- [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
+- [ ] Figma와 배포 Font 차이
 - [x] form으로 감싸진 곳에서 submit을 하면 화면 새로고침이 일어난다. SPA스럽지 못한 기분?
 	- ex) 전체 관심 목록 페이지 이름 변경
 - [x] 포트폴리오 CardTable 종목명 옆에 tickerSymbol 빠짐
-- [ ] PortfolioListPage에서 isEmpty 없이 구현 가능 할 것 같음
-- [ ] BottomDrawer `ul` 필요
+- [x] PortfolioListPage에서 isEmpty 없이 구현 가능 할 것 같음
+- [x] BottomDrawer `ul` 필요
 ### Jay
 
 ### Bakha
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
 	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
-- [ ] StockPage 관심 종목 설정 Dialog
-	- [ ] Debounce 적용
-	- [ ] To BE: 같은 watchlist가 여러개 발생함
-#### Watchlist
-- [ ] Watchlist Table 디자인 수정
-	- [ ] Watchlist Table 단일 삭제 API 불필요 (BE 전달)
-
 ---
 ### TODO
 - [ ] 서버 데이터와 MSW 데이터 및 핸들러 맞추기
@@ -76,13 +71,12 @@
 - [ ] Button 컴포넌트 gap 디자인과 구현 상태 확인이 필요
 - [ ] Mutate 함수 실행 후 특정 로직이 이어서 작업되는 경우 Mutate가 실패 시 다음 동작을 안하도록 고려하기
 #### UI
-- [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
 - [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
 - [ ] 포트폴리오 리스트 페이지
-	- carTableToolbar에 삭제 버튼 가로 사이즈 수정 필요 (디자인 확인 필요)
+	- cardTableToolbar에 삭제 버튼 가로 사이즈 수정 필요 (디자인 확인 필요)
 - [ ] Open Graph 디자인 요청하기
 
 - [ ] skeleton UI,  error Fallback 반응형 작업한 것에 맞게 리팩터링
@@ -90,7 +84,6 @@
 	- ActiveNotificationsPage의 경우 조금 이상하게 적용중(확인 필요)
 - [ ] StockPage, 관심 종목 추가 페이지 아이템 선택 후 저장 버튼 일관성 있게 수정하게
 	- 어는 곳은 저장(추가) 버튼이 있고 없는 어느 곳은 없음
-- [ ] 테블릿 사이즈 반응형 아무것도 랜더링 안되는 상태 처리하기
 
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
