@@ -38,9 +38,9 @@
 - [ ] 검색 결과 무한 스크롤 적용
 
 - [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
-- [ ] form으로 감싸진 곳에서 submit을 하면 화면 새로고침이 일어난다. SPA스럽지 못한 기분?
+- [x] form으로 감싸진 곳에서 submit을 하면 화면 새로고침이 일어난다. SPA스럽지 못한 기분?
 	- ex) 전체 관심 목록 페이지 이름 변경
-- [ ] 포트폴리오 CardTable 종목명 옆에 tickerSymbol 빠짐
+- [x] 포트폴리오 CardTable 종목명 옆에 tickerSymbol 빠짐
 - [ ] PortfolioListPage에서 isEmpty 없이 구현 가능 할 것 같음
 - [ ] BottomDrawer `ul` 필요
 ### Jay
