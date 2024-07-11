@@ -36,6 +36,13 @@
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] 포트폴리오 상세 테이블 변동률 디자인은 둘다 %인데 개발은 금액 + %임 확인 필요
 - [ ] 검색 결과 무한 스크롤 적용
+
+- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
+- [ ] form으로 감싸진 곳에서 submit을 하면 화면 새로고침이 일어난다. SPA스럽지 못한 기분?
+	- ex) 전체 관심 목록 페이지 이름 변경
+- [ ] 포트폴리오 CardTable 종목명 옆에 tickerSymbol 빠짐
+- [ ] PortfolioListPage에서 isEmpty 없이 구현 가능 할 것 같음
+- [ ] BottomDrawer `ul` 필요
 ### Jay
 
 ### Bakha
@@ -65,16 +72,10 @@
 	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
-- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
 - [ ] 모바일 "내 포트폴리오" 페이지  정렬 drawer 뒤로가기 디자인 추가될 예정
 - [ ] drawer 중복적으로 사용하는 styled component 고민해 보기
-- [ ] form으로 감싸진 곳에서 submit을 하면 화면 새로고침이 일어난다. SPA스럽지 못한 기분?
-	- ex) 전체 관심 목록 페이지 이름 변경	
-- [ ] 포트폴리오 CardTable 종목명 옆에 tickerSymbol 빠짐
 - [ ] Button 컴포넌트 gap 디자인과 구현 상태 확인이 필요
-- [ ] PortfolioListPage에서 isEmpty 없이 구현 가능 할 것 같음
 - [ ] Mutate 함수 실행 후 특정 로직이 이어서 작업되는 경우 Mutate가 실패 시 다음 동작을 안하도록 고려하기
-- [ ] BottomDrawer `ul` 필요
 #### UI
 - [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
