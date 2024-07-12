@@ -34,6 +34,7 @@
 - [ ] Demolition `useImageInput` `initialImageUrl` `null` 도 받을 수 있도록 수정
 - [x] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
+- [ ] drawer 중복적으로 사용하는 styled component 고민해 보기
 - [ ] 검색 결과 무한 스크롤 적용
 - [ ] IconButton refactor
 	- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
@@ -59,7 +60,6 @@
 	- PR 내용으로 올라가는 이슈 번호 나열같은 기능
 - [ ] 알림 설정 토글 브라우저별로(사파리 파이엎폭스 크롬) 테스트 해보기
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
-- [ ] drawer 중복적으로 사용하는 styled component 고민해 보기
 - [ ] Button 컴포넌트 gap 디자인과 구현 상태 확인이 필요
 - [ ] Mutate 함수 실행 후 특정 로직이 이어서 작업되는 경우 Mutate가 실패 시 다음 동작을 안하도록 고려하기
 #### UI
