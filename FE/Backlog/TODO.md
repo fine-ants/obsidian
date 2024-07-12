@@ -62,6 +62,7 @@
 - [ ] Mutate 함수 실행 후 특정 로직이 이어서 작업되는 경우 Mutate가 실패 시 다음 동작을 안하도록 고려하기
 - [ ] 특정 관심종목 추가 dialog에서 관심 종목 검색 drawer의 zindex 문제 해결하기
 - [ ] ConfirmAlert 디자인 문제 해결하기
+- [ ] 파인앤츠 한글로 구글 검색 가능하도록
 #### UI
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
