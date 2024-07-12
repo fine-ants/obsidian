@@ -62,6 +62,8 @@
 - [ ] 포트폴리오 페이지 고정적인 값들 SSE를 통해서 계속 재랜더링중 최적화하면 좋을 듯
 - [ ] Button 컴포넌트 gap 디자인과 구현 상태 확인이 필요
 - [ ] Mutate 함수 실행 후 특정 로직이 이어서 작업되는 경우 Mutate가 실패 시 다음 동작을 안하도록 고려하기
+- [ ] 특정 관심종목 추가 dialog에서 관심 종목 검색 drawer의 zindex 문제 해결하기
+- [ ] ConfirmAlert 디자인 문제 해결하기
 #### UI
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
