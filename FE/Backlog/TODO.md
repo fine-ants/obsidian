@@ -34,10 +34,9 @@
 - [ ] Demolition `useImageInput` `initialImageUrl` `null` 도 받을 수 있도록 수정
 - [x] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
-- [ ] 포트폴리오 상세 테이블 변동률 디자인은 둘다 %인데 개발은 금액 + %임 확인 필요
 - [ ] 검색 결과 무한 스크롤 적용
-- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
-	- [ ] Design System에 있는 IconButton과 실제 디자인에 적용된 IconButton이 동일하지 않음 (to 디자인).
+- [ ] IconButton refactor
+	- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
 ### Jay
 
 ### Bakha
