@@ -31,7 +31,6 @@
 
 ## 목표
 ### Kakamotobi
-- [ ] Demolition `useImageInput` `initialImageUrl` `null` 도 받을 수 있도록 수정
 - [x] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] 검색 결과 무한 스크롤 적용
