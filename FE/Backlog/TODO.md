@@ -34,7 +34,6 @@
 - [ ] Demolition `useImageInput` `initialImageUrl` `null` 도 받을 수 있도록 수정
 - [x] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
-- [ ] drawer 중복적으로 사용하는 styled component 고민해 보기
 - [ ] 검색 결과 무한 스크롤 적용
 - [ ] IconButton refactor
 	- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
