@@ -63,6 +63,9 @@
 - [ ] 특정 관심종목 추가 dialog에서 관심 종목 검색 drawer의 zindex 문제 해결하기
 - [ ] ConfirmAlert 디자인 문제 해결하기
 - [ ] 파인앤츠 한글로 구글 검색 가능하도록
+- [ ] 새 스크롤 api 방식에서 현재 데이터가 마지막인지(더 이상 스크롤해도 새 데이터가 안오는 상태) 아닌지를 data를 보고 확인 할 방법이 없음, 마지막에서 새로 스크롤하면 빈 데이터가 오는데 1회가 조금 아쉬움
+	- 백엔드에서 추후에 추가도 가능하다 하셨으니 다른 프론트엔드 입장도 들어보면 좋을 듯
+
 #### UI
 - [ ] Table header column title (Window/MacOS Font 확인 필요)
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
@@ -76,6 +79,6 @@
 - [ ] TVTickerTapeWidget 유무에 따라서 BasePage 컴포넌트의 높이가 달라져야한다.
 	- ActiveNotificationsPage의 경우 조금 이상하게 적용중(확인 필요)
 - [ ] StockPage, 관심 종목 추가 페이지 아이템 선택 후 저장 버튼 일관성 있게 수정하게
-	- 어는 곳은 저장(추가) 버튼이 있고 없는 어느 곳은 없음
+	- 어느 곳은 저장(추가) 버튼이 있고 없는 어느 곳은 없음
 #### 기타
 - `Third-party cookie will be blocked. Learn more in the Issues tab.`
