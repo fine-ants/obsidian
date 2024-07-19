@@ -64,6 +64,8 @@
 - [ ] 파인앤츠 한글로 구글 검색 가능하도록
 - [ ] 활성 알림 테이블 `align-items: center;` 으로 인해 가운데 정렬로 Tab과의 간격 문제
 - [ ] 여러 Dialog 컴포넌트들이 어느곳은 isOpen으로 조건부 랜더링으로 감싸고 있고 어디는 감싸고 있지 않다.
+- [ ] 랜딩페이지에서 새로고침을 하면 다음과 같은 에러 문구가 콘솔에서 확인 할 수 있다
+	- `Warning: You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it.`
 
 - [ ] 새 스크롤 api 방식에서 현재 데이터가 마지막인지(더 이상 스크롤해도 새 데이터가 안오는 상태) 아닌지를 data를 보고 확인 할 방법이 없음, 마지막에서 새로 스크롤하면 빈 데이터가 오는데 1회가 조금 아쉬움
 	- 백엔드에서 추후에 추가도 가능하다 하셨으니 다른 프론트엔드 입장도 들어보면 좋을 듯
