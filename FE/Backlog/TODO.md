@@ -37,7 +37,9 @@
 - [ ] IconButton refactor
 	- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
 ### Jay
-- [ ] 특정 관심종목 추가 dialog에서 관심 종목 검색 drawer의 zindex 문제 해결하기
+- [x] 특정 관심종목 추가 dialog에서 관심 종목 검색 drawer의 zindex 문제 해결하기
+- [ ] 계정 삭제 후 화면 전환 관련 체크하기
+- [ ] 이전 pr들에 받은 리뷰 반영하기
 
 ### Bakha
 - [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
