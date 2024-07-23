@@ -38,7 +38,9 @@
 	- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
 ### Jay
 - [x] 특정 관심종목 추가 dialog에서 관심 종목 검색 drawer의 zindex 문제 해결하기
+- [ ] 로그인 페이지 우측 이미지 크기 체크하기
 - [ ] 계정 삭제 후 화면 전환 관련 체크하기
+- [ ] 활성 알림 테이블 `align-items: center;` 으로 인해 가운데 정렬로 Tab과의 간격 문제
 - [ ] 이전 pr들에 받은 리뷰 반영하기
 	- 대부분 반영되었음 useZIndex에서 zustand에 한번에 pushStack, popStack, getCurrentZIndex, select하도록 수정하
 
