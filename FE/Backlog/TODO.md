@@ -67,7 +67,6 @@
 - [ ] Button 컴포넌트 gap 디자인과 구현 상태 확인이 필요
 - [ ] Mutate 함수 실행 후 특정 로직이 이어서 작업되는 경우 Mutate가 실패 시 다음 동작을 안하도록 고려하기
 - [ ] 파인앤츠 한글로 구글 검색 가능하도록
-- [ ] 활성 알림 테이블 `align-items: center;` 으로 인해 가운데 정렬로 Tab과의 간격 문제
 - [ ] 여러 Dialog 컴포넌트들이 어느곳은 isOpen으로 조건부 랜더링으로 감싸고 있고 어디는 감싸고 있지 않다.
 - [ ] 랜딩페이지에서 새로고침을 하면 다음과 같은 에러 문구가 콘솔에서 확인 할 수 있다
 	- `Warning: You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it.`
@@ -80,8 +79,6 @@
 	- Table header column의 가로 사이즈 문제인듯?(반응형 하며 수정하기)
 - [ ] 포트폴리오 페이지에 종목 테이블에 `항목추가` 버튼 눌러서 종목 추가 새 input이 생기면서 레이아웃 쉬프트 생김
 - [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
-- [ ] 포트폴리오 리스트 페이지
-	- cardTableToolbar에 삭제 버튼 가로 사이즈 수정 필요 (디자인 확인 필요)
 - [ ] Open Graph 디자인 요청하기
 
 - [ ] skeleton UI,  error Fallback 반응형 작업한 것에 맞게 리팩터링
