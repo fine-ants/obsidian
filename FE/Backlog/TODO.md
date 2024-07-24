@@ -34,10 +34,15 @@
 - [x] OAuth 절차 변경
 	- https://velog.io/@jkijki12/Spring-Boot-OAuth2-JWT-%EC%A0%81%EC%9A%A9%ED%95%B4%EB%B3%B4%EB%A6%AC%EA%B8%B0
 - [ ] 검색 결과 무한 스크롤 적용
+	 - From jay 
+		- 무한 스크롤 api 구현되어 있음
+		- 새 스크롤 api 방식에서 현재 데이터가 마지막인지(더 이상 스크롤해도 새 데이터가 안오는 상태) 아닌지를 data를 보고 확인 할 방법이 없음, 마지막에서 새로 스크롤하면 빈 데이터가 오는데 1회가 조금 아쉬움
+			- 백엔드에서 추후에 추가도 가능하다 하셨음, 변경을 원하면 백엔드에 요청 가능
+		
 - [ ] IconButton refactor
 	- [ ] 모바일 "내 포트폴리오" 페이지 포트폴리오 추가 버튼 수정 필요
+		
 ### Jay
-- [x] 인덱스 페이지 반응형
 - [ ] 계정 삭제 후 화면 전환 관련 체크하기
 	- 삭제 후 토스트나 뭔가 있으면 좋을듯?
 
@@ -66,10 +71,6 @@
 - [ ] 여러 Dialog 컴포넌트들이 어느곳은 isOpen으로 조건부 랜더링으로 감싸고 있고 어디는 감싸고 있지 않다.
 - [ ] 랜딩페이지에서 새로고침을 하면 다음과 같은 에러 문구가 콘솔에서 확인 할 수 있다
 	- `Warning: You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it.`
-
-- [ ] 새 스크롤 api 방식에서 현재 데이터가 마지막인지(더 이상 스크롤해도 새 데이터가 안오는 상태) 아닌지를 data를 보고 확인 할 방법이 없음, 마지막에서 새로 스크롤하면 빈 데이터가 오는데 1회가 조금 아쉬움
-	- 백엔드에서 추후에 추가도 가능하다 하셨으니 다른 프론트엔드 입장도 들어보면 좋을 듯
-- [x] Fallback 페이지 반응형 적용하기
 - [ ] 트레이딩뷰 한국 주식 제공 안하는 부분 해결 or 다른 방법 찾기
 
 #### UI
