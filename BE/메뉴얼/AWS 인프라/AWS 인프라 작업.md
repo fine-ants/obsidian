@@ -229,6 +229,8 @@ DB 서브넷 그룹을 생성하기 위해서 최소 private한 서브넷이 2�
 $ sudo yum update -y
 $ wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
 $ sudo yum localinstall mysql80-community-release-el9-1.noarch.rpm
+$ sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 
+$ sudo yum update
 $ sudo yum install mysql-community-server
 $ sudo systemctl start mysqld
 $ sudo systemctl status mysqld
