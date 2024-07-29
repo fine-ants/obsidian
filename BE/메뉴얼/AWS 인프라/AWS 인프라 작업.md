@@ -402,6 +402,7 @@ $ sudo aws configure
 ```bash
 $ wget https://aws-codedeploy-ap-northeast-2.s3.amazonaws.com/latest/install
 $ chmod +x ./install
+$ sudo yum install ruby
 $ sudo ./install auto
 ```
 
