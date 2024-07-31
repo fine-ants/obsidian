@@ -69,8 +69,6 @@
 - [ ] Mutate 함수 실행 후 특정 로직이 이어서 작업되는 경우 Mutate가 실패 시 다음 동작을 안하도록 고려하기
 - [ ] 파인앤츠 한글로 구글 검색 가능하도록
 - [ ] 여러 Dialog 컴포넌트들이 어느곳은 isOpen으로 조건부 랜더링으로 감싸고 있고 어디는 감싸고 있지 않다.
-- [ ] 랜딩페이지에서 새로고침을 하면 다음과 같은 에러 문구가 콘솔에서 확인 할 수 있다
-	- `Warning: You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it.`
 - [ ] 트레이딩뷰 한국 주식 제공 안하는 부분 해결 or 다른 방법 찾기
 
 #### UI
