@@ -46,8 +46,7 @@
 - 리스트페이지 페이지네이션 테이블 개수에서 all 선택 했을 시 페이지 네이션 위치 수정
 
 ### Bakha
-- [ ] FineAnts logo 이미지 사이즈 조정 필요 (40x40인 원안에 들어가도 자연스럽게)
-	- [ ] `/src/assets/icons/logo/ic_fineants.svg` 해당 경로 svg 사이즈 조절이 필요해 보임
+
 ---
 ### TODO
 - [ ] 서버 데이터와 MSW 데이터 및 핸들러 맞추기
