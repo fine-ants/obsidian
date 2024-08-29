@@ -52,6 +52,7 @@
 - CollapsibleSelectableTable에 있는 handleSelectAllClick 관련 TODO
 
 - EllipsisTextTooltip hover만으로  랜더링되는 부분 확인하기
+- fineants.co을 www.fineants.co로 리다이렉트 안되고있음
 
 ### Bakha
 
