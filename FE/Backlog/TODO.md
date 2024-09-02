@@ -47,8 +47,6 @@
 	- 데스크탑은 완료.
 	- 모바일 추가 필요
 
-- EllipsisTextTooltip hover만으로  랜더링되는 부분 확인하기
-
 ### Bakha
 
 ---
