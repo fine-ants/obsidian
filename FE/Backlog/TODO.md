@@ -46,13 +46,8 @@
 - 포트폴리오 페이지 SSE로 자주 랜더링되는 상태 최적화
 	- 데스크탑은 완료.
 	- 모바일 추가 필요
-- 고차 컴포넌트에서 받고 있는 컴포넌트들 타입 ComponentType으로 변경하기
-	- CollapsibleSelectableTable만 변경되어 있음
-- PortfolioHoldingTableBody에 있는 handleClick TODO 
-- CollapsibleSelectableTable에 있는 handleSelectAllClick 관련 TODO
 
 - EllipsisTextTooltip hover만으로  랜더링되는 부분 확인하기
-- fineants.co을 www.fineants.co로 리다이렉트 안되고있음
 
 ### Bakha
 
