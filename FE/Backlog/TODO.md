@@ -47,6 +47,8 @@
 	- 데스크탑은 완료.
 	- 모바일 추가 필요
 - portfolioDropdownItemSx와같이 기존 디자인 시스템에서 폰트 넣는 부분 css 템플릿리터럴 으로 변경하면서 넣지 못하는 상태인데 어떻게 하면 좋을지 고민 
+- https://patterns-dev-kr.github.io/design-patterns/compound-pattern/
+	- 적용할 수 있는 부분 찾기
 ### Bakha
 
 ---
