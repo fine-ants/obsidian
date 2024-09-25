@@ -49,6 +49,8 @@
 - portfolioDropdownItemSx와같이 기존 디자인 시스템에서 폰트 넣는 부분 css 템플릿리터럴 으로 변경하면서 넣지 못하는 상태인데 어떻게 하면 좋을지 고민 
 - https://patterns-dev-kr.github.io/design-patterns/compound-pattern/
 	- 적용할 수 있는 부분 찾기
+- mui nextjs에서 깜빡임 이슈 해결하기
+	- https://hyeonjong.com/posts/dev-log/Trouble%20Shooting/next-js-fouc/d969653d-f412-45a1-b671-89f0041fefc1
 ### Bakha
 
 ---
