@@ -51,6 +51,7 @@
 	- 적용할 수 있는 부분 찾기
 - mui nextjs에서 깜빡임 이슈 해결하기
 	- https://hyeonjong.com/posts/dev-log/Trouble%20Shooting/next-js-fouc/d969653d-f412-45a1-b671-89f0041fefc1
+	- https://mui.com/material-ui/integrations/nextjs/
 ### Bakha
 
 ---
