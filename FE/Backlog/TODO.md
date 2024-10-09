@@ -52,8 +52,7 @@
 - mui nextjs에서 깜빡임 이슈 해결하기
 	- https://hyeonjong.com/posts/dev-log/Trouble%20Shooting/next-js-fouc/d969653d-f412-45a1-b671-89f0041fefc1
 	- https://mui.com/material-ui/integrations/nextjs/
-- nextjs local https 적용하기
-	- https://velog.io/@pikadev1771/Next.js-%EB%A1%9C%EC%BB%AClocalhost%EC%97%90-https-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0
+- 
 ### Bakha
 
 ---
