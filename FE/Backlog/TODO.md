@@ -46,13 +46,14 @@
 - 포트폴리오 페이지 SSE로 자주 랜더링되는 상태 최적화
 	- 데스크탑은 완료.
 	- 모바일 추가 필요
-- portfolioDropdownItemSx와같이 기존 디자인 시스템에서 폰트 넣는 부분 css 템플릿리터럴 으로 변경하면서 넣지 못하는 상태인데 어떻게 하면 좋을지 고민 
 - https://patterns-dev-kr.github.io/design-patterns/compound-pattern/
 	- 적용할 수 있는 부분 찾기
 - mui nextjs에서 깜빡임 이슈 해결하기
 	- https://hyeonjong.com/posts/dev-log/Trouble%20Shooting/next-js-fouc/d969653d-f412-45a1-b671-89f0041fefc1
 	- https://mui.com/material-ui/integrations/nextjs/
 - build 될 때 api/proxy 파일들 빌드 안되게 하기
+- Header  로그인 상태를 서버에서 useConetxt로 보관중인 user를 사용하지 못해서 임시로 dynamic import 중인데 이부분 개선하기
+	- useContext없이 가능 방향도 고려
 ### Bakha
 
 ---
@@ -81,7 +82,6 @@
 #### next
 - favicon 라이트, 다크 적용
 	- 다크만 적용되어있음
-- 폰트 적용
 
 #### UI
 - [ ] 모바일용 디자인 시스템 확인해서 공용 컴포넌트들 리팩터링
