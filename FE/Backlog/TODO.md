@@ -54,6 +54,9 @@
 - build 될 때 api/proxy 파일들 빌드 안되게 하기
 	- Header  로그인 상태를 서버에서 useConetxt로 보관중인 user를 사용하지 못해서 임시로 dynamic import 중인데 이부분 개선하기
 		- useContext없이 가능 방향도 고려
+- TICKER TAPE 추가하면 BasePage에 min-heightdp TICKER TAPE 높이 제거하기
+- Header dynamic import 변경하기
+	- 레이아웃 쉬프트생김
 ### Bakha
 
 ---
