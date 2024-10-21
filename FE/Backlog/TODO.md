@@ -48,9 +48,6 @@
 	- 모바일 추가 필요
 - https://patterns-dev-kr.github.io/design-patterns/compound-pattern/
 	- 적용할 수 있는 부분 찾기
-- mui nextjs에서 깜빡임 이슈 해결하기
-	- https://hyeonjong.com/posts/dev-log/Trouble%20Shooting/next-js-fouc/d969653d-f412-45a1-b671-89f0041fefc1
-	- https://mui.com/material-ui/integrations/nextjs/
 - build 될 때 api/proxy 파일들 빌드 안되게 하기
 	- Header  로그인 상태를 서버에서 useConetxt로 보관중인 user를 사용하지 못해서 임시로 dynamic import 중인데 이부분 개선하기
 		- useContext없이 가능 방향도 고려
