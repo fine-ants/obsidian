@@ -54,6 +54,8 @@
 - TICKER TAPE 추가하면 BasePage에 min-heightdp TICKER TAPE 높이 제거하기
 - Header dynamic import 변경하기
 	- 레이아웃 쉬프트생김
+- 이미지 처럼 헤더에서는 로그인 처리가 안되어있는데 대시보드 페이지의 값이 불러오는 경우가 있음
+	- 쿠키와 token의 문제가 있는거같기도![[Pasted image 20241029171831.png]]
 ### Bakha
 
 ---
