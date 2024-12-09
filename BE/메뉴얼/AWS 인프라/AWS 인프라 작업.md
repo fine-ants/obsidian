@@ -872,7 +872,9 @@ public security 보안 그룹을 선택합니다.
 대상 그룹 생성 2단계에서 대상 그룹에 포함시킬 인스턴스를 선택후 대상 그룹을 생성합니다.
 ![[Pasted image 20241209145720.png]]
 
-다시 Application Load Balancer 생성 단계에서 다음과 같이 2개의 리스너를 등록합니다.
-![[Pasted image 20241209145926.png]]
+다시 Application Load Balancer 생성 단계에서 다음과 같이 2개의 리스너를 등록합니다. 특히 443 포트에 대해서 HTTPS 프로토콜로 설정하면 보안 리스너 설정 창이 나타납니다.
+![[Pasted image 20241209151308.png]]
+
+
 
 리스너를 등록한 다음에 로드 밸런서 생성합니다.
