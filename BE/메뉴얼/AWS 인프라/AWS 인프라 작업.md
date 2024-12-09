@@ -813,3 +813,21 @@ $ sudo vim /etc/fstab
 6. docker container를 재시작하고 로그 스트림에서 결과를 확인합니다.
 ![[Pasted image 20231227172736.png]]
 
+
+## AWS SSL 적용하기
+1. AWS Certificate Manager 에서 인증서 요청하기를 클릭합니다.
+
+![[Pasted image 20241209134824.png]]
+
+2. 인증서 유형에서 퍼블릭 인증서 요청 옵션을 선택한 다음에 다음 버튼을 클릭합니다.
+![[Pasted image 20241209134844.png]]
+
+3. 퍼블릭 인증서 요청 페이지에서 도메인 이름, 검증 방법, 키 알고리즘 옵션을 다음과 같이 선택한 다음에 하단의 요청 버튼을 클릭합니다.
+	- 다음과 같이 `*.fineants.co` 식으로 등록하면 `*`로 인해서 하위 도메인들이 모두 사용할 수 있는 인증서가 됩니다.
+		- `www.fineants.co`, `admin.fineants.co` 등이 하위 도메인이 됩니다.
+	- 단순히 `*.fineants.co`만 추가하면 `fineants.co`에서 사용할 수 없는 인증서가 되기 때문에 2차 도메인(`fineants.co`)과 3차 도메인(`*.fineant`)
+![[Pasted image 20241209135408.png]]
+
+4. 인증서 생성을 확인합니다.
+![[Pasted image 20241209135113.png]]
+
