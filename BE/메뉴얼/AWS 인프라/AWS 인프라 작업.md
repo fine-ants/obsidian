@@ -848,3 +848,20 @@ $ sudo vim /etc/fstab
 
 2. 로드 밸런서 생성 버튼을 클릭합니다.
 ![[Pasted image 20241209141612.png]]
+
+3. Application Load Balancer 생성 버튼을 클릭합니다.
+![[Pasted image 20241209144543.png]]
+
+4. 로드 밸런서의 이름 및 옵션을 다음과 같이 선택합니다.
+![[Pasted image 20241209144714.png]]
+
+EC2와 연결된 VPC를 선택하고 public한 가용 영역을 선택합니다.
+![[Pasted image 20241209144812.png]]
+
+public security 보안 그룹을 선택합니다.
+![[Pasted image 20241209144833.png]]
+- 443, 80 포트가 오픈되어 있어야 합니다.
+
+인증서를 연결할 EC2 인스턴스를 연결합니다. 만약 연결할 인스턴스가 보이지 않는 경우 "대상 그룹 생성" 버튼을 클릭하여 대상 그룹을 생성합니다.
+![[Pasted image 20241209145108.png]]
+
