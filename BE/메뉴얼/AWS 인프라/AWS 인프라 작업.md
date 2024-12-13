@@ -1,29 +1,35 @@
 ## 목차
-- [[#VPC 생성]]
-- [[#서브넷 생성]] 
-- [[#인터넷 게이트웨이 생성]]
-- [[#public subnet의 라우팅 테이블 생성]]
-- [[#public subnet의 ip 자동 할당 설정]]
-- [[#EC2 인스턴스 생성]]
-- [[#RDS 인스턴스 생성 전 사전 작업]]
-- [[#DB 서브넷 그룹 생성]]
-- [[#데이터베이스 보안 그룹 생성]]
-- [[#RDS 인스턴스 생성]]
-- [[#EC2 인스턴스에서 RDS 데이터베이스 연결]]
-- [[#IntelliJ에서 RDS 데이터베이스 원격 접속]]
-- [[#AWS CodeDeploy 사용하기]]
-	- [[#IAM Role 생성]]
-	- [[#EC2 인스턴스에 IAM 역할 적용]]
-	- [[#Code Deploy Agent용 사용자 추가]]
-	- [[#EC2에 Code Deploy Agent 설치]]
-	- [[#프로젝트에 배포 파일 생성]]
-	- [[#Code Deploy용 Role 생성]]
-	- [[#Code Deploy 생성]]
-	- [[#Code Deploy를 위한 S3 버킷 생성]]
-	- [[#Github Action을 이용한 CI/CD 구현]]
-- [[#EC2 인스턴스에 Memory Swap 설정]]
-- [[#가비아에서 구매한 도메인을 AWS Route53에서 호스팅]]
-- [[#EC2 인스턴스의 docker container log를 AWS CloudWatch에 내보내기]]
+- [[#VPC 생성|VPC 생성]]
+- [[#서브넷 생성|서브넷 생성]]
+- [[#인터넷 게이트웨이 생성|인터넷 게이트웨이 생성]]
+- [[#public subnet의 라우팅 테이블 생성|public subnet의 라우팅 테이블 생성]]
+- [[#public subnet의 ip 자동 할당 설정|public subnet의 ip 자동 할당 설정]]
+- [[#EC2 인스턴스 생성|EC2 인스턴스 생성]]
+- [[#RDS 인스턴스 생성 전 사전 작업|RDS 인스턴스 생성 전 사전 작업]]
+- [[#DB 서브넷 그룹 생성|DB 서브넷 그룹 생성]]
+	- [[#DB 서브넷 그룹 생성#데이터베이스 보안 그룹 생성|데이터베이스 보안 그룹 생성]]
+- [[#RDS 인스턴스 생성|RDS 인스턴스 생성]]
+- [[#EC2 인스턴스에서 RDS 데이터베이스 연결|EC2 인스턴스에서 RDS 데이터베이스 연결]]
+- [[#IntelliJ에서 RDS 데이터베이스 원격 접속|IntelliJ에서 RDS 데이터베이스 원격 접속]]
+- [[#AWS CodeDeploy 사용하기|AWS CodeDeploy 사용하기]]
+	- [[#AWS CodeDeploy 사용하기#IAM Role 생성|IAM Role 생성]]
+	- [[#AWS CodeDeploy 사용하기#EC2 인스턴스에 IAM 역할 적용|EC2 인스턴스에 IAM 역할 적용]]
+	- [[#AWS CodeDeploy 사용하기#Code Deploy Agent용 사용자 추가|Code Deploy Agent용 사용자 추가]]
+	- [[#AWS CodeDeploy 사용하기#EC2에 Code Deploy Agent 설치|EC2에 Code Deploy Agent 설치]]
+	- [[#AWS CodeDeploy 사용하기#프로젝트에 배포 파일 생성|프로젝트에 배포 파일 생성]]
+	- [[#AWS CodeDeploy 사용하기#Code Deploy용 Role 생성|Code Deploy용 Role 생성]]
+	- [[#AWS CodeDeploy 사용하기#Code Deploy 생성|Code Deploy 생성]]
+	- [[#AWS CodeDeploy 사용하기#Code Deploy를 위한 S3 버킷 생성|Code Deploy를 위한 S3 버킷 생성]]
+- [[#Github Action을 이용한 CI/CD 구현|Github Action을 이용한 CI/CD 구현]]
+	- [[#Github Action을 이용한 CI/CD 구현#Github Action Workflow 구현|Github Action Workflow 구현]]
+- [[#EC2 인스턴스에 Memory Swap 설정|EC2 인스턴스에 Memory Swap 설정]]
+		- [[#Github Action Workflow 구현#Swap Memory 확인|Swap Memory 확인]]
+		- [[#Github Action Workflow 구현#페이지 캐시|페이지 캐시]]
+		- [[#Github Action Workflow 구현#Swap Memory 생성|Swap Memory 생성]]
+- [[#가비아에서 구매한 도메인을 AWS Route53에서 호스팅|가비아에서 구매한 도메인을 AWS Route53에서 호스팅]]
+- [[#EC2 인스턴스의 docker container log를 AWS CloudWatch에 내보내기|EC2 인스턴스의 docker container log를 AWS CloudWatch에 내보내기]]
+- [[#AWS SSL 적용하기|AWS SSL 적용하기]]
+	- [[#AWS SSL 적용하기#로드 밸런싱 생성|로드 밸런싱 생성]]
 
 ## VPC 생성
 1. VPC 대시보드에 입장하여 VPC 생성 버튼을 클릭합니다.
@@ -855,8 +861,10 @@ $ sudo vim /etc/fstab
 4. 로드 밸런서의 이름 및 옵션을 다음과 같이 선택합니다.
 ![[Pasted image 20241209144714.png]]
 
-EC2와 연결된 VPC를 선택하고 가용 영역 최소 2개를 선택합니다. ap-notrtheast-2b는 private한 서브넷이지만 최소 가용 영역을 2개 선택해야 하기 때문에 경고를 무시하고 선택합니다.
-![[Pasted image 20241209150111.png]]
+EC2와 연결된 VPC를 선택하고 가용 영역 최소 2개를 선택합니다. 해당 단게에서는 ap-northeast-2a, ap-northeast-2b  가용 영역에 있는 서브넷 2개를 선택합니다.
+![[Pasted image 20241210161530.png]]
+- 경고: 가용 영역의 서브넷 선택시 인터넷 게이트 웨이가 설정되어 있지 않은 private subnet을 선택하는 경우 클라이언트의 리퀘스트에 대한 응답을 처리할 수 없습니다. 따라서 public subnet을 선택해야 합니다.
+
 public security 보안 그룹을 선택합니다.
 ![[Pasted image 20241209144833.png]]
 - 443, 80 포트가 오픈되어 있어야 합니다.
