@@ -12,8 +12,23 @@
 - ALB을 IP 주소 유형을 퍼블릭 IPv4가 없는 듀얼 스택으로 다시 생성합니다.
 
 
+### VPC 새로운 IPv6 CIDR 추가
+1. VPC 서비스의 VPC 페이지로 이동합니다.
+![[Pasted image 20250102141905.png]]
+
+2. IPv6 CIDR를 추가할 VPC를 선택한 다음에 작업->CIDR 편집 버튼을 클릭합니다.
+![[Pasted image 20250102141939.png]]
+
+3. CIDR 편집 페이지에서 새 IPv6 CIDR 추가 버튼을 클릭하여 새로운 IPv6 CIDR을 추가합니다. 추가한 다음에 닫기 버튼을 클릭합니다.
+![[Pasted image 20250102142115.png]]
+
+
+
 ### Public Subnet IPv6 할당
 1. VPC 서비스의 서브넷 페이지로 이동합니다.
 ![[Pasted image 20250102141627.png]]
 
-2. Public Subnet 한개를 선택한 다음에 작업->IPv6 CIDR 편집 버튼을 클릭항
+2. Public Subnet 한개를 선택한 다음에 작업->IPv6 CIDR 편집 버튼을 클릭하여 이동합니다.
+![[Pasted image 20250102141734.png]]
+
+3. 
