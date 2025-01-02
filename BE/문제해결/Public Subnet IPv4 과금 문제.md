@@ -81,3 +81,11 @@
 ![[Pasted image 20250102152556.png]]
 
 3. 다른 public subnet을 대상으로도 IPv6 주소 자동 할당을 활성합니다.
+
+### Route53의 레코드 수정
+1. Route53 서비스 -> 호스팅 영역 -> 등록된 호스팅 선택
+![[Pasted image 20250102153059.png]]
+
+2. ALB로 호스팅하는 services.fineants.co 레코드를 선택한 다음에 레코드 편집합니다.
+![[Pasted image 20250102153220.png]]
+- 기존 "A - IPv4 주소 및 일부 AWS 리소스로 트래픽 라우팅" 레코드 유형에서 위와 같이 AAAA 유형으로 변경합니다.
