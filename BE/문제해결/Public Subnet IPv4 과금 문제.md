@@ -20,8 +20,10 @@
 ![[Pasted image 20250102141939.png]]
 
 3. CIDR 편집 페이지에서 새 IPv6 CIDR 추가 버튼을 클릭하여 새로운 IPv6 CIDR을 추가합니다. 추가한 다음에 닫기 버튼을 클릭합니다.
-![[Pasted image 20250102142115.png]]
+![[Pasted image 20250102143441.png]]
+- VPC의 CIDR 블록이 xxx:xxx:xxx:xxx::/56인 경우에는 128
 
+![[Pasted image 20250102142115.png]]
 
 
 ### Public Subnet IPv6 할당
