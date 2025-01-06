@@ -15,11 +15,13 @@ sudo certbot --version
 
 ## SSL 인증서 발급
 ```
-sudo certbot certonly --standalone -d services.fineants.co -d services.release.fineants.co
+sudo certbot certonly --standalone -d services.fineants.co
 ```
 - certonly : Certbot이 SSL 인증서를 발급받아 파일로 저장하지만, 이를 웹 서버(예: Apache, Nginx) 설정에 자동으로 적용하지 않습니다.
 - --standalone : 웹 서버를 따로 설정할 필요 없이 Certbot이 **자체적으로 임시 웹 서버를 실행하여 도메인 소유권을 검증하는 방식
 - -d : 도메인 이름을 설정합니다.
+- 주의: services.fineants.co, services.release.fineants.co와 같이 도메인을 한꺼번에 설정하지 말고 각각 생성하세요.
+
 
 SSL 인증서 발급에 성공하면 다음과 같은 결과가 나옵니다. /etc/letsencrypt/live/services.fineants.co-0002 디렉토리에 SSL 인증서가 저장됩니다.
 ![[Pasted image 20250106151029.png]]
@@ -62,7 +64,7 @@ ls
 keysthore.p12 파일을 프로젝트의 디렉토리로 복사
 다음 명령어는 ec2 인스턴스가 아닌 로컬 프로젝트가 존재하는 호스트 머신에서 수행합니다. 저같은 경우에는 mac os에서 수행됩니다.
 ```
-scp -i "/Users/yonghwankim/.ssh/fineAnts.pem" root@3.35.17.183:/etc/letsencrypt/live/services.fineants.co-0002/keystore.p12 ~/Downloads
+scp -O -i "/Users/yonghwankim/.ssh/fineAnts.pem" root@3.35.17.183:/etc/letsencrypt/live/services.fineants.co-0002/keystore.p12 ~/Downloads
 cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts/backend/src/main/resources/ssl/keystore.p12
 ```
 - 첫번째 scp 명령어는 ec2 인스턴스의 keystore.p12 파일을 호스트 머신의 다운로드 디렉토리로 복사합니다.
