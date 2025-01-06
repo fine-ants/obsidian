@@ -109,12 +109,12 @@ services:
 - sftp 서버와 클라이언트가 세션 수립 시, '.bashrc', '.profile' 등 서버의 쉘 기본 스크립트 (startup script)에서 발생하는 출력을 클라이언트가 sftp 메시지로 파싱하려 하기 때문에 에러가 발생합니다.
 
 **해결방법**
-sshd_config 파일을 열어서 다음과 같이 "Subsystem sftp /usr/libexec/openssh/sftp-server"를 주석 처리하고 "Subsystem sftp internal-sftp"과 "ForceCommand internal-sftp -u 0002"를 작성합니다. 이 조치는 sftp 세션에 대해 쉘이 실행되지 않도록 하여 정상적으로 연결을 수립할 수 있게 합니다.
+sshd_config 파일을 열어서 다음과 같이 "Subsystem sftp /usr/libexec/openssh/sftp-server"를 주석 처리하고 다음과 같이 설정합니다.
 ```
 ec2-user$ sudo vim /etc/ssh/sshd_config
 ```
-![[Pasted image 20250106155432.png]]
-- `orceCommand internal-sftp -u 0002` 구문은 SSH 서버에서 SFTP 세션을 강제적으로 실행하도록 설정하는 방법입니다. 이 명령어는 특정 사용자가 SSH 연결을 시도할 때, `internal-sftp`로만 연결되게 하고, **셸 접근**을 제한하는 설정입니다. 또한 `-u 0002` 옵션은 파일의 권한을 설정하는 데 사용됩니다.
+![[Pasted image 20250106175513.png]]
+
 
 sshd 서비스 재시작
 ```
