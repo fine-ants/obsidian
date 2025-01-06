@@ -73,6 +73,7 @@ cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts
 
 
 ## Spring Boot SSL 관련 설정
+application-secret.yml 파일에서 SSL 설정
 ```
 server:  
   ssl:  
@@ -81,6 +82,22 @@ server:
     key-store-password: {password}
 ```
 - key-store-password 프로퍼티에 대한 비밀번호는 SSL 인증서 발급시 입력했던 비밀번호를 입력합니다.
+- 해당 정보들은 시크릿 정보이기 때문에 외부에 노출하면 안됩니다.
+
+docker-compose-production.yml 설정
+```
+version: "3.8"  
+services:  
+  app:  
+    container_name: fineAnts_app  
+    build: .  
+    restart: always  
+    ports:  
+      - "443:443"
+```
+- docker-compose 설정에서 443 포트를 443 포트로 매핑합니다.
+- spring 서버의 포트가 무조건 443포트로 설정하지는 않아도 되지만, 저는 고정하였습니다.
+	- 그래서 별도의 application-production.yml 파일에서 443 포트로 설정하였습니다.
 
 ## 트러블 슈팅
 ### scp 복사 에러
