@@ -69,6 +69,8 @@ cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts
 - 두번째 cp 명령어는 호스트 머신의 다운로드 디렉토리에 있는 keystore.p12 파일을 프로젝트의 resources 디렉토리에 저장합니다.
 - "fineAnts.pem" 파일은 ec2 인스턴스에 접속하기 위한 개인키 파일입니다. -i 옵션의 값으로 개인키 파일이 존재하는 경로를 적어야 합니다.
 
+프로젝트에 keystore.p12 파일을 복사에 성공하면 커밋후 프로젝트를 다시 배포합니다.
+
 ### scp 복사 에러
 **배경**
 ![[Pasted image 20250106154814.png]]
@@ -78,18 +80,22 @@ cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts
 - sftp 서버와 클라이언트가 세션 수립 시, '.bashrc', '.profile' 등 서버의 쉘 기본 스크립트 (startup script)에서 발생하는 출력을 클라이언트가 sftp 메시지로 파싱하려 하기 때문에 에러가 발생합니다.
 
 **해결방법**
-sshd_config 파일을 열어서 다음과 같이 "Subsystem sftp /usr/libexec/openssh/sftp-server"를 주석 처리하고 "Subsystem sftp internal-sftp"를 작성합니다. 이 조치는 sftp 세션에 대해 쉘이 실행되지 않도록 하여 정상적으로 연결을 수립할 수 있게 합니다.
+sshd_config 파일을 열어서 다음과 같이 "Subsystem sftp /usr/libexec/openssh/sftp-server"를 주석 처리하고 "Subsystem sftp internal-sftp"과 "ForceCommand internal-sftp -u 0002"를 작성합니다. 이 조치는 sftp 세션에 대해 쉘이 실행되지 않도록 하여 정상적으로 연결을 수립할 수 있게 합니다.
 ```
 ec2-user$ sudo vim /etc/ssh/sshd_config
 ```
-![[Pasted image 20250106154556.png]]
+![[Pasted image 20250106155432.png]]
+- `orceCommand internal-sftp -u 0002` 구문은 SSH 서버에서 SFTP 세션을 강제적으로 실행하도록 설정하는 방법입니다. 이 명령어는 특정 사용자가 SSH 연결을 시도할 때, `internal-sftp`로만 연결되게 하고, **셸 접근**을 제한하는 설정입니다. 또한 `-u 0002` 옵션은 파일의 권한을 설정하는 데 사용됩니다.
 
 sshd 서비스 재시작
 ```
-ec2-user$ sudo systemctl restart sshd
+ec2-user$ sudo service sshd restart
 ```
 
 호스트 머신에서 다시 scp 명령어 수행
 ```
 scp -i "/Users/yonghwankim/.ssh/fineAnts.pem" root@3.35.17.183:/etc/letsencrypt/live/services.fineants.co-0002/keystore.p12 ~/Downloads
 ```
+
+복사한 실행 결과를 확인합니다.
+![[Pasted image 20250106155548.png]]
