@@ -1,15 +1,16 @@
 
 ## Certbot 설치
-mac os에서 homebrew 패키지 매니저를 통해서 certbot 프로그램을 설치합니다.
+ec2 amazone linux os에서 yum 패키지 매니저를 이용해서 certbot 프로그램을 설치합니다.
 ```
-brew install certbot
+sudo yum update
+sudo yum install certbot
 ```
 
 certbot 프로그램을 설치하였으면 설치 확인합니다.
 ```
 sudo certbot --version
 ```
-![[Pasted image 20250106142338.png]]
+![[Pasted image 20250106143846.png]]
 - 위와 같이 버전이 출력되면 설치 성공입니다.
 
 ## SSL 인증서 발급
