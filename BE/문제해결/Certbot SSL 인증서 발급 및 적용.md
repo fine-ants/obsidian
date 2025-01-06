@@ -21,3 +21,5 @@ sudo certbot certonly --standalone -d services.fineants.co -d services.release.f
 - --standalone : 웹 서버를 따로 설정할 필요 없이 Certbot이 **자체적으로 임시 웹 서버를 실행하여 도메인 소유권을 검증하는 방식
 - -d : 도메인 이름을 설정합니다.
 
+
+![[Pasted image 20250106151029.png]]
