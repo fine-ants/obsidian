@@ -130,3 +130,23 @@ scp -i "/Users/yonghwankim/.ssh/fineAnts.pem" root@3.35.17.183:/etc/letsencrypt/
 
 복사한 실행 결과를 확인합니다.
 ![[Pasted image 20250106155548.png]]
+
+
+### AWS CodeDeploy 배포 문제
+배경
+- AWS CodeDeploy에서 배포가 되지 않음
+```
+2025-01-06T09:38:23 ERROR [codedeploy-agent(2131)]: InstanceAgent::Plugins::CodeDeployPlugin::CommandPoller: Cannot reach InstanceService: Aws::CodeDeployCommand::Errors::AccessDeniedException - Aws::CodeDeployCommand::Errors::AccessDeniedException
+```
+
+원인
+- 인스턴스에 기존 AWS 자격 증명 파일이 저장되어있어 IAM 정보를 제대로 못 가져오는 현상이 있을 수 있습니다.
+
+해결방법
+```bash
+# AWS 자격증명 파일 삭제
+$ sudo rm -rf /root/.aws/credentials
+
+# codedeploy-agent 재시작
+$ sudo systemctl restart codedeploy-agent
+```
