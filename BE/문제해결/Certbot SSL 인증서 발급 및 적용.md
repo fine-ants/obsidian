@@ -71,6 +71,18 @@ cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts
 
 프로젝트에 keystore.p12 파일을 복사에 성공하면 커밋후 프로젝트를 다시 배포합니다.
 
+
+## Spring Boot SSL 관련 설정
+```
+server:  
+  ssl:  
+    key-store: classpath:ssl/keystore.p12  
+    key-store-type: PKCS12  
+    key-store-password: {password}
+```
+- key-store-password 프로퍼티에 대한 비밀번호는 SSL 인증서 발급시 입력했던 비밀번호를 입력합니다.
+
+## 트러블 슈팅
 ### scp 복사 에러
 **배경**
 ![[Pasted image 20250106154814.png]]
