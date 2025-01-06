@@ -21,5 +21,41 @@ sudo certbot certonly --standalone -d services.fineants.co -d services.release.f
 - --standalone : 웹 서버를 따로 설정할 필요 없이 Certbot이 **자체적으로 임시 웹 서버를 실행하여 도메인 소유권을 검증하는 방식
 - -d : 도메인 이름을 설정합니다.
 
-
+SSL 인증서 발급에 성공하면 다음과 같은 결과가 나옵니다. /etc/letsencrypt/live/services.fineants.co-0002 디렉토리에 SSL 인증서가 저장됩니다.
 ![[Pasted image 20250106151029.png]]
+
+**SSL 인증서 파일이 저장된 디렉토리로 이동**
+```
+su - root
+password: {패스워드 입력}
+root# cd /etc/letsencrypt/live/services.fineants.co-0002
+```
+
+**keystore.p12 파일 생성**
+```
+root#
+sudo openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out keystore.p12 -name ttp -CAfile chain.pem -caname root
+```
+- 해당 명령어는 `openssl`을 사용하여 **PEM 형식의 SSL 인증서**를 **PKCS#12** 형식으로 변환하는 명령입니다.
+- `openssl`은 공개키 암호화와 관련된 다양한 작업을 수행하는 툴입니다.
+- openssl pkcs12 : **PKCS#12 형식**을 생성하거나 변환하는 명령어
+	- PKCS#12는 인증서 및 개인 키, 인증서 체인 등을 하나의 파일로 패키징하는 표준 형식입니다. 일반적으로 `.p12` 또는 `.pfx` 확장자를 사용합니다.
+- -export : 이 옵션은 **PKCS#12 파일로 내보내기**를 수행하는 옵션입니다. 즉, 인증서 및 관련 키를 하나의 `.p12` 파일로 묶겠다는 뜻입니다.
+- `-in fullchain.pem` : `fullchain.pem` 파일은 **인증서**를 포함한 파일입니다. `fullchain.pem`은 서버 인증서와 중간 인증서를 포함하고 있어, 클라이언트가 인증서를 검증할 때 유용합니다. 이 파일이 포함된 인증서 체인은 SSL/TLS 핸드쉐이크 시 사용됩니다.
+- -inkey privkey.pem : `privkey.pem`은 **개인 키**를 포함한 파일입니다. 이 개인 키는 SSL 인증서와 쌍을 이루며, 서버에서 인증서와 함께 사용됩니다. 이 옵션을 통해 개인 키를 PKCS#12 파일에 포함시킵니다.
+- -out keystore.p12 : 이 옵션은 생성될 **PKCS#12 파일**의 출력 파일 이름을 지정합니다. 이 명령어에서는 `keystore.p12`라는 이름으로 출력됩니다. 이 파일은 SSL 인증서와 개인 키를 포함하고 있으며, Java 애플리케이션 등에서 사용될 수 있습니다.
+- -name ttp : 이 옵션은 **PKCS#12 파일 내에서 인증서의 별칭(alias)**을 지정합니다. `ttp`는 이 인증서 항목의 이름으로, 나중에 해당 인증서를 참조할 때 사용됩니다.
+- -CAfile chain.pem
+	- `chain.pem` 파일은 **인증서 체인**을 포함하는 파일입니다. 이 파일에는 루트 인증서와 중간 인증서가 포함되어 있습니다. 클라이언트가 서버 인증서를 검증할 때 루트 인증서와 중간 인증서를 확인할 수 있도록 제공합니다.
+	- `-CAfile` 옵션은 이 인증서 체인을 `PKCS#12` 파일에 포함시킵니다.
+- -caname root : 이 옵션은 인증서 체인에서 루트 인증서를 참조하는 **이름을 지정**합니다. `root`는 루트 인증서를 지정하는 별칭입니다. 이 옵션은 체인에 포함된 루트 인증서의 이름을 정의합니다.
+
+위 명령어 실행하면 비밀번호를 입력해야 합니다. 비밀번호를 입력하면 keystore.p12 파일이 생성됩니다. 
+![[Pasted image 20250106151840.png]]
+
+**keystore.p12 파일 생성확인**
+```
+ls
+```
+![[Pasted image 20250106151945.png]]
+
