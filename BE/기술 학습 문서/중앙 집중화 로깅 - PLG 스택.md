@@ -54,8 +54,7 @@ docker를 이용해서 Grafana & Loki 서버를 구성할수도 있지만, Grafa
 - https://grafana.com/products/cloud/
 
 1. 회원가입을 수행합니다.
-2. 대시보드 생성 페이지에서 Grafana Loki를 선택합니다.
-![[Pasted image 20250109125600.png]]
+
 
 
 ## Promtail 환경 구성
