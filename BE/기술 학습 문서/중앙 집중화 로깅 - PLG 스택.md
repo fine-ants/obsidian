@@ -58,7 +58,13 @@ docker를 이용해서 Grafana & Loki 서버를 구성할수도 있지만, Grafa
 ![[Pasted image 20250109135918.png]]
 3. Add visualization 버튼을 클릭합니다.
 ![[Pasted image 20250109135955.png]]
+4. 데이터 소스를 선택해야 합니다. Grafana Cloud Free Plan 선택시 기본적으로 제공하는 Loki 데이터 소스(grafanacloud-yonghwankimdev-logs)를 선택합니다.
+![[Pasted image 20250109140250.png]]
+5. "Save dashboard" 버튼을 클릭하여 대시보드를 저장합니다.
+![[Pasted image 20250109140413.png]]
 
+6. 대시보드 이름을 "fineAnts"로 작성하고 대시보드를 생성합니다. Home 메뉴로 이동하여 대시보드 생성을 확인합니다.
+![[Pasted image 20250109140649.png]]
 
 
 ## Promtail 환경 구성
