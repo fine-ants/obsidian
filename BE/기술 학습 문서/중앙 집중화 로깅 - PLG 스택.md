@@ -54,6 +54,10 @@ docker를 이용해서 Grafana & Loki 서버를 구성할수도 있지만, Grafa
 - https://grafana.com/products/cloud/
 
 1. 회원가입을 수행합니다.
+2. Grafana Home 페이지로 이동한 다음에 다음과 같이 대시 보드를 생성을 진행합니다.
+![[Pasted image 20250109135918.png]]
+3. Add visualization 버튼을 클릭합니다.
+![[Pasted image 20250109135955.png]]
 
 
 
