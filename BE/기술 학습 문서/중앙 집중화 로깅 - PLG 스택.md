@@ -65,8 +65,13 @@ docker를 이용해서 Grafana & Loki 서버를 구성할수도 있지만, Grafa
 
 6. 대시보드 이름을 "fineAnts"로 작성하고 대시보드를 생성합니다. Home 메뉴로 이동하여 대시보드 생성을 확인합니다.
 ![[Pasted image 20250109140649.png]]
-
+![[Pasted image 20250109141921.png]]
 
 ## Promtail 환경 구성
+Promtail을 이용해서 로그를 수집해서 전처리하고 Loki로 전송하는 역할을 수행합니다.
+
+### Promtail 설정 파일 구성
+
+
 ## 라벨링을 위한 로그 메시지 수정
 ## Grafana 대시보드 구성
