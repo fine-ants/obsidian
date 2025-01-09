@@ -53,6 +53,10 @@
 docker를 이용해서 Grafana & Loki 서버를 구성할수도 있지만, Grafana Cloud를 이용하면 무료 플랜으로 환경을 구성할 수 있습니다.
 - https://grafana.com/products/cloud/
 
+1. 회원가입을 수행합니다.
+2. 대시보드 생성 페이지에서 Grafana Loki를 선택합니다.
+![[Pasted image 20250109125600.png]]
+
 
 ## Promtail 환경 구성
 ## 라벨링을 위한 로그 메시지 수정
