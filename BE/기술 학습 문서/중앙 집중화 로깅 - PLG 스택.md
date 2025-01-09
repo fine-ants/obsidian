@@ -71,6 +71,61 @@ docker를 이용해서 Grafana & Loki 서버를 구성할수도 있지만, Grafa
 Promtail을 이용해서 로그를 수집해서 전처리하고 Loki로 전송하는 역할을 수행합니다.
 
 ### Promtail 설정 파일 구성
+config.yml
+```yml
+server:  
+  http_listen_port: 0  
+  grpc_listen_port: 0  
+  
+positions:  
+  filename: /tmp/positions.yaml  
+  
+clients:  
+  - url: https://logs-prod-030.grafana.net  
+  
+scrape_configs:  
+  - job_name: logs  # 통합된 job 이름  
+    static_configs:  
+      - targets:  
+          - localhost  
+        labels:  
+          job: logs  
+          log_level: info  # info 레벨 라벨 추가  
+          __path__: /var/log/info/info-*.log  
+      - targets:  
+          - localhost  
+        labels:  
+          job: logs  
+          log_level: warn  # warn 레벨 라벨 추가  
+          __path__: /var/log/warn/warn-*.log  
+      - targets:  
+          - localhost  
+        labels:  
+          job: logs  
+          log_level: error  # error 레벨 라벨 추가  
+          __path__: /var/log/error/error-*.log  
+    pipeline_stages:  
+      # traceId 추출 (모든 로그에서 추출 가능)  
+      - regex:  
+          expression: '\\[traceId=(?P<traceId>[^\\]]+)\\]'  
+  
+      # HTTP Request 관련 라벨 추출 (HTTP Request 메시지에서만 추출)  
+      - regex:  
+          expression: 'HTTPMethod=(?P<HTTPMethod>[A-Z]+) Path=(?P<Path>/\\S+) from IP=(?P<IP>[0-9a-fA-F:]+)'  
+  
+      # ExecutionTime 추출 (ExecutionTime이 있는 메시지에서만 추출)  
+      - regex:  
+          expression: 'ExecutionTime=(?P<ExecutionTime>\\d+ms)'  
+  
+      # 라벨 설정  
+      - labels:  
+          traceId: traceId  
+          HTTPMethod: HTTPMethod  
+          Path: Path  
+          IP: IP  
+          ExecutionTime: ExecutionTime
+```
+
 
 
 ## 라벨링을 위한 로그 메시지 수정
