@@ -130,7 +130,182 @@ scrape_configs:
           ExecutionTime: ExecutionTime
 ```
 
-
-
 ## 라벨링을 위한 로그 메시지 수정
+promtail 프로세스에서 라벨링을 하기 위해서 설정 파일에 맞게 로깅 설정합니다. 이 문서 같은 경우에는 spring 프레임워크 기반에 로그백(logback)을 사용합니다.
+
+loback-spring.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<!-- 60초마다 설정 파일의 변경을 확인 하여 변경시 갱신 -->  
+<configuration scan="true" scanPeriod="60 seconds">  
+    <include resource="logback/appender/console/console_appender.xml"/>  
+    <include resource="logback/appender/file/info_file_appender.xml"/>  
+    <include resource="logback/appender/file/debug_file_appender.xml"/>  
+    <include resource="logback/appender/file/warn_file_appender.xml"/>  
+    <include resource="logback/appender/file/error_file_appender.xml"/>  
+    <include resource="logback/property/property.xml"/>  
+  
+    <springProfile name="local">  
+        <logger name="co.fineants" level="DEBUG" additivity="false">  
+            <appender-ref ref="CONSOLE"/>  
+            <appender-ref ref="INFO_FILE"/>  
+            <appender-ref ref="DEBUG_FILE"/>  
+            <appender-ref ref="WARN_FILE"/>  
+            <appender-ref ref="ERROR_FILE"/>  
+        </logger>    </springProfile>  
+    <springProfile name="release, production">  
+        <logger name="co.fineants" level="INFO" additivity="false">  
+            <appender-ref ref="CONSOLE"/>  
+            <appender-ref ref="INFO_FILE"/>  
+            <appender-ref ref="WARN_FILE"/>  
+            <appender-ref ref="ERROR_FILE"/>  
+        </logger>    
+	</springProfile>
+</configuration>
+```
+
+property.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<included>  
+    <!-- log file path -->  
+    <property name="LOG_PATH" value="logs/"/>  
+    <!-- info log file name -->  
+    <property name="INFO_LOG_FILE_NAME" value="info"/>  
+    <!-- debug log file name -->  
+    <property name="DEBUG_LOG_FILE_NAME" value="debug"/>  
+    <!-- warn log file name -->  
+    <property name="WARN_LOG_FILE_NAME" value="warn"/>  
+    <!-- err log file name -->  
+    <property name="ERROR_LOG_FILE_NAME" value="error"/>  
+    <!-- pattern -->  
+    <property name="LOG_PATTERN"  
+              value="%d{ISO8601} %-5level [%thread] [traceId=%X{traceId}] %logger{36}:%line - %msg %n"/>  
+  
+    <!-- 개별 로그 레벨에 맞는 경로 -->  
+    <property name="INFO_LOG_FILE_PATTERN" value="${LOG_PATH}/info/info.%d{yyyy-MM-dd}_%i.log"/>  
+    <property name="DEBUG_LOG_FILE_PATTERN" value="${LOG_PATH}/debug/debug.%d{yyyy-MM-dd}_%i.log"/>  
+    <property name="WARN_LOG_FILE_PATTERN" value="${LOG_PATH}/warn/warn.%d{yyyy-MM-dd}_%i.log"/>  
+    <property name="ERROR_LOG_FILE_PATTERN" value="${LOG_PATH}/error/error.%d{yyyy-MM-dd}_%i.log"/>  
+    <!-- 최대 파일 사이즈 -->  
+    <property name="MAX_FILE_SIZE" value="1GB"/>  
+    <!-- 최대 내역 일수 -->  
+    <property name="MAX_HISTORY_DAYS" value="7"/>  
+    <!-- CHARSET -->  
+    <property name="CHARSET" value="UTF-8"/>  
+</included>
+```
+
+info_file_appender.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<included>  
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>info</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>        <file>${LOG_PATH}/info/${INFO_LOG_FILE_NAME}.log</file>  
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">  
+            <!-- 이 옵션이 없을 경우 한글이 깨지는 경우 있음-->  
+            <charset>${CHARSET}</charset>  
+            <pattern>${LOG_PATTERN}</pattern>  
+        </encoder>        <!-- Rolling 정책 -->  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->  
+            <fileNamePattern>${INFO_LOG_FILE_PATTERN}</fileNamePattern>  
+            <timeBasedFileNamingAndTriggeringPolicy                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                <!-- 파일당 최고 용량 kb, mb, gb -->                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>  
+            </timeBasedFileNamingAndTriggeringPolicy>            <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->  
+            <maxHistory>${MAX_HISTORY_DAYS}</maxHistory>  
+        </rollingPolicy>    </appender></included>
+```
+
+나머지 warn_file_appender.xml, debug_file_appender.xml, error_file_appender.xml 파일에 대해서도 위 설정과 비슷하여 생략합니다.
+
+console_appender.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<included>  
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">  
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">  
+            <charset>${CHARSET}</charset>  
+            <pattern>${LOG_PATTERN}</pattern>  
+        </encoder>    </appender></included>
+```
+
+## Controller 로그 AOP 구현
+
+```
+@Component  
+@Aspect  
+@Slf4j  
+@Profile("!test")  
+public class HttpLoggingAspect {  
+    private static final String HTTP_REQUEST_LOG_FORMAT = "HTTP Request: HTTPMethod={} Path={} from IP={}";  
+    private static final String HTTP_RESPONSE_LOG_FORMAT =  
+       "HTTP Response: Path={} ResponseCode={} ResponseMessage=\"{}\" ResponseData=\"{}\"";  
+    private static final String HTTP_EXECUTION_LOG_FORMAT = "HTTP Execution: Path={} ExecutionTime={}ms";  
+    private long startTime;  
+  
+    // Controller의 모든 메서드에 대해 적용  
+  
+    @Pointcut("execution(* co.fineants..controller.*.*(..))")  
+    public void pointCut() {  
+  
+    }  
+  
+    @Before("pointCut()")  
+    public void logHttpRequest(JoinPoint ignoredJoinPoint) {  
+       startTime = System.currentTimeMillis();  
+       HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes())  
+          .getRequest();  
+       log.info(HTTP_REQUEST_LOG_FORMAT, request.getMethod(), request.getRequestURL(), request.getRemoteAddr());  
+    }  
+  
+    // 메서드 호출 후 정상적으로 반환된 경우 로그 남기기  
+    @AfterReturning(pointcut = "pointCut()", returning = "response")  
+    public void logAfterReturning(JoinPoint ignoredJoinPoint, ApiResponse<?> response) {  
+       HttpServletRequest request =  
+          ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();  
+       log.info(HTTP_RESPONSE_LOG_FORMAT, request.getRequestURI(),  
+          response.getCode(), response.getMessage(), response.getData());  
+    }  
+  
+    // 예외 발생시 로그 남기기  
+    @AfterThrowing(pointcut = "pointCut()", throwing = "ex")  
+    public void logAfterThrowing(JoinPoint ignoredJoinPoint, Throwable ex) {  
+       HttpServletRequest request =  
+          ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();  
+       // 특정 비즈니스 예외 처리  
+       if (ex instanceof FineAntsException fineAntsException) {  
+          log.warn(HTTP_RESPONSE_LOG_FORMAT,  
+             request.getRequestURI(), fineAntsException.getHttpStatusCode(), fineAntsException.getMessage(), null,  
+             ex);  
+       } else if (ex instanceof MethodArgumentNotValidException methodArgumentNotValidException) {  
+          String errorMessage = Objects.requireNonNull(methodArgumentNotValidException.getBindingResult()  
+             .getFieldError()).getDefaultMessage();  
+          log.warn(HTTP_RESPONSE_LOG_FORMAT,  
+             request.getRequestURI(), HttpStatus.BAD_REQUEST.value(), errorMessage, null, ex);  
+       } else if (ex instanceof MissingServletRequestPartException missingServletRequestPartException) {  
+          String errorMessage = missingServletRequestPartException.getMessage();  
+          log.warn(HTTP_RESPONSE_LOG_FORMAT,  
+             request.getRequestURI(), HttpStatus.BAD_REQUEST.value(), errorMessage, null, ex);  
+       } else {  
+          log.error(HTTP_RESPONSE_LOG_FORMAT,  
+             request.getRequestURI(), HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage(), null, ex);  
+       }  
+    }  
+  
+    // 완전히 종료된후 메서드 실행시간 측정하기  
+    @After("pointCut()")  
+    public void logAfter(JoinPoint ignoredJoinPoint) {  
+       HttpServletRequest request =  
+          ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();  
+       long executionTime = System.currentTimeMillis() - startTime;  
+       log.info(HTTP_EXECUTION_LOG_FORMAT, request.getRequestURI(), executionTime);  
+    }  
+}
+```
+
 ## Grafana 대시보드 구성
