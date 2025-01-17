@@ -401,3 +401,50 @@ topk(10, sum by(Path) (count_over_time({job="logs", log_level=~"warn|error"} | l
 - Orientation : Horizontal
 
 
+## docker-compose 설정
+프로덕션 서버 환경을 기준으로 다음과 같이 docker-compose 파일을 구성하였습니다.
+```yaml
+version: "3.8"  
+services:  
+  app:  
+    container_name: fineAnts_app  
+    build: .  
+    restart: always  
+    ports:  
+      - "443:443"  
+    environment:  
+      PROFILE: production  
+      TZ: Asia/Seoul  
+    volumes:  
+      - ./logs:/app/logs  
+    depends_on:  
+      - redis  
+    networks:  
+      - spring-net  
+  redis:  
+    container_name: fineAnts_redis  
+    image: redis:latest  
+    restart: always  
+    volumes:  
+      - ./redis.conf:/usr/local/etc/redis/redis.conf  
+    command: redis-server /usr/local/etc/redis/redis.conf  
+    ports:  
+      - "6379:6379"  
+    networks:  
+      - spring-net  
+  promtail:  
+    image: grafana/promtail:latest  
+    container_name: promtail  
+    volumes:  
+      - ./promtail:/etc/promtail  
+      - ./logs:/var/log  
+    env_file:  
+      - ./secret/promtail/.env  
+    command:  
+      - -config.file=/etc/promtail/config.yaml  
+      - -config.expand-env=true  
+networks:  
+  spring-net:
+```
+- volume을 이용하여 설정 파일이 들어있는 promtail 디렉토리를 연결합니다.
+- ./logs 디렉토리를 기준으로 볼륨을 통하여 spring의 로그를 promtail이 수집할 수 있도록 합니다.
