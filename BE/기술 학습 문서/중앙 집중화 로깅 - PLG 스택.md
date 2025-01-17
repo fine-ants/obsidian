@@ -370,3 +370,24 @@ topk(10, sum by(Path) (count_over_time({job="logs"} | Path != `` | HTTPMethod !=
 topk(10, sum by(IP) (count_over_time({job="logs"} | IP != `` [$__auto])))
 ```
 
+### 예외 발생 로그 보기
+![[Pasted image 20250117143156.png]]
+```
+{job="logs", log_level="error"} | traceId != "" | line_format `{{.traceId}}`
+```
+- Visualization : Table
+- Time Data Link : `/d/${dashboard_uid}/${dashboard_slug}?orgId=1&var-traceId=${__data.fields["TraceId"]}`
+- TraceId Data Link : `/d/${dashboard_uid}/${dashboard_slug}?orgId=1&var-traceId=${__value.text}`
+
+![[Pasted image 20250117143503.png]]
+- Visualization : Table
+- Time Data Link : `/d/${dashboard_uid}/${dashboard_slug}?orgId=1&var-traceId=${__data.fields["TraceId"]}`
+- TraceId Data Link : `/d/${dashboard_uid}/${dashboard_slug}?orgId=1&var-traceId=${__value.text}`
+
+![[Pasted image 20250117143557.png]]
+- 특정한 TraceId이나 Time 레코드를 선택시 클릭한 TraceId 일치하는 로그들을 위와 같이 출력해줍니다.
+- Visualization : Logs
+```
+{traceId="$traceId"}
+```
+
