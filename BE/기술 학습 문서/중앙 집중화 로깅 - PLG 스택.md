@@ -391,3 +391,13 @@ topk(10, sum by(IP) (count_over_time({job="logs"} | IP != `` [$__auto])))
 {traceId="$traceId"}
 ```
 
+### API별 예외 발생 빈도
+![[Pasted image 20250117152713.png]]
+```
+topk(10, sum by(Path) (count_over_time({job="logs", log_level=~"warn|error"} | logfmt | Path != `` [$__auto])))
+```
+- Visualization : Bar Chart
+- X Axis : Path
+- Orientation : Horizontal
+
+
