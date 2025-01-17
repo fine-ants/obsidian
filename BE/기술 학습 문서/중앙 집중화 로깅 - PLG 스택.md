@@ -400,6 +400,8 @@ topk(10, sum by(Path) (count_over_time({job="logs", log_level=~"warn|error"} | l
 - X Axis : Path
 - Orientation : Horizontal
 
+### API별 평균 실행 시간
+
 
 ## docker-compose 설정
 프로덕션 서버 환경을 기준으로 다음과 같이 docker-compose 파일을 구성하였습니다.
