@@ -235,8 +235,8 @@ console_appender.xml
 ```
 
 ## Controller 로그 AOP 구현
-
-```
+Controller 레이어로 들어오는 HttpRequest에 대해서 다음 코드를 구현하여 로깅하도록 합니다.
+```java
 @Component  
 @Aspect  
 @Slf4j  
@@ -308,4 +308,65 @@ public class HttpLoggingAspect {
 }
 ```
 
+## Service 로그 AOP 구현
+서비스 레이어의 메소드 수행시 실행 정보들을 로깅하기 위해서 다음과 같이 구현합니다.
+```java
+@Component  
+@Aspect  
+@Slf4j  
+@Profile("!test")  
+public class ServiceLogAspect {  
+    private long startTime;  
+  
+    // service의 모든 메서드에 대해 적용  
+    @Pointcut("execution(* co.fineants..service.*.*(..))")  
+    public void pointCut() {  
+  
+    }  
+  
+    // 메서드 호출 전 로그 남기기  
+    @Before("pointCut()")  
+    public void logBefore(JoinPoint joinPoint) {  
+       startTime = System.currentTimeMillis();  
+       String methodName = ((MethodSignature)joinPoint.getSignature()).getMethod().getName();  
+       String args = Arrays.toString(joinPoint.getArgs());  
+       log.info("Entering Service: Method={} with Args={}", methodName, args);  
+    }  
+  
+    // 메서드 호출 후 정상적으로 반환된 경우 로그 남기기  
+    @AfterReturning(pointcut = "pointCut()", returning = "result")  
+    public void logAfterReturning(JoinPoint joinPoint, Object result) {  
+       String methodName = ((MethodSignature)joinPoint.getSignature()).getMethod().getName();  
+       log.info("Exiting Service: Method={}, with Return={}", methodName, result);  
+    }  
+  
+    // 완전히 종료된후 메서드 실행시간 측정하기  
+    @After("pointCut()")  
+    public void logAfter(JoinPoint joinPoint) {  
+       long executionTime = System.currentTimeMillis() - startTime;  
+       String methodName = ((MethodSignature)joinPoint.getSignature()).getMethod().getName();  
+       log.info("Method={}, ExecutionTime={}ms", methodName, executionTime);  
+    }  
+}
+```
+
 ## Grafana 대시보드 구성
+### HTTP Method 분포도
+![[Pasted image 20250117142636.png]]
+```
+sum by(HTTPMethod) (count_over_time({job="logs"} | HTTPMethod != `` [$__auto]))
+```
+- Visualization : Pie Chart
+
+### 상위 API 10개
+![[Pasted image 20250117142839.png]]
+```
+topk(10, sum by(Path) (count_over_time({job="logs"} | Path != `` | HTTPMethod != `` [$__auto])))
+```
+
+### IP 분포도 상위 10개
+![[Pasted image 20250117142947.png]]```
+```
+topk(10, sum by(IP) (count_over_time({job="logs"} | IP != `` [$__auto])))
+```
+
