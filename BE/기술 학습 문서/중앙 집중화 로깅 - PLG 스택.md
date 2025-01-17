@@ -4,7 +4,7 @@
 기존까지는 도커 컨테이너 위에서 실행중인 서버가 생성하는 로그를 확인하기 위해서는 사용자가 직접 해당 컨테이너로 직접 접속해서 확인하고 있습니다. 다음 화면은 docker 명령어를 이용해서 fineAnts_app 컨테이너에 쉘 접속해서 로그를 확인하는 모습입니다.
 ![[Pasted image 20250109121655.png]]
 
-#### 2. 분산 환경에서의 문제
+#### 2. 분산 환경 문제
 만약 현재 EC2 인스턴스만이 아닌 추가적인 EC2 인스턴스를 추가하여 스케일 아웃하게 되면 각각의 서버에서 생성하는 로그를 확인하기 어려워 집니다. 이는 첫번째 문제점으로도 이어집니다.
 
 #### 3. 로그 저장 문제
@@ -81,8 +81,10 @@ positions:
   filename: /tmp/positions.yaml  
   
 clients:  
-  - url: https://logs-prod-030.grafana.net  
-  
+  - url: https://logs-prod-030.grafana.net/loki/api/v1/push  
+    basic_auth:  
+      username: "${LOKI_USERNAME}"  
+      password: "${LOKI_PASSWORD}"  
 scrape_configs:  
   - job_name: logs  # 통합된 job 이름  
     static_configs:  
@@ -91,38 +93,40 @@ scrape_configs:
         labels:  
           job: logs  
           log_level: info  # info 레벨 라벨 추가  
-          __path__: /var/log/info/info-*.log  
+          __path__: /var/log/info/*.log  
       - targets:  
           - localhost  
         labels:  
           job: logs  
           log_level: warn  # warn 레벨 라벨 추가  
-          __path__: /var/log/warn/warn-*.log  
+          __path__: /var/log/warn/*.log  
       - targets:  
           - localhost  
         labels:  
           job: logs  
           log_level: error  # error 레벨 라벨 추가  
-          __path__: /var/log/error/error-*.log  
+          __path__: /var/log/error/*.log  
     pipeline_stages:  
       # traceId 추출 (모든 로그에서 추출 가능)  
       - regex:  
           expression: '\\[traceId=(?P<traceId>[^\\]]+)\\]'  
-  
       # HTTP Request 관련 라벨 추출 (HTTP Request 메시지에서만 추출)  
       - regex:  
-          expression: 'HTTPMethod=(?P<HTTPMethod>[A-Z]+) Path=(?P<Path>/\\S+) from IP=(?P<IP>[0-9a-fA-F:]+)'  
-  
+          expression: 'HTTPMethod=(?P<HTTPMethod>[A-Z]+) Path=(?P<Path>\S+) from IP=(?P<IP>[0-9a-fA-F:]+)'  
+      # HTTP Response 관련 라벨 추출 (HTTP Response 메시지에서만 추출)  
+      - regex:  
+          expression: 'ResponseCode=(?P<ResponseCode>\\d+) ResponseMessage="(?P<ResponseMessage>[^"]+)"'  
       # ExecutionTime 추출 (ExecutionTime이 있는 메시지에서만 추출)  
       - regex:  
           expression: 'ExecutionTime=(?P<ExecutionTime>\\d+ms)'  
-  
-      # 라벨 설정  
       - labels:  
           traceId: traceId  
           HTTPMethod: HTTPMethod  
           Path: Path  
           IP: IP  
+          ResponseCode: ResponseCode  
+          ResponseMessage: ResponseMessage  
+          ResponseData: ResponseData  
           ExecutionTime: ExecutionTime
 ```
 
