@@ -401,7 +401,22 @@ topk(10, sum by(Path) (count_over_time({job="logs", log_level=~"warn|error"} | l
 - Orientation : Horizontal
 
 ### API별 평균 실행 시간
-
+![[Pasted image 20250117174246.png]]
+```
+avg_over_time({job="logs"}
+| regexp "Path=(?P<Path>\\S+) ExecutionTime=(?P<TempExecutionTime>\\d+)ms"
+| Path != ``
+| TempExecutionTime != ``
+| unwrap TempExecutionTime [$__auto])
+by (Path)
+```
+- query option
+	- **Type : Instant**
+- Visualization : Bar Cahrt
+- Horizontal
+- X Axis : Path
+- Standard options
+	- Unit : milliseconds(ms)
 
 ## docker-compose 설정
 프로덕션 서버 환경을 기준으로 다음과 같이 docker-compose 파일을 구성하였습니다.
