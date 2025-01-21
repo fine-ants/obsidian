@@ -520,4 +520,17 @@ INFO 레벨 로그를 수집하는 파일 appender를 다음과 같이 구현합
         </rollingPolicy>    </appender></included>
 ```
 - filter 태그에 의해서 info 레벨 로그만 수집하고 다른 로그 레벨은 수집하지 않습니다.
-- 
+
+## Amazon S3 저장소로 내보내기(Export to Amazon S3)
+Cloud Log Export 기능을 사용하여 Grafana Cloud Logs에 저장된 로그들을 Amazon S3 저장소에 내보낼 수 잇습니다.
+
+### 시작하기전에
+시작하기 전에 다음과 같은 사전 작업이 필요합니다.
+
+
+
+**References**
+- https://grafana.com/docs/grafana-cloud/send-data/logs/export/cle-amazon_s3/
+
+
+
