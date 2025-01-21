@@ -524,8 +524,27 @@ INFO 레벨 로그를 수집하는 파일 appender를 다음과 같이 구현합
 ## Amazon S3 저장소로 내보내기(Export to Amazon S3)
 Cloud Log Export 기능을 사용하여 Grafana Cloud Logs에 저장된 로그들을 Amazon S3 저장소에 내보낼 수 잇습니다.
 
-### 시작하기전에
+### 사전 작업
 시작하기 전에 다음과 같은 사전 작업이 필요합니다.
+- Amazon Cloud IAM(Identity and Access Management) Role 설정
+- 만약 버전화된 버킷을 생성하는 경우에 다음 권한도 필요합니다.
+	- `GetObjectVersion` 권한
+	- `GetObjectVersionAttributes` 권한
+- 버킷 이름(BUCKET_NAME)
+- 버킷 리전(BUCKET_REGION)
+- GRAFANA_PRINCIPAL_ARN
+
+### 수행 과정
+1. 그라파나에서 **Administration > Plugins and data** 메뉴를 클릭합니다.
+![[Pasted image 20250121141123.png]]
+
+2. 다음 화면에서 **Plugins** 메뉴를 클릭합니다.
+![[Pasted image 20250121141305.png]]
+3. **Cloud logs exporter** 플러그인을 검색합니다.
+![[Pasted image 20250121141412.png]]
+
+4. 해당 플러그인을 설치합니다.
+![[Pasted image 20250121141434.png]]
 
 
 
