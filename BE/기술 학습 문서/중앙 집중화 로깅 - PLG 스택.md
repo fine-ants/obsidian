@@ -93,6 +93,10 @@ docker를 이용해서 Grafana & Loki 서버를 구성할수도 있지만, Grafa
 ![[Pasted image 20250109140649.png]]
 ![[Pasted image 20250109141921.png]]
 
+## Loki 환경 구성
+Loki 도커 컨테이너를 이용해서 로그를 저장하는 역할을 수행합니다.
+
+
 ## Promtail 환경 구성
 Promtail을 이용해서 로그를 수집해서 전처리하고 Loki로 전송하는 역할을 수행합니다.
 
