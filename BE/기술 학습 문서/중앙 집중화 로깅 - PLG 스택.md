@@ -1,3 +1,29 @@
+- [[#중앙 집중화 로깅의 필요성|중앙 집중화 로깅의 필요성]]
+	- [[#중앙 집중화 로깅의 필요성#기존 로그 수집 방식의 문제점|기존 로그 수집 방식의 문제점]]
+		- [[#기존 로그 수집 방식의 문제점#1. 로그 확인의 불편함|1. 로그 확인의 불편함]]
+		- [[#기존 로그 수집 방식의 문제점#2. 분산 환경 문제|2. 분산 환경 문제]]
+		- [[#기존 로그 수집 방식의 문제점#3. 로그 저장 문제|3. 로그 저장 문제]]
+- [[#다양한 중앙 집중화 로깅 솔루션|다양한 중앙 집중화 로깅 솔루션]]
+- [[#PLG 스택|PLG 스택]]
+	- [[#PLG 스택#Promtail: 로그 수집|Promtail: 로그 수집]]
+	- [[#PLG 스택#Loki: 로그 저장 및 인덱싱|Loki: 로그 저장 및 인덱싱]]
+	- [[#PLG 스택#Grafana: 로그 시각화 (대시보드)|Grafana: 로그 시각화 (대시보드)]]
+- [[#Grafana & Loki 환경 구성|Grafana & Loki 환경 구성]]
+- [[#Promtail 환경 구성|Promtail 환경 구성]]
+	- [[#Promtail 환경 구성#Promtail 설정 파일 구성|Promtail 설정 파일 구성]]
+- [[#라벨링을 위한 로그 메시지 수정|라벨링을 위한 로그 메시지 수정]]
+- [[#Controller 로그 AOP 구현|Controller 로그 AOP 구현]]
+- [[#Service 로그 AOP 구현|Service 로그 AOP 구현]]
+- [[#Grafana 대시보드 구성|Grafana 대시보드 구성]]
+	- [[#Grafana 대시보드 구성#HTTP Method 분포도|HTTP Method 분포도]]
+	- [[#Grafana 대시보드 구성#상위 API 10개|상위 API 10개]]
+	- [[#Grafana 대시보드 구성#IP 분포도 상위 10개|IP 분포도 상위 10개]]
+	- [[#Grafana 대시보드 구성#예외 발생 로그 보기|예외 발생 로그 보기]]
+	- [[#Grafana 대시보드 구성#API별 예외 발생 빈도|API별 예외 발생 빈도]]
+	- [[#Grafana 대시보드 구성#API별 평균 실행 시간|API별 평균 실행 시간]]
+- [[#docker-compose 설정|docker-compose 설정]]
+
+
 ## 중앙 집중화 로깅의 필요성
 ### 기존 로그 수집 방식의 문제점
 #### 1. 로그 확인의 불편함
@@ -465,3 +491,33 @@ networks:
 ```
 - volume을 이용하여 설정 파일이 들어있는 promtail 디렉토리를 연결합니다.
 - ./logs 디렉토리를 기준으로 볼륨을 통하여 spring의 로그를 promtail이 수집할 수 있도록 합니다.
+
+
+## Logback Log Rotation 설정
+INFO 레벨 로그를 수집하는 파일 appender를 다음과 같이 구현합니다.
+```xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<included>  
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>info</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>        
+        <file>${LOG_PATH}/info/${INFO_LOG_FILE_NAME}.log</file>  
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">  
+            <!-- 이 옵션이 없을 경우 한글이 깨지는 경우 있음-->  
+            <charset>${CHARSET}</charset>  
+            <pattern>${LOG_PATTERN}</pattern>  
+        </encoder>        <!-- Rolling 정책 -->  
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+            <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->  
+            <fileNamePattern>${INFO_LOG_FILE_PATTERN}</fileNamePattern>  
+            <timeBasedFileNamingAndTriggeringPolicy                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                <!-- 파일당 최고 용량 kb, mb, gb -->                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>  
+            </timeBasedFileNamingAndTriggeringPolicy>            <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->  
+            <maxHistory>${MAX_HISTORY_DAYS}</maxHistory>  
+        </rollingPolicy>    </appender></included>
+```
+- filter 태그에 의해서 info 레벨 로그만 수집하고 다른 로그 레벨은 수집하지 않습니다.
+- 
