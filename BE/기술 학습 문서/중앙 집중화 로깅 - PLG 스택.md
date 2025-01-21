@@ -547,7 +547,12 @@ Cloud Log Export 기능을 사용하여 Grafana Cloud Logs에 저장된 로그�
 ![[Pasted image 20250121141434.png]]
 5. Cloud logs exporter 화면에서 Amazon S3 버튼을 클릭합니다.
 ![[Pasted image 20250121141735.png]]
-6. Amazon S3 버튼을 클릭하면 
+6. Amazon S3 버튼을 클릭하면 AWS S3 권한과 관련된 메뉴얼을 보여줍니다.
+![[Pasted image 20250121142635.png]]
+![[Pasted image 20250121142720.png]]
+
+7. AWS S3 서비스로 이동합니다.
+
 
 
 **References**
