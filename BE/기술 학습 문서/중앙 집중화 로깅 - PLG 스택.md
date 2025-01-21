@@ -111,6 +111,10 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
 ```
 
+
+References
+- https://velog.io/@roycewon/Promtail-Loki%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-Logback-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81
+
 ## Promtail 환경 구성
 Promtail을 이용해서 로그를 수집해서 전처리하고 Loki로 전송하는 역할을 수행합니다.
 
