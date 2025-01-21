@@ -95,7 +95,21 @@ docker를 이용해서 Grafana & Loki 서버를 구성할수도 있지만, Grafa
 
 ## Loki 환경 구성
 Loki 도커 컨테이너를 이용해서 로그를 저장하는 역할을 수행합니다.
-
+프로덕션 환경에서 실행할 docker-compose.yml 파일을 다음과 같이 구현합니다.
+```
+version: "3.8"  
+services:  
+  # ...
+  
+  loki:  
+    container_name: fineAnts_loki  
+    image: grafana/loki:latest  
+    ports:  
+      - "3100:3100"  
+    volumes:  
+      - ./loki:/etc/loki/local-config.yaml  
+    command: -config.file=/etc/loki/local-config.yaml
+```
 
 ## Promtail 환경 구성
 Promtail을 이용해서 로그를 수집해서 전처리하고 Loki로 전송하는 역할을 수행합니다.
