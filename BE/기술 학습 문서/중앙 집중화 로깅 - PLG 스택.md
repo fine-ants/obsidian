@@ -554,6 +554,15 @@ Cloud Log Export 기능을 사용하여 Grafana Cloud Logs에 저장된 로그�
 7. AWS S3 서비스 -> 버킷 선택 -> 권한 메뉴 이동 -> 버킷 정책의 편집 버튼 클릭
 ![[Pasted image 20250121144058.png]]
 
+8. 다음과 같이 버킷 정책을 편집합니다. 그리고 변경 사항을 저장합니다.
+Resource 구문에서 실제 버킷 이름으로 대체해야 합니다.
+![[Pasted image 20250121144444.png]]
+
+9. 다시 Cloud logs exporter 메뉴로 이동하여 Add your bucket details 단계에서 버킷 이름과 버킷 리전을 다음과 같이 입력합니다. 그리고 Test 테스트 버튼을 클릭하여 테스트해봅니다.
+![[Pasted image 20250121144907.png]]
+
+10. Submit 버튼을 클릭합니다. 단계를 마무리합니다.
+![[Pasted image 20250121145017.png]]
 
 
 
