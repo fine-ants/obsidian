@@ -545,7 +545,9 @@ Cloud Log Export 기능을 사용하여 Grafana Cloud Logs에 저장된 로그�
 
 4. 해당 플러그인을 설치합니다.
 ![[Pasted image 20250121141434.png]]
-
+5. Cloud logs exporter 화면에서 Amazon S3 버튼을 클릭합니다.
+![[Pasted image 20250121141735.png]]
+6. Amazon S3 버튼을 클릭하면 
 
 
 **References**
