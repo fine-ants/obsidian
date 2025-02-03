@@ -198,6 +198,14 @@ volumes:
 ![[Pasted image 20250203142933.png]]
 
 
+대시보드 메뉴로 들어가서 다음 json 대시보드를 import합니다.
+![[Pasted image 20250203145858.png]]
+
+다음 화면에서 json 파일을 업로드합니다.
+![[fineAnts-1738561890350.json]]
+
+![[Pasted image 20250203145914.png]]
+
 ## Promtail 환경 구성
 Promtail을 이용해서 로그를 수집해서 전처리하고 Loki로 전송하는 역할을 수행합니다.
 
