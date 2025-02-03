@@ -189,7 +189,9 @@ services:
 하단에 저장 및 테스트 버튼을 클릭하여 결과를 확인합니다. 다음과 같이 연결이 성공하면 정상입니다.
 ![[Pasted image 20250203142933.png]]
 
-그리고 다음과 같이 
+그리고 다음과 같이 Derived fields 메뉴에서 traceID 필드를 추가합니다.
+![[Pasted image 20250203143653.png]]
+
 
 ## Promtail 환경 구성
 Promtail을 이용해서 로그를 수집해서 전처리하고 Loki로 전송하는 역할을 수행합니다.
