@@ -169,8 +169,12 @@ services:
 	  image: grafana/grafana:latest  
 	  ports:  
 	    - "3000:3000"  
+	  volumes:  
+		- grafana_data:/var/lib/grafana
 	  networks:  
 	    - spring-net
+volumes:  
+  grafana_data:
 ```
 
 로키 및 그라파나 컨테이너를 실행한 다음에 로컬 환경에서 실행시 `http://localhost:3000` 으로 접속합니다. 그리고 email:admin password: admin으로 접속합니다.
@@ -186,11 +190,12 @@ services:
 ![[Pasted image 20250203142745.png]]
 - 현재 로컬 환경에서 loki 컨테이너와 grafana 컨테이너가 같은 네트워크에서 동작하기 때문에 http://localhost:3100 으로 요청하면 연결되지 않고 컨테이너 이름을 통해서 연결해야 합니다. localhost로 지정하면 grfana 컨테이너 내부의 localhost를 지정하기 때문입니다.
 
+다음과 같이 Derived fields 메뉴에서 traceID 필드를 추가합니다.
+![[Pasted image 20250203143653.png]]
+
+
 하단에 저장 및 테스트 버튼을 클릭하여 결과를 확인합니다. 다음과 같이 연결이 성공하면 정상입니다.
 ![[Pasted image 20250203142933.png]]
-
-그리고 다음과 같이 Derived fields 메뉴에서 traceID 필드를 추가합니다.
-![[Pasted image 20250203143653.png]]
 
 
 ## Promtail 환경 구성
