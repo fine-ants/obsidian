@@ -206,6 +206,10 @@ volumes:
 
 ![[Pasted image 20250203145914.png]]
 
+대시보드 import 결과를 확인합니다. 각각의 패널의 데이터 소스를 fineAnts_loki 데이터 소스로 설정하고 한번 쿼리를 해주어야 합니다.
+![[Pasted image 20250203150313.png]]
+
+
 ## Promtail 환경 구성
 Promtail을 이용해서 로그를 수집해서 전처리하고 Loki로 전송하는 역할을 수행합니다.
 
