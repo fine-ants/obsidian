@@ -9,6 +9,7 @@
 	- [[#PLG 스택#Loki: 로그 저장 및 인덱싱|Loki: 로그 저장 및 인덱싱]]
 	- [[#PLG 스택#Grafana: 로그 시각화 (대시보드)|Grafana: 로그 시각화 (대시보드)]]
 - [[#Grafana & Loki 환경 구성|Grafana & Loki 환경 구성]]
+- [[#Loki 환경 구성|Loki 환경 구성]]
 - [[#Promtail 환경 구성|Promtail 환경 구성]]
 	- [[#Promtail 환경 구성#Promtail 설정 파일 구성|Promtail 설정 파일 구성]]
 - [[#라벨링을 위한 로그 메시지 수정|라벨링을 위한 로그 메시지 수정]]
@@ -22,6 +23,10 @@
 	- [[#Grafana 대시보드 구성#API별 예외 발생 빈도|API별 예외 발생 빈도]]
 	- [[#Grafana 대시보드 구성#API별 평균 실행 시간|API별 평균 실행 시간]]
 - [[#docker-compose 설정|docker-compose 설정]]
+- [[#Logback Log Rotation 설정|Logback Log Rotation 설정]]
+- [[#Amazon S3 저장소로 내보내기(Export to Amazon S3)|Amazon S3 저장소로 내보내기(Export to Amazon S3)]]
+	- [[#Amazon S3 저장소로 내보내기(Export to Amazon S3)#사전 작업|사전 작업]]
+	- [[#Amazon S3 저장소로 내보내기(Export to Amazon S3)#수행 과정|수행 과정]]
 
 
 ## 중앙 집중화 로깅의 필요성
@@ -111,9 +116,80 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
 ```
 
+loki/local-config.yaml
+```yml
+auth_enabled: false  
+  
+server:  
+  http_listen_port: 3100  
+  
+ingester:  
+  lifecycler:  
+    address: fineAnts_loki  
+    ring:  
+      kvstore:  
+        store: inmemory  
+      replication_factor: 1  
+  chunk_idle_period: 5m  
+  chunk_retain_period: 30s  
+  wal:  
+    dir: /loki/wal  
+  
+schema_config:  
+  configs:  
+    - from: 2020-10-24  
+      store: boltdb  
+      object_store: filesystem  
+      schema: v11  
+      index:  
+        prefix: index_  
+        period: 168h  
+  
+storage_config:  
+  boltdb:  
+    directory: /loki/index  
+  filesystem:  
+    directory: /loki/chunks  
+  
+limits_config:  
+  allow_structured_metadata: false  
+  reject_old_samples: true  
+  reject_old_samples_max_age: 168h
+```
 
 References
 - https://velog.io/@roycewon/Promtail-Loki%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-Logback-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81
+
+## Grafana 컨테이너 환경 구성
+```
+version: "3.8"  
+services:
+	grafana:  
+	  container_name: fineAnts_grafana  
+	  image: grafana/grafana:latest  
+	  ports:  
+	    - "3000:3000"  
+	  networks:  
+	    - spring-net
+```
+
+로키 및 그라파나 컨테이너를 실행한 다음에 로컬 환경에서 실행시 `http://localhost:3000` 으로 접속합니다. 그리고 email:admin password: admin으로 접속합니다.
+![[Pasted image 20250203142532.png]]
+
+사이드 메뉴의 Connections -> Add New Connection 메뉴를 클릭합니다.
+![[Pasted image 20250203142620.png]]
+
+"loki"를 검색한 다음에 데이터 소스를 추가합니다. 다음 화면에서 Add new data source 버튼을 클릭합니다.
+![[Pasted image 20250203142643.png]]
+
+다음과 같이 데이터 소스 이름과 URL을 입력합니다.
+![[Pasted image 20250203142745.png]]
+- 현재 로컬 환경에서 loki 컨테이너와 grafana 컨테이너가 같은 네트워크에서 동작하기 때문에 http://localhost:3100 으로 요청하면 연결되지 않고 컨테이너 이름을 통해서 연결해야 합니다. localhost로 지정하면 grfana 컨테이너 내부의 localhost를 지정하기 때문입니다.
+
+하단에 저장 및 테스트 버튼을 클릭하여 결과를 확인합니다. 다음과 같이 연결이 성공하면 정상입니다.
+![[Pasted image 20250203142933.png]]
+
+그리고 다음과 같이 
 
 ## Promtail 환경 구성
 Promtail을 이용해서 로그를 수집해서 전처리하고 Loki로 전송하는 역할을 수행합니다.
