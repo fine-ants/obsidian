@@ -141,34 +141,40 @@ ingester:
   # 로그 청크가 비활성 상태로 대기하는 시간, 이 시간동안 로그가 추가되지 않으면 해당 청크는 종료됩니다.
   # 5분동안 로그가 추가되지 않으면 청크가 종료되어 저장됨
   chunk_idle_period: 5m  
-  # 청크 저장후 데이터를 얼마나 오래 유지할지 
+  # 청크 저장후 데이터를 얼마나 오래 유지할지 설정
+  # 30초동안 로그가 추가되지 않으면 해당 청크가 삭제됨
   chunk_retain_period: 30s  
-  wal:  
+  wal:
+	# WAL 디렉토리 설정
     dir: /loki/wal  
   
-schema_config:  
+schema_config: 
   configs:  
-    - from: 2020-10-24  
-      store: boltdb  
-      object_store: filesystem  
-      schema: v11  
+    - from: 2020-10-24  # 스키마 적용 시작 날짜 정의
+      store: boltdb  # 로그 데이터를 저장할 스토어 설정, boltdb는 로컬 스토리지에서 인덱스를 저장하는 방식
+      object_store: filesystem  # 로그 청크 데이터를 저장할 오브젝트 스토어 설정
+      schema: v11  # 스키마 버전
       index:  
-        prefix: index_  
-        period: 168h  
+        prefix: index_  # 인덱스 파일의 접두사 설정
+        period: 168h # 인덱스를 유지할 시간 설정, 168h=7days
   
 storage_config:  
   boltdb:  
+	# boltdb 인덱스 데이터 저장 경로
     directory: /loki/index  
   filesystem:  
+	# 로그 청크 데이터 저장 경로
     directory: /loki/chunks  
   
 limits_config:  
-  allow_structured_metadata: false  
-  reject_old_samples: true  
-  reject_old_samples_max_age: 168h
+  allow_structured_metadata: false  # 구조화된 메타데이터가 저장되지 않음
+  reject_old_samples: true  # 오래된 샘플 거절
+  reject_old_samples_max_age: 168h # 7일을 초과하는 로그는 수집되지 않음
 ```
 - Loki의 `ingester` 는 로그를 수집하여 저장하는 역할을 수행합니다.
 - KV store는 ingester의 **상태 관리와 클러스터링**에 중요한 역할을 하는 데이터 저장소입니다. ingester의 ring(클러스터링 상태)을 관리하거나 데이터 복제와 정합성을 유지하는데 사용됩니다. 분산 환경에서 여러 ingester 인스턴스들이 서로 협업할 수 있도록 합니다.
+- wal.dir : Loki에서 Write-Ahead Log(WAL)를 저장할 디렉토리를 설정합니다.
+	- WAL은 데이터를 디스크에 안전하게 기록하는 수행방식으로써 ingester가 데이터를 올바르게 처리할 수 있도록 도와줍니다. 
 
 
 References
