@@ -107,16 +107,19 @@ services:
   # ...
   
   loki:  
-    container_name: fineAnts_loki  
-    image: grafana/loki:latest  
-    ports:  
-      - "3100:3100"  
-    volumes:  
-      - ./loki:/etc/loki/local-config.yaml  
-    command: -config.file=/etc/loki/local-config.yaml
+  container_name: fineAnts_loki  
+  image: grafana/loki  
+  ports:  
+    - "3100:3100"  
+  volumes:  
+    - ./loki:/etc/loki  
+    - loki_data:/loki  
+  command: -config.file=/etc/loki/config.yaml  
+  networks:  
+    - spring-net
 ```
 
-loki/local-config.yaml
+loki/config.yaml
 ```yml
 auth_enabled: false  
   
