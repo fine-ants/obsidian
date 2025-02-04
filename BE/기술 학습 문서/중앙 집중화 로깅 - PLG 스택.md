@@ -121,19 +121,27 @@ services:
 
 loki/config.yaml
 ```yml
+# 인증 기능 비활성화  
 auth_enabled: false  
   
 server:  
+  # loki 서버가 수신할 포트  
   http_listen_port: 3100  
   
 ingester:  
-  lifecycler:  
+  lifecycler:
+	# Loki ingester 인스턴스를 구분할 주소
     address: fineAnts_loki  
     ring:  
-      kvstore:  
+      kvstore:  
+	    # 상태 정보를 메모리에서만 저장
         store: inmemory  
-      replication_factor: 1  
+	    # 데이터 복제 팩터 설정, 데이터가 1개의 인스턴스에만 저장됨
+      replication_factor: 1  
+  # 로그 청크가 비활성 상태로 대기하는 시간, 이 시간동안 로그가 추가되지 않으면 해당 청크는 종료됩니다.
+  # 5분동안 로그가 추가되지 않으면 청크가 종료되어 저장됨
   chunk_idle_period: 5m  
+  # 청크 저장후 데이터를 얼마나 오래 유지할지 
   chunk_retain_period: 30s  
   wal:  
     dir: /loki/wal  
@@ -159,6 +167,9 @@ limits_config:
   reject_old_samples: true  
   reject_old_samples_max_age: 168h
 ```
+- Loki의 `ingester` 는 로그를 수집하여 저장하는 역할을 수행합니다.
+- KV store는 ingester의 **상태 관리와 클러스터링**에 중요한 역할을 하는 데이터 저장소입니다. ingester의 ring(클러스터링 상태)을 관리하거나 데이터 복제와 정합성을 유지하는데 사용됩니다. 분산 환경에서 여러 ingester 인스턴스들이 서로 협업할 수 있도록 합니다.
+
 
 References
 - https://velog.io/@roycewon/Promtail-Loki%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-Logback-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81
