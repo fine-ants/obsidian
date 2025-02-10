@@ -83,5 +83,38 @@ Querier는 스토리지로부터 로그를 쿼리하는 컴포넌트입니다. �
 ## Minimum Loki configuration
 ### Filesystem
 Loki가 싱글 인스턴스 모드에서 수행할때 파일 시스템(filesystem)과 함께 작업하는데 중점을 둡니다. 가장 중요한 설정 영역에 대해서 말씀드리겠습니다.
-Loki는 구성 작업을 단순화하고 개선하는 방식으로 지속적으로 발전하는 도구입니다. 좋은 변경점 중 하나는 common 영역
+Loki는 구성 작업을 단순화하고 개선하는 방식으로 지속적으로 발전하는 도구입니다. 좋은 변경점 중 하나는 몇 버전 이전에 도입된 `common` 영역입니다. 구성이 반복되는 설정이 여러개 있을 때, `common`을 사용하면 중복없이 결합시킬 수 있습니다. 즉, 이전에는 ingester, querier, distributor 각각에 대해서 ring, stroage 및 다른 요소들을 별도로 설정해야 했지만, 이제는 모든 곳을 common 영역 안에서 공통적으로 설정할 수 있습니다.
+```shell
+auth_enabled: false  
+  
+  
+server:  
+	http_listen_port: 3100  
+  
+  
+common:  
+	path_prefix: /tmp/loki  
+	storage:  
+		filesystem:  
+			chunks_directory: /tmp/loki/chunks  
+			rules_directory: /tmp/loki/rules  
+	replication_factor: 1  
+	
+	ring:  
+		instance_addr: 127.0.0.1  
+		kvstore:  
+			store: inmemory  
+  
+schema_config:  
+	configs:  
+	  - from: 2020-09-07  
+		store: boltdb-shipper  
+		object_store: filesystem  
+		schema: v12  
+		index:  
+			prefix: loki_index_  
+			period: 24h
+```
+여기에 스토리지가 파일 시스템으로 설정되어 있으며, 청크가 저장되는 위치를 보여줍니다. 여기에서 인덱스, 알림 규칙 등을 저장할 위치도 지정할 수 있습니다.
 
+schema_config는 청크 및 인덱스 데이터가 어떻게 저장될지 설정하는 곳입니다. 
