@@ -117,4 +117,41 @@ schema_config:
 ```
 여기에 스토리지가 파일 시스템으로 설정되어 있으며, 청크가 저장되는 위치를 보여줍니다. 여기에서 인덱스, 알림 규칙 등을 저장할 위치도 지정할 수 있습니다.
 
-schema_config는 청크 및 인덱스 데이터가 어떻게 저장될지 설정하는 곳입니다. 
+schema_config는 청크 및 인덱스 데이터가 어떻게 저장될지 설정하는 곳입니다. 일반적으로 크게 변화가 없었지만, 가끔 새로운 버전의 스키마 버전이 등장하기도 합니다. 그래서 최신 개선 사항을 활용할 수 있도록, Loki 스키마를 제때 업데이트할 수 있도록 주기적으로 변경 사항들을 읽는 것을 추천합니다.
+
+여러 로키 인스턴스가 동작하면, 이를 "memberlist" 프로토콜을 사용하여 클러스터로 결합해야 합니다.(etcd나 consul과 같은 서드 파티 시스템을 사용할수도 있습니다.) 그것은 Gossip 프로토콜입니다. 이 프로토콜은 특정 원칙에 따라서 Loki 노드를 자동으로 찾습니다.
+![[Pasted image 20250210170203.png]]
+
+```yaml
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+common:
+  path_prefix: /tmp/loki
+  storage:
+    filesystem:
+      chunks_directory: /tmp/loki/chunks
+      rules_directory: /tmp/loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: memberlist
+schema_config:
+  configs:
+    - from: 2020-09-07
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v12
+      index:
+        prefix: loki_index_
+        period: 24h
+memberlist:
+  join_members:
+    - loki:7946
+```
+
+클러스터를 자동으로 구성하는 방법은 여러가지가 있으며, 모두 잘 동작합니다. 예를 들어, 여러분들은 memberlist.join_members 설정에서 서로 다른 설정을 할수 있습니다.
+- 싱글 호스트 주소
+- 주소들의 리스트
+- dns+loki.local:7946 - Loki가 A/AAAA DNS 쿼리를 사용하여 
