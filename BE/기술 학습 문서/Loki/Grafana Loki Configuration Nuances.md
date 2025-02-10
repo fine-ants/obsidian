@@ -154,4 +154,43 @@ memberlist:
 클러스터를 자동으로 구성하는 방법은 여러가지가 있으며, 모두 잘 동작합니다. 예를 들어, 여러분들은 memberlist.join_members 설정에서 서로 다른 설정을 할수 있습니다.
 - 싱글 호스트 주소
 - 주소들의 리스트
-- dns+loki.local:7946 - Loki가 A/AAAA DNS 쿼리를 사용하여 
+- dns+loki.local:7946 - Loki가 A/AAAA DNS 쿼리를 사용하여 호스트 목록을 얻습니다.
+- dnssrv+_loki._tcp.loki.local - Loki가 SRV DNS 쿼리를 사용하여 호스트와 포트 정보도 함께 얻어옵니다.
+- dnssrvnoa+_loki._tcp.loki.local - A/AAAA 쿼리가 없는 SRV DNS 쿼리
+
+왜 Loki 내의 컴포넌트들끼리 알아야 할까요? Loki 내에는 서로에 대해서 알아야 하는 컴포넌트들이 있기 때문입니다. 예를 들어 Distributor들은 Ingester들에 대해서 알아야 합니다. 그러므로 Ingester들은 같은 ring에 등록됩니다. 그런 후에 Distributor들은 기록 요청을 보낼 Ingester가 어딘지 알게 됩니다. 또다른 예시로 Compactor들은 클러스터안에 싱글 인스턴스에서 작업해야 합니다.
+
+## S3 as a storage
+S3는 로키 데이터들을 저장하기 위한 가장 권장되는 방법입니다. 특히 쿠버네티스 클러스터에 배포해야 하는 경우에 권장합니다. 우리가 S3 저장소를 사용할 때 설정은 다음과 같이 변경됩니다.
+```yaml
+auth_enabled: false
+
+server:
+  http_listen_port: 3100  
+common:
+  path_prefix: /tmp/loki
+  storage:
+    s3: # The "filesystem" section changes to s3
+      s3: https://storage.yandexcloud.net
+      bucketnames: loki-logs
+      region: ru-central1
+      access_key_id:
+      secret_access_key:
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: memberlist
+schema_config:
+  configs:
+    - from: 2020-09-07
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v12
+      index:
+        prefix: loki_index_
+        period: 24h
+memberlist:
+  join_members:
+    - loki:7946
+```
+
