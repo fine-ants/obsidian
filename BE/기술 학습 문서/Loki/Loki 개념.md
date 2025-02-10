@@ -1,4 +1,11 @@
 
+- [[#Grafana Loki란 무엇인가?|Grafana Loki란 무엇인가?]]
+		- [[#Loki가 메타데이터만 인덱싱하는 이유|Loki가 메타데이터만 인덱싱하는 이유]]
+		- [[#데이터 읽기/쓰기 흐름 과정|데이터 읽기/쓰기 흐름 과정]]
+		- [[#WAL(Write Ahead Log)|WAL(Write Ahead Log)]]
+- [[#References|References]]
+
+
 ## Grafana Loki란 무엇인가?
 Grafana Loki는 Prometheus에서 영감을 받은 로그 집계 시스템으로, 로깅 및 이벤트 데이터를 수집하고, 저장하고 검색하기 위한 오픈소스 플랫폼입니다.
 
@@ -61,4 +68,11 @@ Loki를 위해 만들어진 로그 수집 도구인 Promtail을 통해서 로그
 
 #### WAL(Write Ahead Log)
 Loki에서는 WAL(Write Ahead Log) 기능을 사용합니다. WAL 기능을 통해서 다음과 같은 상황을 방지합니다.
-1. 데이터(chunk)가 Ingester로 들어오면, 먼저 이 데이터를 
+1. 데이터(chunk)가 Ingester로 들어오면, 먼저 이 데이터를 메모리 적재 및 WAL 디렉토리에 기록합니다. WAL은 로컬 파일 시스템에 저장됩니다.
+2. 예기치 않은 장애로 인하여 로키 프로세스가 갑자기 중단되거나 다운되면, 메모리에 있는 데이터가 손실됩니다.
+3. 장애가 복구되어 로키 프로세스가 다시 시작되면, WAL에 저장된 데이터를 읽어와서 메모리에 적재하여 장애 전의 상태로 복구합니다.
+
+이와 같이 WAL 기능을 이용하면 인메모리에 데이터를 저장하기 전에 WAL 디렉토리에 데이터를 미리 저장함으로써 데이터 손실을 방지합니다. 즉, **WAL 기능은 로키 프로세스 중단으로 인한 데이터 손실을 방지하는 기능**입니다.
+
+## References
+- https://wlsdn3004.tistory.com/48
