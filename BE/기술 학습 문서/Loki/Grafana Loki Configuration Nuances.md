@@ -205,4 +205,53 @@ Tips
 버킷 이름이 복수형이기 때문에 여러개의 버킷들을 설정할 수 있습니다. 이렇게 하면 Loki가 청크 데이터를 고르구 분배하여 단일 버킷에 대한 부하를 줄입니다. 예를 들어, 호스팅 서비스에서 초당 요청 수(RPS) 제한이 있을 때 이러한 설정이 필요합니다.
 
 ## Cluster and High Availability solutions configuration
+여러개의 노드에서 로그들을 저장한다고 가정합니다. 그들중 하나는 실패하고 여러분은 해당 노드로부터 데이터를 쿼리할 수 없습니다. 왜냐하면 해당 노드는 장기 저장소에 로그를 작성할 시간이 없었기 때문입니다. 
+Loki에서 고가용성은 `replication_factor` 옵션을 사용하여 제공합니다. 이 설정에서는 Distributor가 로깅 쿼리를 여러개의 Ingester 복제본에게 전송합니다. 
+```yaml
+auth_enabled: false
+server:
+  http_listen_port: 3100
+common:
+  path_prefix: /tmp/loki
+  storage:
+    s3:
+      s3: https://storage.yandexcloud.net
+      bucketnames: loki-logs
+      region: ru-central1
+      access_key_id:
+      secret_access_key:
+  replication_factor: 3  # Take a note of this field
+  ring:
+    kvstore:
+      store: memberlist
+schema_config:
+  configs:
+    - from: 2020-09-07
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v12
+      index:
+        prefix: loki_index_
+        period: 24h
+memberlist:
+  join_members:
+    - loki:7946
+```
 
+replication_factor:
+- Distributor가 여러개의 Ingester에게 청크 데이터를 전송합니다.
+- 3개의 노드를 사용할때 최소 3개의 복제본이 되어야 합니다.
+- 3개의 노드중 1개의 실패만 허용합니다.
+- maxfailure = (replication_factor / 2) + 1
+	- 예를 들어 replication_factor=3인 경우 maxfailture는 2가 됩니다. 즉, 데이터의 1개의 복제본만 실패해도 시스템이 정상 가동합니다.
+
+Distributor는 여러개의 Ingester들에게 한번에 청크 데이터를 전송합니다.
+![[Pasted image 20250210173620.png]]
+
+
+
+
+
+
+## References
+- https://medium.com/lonto-digital-services-integrator/grafana-loki-configuration-nuances-2e9b94da4ac1
