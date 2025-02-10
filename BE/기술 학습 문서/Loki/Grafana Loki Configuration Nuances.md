@@ -40,3 +40,20 @@ Loki를 실행하는 3가지 방법이 있습니다. 이 방법들에는 대체�
 ## SSD: Simple Scalable Deployment
 두번째 방법은 첫번째 방법을 따르면서 읽기와 쓰기 처리하는 로키 프로세스를 분리하는 것입니다. 예를 들어 디스크에 의존적인 프로세스는 하나의 하드웨어에서 실행하고, 덜 의존적인 프로세스는 다른 하드웨어에서 실행할 수 있습니다. 
 
+여러분들이 로키를 실행할때 -target=write 또는 -target=read 옵션을 전달합니다. 그러면 로키 프로세스들은 특정 쿼리 경로에 책임이 있는 엔티티들을 실행합니다. 간단하게 여러분들은 앞에 프록시 서버가 필요합니다. 프록시 서버가 쓰기 쿼리이면 write 노드에게 서빙하고 읽기 쿼리이면 read 노드에게 서빙합니다.
+![[Pasted image 20250210155831.png]]
+
+Grafana는 이를 가장 권장하는 방식으로 간주하고 이를 적극적으로 개발하고 있습니다.
+
+## Microservices mode
+마이크로서비스 모드는 우리가 독립적인 각각의 로키 컴포넌트를 실행할 때 사용할 수 있는 방법입니다. 
+
+구성 요소가 많지만, 이들은 쉽게 서로 분리될 수 있으며, 2개 또는 3개의 그룹으로 나눌수 있습니다.
+![[Pasted image 20250210160444.png]]
+1. 쓰기 컴포넌트 그룹 : Distributor, Ingester
+2. 읽기 컴포넌트 그룹 : Querier, Query-frontend, Index-gateway
+3. 그외 모든 유틸리티 : Caches, Compactor 등
+
+## The arrangement of Grafana Loki architecture
+
+
