@@ -48,5 +48,17 @@ Loki를 위해 만들어진 로그 수집 도구인 Promtail을 통해서 로그
 1. Read 요청할때 Querier에서 해당 요청을 수신합니다.
 2. Querier는 Ingester의 인메모리(in-memory)를 조회합니다.
 3. Ingester에서 캐시된 데이터가 있는 경우 Querier에게 반환하고, 캐시된 데이터가 없다면 장기 저장소(S3)에서 데이터를 조회합니다.
-4. Querier는 
+4. Querier는 수신된 데이터가 중복됬는지 확인한 후에 중복 제거를 진행하고 로그를 제공합니다.
+	- 수신된 데이터가 중복되었다는 의미는 같은 로그 데이터가 여러번 수신되었다는 의미입니다.
+	- 중복 데이터는 다중 Ingester에서 동일한 로그를 수신하거나 다중 소스에서 동일한 로그를 수집할때 중복된 데이터가 발생합니다.
 
+쓰기 흐름 과정
+1. Distributor가 데이터를 수신합니다.
+2. 수신된 데이터는 해시 과정을 수행합니다.
+3. Distributor는 해시된 데이터를 Ingester에게 전달합니다.
+4. Ingester는 데이터에 대해 Chunk 데이터 단위로 생성하고 저장합니다.
+5. Distributor는 데이터에 대한 저장 완료 여부를 성공 코드로 응답합니다.
+
+#### WAL(Write Ahead Log)
+Loki에서는 WAL(Write Ahead Log) 기능을 사용합니다. WAL 기능을 통해서 다음과 같은 상황을 방지합니다.
+1. 데이터(chunk)가 Ingester로 들어오면, 먼저 이 데이터를 
