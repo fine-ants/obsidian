@@ -21,3 +21,16 @@ Loki가 로그 전체 텍스트가 아닌 메타 데이터만 인덱싱하는 �
 	- 로그의 양이 급증할 수 있는 환경에서 메타 데이터만 인덱싱하는 방식은 **시스템의 확장성을 높여줍니다.**
 	- 전체 로그 텍스트를 인덱싱하면 시스템이 성능 문제를 일으킬 수 있지만, 메타 데이터만 인덱싱하면 더 많은 데이터를 처리할 수 있습니다.
 
+Grafana Loki는 다음과 같이 작동합니다.
+![[Pasted image 20250210143724.png]]
+Loki를 위해 만들어진 로그 수집 도구인 Promtail을 통해서 로그를 수집하고 Loki에 저장합니다. 이후 Grafana에서 LogQL이라는 쿼리 언어를 통해서 로그를 검색합니다. 또한 경고 규칙을 설정하여 Prometheus AlertManager로 경고를 보낼수 있습니다.
+
+다음은 Grafana Loki의 주요 구성 요소입니다.
+![[Pasted image 20250210144024.png]]
+다음은 Grafana Loki 주요 구성 요소의 설명입니다.
+- Distributor
+	- 클라이언트로부터 수신한 로그 데이터를 검증 후에 Ingester에게 전달하는 역할을 수행합니다.
+- Ingester
+	- Distributor로부터 받은 로그 데이터를 메모리에 압축하여 chunks 단위로 저장하고, 일정 시간 후에 장기 저장소(DynamoDB, S3, Cassandra 등)에 기록합니다.
+- Querier
+	- Ingester의 인메모리(in-memory) 데이터를 쿼리한 후에 장기 저장소(S3)에서 쿼리 로그를 가져와 Query-Frontend에게 ㄷ
