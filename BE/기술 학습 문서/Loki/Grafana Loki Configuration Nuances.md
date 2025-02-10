@@ -75,5 +75,13 @@ Ingester는 상태를 가지고 있는 컴포넌트입니다. 이들은 일명 �
 ![[Pasted image 20250210163320.png]]
 
 Readh Path는 복잡하지만 원리는 간단합니다. Query-frontend와 Querier는 무상태 컴포넌트입니다. Query-frontend는 쿼리를 분할하여 더 빠르게 실행할 수 있도록 하는 구성 요소입니다. 
+예를 들어 한달의 기간동안의 데이터를 쿼리해야 한다고 가정해봅니다. Query-frontend를 사용하여 쿼리를 더 작은 시간 간격으로 분할하고 이를 Querier에게 병렬로 전송합니다. 그런 다음에 결과들을 병합하고 클라이언트에게 반환합니다.
 
+Querier는 스토리지로부터 로그를 쿼리하는 컴포넌트입니다. 만약 Ingester에서 아직 저장소에 기록되지 않은 새로운 데이터를 받으면, Querier는 그 데이터도 같이 요청합니다.
+![[Pasted image 20250210164031.png]]
+
+## Minimum Loki configuration
+### Filesystem
+Loki가 싱글 인스턴스 모드에서 수행할때 파일 시스템(filesystem)과 함께 작업하는데 중점을 둡니다. 가장 중요한 설정 영역에 대해서 말씀드리겠습니다.
+Loki는 구성 작업을 단순화하고 개선하는 방식으로 지속적으로 발전하는 도구입니다. 좋은 변경점 중 하나는 common 영역
 
