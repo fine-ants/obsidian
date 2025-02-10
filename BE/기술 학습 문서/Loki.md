@@ -33,4 +33,20 @@ Loki를 위해 만들어진 로그 수집 도구인 Promtail을 통해서 로그
 - Ingester
 	- Distributor로부터 받은 로그 데이터를 메모리에 압축하여 chunks 단위로 저장하고, 일정 시간 후에 장기 저장소(DynamoDB, S3, Cassandra 등)에 기록합니다.
 - Querier
-	- Ingester의 인메모리(in-memory) 데이터를 쿼리한 후에 장기 저장소(S3)에서 쿼리 로그를 가져와 Query-Frontend에게 ㄷ
+	- Ingester의 인메모리(in-memory) 데이터를 쿼리한 후에 장기 저장소(S3)에서 쿼리 로그를 가져와 Query-Frontend에게 데이터를 반환합니다. Ingester에서 복제 데이터를 가져올수 있기 때문에 내부적으로 중복을 제거합니다.
+- Query-Frontend
+	- 실제 쿼리 실행에 필요한 Querier의 역할을 보조하며 읽기 경로를 가속화합니다. Query Frontend는 내부적으로 쿼리를 조정하고 큐에 보관합니다.
+- Compactor
+	- chunk 보관 주기를 관리하고(retention), 테이블을 단일 인덱스 파일로 압축합니다.
+	- Compactor를 통한 보존은 boltdb-shipper 또는 tsdb store에서만 지원됩니다.
+		- Loki 2.8 부터는 tsdb store 사용 권장, boltdb-shipper보다 효율적이고 빠르며 확장이 뛰어납니다.
+- Ruler
+	- 사용자가 정의한 경고 규칙 기반으로 경고를 발생시키는 등 로그 데이터에 관한 경고를 관리합니다.
+
+#### 데이터 읽기/쓰기 흐름 과정
+**읽기 흐름 과정**
+1. Read 요청할때 Querier에서 해당 요청을 수신합니다.
+2. Querier는 Ingester의 인메모리(in-memory)를 조회합니다.
+3. Ingester에서 캐시된 데이터가 있는 경우 Querier에게 반환하고, 캐시된 데이터가 없다면 장기 저장소(S3)에서 데이터를 조회합니다.
+4. Querier는 
+
