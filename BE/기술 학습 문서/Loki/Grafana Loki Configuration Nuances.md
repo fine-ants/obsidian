@@ -294,7 +294,28 @@ timeout = 310
 ## Message sizes
 일부 오류의 원인이 명확하지 않아서 이 주제가 복잡하게 느껴질 수 있습니다.
 
-Message sizes 속성을 나타내는 grpc_server_max_{recv,send}_msg_size 설정은 로그 사이즈의 최대 크기를 의미합니다. 기본적인 최대 크기는 매우 작습니다. 예를 들어 큰 스택 트레이스가 있고 20MB라면 한줄로 전송될 것입니다.
+Message sizes 속성을 나타내는 grpc_server_max_{recv,send}_msg_size 설정은 로그 사이즈의 최대 크기를 의미합니다. 기본적인 최대 크기는 매우 작습니다. 예를 들어 큰 스택 트레이스가 있고 20MB의 로그가 하나의 로그 라인으로 전송된다면, 해당 제한을 맞출수 있는 방법은 없습니다. 따라서 이 제한을 늘려야 합니다.
+```yaml
+server:  
+	http_listen_port: 3100  
+	grpc_server_max_recv_msg_size: 104857600 # 100 Mb  
+	grpc_server_max_send_msg_size: 104857600 # 100 Mb  
+  
+  
+ingester_client:  
+	grpc_client_config:  
+		max_recv_msg_size: 104857600 # 100 Mb  
+		max_send_msg_size: 104857600 # 100 Mb
+```
+- 기본 로그 송신/수신 최대 사이즈는 4MB입니다.
+- Loki가 처리하는 로그의 사이즈에 직접적인 영향을 미칩니다.
+
+우리는 청크 데이터의 인코딩 또한 피할 수 없습니다. 기본 값은 최대로 압축하는 gzip 확장자 파일입니다. 그라파나는 snappy로 변경하는 것을 권장하고
+
+
+> [!info]
+> snappy는 Google에서 개발한 고성능 데이터 압축 알고리즘입니다. 주로 빠른 압축 및 압축 해제 속도를 목표로 설계되었으며, 데이터 압축률보다는 
+
 
 
 ## References
