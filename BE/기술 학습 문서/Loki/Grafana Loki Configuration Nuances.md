@@ -256,7 +256,37 @@ Loki를 잘못 설정하면 502나 504와 같은 오류가 자주 발생할 수 
 
 오류를 더 잘 이해하기 위해서는 먼저 프로젝트에서 타임아웃 값을 충분히 늘려야 합니다. 두번째로, 여러 유형의 타임아웃을 적절하게 구성해야 합니다.
 1. http_server_{write,read}_timeout 설정은 웹 서버 응답 시간에 대한 기본적인 타임아웃을 설정합니다.
-2. 
+2. querier.query_timeout과 querier.engine.timeout 설정은 직접적으로 읽기 쿼리를 실행하는 엔진의 최대실행 시간을 설정합니다.
+```yaml
+server:
+  http_listen_port: 3100
+  http_server_write_timeout: 310s
+  http_server_read_timeout: 310s
+querier:
+  query_timeout: 300s
+  engine:
+    timeout: 300s
+
+```
+
+만약 Loki의 앞단에 Nginx와 같은 적절한 프록시 서버를 사용하고 있다면, 여러분들은 그 nginx 서버 또한 타임아웃 값을 증가시켜야 합니다.
+```
+server {  
+	proxy_read_timeout = 310s;  
+	proxy_send_timeout = 310s;  
+}
+```
+
+여러분들은 그라파나 사이드에도 타임아웃을 설정해야 함니다. 
+```
+[dataproxy]  
+timeout = 310
+```
+
+가장 좋은 접근 방법은 querier에서 모든 4가지 유형의 타임아웃을 최솟값으로 설정하는 것입니다.(예: 300초) 그렇게 하면 쿼리가 먼저 완료되고, 그 다음에 HTTP 서버, Nginx 또는 그라파나와 같은 다른 서비스들이 조금 더 오래 걸리게 됩니다.
+기본적으로 타임아웃은 매우 작습니다. 그래서 나는 이 값을 증가시키는 것을 권장합니다.
+
+## Message sizes
 
 
 
