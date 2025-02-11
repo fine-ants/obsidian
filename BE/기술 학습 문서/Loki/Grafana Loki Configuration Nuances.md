@@ -111,7 +111,24 @@ stream_2: {job="frontend-service", environment="staging"}
 2. 효율적인 집계
 	- 스트림 라벨을 기반으로 쿼리할 때, 특정 라벨의 스트림들만 집계하여 분석할 수 있습니다. 예를 들어, `job="api-service"`인 모든 로그를 한번에 조회할 수 있습니다.
 3. 멀티테넌시(Multi-tenancy)
-	- 스트림을 사용하면 Multi-tenancy 환경에서도 로그 데이터를 격리하고 
+	- 스트림을 사용하면 Multi-tenancy 환경에서도 로그 데이터를 격리하고 각 tenant에 맞는 데이터만 조회할 수 있습니다.
+
+**Loki에서 Stream 처리**
+- Loki는 데이터를 청크(chunk) 단위로 처리하는데, 각 청크는 하나의 스트림에 해당합니다. 이 스트림은 라벨에 따라 그룹화되며, 로그 항목들은 각 스트림 내에서 시간 순선대로 저장됩니다.
+- 쿼리를 할때, 사용자는 스트림 라벨을 기준으로 원하는 로그 데이터를 필터링하고 검색합니다.
+
+**Stream 관련 설정 예시**
+```yaml
+{job="api-service", environment="production"}
+```
+이 쿼리는 `job="api-service"`와 `environment="production"` 라벨을 가진 모든 로그 스트림을 조회합니다.
+
+**Stream 정리**
+- Stream은 Loki에서 로그 데이터를 구분하고 저장하는 기본 단위로, 라벨을 기반으로 여러 로그 항목을 하나의 스트림으로 묶어서 처리합니다.
+- Stream은 쿼리, 필터링, 데이터 격리에 매우 중요한 역할을 하며, 효율적인 로그 관리와 분석에 도움을 줍니다.
+
+#멀티테넌시 멀티테넌시(Multi-tenancy)
+
 
 
 
