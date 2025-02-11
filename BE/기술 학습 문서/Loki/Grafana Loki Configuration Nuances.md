@@ -336,8 +336,25 @@ ingester:
 	chunk_target_size: 1536000  
 	max_chunk_age: 2h
 ```
-'
-'
+- 저는 `chunk_block_size`과 `chunk_retain_period` 를 변경하는 것을 권장하지 않고 기본 값을 사용하는 것을 권장합니다.
+- 청크 데이터가 대부분 가득차 있는 경우 `chunk_target_size` 를 늘릴 수 있습니다. 이 값을 설정하면 청크에 더 많은 공간을 확보할 수 있습니다.
+- `chunk_idle_period` 는 청크에 기록이 전혀 없는 경우 해당 청크가 Ingester의 메모리에서 얼마나 오래 살아있을지 설정하는 값입니다. 따라서 스트림이 대부분 느리고 반쯤 비어있는 경우에는 이 기간을 늘리는 것이 좋습니다. 기본값은 30분입니다.
+
+## Parallelism
+```yaml
+querier:  
+	max_concurrent: 8  
+  
+  
+limits_config:  
+	max_query_parallelism: 24  
+	split_queries_by_interval: 15m  
+  
+  
+frontend_worker:  
+	match_max_concurrent: true
+```
+
 
 
 ## References
