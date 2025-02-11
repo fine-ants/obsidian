@@ -96,6 +96,24 @@ Grafana는 이를 가장 권장하는 방식으로 간주하고 이를 적극적
 - Log Streams
 	- 스트림은 여러 로그 항목을 순차적으로 가지며, 시간 순대로 정렬됩니다.
 
+**Stream 예시**
+Loki에서는 스트림을 기준으로 로그를 수집하고 검색합니다. 예를 들어, 다음과 같은 스트림이 있을 수 있습니다.
+```text
+stream_1: {job="api-service", environment="production"}
+stream_2: {job="frontend-service", environment="staging"}
+```
+- stream_1에는 API 서비스의 로그가 포함되며, `job="api-service"`와 `environment="production"` 라벨을 가집니다.
+- stream_2에는 프론트 엔드 서비스의 로그가 포함되며, `job="frontend-service"`와 `environment="staging"` 라벨을 가집니다.
+
+**Stream의 할용**
+1. 구분 및 검색
+	- 다양한 서비스나 환경에 대한 로그를 구분하여, 특정 서비스나 환경에 대한 로그를 쉽게 검색할 수 있습니다.
+2. 효율적인 집계
+	- 스트림 라벨을 기반으로 쿼리할 때, 특정 라벨의 스트림들만 집계하여 분석할 수 있습니다. 예를 들어, `job="api-service"`인 모든 로그를 한번에 조회할 수 있습니다.
+3. 멀티테넌시(Multi-tenancy)
+	- 스트림을 사용하면 Multi-tenancy 환경에서도 로그 데이터를 격리하고 
+
+
 
 ![[Pasted image 20250210162014.png]]
 
@@ -293,8 +311,8 @@ Loki를 잘못 설정하면 502나 504와 같은 오류가 자주 발생할 수 
 ![[Pasted image 20250210174437.png]]
 
 오류를 더 잘 이해하기 위해서는 먼저 프로젝트에서 타임아웃 값을 충분히 늘려야 합니다. 두번째로, 여러 유형의 타임아웃을 적절하게 구성해야 합니다.
-1. http_server_{write,read}_timeout 설정은 웹 서버 응답 시간에 대한 기본적인 타임아웃을 설정합니다.
-2. querier.query_timeout과 querier.engine.timeout 설정은 직접적으로 읽기 쿼리를 실행하는 엔진의 최대실행 시간을 설정합니다.
+4. http_server_{write,read}_timeout 설정은 웹 서버 응답 시간에 대한 기본적인 타임아웃을 설정합니다.
+5. querier.query_timeout과 querier.engine.timeout 설정은 직접적으로 읽기 쿼리를 실행하는 엔진의 최대실행 시간을 설정합니다.
 ```yaml
 server:
   http_listen_port: 3100
