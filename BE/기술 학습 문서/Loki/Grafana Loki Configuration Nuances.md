@@ -1,4 +1,23 @@
 
+- [[#The task of collecting logs|The task of collecting logs]]
+- [[#Ways to launch Loki|Ways to launch Loki]]
+	- [[#Ways to launch Loki#Single-binary|Single-binary]]
+- [[#SSD: Simple Scalable Deployment|SSD: Simple Scalable Deployment]]
+- [[#Microservices mode|Microservices mode]]
+- [[#The arrangement of Grafana Loki architecture|The arrangement of Grafana Loki architecture]]
+- [[#Minimum Loki configuration|Minimum Loki configuration]]
+	- [[#Minimum Loki configuration#Filesystem|Filesystem]]
+- [[#S3 as a storage|S3 as a storage]]
+- [[#Cluster and High Availability solutions configuration|Cluster and High Availability solutions configuration]]
+- [[#Timeouts|Timeouts]]
+- [[#Message sizes|Message sizes]]
+- [[#Chunks|Chunks]]
+- [[#Parallelism|Parallelism]]
+- [[#Optimizing the Write Path|Optimizing the Write Path]]
+- [[#Summing up|Summing up]]
+- [[#References|References]]
+
+
 ## The task of collecting logs
 어떤 로깅 시스템을 통합하기 위해 시도하기 전에 여러분들 스스로 다음 4가지 질문에 답해보세요.
 1. 나는 지금 어떻게 로그를 모으고 있나요?
@@ -383,14 +402,23 @@ limits_config:
 	per_stream_rate_limit: "3MB"  
 	per_stream_rate_limit_burst: "10MB"
 ```
-- 
-
+- per_stream_rate_limit : 각 스트림에 대해 초당 허용되는 최대 데이터 전송 속도값 설정.
+	- 예를 들어 per_stream_rate_limit=3MB 이면 각 스트림에 대해 초당 최대 3MB의 로그만 처리할 수 있습니다.
+	- 개별 로그 스트림에 대한 속도 제한을 두어서 특정 스트림이 과도한 데이터를 전송하는 것을 방지합니다.
+- per_stream_rate_limit_burst : 버스트 모드에서 초과할 수 잇는 최대 데이터 크기입니다.
+	- 예를 들어 per_stream_rate_limit_burst=10MB 이면 초당 3MB로 제한되지만, 일시적으로 10MB까지의 데이터를 처리할 수 있습니다. 이 값은 급증하는 트래픽에 대응할 수 있도록 합니다.
 
 > [!info]
 > tenant는 로그 데이터를 격리하고 관리할 수 있는 논리적 단위입니다. tenant는 다중 사용자 환경에서 서로 다른 사용자나 팀의 로그 데이터를 분리하고 독립적으로 처리하기 위해 사용됩니다.
 
-
-
+## Summing up
+- 로그 수집 작업
+- 로키 아키텍처
+- 로키 런칭 전략의 3가지 유형
+- replication_factor 설정을 한 로키의 고 가용성
+- 타임아웃과 메시지 크기의 설정
+- 병렬성
+- write path를 최적화하는 것은 일반적으로 어려운 처리가 아니다. 모니터링 지표를 살펴보고 그에 따라 최적화하면 됩니다.
 
 ## References
 - https://medium.com/lonto-digital-services-integrator/grafana-loki-configuration-nuances-2e9b94da4ac1
