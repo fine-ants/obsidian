@@ -140,7 +140,7 @@ stream_2: {job="frontend-service", environment="staging"}
 **Loki에서의 멀티테넌시 예시**
 - 테넌트 A : `job="api-service"` , `environment="production"`
 - 테넌트 B : `job="frontend-service"`, `environment="staging"`
-각 테넌트는 자신만의 로그 스트림을 가지며, 다른 테넌트의 데이터
+각 테넌트는 자신만의 로그 스트림을 가지며, 다른 테넌트의 데이터에 접근할 수 없습니다.
 
 
 
