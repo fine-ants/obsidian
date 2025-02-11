@@ -361,7 +361,29 @@ frontend_worker:
 
 우리의 예시에서는 병렬 처리 값 24를 제공하기 위해서는 **최소 3개의 Querier**가 실행되어야 합니다.
 
+## Optimizing the Write Path
+여기에 쓰기 관련된 설정이 몇가지 있습니다.
+- ingestion_write_mb
+	- tenant가 초당 수집할 수 있는 최대 로그 데이터 크기(메가바이트 단위)를 설정합니다.
+	- 예를 들어 ingestion_rate_mb=20 이면 초당 최대 20MB의 로그 데이터만 수집할 수 있도록 제한합니다.
+- ingestion_burst_size_mb
+	- tenant가 버스트 모드에서 초과할 수 있는 최대 데이터 크기(메가 바이트 단위)를 설정합니다.
+	- 예를 들어 ingestion_burst_size_mb=30 이면 초당 최대 수집 데이터가 30MB만 수집할 수 있도록 제한합니다.
 
+```yaml
+limits_config:  
+	ingestion_rate_mb: 20  
+	ingestion_burst_size_mb: 30
+```
+
+기본값은 매우 낮습니다. 그래서 나는 이 설정값들을 설정해서 증가시키는 것을 권장합니다. 
+
+```
+limits_config:  
+	per_stream_rate_limit: "3MB"  
+	per_stream_rate_limit_burst: "10MB"
+```
+- 
 
 
 > [!info]
