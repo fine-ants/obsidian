@@ -355,7 +355,14 @@ frontend_worker:
 	match_max_concurrent: true
 ```
 - querier.max_concurrent : 하나의 Querier가 병렬로 처리할 수 있는 쿼리의 최대 개수 설정값입니다. 저는 CPU 개수의 2배로 설정하는 것을 권장합니다. 기본값은 10입니다.
-- limits_config.max_query_parallelism : tenant가 가질수 있는 최대 병렬 쿼리 처리 개수를 설정하는 값입니다. `querier.max_concurrent` 값은
+- limits_config.max_query_parallelism : tenant가 가질수 있는 최대 병렬 쿼리 처리 개수를 설정하는 값입니다. `querier.max_concurrent` 값은 `max_query_parallelism` 과 다음 공식에 따라 일치해야 합니다.
+	- querier count * max_concurrent >= max_query_parallelism
+	- 쿼리 개수 * 최대 병렬성의 값이 최대 쿼리 병렬 처리 개수보다 이상이어야 합니다.
+
+우리의 예시에서는 병렬 처리 값 24를 제공하기 위해서는 **최소 3개의 Querier**가 실행되어야 합니다.
+
+
+
 
 > [!info]
 > tenant는 로그 데이터를 격리하고 관리할 수 있는 논리적 단위입니다. tenant는 다중 사용자 환경에서 서로 다른 사용자나 팀의 로그 데이터를 분리하고 독립적으로 처리하기 위해 사용됩니다.
