@@ -29,3 +29,23 @@ implementation 'io.micrometer:micrometer-registry-prometheus'
 ```
 
 ### 애플리케이션 프로퍼티 설정
+매트릭 관련 설정을 위해서 application.yaml 파일에 다음과 같이 설정합니다.
+```yaml
+management: 
+  endpoints: 
+    web: 
+      exposure: 
+        include: prometheus, health, info 
+  metrics: 
+    tags: 
+      application: ${spring.application.name}
+```
+- management.endpoints.web.exposure.include
+	- 외부에 노출할 엔드포인트를 지정합니다.
+	- health, info 엔드포인트 외에도 prometheus 엔드포인트를 설정하여 해당 엔드포인트를 통해서 메트릭을 수집하도록 합니다.
+- managment.metrics.tags.application
+	- 메트릭 데이터에 태그를 추가하는 역할을 수행합니다.
+
+위와 같이 설정 후 `/actuator/prometheus` 경로로 HTTP 요청하여 실행 결과를 확인합니다. 실행 결과를 보면 커넥션, 세션, 스레드 등과 같은 애플리케이션 메트릭 정보를 확인할 수 잇습니다.
+![[Pasted image 20250228164726.png]]
+
