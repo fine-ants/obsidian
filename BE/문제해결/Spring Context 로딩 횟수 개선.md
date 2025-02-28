@@ -35,4 +35,16 @@ public abstract class AbstractContainerBaseTest {
 }
 ```
 
-목 객체를 사용하고자 하는 테스트 클래스에서는 ``
+목 객체를 사용하고자 하는 테스트 클래스에서는 `@Autowired` 애노테이션을 사용하여 필드로 주입받은 다음에 모킹 처리를 하면 됩니다.
+```java
+class MemberServiceTest extends AbstractContainerBaseTest {
+
+	@Autowired  
+	private AmazonS3Service mockAmazonS3Service;
+
+	// ...
+}
+```
+
+## 개선 결과
+- 기존 전체 테스트 수행 시간이 5분에서 4분 23초로 단축되었습니다. 약 12.3% 성능 향상되었습니다.
