@@ -74,4 +74,9 @@ scrape_configs:
       - targets:  
           - "fineAnts_app:8080"
 ```
-- global.scrape_interval : 
+- global.scrape_interval : 기본적으로 모든 타겟을 15초마다 메트릭을 수집합니다.
+- global.scrape_timeout : 15초 안에 응답하지 않은 경우 요청이 실패합니다.
+- global.evaluation_interval : 2분마다 PromQL 쿼리를 실행하여 경고(rule.yml)에 대한 평가를 수행합니다.
+- global.external_labels : 외부 레이블을 설정하여 Prometheus의 메트릭에 `monitor=system-monitor` 라벨을 추가합니다.
+- global.query_log_file : PromQL 쿼리 로그를 `query_log_file.log` 파일에 기록합니다.
+- rule_files : 
