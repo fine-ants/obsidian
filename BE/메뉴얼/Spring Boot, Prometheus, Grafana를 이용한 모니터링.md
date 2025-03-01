@@ -125,4 +125,11 @@ groups:
 ```
 - groups.name : 해당 그룹의 이름을 설정합니다.
 - groups.rules : 그룹에 속하는 알람 규칙들을 정의합니다.
-- 
+- groups.rules.alert : 알람의 이름을 설정합니다.
+- groups.rules.expr : 알람이 발생하는 표현식을 정의합니다.
+	- `up == 0`은 메트릭이 0인 경우를 표현하는 표현식입니다.
+- groups.rules.for : 조건이 유지되어야 하는 시간을 설정합니다.
+- groups.rules.labels : 알림에 대한 추가적인 레이블을 설정합니다.
+- groups.rules.annotations : 알림에 대한 추가 설명을 제공하는 애노테이션을 설정합니다.
+
+### 컨테이너 실행
