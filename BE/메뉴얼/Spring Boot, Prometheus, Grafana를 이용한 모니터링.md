@@ -79,4 +79,25 @@ scrape_configs:
 - global.evaluation_interval : 2분마다 PromQL 쿼리를 실행하여 경고(rule.yml)에 대한 평가를 수행합니다.
 - global.external_labels : 외부 레이블을 설정하여 Prometheus의 메트릭에 `monitor=system-monitor` 라벨을 추가합니다.
 - global.query_log_file : PromQL 쿼리 로그를 `query_log_file.log` 파일에 기록합니다.
-- rule_files : 
+- rule_files : rule.yml 파일에서 경고 규칙(alerting rules) 및 레코드 규칙(recording rules)을 정의합니다.
+- scrape_configs.static_configs.targets="prometheus:9090" : Prometheus 서버 자체를 "http://prometheus:9090"에서 모니터링합니다.
+
+```yaml
+  - job_name: "springboot"
+    metrics_path: "/actuator/prometheus"
+    scheme: "http"
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+          - "fineAnts_app:8080"
+```
+- job_name="springboot"
+	- Spring Boot 애플리케이션을 모니터링하는 작업입니다.
+- metrics_path="/actuator/prometheus"
+	- Spring Boot 애플리케이션에서 `http://fineAnts_app:8080/actuator/prometheus` 경로로 메트릭을 수집합니다.
+- scheme="http"
+	- http 프로토콜을 사용해서 메트릭을 가져옵니다.
+- scrape_interval=5s
+	- Spring Boot 애플레킹션의 매트릭을 5초마다 가져옵니다. (기본 설정인 15초보다 더 자주 수집)
+- static_configs.targets
+	- fineAnts_app:8080이란 컨테이너 또는 호스트에서 메트릭을 가져옵니다.
