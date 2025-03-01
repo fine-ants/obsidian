@@ -101,3 +101,28 @@ scrape_configs:
 	- Spring Boot 애플레킹션의 매트릭을 5초마다 가져옵니다. (기본 설정인 15초보다 더 자주 수집)
 - static_configs.targets
 	- fineAnts_app:8080이란 컨테이너 또는 호스트에서 메트릭을 가져옵니다.
+
+rule.yml
+```yaml
+# rule.yml  
+groups:  
+  - name: system-monitor  
+    rules:  
+      - alert: InstanceDown  
+        expr: up == 0  
+        for: 5m  
+        labels:  
+          serverity: page  
+        annotations:  
+          summary: "Instance {{ $labels.instance }} down"  
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes."  
+      - alert: APIHighRequestLatency  
+        expr: api_http_request_latencies_second{quantile="0.5"} > 1  
+        for: 10m  
+        annotations:  
+          summary: "High request latency on {{ $labels.instance }}"  
+          description: "{{ $labels.instance }} has a median request latency above 1s (current value: {{ $value }}s)"
+```
+- groups.name : 해당 그룹의 이름을 설정합니다.
+- groups.rules : 그룹에 속하는 알람 규칙들을 정의합니다.
+- 
