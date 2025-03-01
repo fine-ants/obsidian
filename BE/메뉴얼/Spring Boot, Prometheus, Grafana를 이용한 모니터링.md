@@ -68,11 +68,11 @@ scrape_configs:
           - "prometheus:9090"  
   - job_name: "springboot"  
     metrics_path: "/actuator/prometheus"  
-    scheme: "http"  
+    scheme: "https"  
     scrape_interval: 5s  
     static_configs:  
       - targets:  
-          - "fineAnts_app:8080"
+          - "services.fineants.co:443"
 ```
 - global.scrape_interval : 기본적으로 모든 타겟을 15초마다 메트릭을 수집합니다.
 - global.scrape_timeout : 15초 안에 응답하지 않은 경우 요청이 실패합니다.
@@ -133,3 +133,44 @@ groups:
 - groups.rules.annotations : 알림에 대한 추가 설명을 제공하는 애노테이션을 설정합니다.
 
 ### 컨테이너 실행
+```yaml
+grafana:  
+  container_name: fineAnts_grafana  
+  image: grafana/grafana:11.4.0  
+  ports:  
+    - "3000:3000"  
+  volumes:  
+    - grafana_data:/var/lib/grafana  
+  networks:  
+    - spring-net  
+prometheus:  
+  image: prom/prometheus:latest  
+  container_name: fineAnts_prometheus  
+  ports:  
+    - "9090:9090"  
+  command:  
+    - '--web.enable-lifecycle'  
+    - '--config.file=/etc/prometheus/prometheus.yml'  
+    - '--web.console.libraries=/etc/prometheus/console_libraries'  
+    - '--web.console.templates=/etc/prometheus/consoles'  
+  restart: always  
+  volumes:  
+    - ./prometheus/config/prod:/etc/prometheus  
+    - ./prometheus/volume:/prometheus  
+  networks:  
+    - spring-net
+```
+
+
+### 그라파나 설정
+그라파나의 관리자 계정으로 접속한 다음에 data source 메뉴로 이동합니다.
+![[Pasted image 20250301153433.png]]
+
+
+새로운 데이터 소스를 추가합니다. 검색창에 Prometheus를 검색하여 선택합니다.
+![[Pasted image 20250301153454.png]]
+
+URL에 프로메테우스의 호스트 주소와 포트주소를 입력합니다. 저 같은 경우 http://fineAnts_prometheus:9090 입니다.
+![[Pasted image 20250301153509.png]]
+
+Save & Test 버튼을 눌러서 연결을 확인한 다음에 생성 결과를 확인합
