@@ -50,3 +50,28 @@ management:
 ![[Pasted image 20250228164726.png]]
 
 ### 프로메테우스 설정
+```yaml
+# prometheus.yml  
+global:  
+  scrape_interval: 15s  
+  scrape_timeout: 15s  
+  evaluation_interval: 2m  
+  external_labels:  
+    monitor: 'system-monitor'  
+  query_log_file: query_log_file.log  
+rule_files:  
+  - "rule.yml"  
+scrape_configs:  
+  - job_name: "prometheus"  
+    static_configs:  
+      - targets:  
+          - "prometheus:9090"  
+  - job_name: "springboot"  
+    metrics_path: "/actuator/prometheus"  
+    scheme: "http"  
+    scrape_interval: 5s  
+    static_configs:  
+      - targets:  
+          - "fineAnts_app:8080"
+```
+- global.scrape_interval : 
