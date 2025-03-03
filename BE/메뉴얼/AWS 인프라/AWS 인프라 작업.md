@@ -624,7 +624,7 @@ AWS Code Deploy 서비스에서 Code Deploy 애플리케이션을 생성하여 E
 
 CI/CD 구현과정을 소개하기에 앞서 이 글에서 소개하는 전체적인 인프라 구조는 다음과 같습니다.
 
-![[fineAnts_architecture_v2.png]]
+![[fineAnts_infra_v2.png]]
 1. Github의 특정 브린치에 푸시됩니다.
 2. Github Action에서 빌드하고 zip 파일로 압축하여 저장합니다.
 3. Github Action에서 AWS Code Deploy에게 배포를 요청합니다.
