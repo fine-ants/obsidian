@@ -4,3 +4,7 @@
 ![[Pasted image 20250306123233.png]]
 
 JVM의 힙을 분석해서 어느 지점에서 85%를 사용하고 있는지 알아보려고 합니다.
+
+```
+curl -O -u username:password http://localhost:8090/actuator/heapdump
+```
