@@ -79,3 +79,10 @@ The stacktrace of this Thread is available. [See stacktrace](pages/31.html). [
 - **java.util.concurrent.ConcurrentHashMap$Node[]** 는 `ConcurrentHashMap`는 내부에서 사용되는 배열로, AOP 관련 AspectJExpressionPointcut 객체들이 `ConcurrentHashMap`에 저장되어 있는 구조로 보입니다.
 - 이 `ConcurrentHashMap`은 Spring의 빈(Bean) 팩토리인 `DefaultListableBeanFactory`에 의해서 참조되고 있으며, 이로 인해 메모리에서 상단한 크기를 차지하고 있습니다.
 	- **`ConcurrentHashMap$Node[]`** 은 455,856 바이트(0.56%)의 메모리를 사용하고 있습니다. 이는 `AspectJExpressionPointcut` 객체들을 캐시하거나 관리하는 데 사용되는 데이터 구조일 수 있습니다.
+
+#### 3. RequestMappingHandlerAdapter의 메모리를 사용
+- **RequestMappingHandlerAdapter**는 Spring MVC에서 HTTP 요청을 핸들링하는 클래스입니다. 이 클래스는 HTTP 요청을 적절한 핸들러 메서드와 매핑하여 실행하는 역할을 수행합니다.
+- 이 객체는 HTTP 요청 처리 중, `HandlerMethod` 와 함께 메서드 호출 및 결과 모델을 관리합니다. 보고서에서 이 클래스는 4,656 바이트(0.01%) 메모리를 유지한다고 언급하고 있습니다.
+
+#### 4. Thread 상태 분석
+- 보고서에 나오는 **TaskThread** 는 Tomcat에서 실행 중인 HTTP 요청 처리 스레드입니다. 이 스레드는 `RequestMappingHandlerAdapter`를 사용하여 요청을 처리하고 있으며, 해당 스레드는 `ConcurrentHashMap$Node[]`와 관련 있는  
