@@ -85,4 +85,10 @@ The stacktrace of this Thread is available. [See stacktrace](pages/31.html). [
 - 이 객체는 HTTP 요청 처리 중, `HandlerMethod` 와 함께 메서드 호출 및 결과 모델을 관리합니다. 보고서에서 이 클래스는 4,656 바이트(0.01%) 메모리를 유지한다고 언급하고 있습니다.
 
 #### 4. Thread 상태 분석
-- 보고서에 나오는 **TaskThread** 는 Tomcat에서 실행 중인 HTTP 요청 처리 스레드입니다. 이 스레드는 `RequestMappingHandlerAdapter`를 사용하여 요청을 처리하고 있으며, 해당 스레드는 `ConcurrentHashMap$Node[]`와 관련 있는  
+- 보고서에 나오는 **TaskThread** 는 Tomcat에서 실행 중인 HTTP 요청 처리 스레드입니다. 이 스레드는 `RequestMappingHandlerAdapter`를 사용하여 요청을 처리하고 있으며, TaskThread는 `ConcurrentHashMap$Node[]`와 관련 있는 `RequestMappingHandlerAdapter` 객체를 참조하고 있습니다.
+- 이 TaskThread는 9,920 바이트의 메모리를 유지하며, 이는 스레드 로컬 변수나 참조가 차지하는 메모리입니다.
+
+#### 5. 문제의 핵심
+- 메모리를 많이 차지하는 `AspectJExpressionPointcut` 인스턴스들이 AOP와 관련된 클래스들로, 이러한 객체들이 메모리 사용을 증가시키고 있습니다. 특히 AOP에서 사용하는 AspectJ 표현식을 처리하는 데 많은 메모리가 소모되고 있습니다.
+- `ConcurrentHashMap`은 `AspectJExpressionPointcut` 객체들을 관리하고 있으며, `AspectJExpressionPointcut` 객체들은 Spring 빈 팩토리에 의해서 관리되고 있습니다.
+- RequestMappingHandlerAdapter는 HTTP 요청을 처리하는 동안에 메모리를 사용하는데, 이 또한 메모리 사용의 일부로 
