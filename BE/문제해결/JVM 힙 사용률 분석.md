@@ -128,3 +128,7 @@ AspectJExpressionPointcut 객체들이 많은 메모리를 차지하고 있습�
 이 보고서는 `java.lang.ref.Finalizer` 객체들이 메모리에서 많은 공간을 차지하고 있다는 내용을 담고 있습니다. 이 객체들은 Java의 **Finalizer** 매커니즘과 관련이 있으며, Finalizer는 객체가 가비지 컬렉션될 때 실행되는 메서드를 정의하는 역할을 하고 있습니다.
 
 #### 1. Finalizer 객체들에 대한 분석
+- 439개의 `java.lang.ref.Finalizer` 인스턴스가 9,319,336 byte(11.43%, 8.9MB)의 메모리를 차지하고 있습니다. 즉, **Finalizer 인스턴스가 전체 메모리에서 11.43%를 차지하고 있습니다.**
+- `Finalizer` 클래스는 Java의 finalize() 메서드를 구현하는데 사용됩니다. **finalize() 메서드는 객체가 더 이상 사용되지 않을 때 리소스를 정리하거나 cleanup 작업을 수행하도록 설계되어 있습니다.** 그러나 이 메커니즘은 메모리 효율성에 문제가 있을 수 있기 때문에, 현대 Java에서는 finalize() 메서드 사용을 지양하는 추세입니다.
+
+#### 2. Finalizer의 역할
