@@ -370,7 +370,28 @@ openjdk version "17.0.14" 2025-01-21
 	- JVM이 시작할 때 힙 메모리 크기의 기본값으로 설정됩니다.
 - LargePageHeapSizeThreshold
 	- Large Page를 사용할지 여부를 결정하는 임계값입니다.
-	- 위 실행 결과 128MB
+	- 위 실행 결과 128MB입니다.
+	- 128MB 이상인 경우 Large Page를 사용하도록 설정됩니다.
+	- Large Page는 메모리 페이지 크기를 증가시켜 성능을 향상시킬 수 있습니다.
+- MaxHeapSize
+	- 최대 힙 메모리 크기
+	- 위 실행 결과 약 238MB로 설정합니다.
+	- JVM이 사용할 수 있는 최대 힙 메모리 크기입니다.
+- MaxMetaspaceSize
+	- 메타스페이스(metaspace)의 최대 크기입니다.
+	- 실행 결과 18.4 exabytes로 사실상 제한이 없다는 의미입니다.
+	- 메타스페이스는 클래스 메타데이터를 저장하는 영역입니다.
+- MetaspaceSize
+	- 메타스페이스의 초기 크기입니다.
+	- 위 실행 결과 약 21MB입니다.
+	- JVM 시작 시 메타스페이스 크기로 설정되는 기본값입니다.
+- MinHeapSize
+	- 최소 힙 메모리 크기
+	- 위 실행 결과 약 8MB입니다.
+	- JVM이 사용 가능한 최소 힙 크기입니다.
+- NonNMethodCodeHeapSize, NonProfiledCodeHeapSize, ProfiledCodeHeapSize
+	- 코드 힙(Code Heap) 관련 메모리 설정입니다.
+	- NonNMethodCodeHeapSize: 
 
 
 
