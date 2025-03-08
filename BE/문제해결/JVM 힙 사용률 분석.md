@@ -1,4 +1,17 @@
 
+- [[#힙 사용율 모니터링|힙 사용율 모니터링]]
+- [[#힙 덤프 파일 다운로드 및 열기|힙 덤프 파일 다운로드 및 열기]]
+- [[#힙 덤프 파일을 이용한 Leak Suspects|힙 덤프 파일을 이용한 Leak Suspects]]
+	- [[#힙 덤프 파일을 이용한 Leak Suspects#Problem Suspect 1|Problem Suspect 1]]
+		- [[#Problem Suspect 1#1. AspectJExpressionPointcut 객체들의 메모리 사용|1. AspectJExpressionPointcut 객체들의 메모리 사용]]
+		- [[#Problem Suspect 1#2. ConcurrentHashMap 사용|2. ConcurrentHashMap 사용]]
+		- [[#Problem Suspect 1#3. RequestMappingHandlerAdapter의 메모리를 사용|3. RequestMappingHandlerAdapter의 메모리를 사용]]
+		- [[#Problem Suspect 1#4. Thread 상태 분석|4. Thread 상태 분석]]
+		- [[#Problem Suspect 1#5. 문제의 핵심|5. 문제의 핵심]]
+		- [[#Problem Suspect 1#해결 방안|해결 방안]]
+		- [[#Problem Suspect 1#결론|결론]]
+
+
 ## 힙 사용율 모니터링
 프로메테우스를 통하여 JVM의 힙 사용율을 모니터링 하였습니다. 그라파나 대시보드를 통하여 모니터링 한 결과, 힙 사용율은 85.09%를 사용하고 있습니다.
 ![[Pasted image 20250306123233.png]]
@@ -91,4 +104,27 @@ The stacktrace of this Thread is available. [See stacktrace](pages/31.html). [
 #### 5. 문제의 핵심
 - 메모리를 많이 차지하는 `AspectJExpressionPointcut` 인스턴스들이 AOP와 관련된 클래스들로, 이러한 객체들이 메모리 사용을 증가시키고 있습니다. 특히 AOP에서 사용하는 AspectJ 표현식을 처리하는 데 많은 메모리가 소모되고 있습니다.
 - `ConcurrentHashMap`은 `AspectJExpressionPointcut` 객체들을 관리하고 있으며, `AspectJExpressionPointcut` 객체들은 Spring 빈 팩토리에 의해서 관리되고 있습니다.
-- RequestMappingHandlerAdapter는 HTTP 요청을 처리하는 동안에 메모리를 사용하는데, 이 또한 메모리 사용의 일부로 
+- RequestMappingHandlerAdapter는 HTTP 요청을 처리하는 동안에 메모리를 사용하는데, 이 또한 메모리 사용의 일부로 일부로 보입니다.
+
+#### 해결 방안
+- **메모리 최적화**: AOP 관련 객체들이 지나치게 많은 메모리를 사용하고 있다면, AOP 사용 범위를 좁히거나 AspectJ 표현식을 최적화하여 메모리 사용을 줄일 수 있습니다.
+- **GC(Garbage Collection)**: 주기적인 GC 수행을 통해서 메모리 할당 후 해제되지 않는 객체들을 관리하는 것도 필요할 수 있습니다.
+- **메모리 프로파일링**: `jvisualvm`이나 `jprofiler`와 같은 도구를 사용하여 메모리 분석을 실시간으로 진행하고, 불필요한 객체들을 추적하여 메모리 누수를 방지할 수 있습니다.
+
+#### 결론
+AspectJExpressionPointcut 객체들이 많은 메모리를 차지하고 있습니다. Spring 애플리케이션에서 AOP 기능이 메모리 사용에 영향을 주고 있습니다. 이 문제를 해결하기 위해서는 AOP 구성이나 관련 빈을 최적화하고 메모리 프로파일링 기능을 통해서 추가적인 개선점을 찾는 것이 필요합니다.
+
+
+### Problem Suspect 2
+보고서 원문은 다음과 같습니다.
+```
+439 instances of **java.lang.ref.Finalizer**, loaded by **<system class loader>**occupy **9,319,336 (11.43%)** bytes. 
+
+**Keywords**
+
+- java.lang.ref.Finalizer
+```
+
+이 보고서는 `java.lang.ref.Finalizer` 객체들이 메모리에서 많은 공간을 차지하고 있다는 내용을 담고 있습니다. 이 객체들은 Java의 **Finalizer** 매커니즘과 관련이 있으며, Finalizer는 객체가 가비지 컬렉션될 때 실행되는 메서드를 정의하는 역할을 하고 있습니다.
+
+#### 1. Finalizer 객체들에 대한 분석
