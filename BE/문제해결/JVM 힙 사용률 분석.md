@@ -69,4 +69,10 @@ The stacktrace of this Thread is available. [See stacktrace](pages/31.html). [
 ```
 이 보고서는 Java 힙 덤프 또는 메모리 분석을 기반으로 spring 애플리케이션에서 메모리 사용 현황을 제공합니다. 특히 Spring AOP와 관련된 AspectJExpressionPointcut 객체들이 메모리를 많이 차지하고 있는 상황에 대한 분석입니다. 
 
-#### 
+#### 1. AspectJExpressionPointcut 객체들의 메모리 사용
+- `org.springframework.aop.aspectj.AspectJExpressionPointcut` 는 Spring AOP의 AspectJ 표현식을 처리하는 클래스입니다. 이 클래스는 AOP 적용 시점을 정의하기 위해 사용됩니다.
+- 8개의 인스턴스가 총 10,627,176 byte(10.1 MB, 13.04%)의 메모리를 차지하고 있다고 나와 있습니다. 그중 가장 큰 인스턴스들은 각각 약 1,280,000(1.2MB)~1,533,000(1.4MB) 바이트의 메모리를 사용하고 있습니다.
+	- AspectJExpressionPointcut 객체는 AOP의 Advice(전후 처리 로직)와 JointPoint(메서드 호출 시점)을 결합하는데 사용됩니다.
+	- 많은 메모리 사용은 여러 AspectJ 표현식이 메모리에 로드되었기 때문일 가능성이 큽니다.
+
+#### 2. ConcurrentHashMap 사용
