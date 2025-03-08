@@ -328,7 +328,51 @@ java -XX:+PrintFlagsFinal -version 2>&1 | grep -i -E 'heapsize|metaspacesize|ver
 	- 표준 오류(stderr, 2)를 표준 출력(stdout, 1)로 리다이렉션
 	- JVM 옵션 값을 출력시 일부 오류 출력이 표준 출력으로 나올 수 있도록 설정합니다.
 - `grep -i -E 'heapsize|metaspacesize|version'`
-	- `-i` (댓)
+	- `-i` (대소문자 무시)
+	- `-E` (정규식 사용)
+		- heapsize, metaspacesize, version이 포함된 줄만 출력
+```shell
+   size_t ErgoHeapSizeLimit                        = 0                                         {product} {default}
+
+   size_t HeapSizePerGCThread                      = 43620760                                  {product} {default}
+
+   size_t InitialHeapSize                          = 16777216                                  {product} {ergonomic}
+
+   size_t LargePageHeapSizeThreshold               = 134217728                                 {product} {default}
+
+   size_t MaxHeapSize                              = 249561088                                 {product} {ergonomic}
+
+   size_t MaxMetaspaceSize                         = 18446744073709551615                      {product} {default}
+
+   size_t MetaspaceSize                            = 22020096                                  {product} {default}
+
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+
+    uintx NonNMethodCodeHeapSize                   = 5826188                                {pd product} {ergonomic}
+
+    uintx NonProfiledCodeHeapSize                  = 122916026                              {pd product} {ergonomic}
+
+    uintx ProfiledCodeHeapSize                     = 122916026                              {pd product} {ergonomic}
+
+   size_t SoftMaxHeapSize                          = 249561088                              {manageable} {ergonomic}
+
+openjdk version "17.0.14" 2025-01-21
+```
+- ErgoHeapSizeLimit
+	- 자동 힙 크기 조정의 상한 값입니다.
+	- 0으로 설정되었다는 것은 자동 조정이 비활성화되어 있다는 의미
+- HeapSizePerGCThread
+	- 각 GC 스레드에 할당되는 힙 메모리 크기
+	- 위 실행 결과 43MB가 할당됨
+- InitialHeapSize
+	- 초기 힙 메모리 크기입니다.
+	- 위 실행 결과 16MB가 할당됨
+	- JVM이 시작할 때 힙 메모리 크기의 기본값으로 설정됩니다.
+- LargePageHeapSizeThreshold
+	- Large Page를 사용할지 여부를 결정하는 임계값입니다.
+	- 위 실행 결과 128MB
+
+
 
 
 ![[Pasted image 20250308124018.png]]
