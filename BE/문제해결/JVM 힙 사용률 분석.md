@@ -132,3 +132,7 @@ AspectJExpressionPointcut 객체들이 많은 메모리를 차지하고 있습�
 - `Finalizer` 클래스는 Java의 finalize() 메서드를 구현하는데 사용됩니다. **finalize() 메서드는 객체가 더 이상 사용되지 않을 때 리소스를 정리하거나 cleanup 작업을 수행하도록 설계되어 있습니다.** 그러나 이 메커니즘은 메모리 효율성에 문제가 있을 수 있기 때문에, 현대 Java에서는 finalize() 메서드 사용을 지양하는 추세입니다.
 
 #### 2. Finalizer의 역할
+- `java.lang.ref.Finalizer` 는 Finalizer Queue에 추가된 객체들을 추적하고, 그 객체가 가비지 컬렉션을 통해 제거 될 때 특정 작업을 실행하는데 사용됩니다. 예를 들어, finalize() 메서드가 정의되어 있으면, JVM은 이 메서드를 호출하여 리소스를 해제할 수 있습니다.
+- 이 객체들은 Finalizer Queue에서 관리되며, 객체가 가비지 컬렉션되기 전에 `finalize()` 메서드가 호출됩니다. 그러나 **finalizer() 메서드는 성능 저하를 일으킬 수 있기 때문에, 자원 해제 로직은 `try-with-resources` 또는 명시적인 자원 관리 방법으로 대체하는 것이 좋습니다.**
+
+#### 3. 메모리 사용 비율
