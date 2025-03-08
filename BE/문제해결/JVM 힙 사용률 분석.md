@@ -76,3 +76,6 @@ The stacktrace of this Thread is available. [See stacktrace](pages/31.html). [
 	- 많은 메모리 사용은 여러 AspectJ 표현식이 메모리에 로드되었기 때문일 가능성이 큽니다.
 
 #### 2. ConcurrentHashMap 사용
+- **java.util.concurrent.ConcurrentHashMap$Node[]** 는 `ConcurrentHashMap`는 내부에서 사용되는 배열로, AOP 관련 AspectJExpressionPointcut 객체들이 `ConcurrentHashMap`에 저장되어 있는 구조로 보입니다.
+- 이 `ConcurrentHashMap`은 Spring의 빈(Bean) 팩토리인 `DefaultListableBeanFactory`에 의해서 참조되고 있으며, 이로 인해 메모리에서 상단한 크기를 차지하고 있습니다.
+	- **`ConcurrentHashMap$Node[]`** 은 455,856 바이트(0.56%)의 메모리를 사용하고 있습니다. 이는 `AspectJExpressionPointcut` 객체들을 캐시하거나 관리하는 데 사용되는 데이터 구조일 수 있습니다.
