@@ -758,7 +758,7 @@ $ sudo vim /etc/fstab
 ```
 
 ```jsx
-/swapfile swap swap defaults 0 0
+/home/ec2-user/swapfile swap swap defaults 0 0
 ```
 
 ## 가비아에서 구매한 도메인을 AWS Route53에서 호스팅
