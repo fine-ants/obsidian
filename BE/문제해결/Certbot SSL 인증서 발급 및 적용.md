@@ -64,7 +64,7 @@ ls
 keysthore.p12 파일을 프로젝트의 디렉토리로 복사
 다음 명령어는 ec2 인스턴스가 아닌 로컬 프로젝트가 존재하는 호스트 머신에서 수행합니다. 저같은 경우에는 mac os에서 수행됩니다.
 ```
-scp -O -i "/Users/yonghwankim/.ssh/fineAnts.pem" root@3.35.17.183:/etc/letsencrypt/live/services.fineants.co-0002/keystore.p12 ~/Downloads
+scp -O -i "/Users/yonghwankim/.ssh/fineAnts.pem" root@3.35.207.14:/etc/letsencrypt/live/services.fineants.co-0002/keystore.p12 ~/Downloads
 cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts/backend/src/main/resources/ssl/keystore.p12
 ```
 - 첫번째 scp 명령어는 ec2 인스턴스의 keystore.p12 파일을 호스트 머신의 다운로드 디렉토리로 복사합니다.
