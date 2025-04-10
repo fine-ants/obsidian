@@ -32,5 +32,9 @@
 	- Spring 통합성 부분이 ShedLock 라이브러리가 더 높기 때문입니다. ShedLock 라이브러리 사용시 `spring Schedule + @Scheduler + @EnableScheduling` 조합으로 바로 사용이 가능합니다. 반면 Redis 기반 분산 락 방법은 별도 락 흭득 로직이 필요합니다.
 	- ShedLock 라이브러리를 활용하면 Redis만이 아닌 다른 RDB(MySQL, MongoDB)로 변경하기 쉽습니다. 또한 RDB 기반일 경우 트랜잭션 처리 연계가 가능합니다.
 	- ShedLock 라이브러리는 스케줄러 락 전용 라이브러리이지만 Redis 기반 분산 락 방법은 범용 분산 락이기 때문에 부가적인 설정이 필요합니다.
+- ShedLock 사용시 MySQL이 아닌 Redis를 선택한 이유
+	- Redis를 이미 서비스에서 운영중이기 때문
+	- 종목의 현재가 갱신이 5초에 한번씩으로 짧은 주기로 설정되어 있음. 이는 락 처리 성능이 중요하기 때문에 Redis를 선택
+	- Redis 사용시 TTL 위주 자동락 해제, 빠른 락 처리를 지원함
 
 
