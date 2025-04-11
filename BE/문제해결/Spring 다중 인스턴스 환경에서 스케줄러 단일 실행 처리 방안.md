@@ -90,4 +90,25 @@ public void scheduledRefreshAllClosingPrice() {
 ```
 - `@SchedulerLock` 애노테이션을 `@Scheduled` 애노테이션이 정의되어 있는 메서드에 선언하여 락 설정을 합니다.
 - lockAtLeastFor : 스케줄러 실행이 완료된 후에도 최소 1분은 락을 가지며 유지합니다. 해당 옵션을 설정하면 1분 동안 다른 Spring 인스턴스가 스케줄러에 접근하지 못하고 실행하지 않습니다.
-- lockAtMostFor : 스케줄러 메서드가 오류에 빠져서 
+- lockAtMostFor : 스케줄러 메서드가 오류가 발생해서 실패하거나 멈췄을 경우, 이 시간이 지나면 자동으로 락을 해제합니다. 위 예제같은 경우에는 1분이 지나면 자동으로 해제합니다.
+	- 옵션을 사용하는 이유는 서버가 죽거나 작업중 예외가 발생해도 락이 그대로 남아버려서 락이 영원히 걸려버립니다. 이 문제를 해결하기 위해서 해당 옵션을 사용해서 자동으로 락을 해제합니다.
+
+### 실행 결과 확인
+스케줄러에 락이 걸리는지 확인하기 위해서 Spring 인스턴스 2개를 실행한 다음에 확인해보겠습니다. 그전에 다음과 같이 임시 스케줄러 메서드를 구현합니다.
+```java
+@Slf4j  
+@Component  
+public class ExampleScheduler {  
+  
+    @SchedulerLock(  
+       name = "exampleLock",  
+       lockAtLeastFor = "10s", // 최소 10초 유지  
+       lockAtMostFor = "1m"    // 최대 1분 뒤 자동 해제  
+    )  
+    @Scheduled(cron = "*/5 * * * * *") // 5초마다 실행  
+    public void run() {  
+       log.info("🔥 exampleLock 스케줄러 실행됨");  
+    }  
+}
+```
+
