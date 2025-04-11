@@ -30,4 +30,9 @@ management:
 ```
 
 
+### 프로메테우스에서 JVM 메모리 사용량 감지
+Spring Actuator는 다음과 같은 JVM 메모리 관련 메트릭을 제공합니다.
+- `jvm_memory_used_bytes{area="heap"}`
+- `jvm_memory_max_bytes{area="heap"}`
 
+OOM 경고 Rule 예시
