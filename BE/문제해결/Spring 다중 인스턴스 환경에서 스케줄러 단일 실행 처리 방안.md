@@ -38,3 +38,56 @@
 	- Redis 사용시 TTL 위주 자동락 해제, 빠른 락 처리를 지원함
 
 
+## ShedLock 라이브러리 적용
+### 의존성 추가
+```gradle
+implementation 'net.javacrumbs.shedlock:shedlock-spring:6.3.1'  
+implementation 'net.javacrumbs.shedlock:shedlock-provider-redis-spring:6.3.1'
+```
+
+### 스케줄러 설정 클래스 구현
+```java
+@EnableSchedulerLock(defaultLockAtLeastFor = "1m", defaultLockAtMostFor = "1m")  
+@EnableScheduling  
+@ConditionalOnProperty(value = "scheduling.enabled", havingValue = "true", matchIfMissing = true)  
+@Configuration  
+public class SchedulerConfig {  
+  
+    private final Environment env;  
+  
+    public SchedulerConfig(Environment env) {  
+       this.env = env;  
+    }  
+  
+    @Bean  
+    public LockProvider lockProvider(RedisConnectionFactory connectionFactory) {  
+       String lockEnv = env.getProperty("spring.profiles.active", "default");  
+       return new RedisLockProvider(connectionFactory, lockEnv);  
+    }  
+}
+```
+- 락 정보를 Redis에 저장하기 위해서 RedisLockProvider 스프링 빈을 설정합니다.
+
+
+### 스케줄러 설정
+```java
+  
+/**  
+ * 3시 30분에 한국투자증권의 모든 종목의 종가를 갱신합니다.  
+ * <p>  
+ * 한국투자증권의 모든 종목의 종가를 갱신합니다.  
+ * </p>  
+ */  
+@SchedulerLock(name = "kisClosingPriceScheduler", lockAtLeastFor = "1m", lockAtMostFor = "1m")  
+@Scheduled(cron = "${cron.expression.closing-price:0 30 15 * * ?}")  
+@Transactional(readOnly = true)  
+public void scheduledRefreshAllClosingPrice() {  
+    if (fileHolidayRepository.isHoliday(LocalDate.now())) {  
+       return;  
+    }  
+    kisService.refreshAllClosingPrice();  
+}
+```
+- `@SchedulerLock` 애노테이션을 `@Scheduled` 애노테이션이 정의되어 있는 메서드에 선언하여 락 설정을 합니다.
+- lockAtLeastFor : 스케줄러 실행이 완료된 후에도 최소 1분은 락을 가지며 유지합니다. 해당 옵션을 설정하면 1분 동안 다른 Spring 인스턴스가 스케줄러에 접근하지 못하고 실행하지 않습니다.
+- lockAtMostFor : 스케줄러 메서드가 오류에 빠져서 
