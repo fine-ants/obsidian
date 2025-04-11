@@ -36,3 +36,87 @@ Spring Actuator는 다음과 같은 JVM 메모리 관련 메트릭을 제공합�
 - `jvm_memory_max_bytes{area="heap"}`
 
 OOM 경고 Rule 예시
+프로메테우스 설정 파일에서 rule.yml 파일을 참조하는데 다음 코드는 rule.yml 파일의 설정 내용중 일부입니다.
+```yaml
+# rule.yml  
+groups:  
+  - name: system-monitor  
+    rules:  
+      - alert: HighJvmMemoryUsage  
+        expr: jvm_memory_used_bytes{area="heap"} / jvm_memory_max_bytes{area="heap"} > 0.9  
+        for: 1m  
+        labels:  
+          severity: warning  
+        annotations:  
+          summary: "High JVM memory usage on {{ $labels.instance }}"  
+          description: "{{ $labels.instance }} has a JVM memory usage above 90% (current value: {{ $value }})"
+```
+
+프로메테우스 설정
+```yaml
+# prometheus.yml  
+global:  
+  scrape_interval: 15s  
+  scrape_timeout: 15s  
+  evaluation_interval: 2m  
+  external_labels:  
+    monitor: 'system-monitor'  
+  query_log_file: query_log_file.log  
+alerting:  
+  alertmanagers:  
+    - static_configs:  
+        - targets:  
+            - 'alertmanager:9093'  
+rule_files:  
+  - "rule.yml"  
+scrape_configs:  
+  - job_name: "prometheus"  
+    static_configs:  
+      - targets:  
+          - "prometheus:9090"  
+  - job_name: "springboot"  
+    metrics_path: "/actuator/prometheus"  
+    scheme: "http"  
+    scrape_interval: 5s  
+    static_configs:  
+      - targets:  
+          - "host.docker.internal:8080"  
+    #          - "app:8080"
+    basic_auth:  
+      username: "{username}"
+      password: "{password}"
+```
+
+### alertmanager 설정
+alertmanager 컨테이너가 참조할 설정파일입니다.
+```yaml
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: ‘{email}’
+  smtp_auth_username: ‘{‘username}
+  smtp_auth_password: ‘{password}’
+route:
+  receiver: 'email-receiver'
+receivers:
+  - name: 'email-receiver'
+    email_configs:
+      - to: ‘{수신 받을 email}’
+```
+
+docker-compose 설정
+```yaml
+version: "3.8"  
+services:
+	alertmanager:  
+	  image: prom/alertmanager  
+	  container_name: fineAnts_alertmanager  
+	  volumes:  
+	    - ./secret/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml  
+	  command:  
+	    - '--config.file=/etc/alertmanager/alertmanager.yml'  
+	  ports:  
+	    - "9093:9093"  
+	  networks:  
+	    - spring-net
+```
+
