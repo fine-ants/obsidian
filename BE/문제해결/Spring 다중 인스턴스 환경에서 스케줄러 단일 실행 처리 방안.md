@@ -44,6 +44,9 @@
 implementation 'net.javacrumbs.shedlock:shedlock-spring:6.3.1'  
 implementation 'net.javacrumbs.shedlock:shedlock-provider-redis-spring:6.3.1'
 ```
+- 6.3.1 버전은 현재 작성 시점에 최신 버전입니다.
+- sheldlock-spring:6.3.1은 Spring 6, Spring Boot 3과 호환됩니다.
+- Spring Boot 3 이상의 프로젝트를 운영중이면 6.x 이상의 ShedLock 버전이 필수적입니다.
 
 ### 스케줄러 설정 클래스 구현
 ```java
@@ -111,4 +114,15 @@ public class ExampleScheduler {
     }  
 }
 ```
+
+Spring 인스턴스 2개를 실행해서 로그를 각각 확인해봅니다.
+다음 실행 결과는 첫번째 Spring 인스턴스의 로그입니다.
+![[Pasted image 20250411122548.png]]
+
+두번째 Spring 인스턴스의 로그는 다음과 같습니다.
+![[Pasted image 20250411122630.png]]
+
+두번째 Spring 인스턴스의 실행 결과에서 첫번째 로깅의 시각은 2025-04-11 12:25:30에 실행된 것을 볼수 있습니다. 첫번째 Spring 인스턴스의 실행 결과에서 해당 시각을 찾아보면 12:25:20 ~ 12:25:40 사이에 없는 것을 볼수 있습니다. 이는 12:25:30 시각에 두번째 Spring 인스턴스가 스케줄러를 실행하였고 그 시각에 첫번째 Spring 인스턴스는 락이 걸려서 실행하지 못한 것을 알 수 있습니다.
+
+위 실행 결과로 알 수 있는 사실은 2개의 Spring 인스턴스가 동시에 스케줄러를 실행하지 않고 둘 중 하나가 락을 얻어서 실행하는 것을 알수 있습니다. 락을 얻지 못한 다른 Spring 인스턴스는 해당 스케줄러를 실행하지 않고 다른 작업을 수행합니다.
 
