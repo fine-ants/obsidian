@@ -66,7 +66,7 @@ alerting:
   alertmanagers:  
     - static_configs:  
         - targets:  
-            - 'alertmanager:9093'  
+            - 'fineAnts_alertmanager:9093'  
 rule_files:  
   - "rule.yml"  
 scrape_configs:  
@@ -120,3 +120,23 @@ services:
 	    - spring-net
 ```
 
+
+oom 테스트 트리거
+```java
+@PostConstruct
+public void triggerOOM() {
+    new Thread(() -> {
+        List<byte[]> memoryHog = new ArrayList<>();
+        while (true) {
+            memoryHog.add(new byte[1024 * 1024]); // 1MB씩 할당
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ignored) {}
+        }
+    }).start();
+}
+
+```
+
+실행 결과는 다음과 같습니다.
+![[Pasted image 20250411155730.png]]
