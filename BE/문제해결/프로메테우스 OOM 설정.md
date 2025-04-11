@@ -35,7 +35,7 @@ Spring Actuator는 다음과 같은 JVM 메모리 관련 메트릭을 제공합�
 - `jvm_memory_used_bytes{area="heap"}`
 - `jvm_memory_max_bytes{area="heap"}`
 
-OOM 경고 Rule 예시
+OOM 경고 Rule 설정하기
 프로메테우스 설정 파일에서 rule.yml 파일을 참조하는데 다음 코드는 rule.yml 파일의 설정 내용중 일부입니다.
 ```yaml
 # rule.yml  
@@ -90,10 +90,11 @@ scrape_configs:
 ### alertmanager 설정
 alertmanager 컨테이너가 참조할 설정파일입니다.
 ```yaml
+# alertmanager.yml
 global:
   smtp_smarthost: 'smtp.gmail.com:587'
   smtp_from: ‘{email}’
-  smtp_auth_username: ‘{‘username}
+  smtp_auth_username: ‘{username}‘
   smtp_auth_password: ‘{password}’
 route:
   receiver: 'email-receiver'
@@ -102,11 +103,31 @@ receivers:
     email_configs:
       - to: ‘{수신 받을 email}’
 ```
+- email에는 이메일 전송하고자 하는 계정의 이메일을 작성합니다.
+- username과 password에는 2단계 인증 후에 생성되는 username과 password를 작성합니다.
+- 수신 받을 email에는 알림 발생시 이메일을 받을 관리자와 같은 이메일 주소를 작성합니다.
 
 docker-compose 설정
+docker-compose에 프로메테우스 및 alertmanager 서비스에 대해서 설정합니다.
 ```yaml
 version: "3.8"  
 services:
+	prometheus:  
+	  image: prom/prometheus:latest  
+	  container_name: fineAnts_prometheus  
+	  ports:  
+	    - "9090:9090"  
+	  command:  
+	    - '--web.enable-lifecycle'  
+	    - '--config.file=/etc/prometheus/prometheus.production.yml'  
+	    - '--web.console.libraries=/etc/prometheus/console_libraries'  
+	    - '--web.console.templates=/etc/prometheus/consoles'  
+	  restart: always  
+	  volumes:  
+	    - ./secret/prometheus/config:/etc/prometheus  
+	    - ./prometheus/volume:/prometheus  
+	  networks:  
+	    - spring-net
 	alertmanager:  
 	  image: prom/alertmanager  
 	  container_name: fineAnts_alertmanager  
@@ -121,7 +142,8 @@ services:
 ```
 
 
-oom 테스트 트리거
+oom 테스트
+다음 테스트는 로컬 환경에서 테스트하였습니다. Spring 코드에 다음과 같이 메서드를 정의한 다음에 서버를 실행시킵니다. 그러면 어느순간에 힙 사이즈가 초과했다고 에러가 발생할 것입니다.
 ```java
 @PostConstruct
 public void triggerOOM() {
