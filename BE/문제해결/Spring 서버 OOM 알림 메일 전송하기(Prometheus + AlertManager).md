@@ -31,14 +31,8 @@ management:
           - health  
 ```
 
-
-### 프로메테우스에서 JVM 메모리 사용량 감지
-Spring Actuator는 다음과 같은 JVM 메모리 관련 메트릭을 제공합니다.
-- `jvm_memory_used_bytes{area="heap"}`
-- `jvm_memory_max_bytes{area="heap"}`
-
-OOM 경고 Rule 설정하기
-프로메테우스 설정 파일에서 rule.yml 파일을 참조하는데 다음 코드는 rule.yml 파일의 설정 내용중 일부입니다.
+## 2. Prometheus 알림 Rule 설정
+`rule.yml` 예시
 ```yaml
 # rule.yml  
 groups:  
@@ -54,7 +48,7 @@ groups:
           description: "{{ $labels.instance }} has a JVM memory usage above 90% (current value: {{ $value }})"
 ```
 
-프로메테우스 설정
+Prometheus 설정(prometheus.yml)
 ```yaml
 # prometheus.yml  
 global:  
@@ -78,16 +72,29 @@ scrape_configs:
           - "prometheus:9090"  
   - job_name: "springboot"  
     metrics_path: "/actuator/prometheus"  
-    scheme: "http"  
+    scheme: "https"  
     scrape_interval: 5s  
     static_configs:  
       - targets:  
-          - "host.docker.internal:8080"  
-    #          - "app:8080"
+          - "services.fineants.co"
     basic_auth:  
       username: "{username}"
       password: "{password}"
 ```
+- global.rule_files 설정을 이용해서 알림 설정이 저장된 rule.yml 파일을 참조합니다.
+- alerting.alertmanagers.static_configs.targets
+
+### 프로메테우스에서 JVM 메모리 사용량 감지
+Spring Actuator는 다음과 같은 JVM 메모리 관련 메트릭을 제공합니다.
+- `jvm_memory_used_bytes{area="heap"}`
+- `jvm_memory_max_bytes{area="heap"}`
+
+OOM 경고 Rule 설정하기
+프로메테우스 설정 파일에서 rule.yml 파일을 참조하는데 다음 코드는 rule.yml 파일의 설정 내용중 일부입니다.
+
+
+프로메테우스 설정
+
 
 ### alertmanager 설정
 alertmanager 컨테이너가 참조할 설정파일입니다.
