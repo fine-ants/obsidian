@@ -82,22 +82,10 @@ scrape_configs:
       password: "{password}"
 ```
 - global.rule_files 설정을 이용해서 알림 설정이 저장된 rule.yml 파일을 참조합니다.
-- alerting.alertmanagers.static_configs.targets
+- alerting.alertmanagers.static_configs.targets 설정을 이용해서 알림을 수행하기 위한 alertmanager 서버의 호스트 및 포트를 설정합니다.
 
-### 프로메테우스에서 JVM 메모리 사용량 감지
-Spring Actuator는 다음과 같은 JVM 메모리 관련 메트릭을 제공합니다.
-- `jvm_memory_used_bytes{area="heap"}`
-- `jvm_memory_max_bytes{area="heap"}`
-
-OOM 경고 Rule 설정하기
-프로메테우스 설정 파일에서 rule.yml 파일을 참조하는데 다음 코드는 rule.yml 파일의 설정 내용중 일부입니다.
-
-
-프로메테우스 설정
-
-
-### alertmanager 설정
-alertmanager 컨테이너가 참조할 설정파일입니다.
+## 3. AlertManager 설정
+`alertmanager.yml` 예시
 ```yaml
 # alertmanager.yml
 global:
@@ -112,12 +100,10 @@ receivers:
     email_configs:
       - to: ‘{수신 받을 email}’
 ```
-- email에는 이메일 전송하고자 하는 계정의 이메일을 작성합니다.
-- username과 password에는 2단계 인증 후에 생성되는 username과 password를 작성합니다.
-- 수신 받을 email에는 알림 발생시 이메일을 받을 관리자와 같은 이메일 주소를 작성합니다.
+- Gmail 사용시 앱 비밀번호를 발급받아 `smtp_auth_password`에 입력해야 합니다.
 
-docker-compose 설정
-docker-compose에 프로메테우스 및 alertmanager 서비스에 대해서 설정합니다.
+## 4. Docker Compose 구성
+docker-compose 파일에서 프로메테우스 및 AlertManager 서비스에 대해서 구현합니다.
 ```yaml
 version: "3.8"  
 services:
@@ -151,8 +137,8 @@ services:
 ```
 
 
-oom 테스트
-다음 테스트는 로컬 환경에서 테스트하였습니다. Spring 코드에 다음과 같이 메서드를 정의한 다음에 서버를 실행시킵니다. 그러면 어느순간에 힙 사이즈가 초과했다고 에러가 발생할 것입니다.
+## 5. OOM 테스트 코드
+테스트를 위해서 다음과 같은 메서드를 작성하면 의도적으로 JVM 메모리를 과다하게 사용해 OOM을 발생시킬 수 있습니다.
 ```java
 @PostConstruct
 public void triggerOOM() {
@@ -166,8 +152,10 @@ public void triggerOOM() {
         }
     }).start();
 }
-
 ```
 
-실행 결과는 다음과 같습니다.
+위 예제 코드를 실행시켜서 설정한 알림이 정상적으로 전송되면 다음과 같은 결과를 메일로 전송받습니다. 다음 결과는 알림 설정을 일부 수정하여 힙 사용률이 1%를 초과하면 알림이 가도록 임시적으로 수정해서 확인한 결과입니다.
 ![[Pasted image 20250411155730.png]]
+
+## 결론
+Prometheus + AlertManager 조합을 통해 Spring 서버의 OOM 상황을 실시간으로 감지하고 자동으로 알림을 전송할 수 있게 되었습니다. 이는 시스템 장애의 빠른 대응과 안정성 확보에 큰 도움이 됩니다. Spring 환경에서는 Micrometer와 
