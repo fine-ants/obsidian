@@ -1,24 +1,26 @@
 
 ## 개요
-fineAnts 프로젝트를 수행하던중 프로메테우스 서비스를 배포하여 그라파나 서비스로 JVM을 모니터링은 가능했지만, 별도의 알림은 전송하지 않는 상태였습니다. 이 글에서는 Spring 서버가 OOM(OutOfMemory) 발생시 관리자 계정의 이메일로 전송하는 알림 설정을 해보도록 하겠습니다.
+fineAnts 프로젝트를 진행하던 중, Prometheus와 Grafana를 도입하여 JVM 상태를 시각화하고 모니터링 할 수 있었습니다. 그러나 메모리 부족(OutOfMemory, OOM)이나 인스턴스 다운과 같은 치명적인 상황 발생 시 별도의 알림 시스템이 없어 즉각적인 대응이 어려웠습니다.
+이 글에서는 Spring 서버에서 OOM 상황이 발생할 때 관리자 이메일로 알림을 전송하는 방법을 정리합니다. Prometheus로 메모리 상태를 감지하고 AlertManager를 통해서 이메일 알림을 전송하는 구조입니다.
 
-## 프로메테우스 OOM 설정 적용하기
-### 목표
-Spring 서버에서 JVM 메모리 사용량이 너무 높거나, OutOfMemory가 발생할 때 프로메테우스가 이를 감지하고 AlertManager를 통해서 이메일로 알림 전송하는게 목적입니다.
+## 목표
+Spring 애플리케이션의 JVM 힙 메모리 사용률이 90%를 초과하거나, OOM이 발생한 경우 관리자에게 이메일로 알림을 전송합니다.
 
-### 사전 준비사항
-- 프로메테우스 서버 운영 중
-- Spring 서버가 프로메테우스와 통신할 수 있도록 Micrometer + Actuator + Prometheus exporter 설정되어 있어야 합니다.
-- AlertManager와 연결되어 있어야 알림 전송이 가능합니다.
 
-### Spring에서 JVM 메모리 메트릭 노출
-`build.gradle` 의존성 추가
+## 사전 준비사항
+- Prometheus 서버가 정상 작동 중이어야 합니다.
+- Spring 애플리케이션이 Prometheus와 통신할 수 있도록 Micrometer 설정이 필요합니다.
+- AlertManager가 Prometheus와 연결되어 있어야 합니다.
+- 이메일 전송을 위한 SMTP 인증 정보가 준비되어 있어야 합니다.
+
+## 1. Spring에서 JVM 메모리 메트릭 노출 설정
+의존성 추가(`build.gradle`)
 ```gradle
 implementation 'io.micrometer:micrometer-registry-prometheus'
 implementation 'org.springframework.boot:spring-boot-starter-actuator'
 ```
 
-`application.yaml`
+`application.yaml` 설정
 ```yaml
 management:  
   endpoints:  
