@@ -158,4 +158,4 @@ public void triggerOOM() {
 ![[Pasted image 20250411155730.png]]
 
 ## 결론
-Prometheus + AlertManager 조합을 통해 Spring 서버의 OOM 상황을 실시간으로 감지하고 자동으로 알림을 전송할 수 있게 되었습니다. 이는 시스템 장애의 빠른 대응과 안정성 확보에 큰 도움이 됩니다. Spring 환경에서는 Micrometer와 
+Prometheus + AlertManager 조합을 통해 Spring 서버의 OOM 상황을 실시간으로 감지하고 자동으로 알림을 전송할 수 있게 되었습니다. 이는 시스템 장애의 빠른 대응과 안정성 확보에 큰 도움이 됩니다. Spring 환경에서는 Micrometer와 Actuator를 통해 JVM 메트릭을 쉽게 수집할 수 있으며 Prometheus와 연동만으로 고도화된 모니터링과 알림을 구현할 수 있습니다.
