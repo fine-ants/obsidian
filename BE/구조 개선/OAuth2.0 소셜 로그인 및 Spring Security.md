@@ -7,7 +7,7 @@ Spring Security 라이브러리를 추가하면서 소셜 로그인 기능을 �
 - 어떤 방식으로 구현하였는지(OAuth 2.0 흐름 직접 처리, 토큰 관리 등)
 - 구현 당시 어떤 이유로 직접 구현을 했는지를 설명
 
-기존 직접 구현한 소셜 로그인 방식의 수행 과정은 다음과 같습니다. 수행 과정에서 발생한 클라이언트와 서버간에 HTTP 요청과 응답은 컨트롤러 레이어에서 받은 다음에 서비스 레이어에서 처리되었습니다.
+기존 직접 구현한 소셜 로그인 방식의 수행 과정은 다음과 같습니다.
 1. 사용자는 소셜 플랫폼 인증을 위한 URL 생성을 서버에게 요청합니다.
 2. 서버는 소셜 플랫폼에 맞는 URL을 생성하여 응답합니다.
 	- 생성한 URL에는 인증 후 발급받은 인가 코드를 전달할 리다이렉션 주소가 쿼리 파라미터에 포함되어 있습니다.
@@ -20,7 +20,30 @@ Spring Security 라이브러리를 추가하면서 소셜 로그인 기능을 �
 		- 이 과정에서 생성한 액세스 토큰 및 리프레시 토큰은 소셜 플랫폼에서 발급한 액세스 토큰과 다르며 서버가 인증 정보 상태를 유지하기 위한 전략으로 JWT를 선택하였기 때문에 서버용으로 생성한 토큰들입니다.
 	5. 기본적인 회원 정보 및 JWT 정보를 ResponseBody에 포함하여 응답합니다.
 
-위와 같은 수행 과정과 같이 기존에 직접 구현한 소셜 로그인 방식은 액세스 토큰 발급, 프로필 정보 조회, 회원 정보 저장, JWT 정보 생성과 같은 과정을 서비스 레이어의 한 login 메서드에서 전부 처리하고 있습니다.
+위와 같은 수행 과정과 같이 기존에 직접 구현한 소셜 로그인 방식은 **컨트롤러 레이어에서 요청을 받은 다음에 서비스 메서드에서 액세스 토큰 발급, 프로필 정보 조회, 회원 정보 저장, JWT 정보 생성과 같은 과정을 한 login 메서드에서 전부 처리**하고 있습니다. 로그인 처리를 하는 코드는 다음과 같습니다.
+```java
+	public OauthMemberLoginResponse login(String provider, String code, String redirectUrl, String state,
+		LocalDateTime now) {
+		log.info("로그인 서비스 요청 : provider = {}, code = {}, redirectUrl = {}, state = {}", provider, code, redirectUrl,
+			state);
+		AuthorizationRequest request = getCodeVerifier(state);
+		OauthUserProfileResponse profileResponse = getOauthUserProfileResponse(provider, code, redirectUrl, request,
+			now, state);
+		Optional<Member> optionalMember = getLoginMember(provider, profileResponse);
+		Member member = optionalMember.orElseGet(() ->
+			Member.builder()
+				.email(profileResponse.getEmail())
+				.nickname(generateRandomNickname())
+				.provider(provider)
+				.profileUrl(profileResponse.getProfileImage())
+				.build());
+		Member saveMember = memberRepository.save(member);
+		Jwt jwt = jwtProvider.createJwtBasedOnMember(saveMember, now);
+		redisService.saveRefreshToken(saveMember.createRedisKey(), jwt);
+		return OauthMemberLoginResponse.of(jwt, saveMember);
+	}
+```
+- getOauthUserProfileResponse 메서드에서 WebClient를 이용하여 액세스 토큰을 발급받고 사용자 
 
 구현 당시 Spring Security 프레임워크를 이용하지 않고 직접 구현한 이유는 다음과 같았습니다.
 - Spring Security 프레임워크 숙련도의 미숙
