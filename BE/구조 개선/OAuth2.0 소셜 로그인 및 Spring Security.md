@@ -73,13 +73,14 @@ public class MemberService {
 **상태 검증(state, code_verifier, nonce)를 직접 관리**
 보안 핵심 요소인 state와 nonce, code_verifier를 직접 구현 및 상태 관리하고 있습니다. 실수 또는 동시성 이슈로 인해 보안 취약점이 있을 수 있습니다. Spring Security에서는 state, code_verifier, nonce를 자동으로 안전하게 처리합니다. 직접 구현시 누락/오류의 가능성이 크고 디버깅이 어렵습니다.
 
-provider별 분기 처리가 서비스 내부에 강하게 엮어 있습니다.
-OAuth/OIDC 구분, provider별 요청/응답 처리 로직이 코드 흐름 안에 직접적으로 노출되어 있습니다. 그리소 새로운 소셜 로그인 추가시 MemberService 코드까지 수정해야 합니다.
+**provider별 분기 처리가 서비스 내부에 강하게 엮어 있습니다.**
+OAuth/OIDC 구분, provider별 요청/응답 처리 로직이 코드 흐름 안에 직접적으로 노출되어 있습니다. 그리소 새로운 소셜 로그인 추가시 MemberService 코드까지 수정해야 합니다. 그래서 유지보수성이 낮고 확장성이 떨어지는 구조입니다.
 
-provider별 분기 처리가 서비스 내부에 강하게 결합되어 있습니다. OAuth/OIDC 구분, provider별 요청/응답 처리 로직이 코드 흐름안에 직접적으로 노출되어 있습니다. 예를 들어 구글, 카카오는 oicd를 지원하고, naver는 oicd를 지원하지 않기 때문에 분기 조건문이 있습니다. 새로운 소셜 로그인 추가시 MemberService 코드까지 수정해야 합니다. 유지보수성이 낮고 확장성이 떨어지는 구조입니다.
+**에러 처리가 분산되고 일관되지 않습니다.**
+OAuth 과정 중 발생할 수 있는 다양한 실패(토큰 발급 실패, 사용자 정보 조회 실패 등)에 대한 처리 로직이 부족하거나 일관되지 않습니다. 운영 문제가 발생해도 어디서 실패했는지 로그/에러 파악이 어렵습니다. 예외 발생시에도 사용자에게 일관된 응답 포맷으로 처리되지 않을 수 있습니다.
 
-
-
+Spring Security의 필터 체인과 분리된 인증 처리
+인증 로직이 Spring Security와 완전히 분리되어 있어, Spring Security의 인증 흐름(필터 체인, SecurityContext 등)을 활용하지 못합니다. 로그인 이후 사용자 인증 상태를 SecurityContextHolder에 수동으로 올려야 하며, 표준적인 방식이 아닙니다. 따라서 Spring Security 기반 권한 체크(@PreAuthorize, hasRole) 등 기능도 자연스럽게 연동되지 않습니다.
 
 ## Spring Security 도입 배경
 - 어떤 구조로 변경했는지
