@@ -1,12 +1,20 @@
 Spring Security 라이브러리를 추가하면서 소셜 로그인 기능을 다시 구현한 이유는 무엇인가요?
 
+- [[#개요|개요]]
+- [[#직접 구현한 소셜 로그인 방식|직접 구현한 소셜 로그인 방식]]
+	- [[#직접 구현한 소셜 로그인 방식#직접 구현한 소셜 로그인의 수행 과정|직접 구현한 소셜 로그인의 수행 과정]]
+	- [[#직접 구현한 소셜 로그인 방식#소셜 로그인을 직접 구현한 이유|소셜 로그인을 직접 구현한 이유]]
+- [[#직접 구현 방식의 한계|직접 구현 방식의 한계]]
+- [[#Spring Security 도입 배경|Spring Security 도입 배경]]
+- [[#유지보수성과 확장성 측면에서의 개선 효과|유지보수성과 확장성 측면에서의 개선 효과]]
+- [[#마무리 및 회고|마무리 및 회고]]
+
+
 ## 개요
 이 글에서는 기존 시스템에서 직접 구현한 OAuth 2.0 기반 소셜 로그인 기능을, Spring Security 라이브러리를 도입하면서 해당 프레임워크에 맞게 재구현하게 된 배경과 이유를 소개합니다. 직접 구현한 방식의 한계와 유지보수성 문제를 어떻게 Spring Security가 해결해주었는지도 함께 다룹니다.
 
 ## 직접 구현한 소셜 로그인 방식
-- 어떤 방식으로 구현하였는지(OAuth 2.0 흐름 직접 처리, 토큰 관리 등)
-- 구현 당시 어떤 이유로 직접 구현을 했는지를 설명
-
+### 직접 구현한 소셜 로그인의 수행 과정
 기존 직접 구현한 소셜 로그인 방식의 수행 과정은 다음과 같습니다.
 1. 사용자는 소셜 플랫폼 인증을 위한 URL 생성을 서버에게 요청합니다.
 2. 서버는 소셜 플랫폼에 맞는 URL을 생성하여 응답합니다.
@@ -22,6 +30,8 @@ Spring Security 라이브러리를 추가하면서 소셜 로그인 기능을 �
 
 위와 같은 수행 과정과 같이 기존에 직접 구현한 소셜 로그인 방식은 **컨트롤러 레이어에서 요청을 받은 다음에 서비스 메서드에서 액세스 토큰 발급, 프로필 정보 조회, 회원 정보 저장, JWT 정보 생성과 같은 과정을 한 login 메서드에서 전부 처리**하고 있습니다. 로그인 처리를 하는 코드는 다음과 같습니다.
 ```java
+@Service
+public class MemberService {
 	public OauthMemberLoginResponse login(String provider, String code, String redirectUrl, String state,
 		LocalDateTime now) {
 		log.info("로그인 서비스 요청 : provider = {}, code = {}, redirectUrl = {}, state = {}", provider, code, redirectUrl,
@@ -42,11 +52,13 @@ Spring Security 라이브러리를 추가하면서 소셜 로그인 기능을 �
 		redisService.saveRefreshToken(saveMember.createRedisKey(), jwt);
 		return OauthMemberLoginResponse.of(jwt, saveMember);
 	}
+}
 ```
-- getOauthUserProfileResponse 메서드에서 WebClient를 이용하여 액세스 토큰을 발급받고 사용자 
+- getOauthUserProfileResponse 메서드에서 WebClient를 이용하여 액세스 토큰을 발급받고 프로필 정보를 조회합니다.
 
+### 소셜 로그인을 직접 구현한 이유
 구현 당시 Spring Security 프레임워크를 이용하지 않고 직접 구현한 이유는 다음과 같았습니다.
-- Spring Security 프레임워크 숙련도의 미숙
+- Spring Security 프레임워크의 숙련도가 미숙하였습니다.
 - 구현 당시에는 일반 사용자에 대한 인증 처리면 충분하다고 판단하였습니다.
 - API 경로별 상세한 접근 권한이 필요치 않았습니다.
 
@@ -54,6 +66,8 @@ Spring Security 라이브러리를 추가하면서 소셜 로그인 기능을 �
 - 유지 보수의 어려움(예: 중복 코드, 보안 로직 누락 위험 등)
 - 확장성과 일관성의 부족
 - 테스트와 디버깅의 어려움
+
+
 
 ## Spring Security 도입 배경
 - 어떤 구조로 변경했는지
