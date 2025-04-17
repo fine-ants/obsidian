@@ -70,9 +70,21 @@ public class MemberService {
 위와 같이 구현한 직접 소셜 로그인을 구현하였을 때 다음과 같은 한계점을 가지고 있습니다.
 
 **커스텀 인증 플로우의 모든 책임이 서비스 메서드 하나에 집중되어 있습니다.** 
-하나의 서비스 메서드에서 너무 많은 일을 하고 있습니다. state 검증, 토큰 요청, 사용자 정보 조회, 회원 DB 조회/생성, JWT 발급, Redis에 저장하고 있습니다. 이는 SRP를 위반하고 있으며, 변경이나 테스트가 어려워집니다. 예를 들어 토큰 발급 방식이 변경되거나 프로필 정보 구조가 변경되면, 이 메서드 하나를 동시에 수정해야 함합니다. 이는 높은 결합도가 발생합니다.
+```java
+// MemberService.login() 메서드
+AuthorizationRequest request = getCodeVerifier(state);
+OauthUserProfileResponse profileResponse = getOauthUserProfileResponse(...);
+Optional<Member> optionalMember = getLoginMember(...);
+...
+Jwt jwt = jwtProvider.createJwtBasedOnMember(...);
+redisService.saveRefreshToken(...);
+```
+- login 메서드는 너무 많은 일을 하고 있습니다. 해당 메서드는 state 검증, 액세스 토큰 요청, 사용자 정보 조회, 회원 DB 조회/생성, JWT 발급, Redis 저장 등의 작업을 수행하고 있습니다.
+- 현재 구현한 메서드는 SRP(Single Responsibility Principal, 단일 책임 원칙)을 위반하고 있으며 변경이나 테스트가 어려워집니다.
+- 예를 들어 토큰 발급 방식이 변경되거나 프로필 정보 구조가 변경되면, 이 메서드 하나를 동시에 수정해야 합니다.
+	- 높은 결합도 발생
 
-**상태 검증(state, code_verifier, nonce)를 직접 관리**
+**상태 검증(state, code_verifier, nonce)를 직접 관리합니다**
 보안 핵심 요소인 state와 nonce, code_verifier를 직접 구현 및 상태 관리하고 있습니다. 실수 또는 동시성 이슈로 인해 보안 취약점이 있을 수 있습니다. Spring Security에서는 state, code_verifier, nonce를 자동으로 안전하게 처리합니다. 직접 구현시 누락/오류의 가능성이 크고 디버깅이 어렵습니다.
 
 **provider별 분기 처리가 서비스 내부에 강하게 엮어 있습니다.**
