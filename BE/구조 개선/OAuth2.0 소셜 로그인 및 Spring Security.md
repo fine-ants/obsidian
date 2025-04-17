@@ -379,7 +379,72 @@ private AuthorizationRequest getCodeVerifier(String state) {
 }
 ```
 
-#### 액세스 토큰 발급
+#### 액세스 토큰 발급 개선 효과 비교
+Spring Security 프레임워크를 도입하면 소셜 로그인 처리시 인가코드를 이용하여 액세스 토큰 발급시 OAuth2AccessTokenResponseClient 인터페이스와 구현체를 사용하여 액세스 토큰 결과를 응답합니다. 다음 코드는 OAuth2AccessTokenResponseClient 인터페이스의 구현체 클래스 코드입니다.
+```java
+public final class DefaultAuthorizationCodeTokenResponseClient  
+       implements OAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest> {  
+  
+    // ...
+  
+    @Override  
+    public OAuth2AccessTokenResponse getTokenResponse(  
+          OAuth2AuthorizationCodeGrantRequest authorizationCodeGrantRequest) {  
+       Assert.notNull(authorizationCodeGrantRequest, "authorizationCodeGrantRequest cannot be null");  
+       RequestEntity<?> request = this.requestEntityConverter.convert(authorizationCodeGrantRequest);  
+       ResponseEntity<OAuth2AccessTokenResponse> response = getResponse(request);  
+       // As per spec, in Section 5.1 Successful Access Token Response  
+       // https://tools.ietf.org/html/rfc6749#section-5.1       // If AccessTokenResponse.scope is empty, then we assume all requested scopes were       // granted.       // However, we use the explicit scopes returned in the response (if any).       OAuth2AccessTokenResponse tokenResponse = response.getBody();  
+       Assert.notNull(tokenResponse,  
+             "The authorization server responded to this Authorization Code grant request with an empty body; as such, it cannot be materialized into an OAuth2AccessTokenResponse instance. Please check the HTTP response code in your server logs for more details.");  
+       return tokenResponse;  
+    }  
+  
+    private ResponseEntity<OAuth2AccessTokenResponse> getResponse(RequestEntity<?> request) {  
+       try {  
+          return this.restOperations.exchange(request, OAuth2AccessTokenResponse.class);  
+       }  
+       catch (RestClientException ex) {  
+          OAuth2Error oauth2Error = new OAuth2Error(INVALID_TOKEN_RESPONSE_ERROR_CODE,  
+                "An error occurred while attempting to retrieve the OAuth 2.0 Access Token Response: "  
+                      + ex.getMessage(),  
+                null);  
+          throw new OAuth2AuthorizationException(oauth2Error, ex);  
+       }  
+    }
+}
+```
+
+다음 코드는 제가 직접 구현한 액세스 토큰 발급 코드입니다. 다음 코드를 보면 WebClient를 이용하여 액세스 토큰을 발급받습니다. 그런데 provider에 따라서 OAuth 2.0, OIDC 기반이 다르기 때문에 별도의 조건문 분기가 들어있고 기반 기술에 따라서 별도로 처리됩니다. 또한 Spring Security는 액세스 토큰을 발급받는 부분과 프로필 정보를 조회하는 부분을 별도로 나누었는데, 제가 구현한 부분에서는 액세스 토큰 발급과 사용자 프로필 정보 조회하는 부분을 하나의 메서드에서 한꺼번에 처리하는 것을 볼 수 있습니다.
+```java
+	private OauthUserProfileResponse getOauthUserProfileResponse(String provider, String authorizationCode,
+		String redirectUrl, AuthorizationRequest authorizationRequest, LocalDateTime now, String state) {
+		OauthClient oauthClient = oauthClientRepository.findOneBy(provider);
+		OauthAccessTokenResponse accessTokenResponse = webClientWrapper.post(
+			oauthClient.getTokenUri(),
+			oauthClient.createTokenHeader(),
+			oauthClient.createTokenBody(authorizationCode, redirectUrl, authorizationRequest.getCodeVerifier(), state),
+			OauthAccessTokenResponse.class);
+
+		if (oauthClient.isSupportOICD()) {
+			DecodedIdTokenPayload payload = oauthClient.decodeIdToken(
+				accessTokenResponse.getIdToken(),
+				authorizationRequest.getNonce(),
+				now);
+			return OauthUserProfileResponse.from(payload);
+		}
+		LinkedMultiValueMap<String, String> header = new LinkedMultiValueMap<>();
+		header.add(HttpHeaders.AUTHORIZATION,
+			String.format("%s %s", accessTokenResponse.getTokenType(), accessTokenResponse.getAccessToken()));
+		Map<String, Object> attributes = webClientWrapper.get(oauthClient.getUserInfoUri(), header,
+			new ParameterizedTypeReference<>() {
+			});
+		return oauthClient.createOauthUserProfileResponse(attributes);
+	}
+```
+
+
+#### 사용자 프로필 조회 개선 비교
 
 
 
