@@ -219,7 +219,25 @@ public class CustomOAuth2UserService extends AbstractUserService
     }  
 }
 ```
-- 
+- loadUser() 메서드에서 OAuth2UserRequest 객체를 매개변수로 받아서 delegate.loadUser() 메서드 실행시 전달하여 액세스 토큰을 이용하여 프로필 정보를 받아옵니다. 
+
+다음 읿부 메서드 코드는 OAuth2LoginAuthenticationProvider 클래스의 인증 메서드입니다. this.userService를 보면 OAuth2UserService 인터페이스로써 프로필 정보를 가져옵니다. 이와 같이 로그인하는 소셜 플랫폼이 OAuth2.0 기반인 경우에는 다음과 같이 표준화되어 처리됩니다. OIDC 기반 같은 경우에는 OidcAuthorizationCodeAuthenticationProvider 라는 클래스에서 별도로 표준적으로 처리됩니다.
+```java
+@Override  
+public Authentication authenticate(Authentication authentication) throws AuthenticationException {     // ...
+    OAuth2User oauth2User = this.userService.loadUser(new OAuth2UserRequest(  
+          loginAuthenticationToken.getClientRegistration(), accessToken, additionalParameters));  
+    Collection<? extends GrantedAuthority> mappedAuthorities = this.authoritiesMapper  
+       .mapAuthorities(oauth2User.getAuthorities());  
+    OAuth2LoginAuthenticationToken authenticationResult = new OAuth2LoginAuthenticationToken(  
+          loginAuthenticationToken.getClientRegistration(), loginAuthenticationToken.getAuthorizationExchange(),  
+          oauth2User, mappedAuthorities, accessToken, authorizationCodeAuthenticationToken.getRefreshToken());  
+    authenticationResult.setDetails(loginAuthenticationToken.getDetails());  
+    return authenticationResult;  
+}
+```
+
+다음은 Spring Security를 도입하여 필터단에서 인증/인가 처리를 수행하던 중에 오류가 발생하면 어떻게 일관되게 예외 처리를 수행하는지 확인합니다.
 
 
 
