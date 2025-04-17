@@ -122,8 +122,51 @@ Spring Security 프레임워크를 도입을 고려한 배경은 API의 경로�
 
 예를 들어 Spring Security 프레임워크를 적용하여 다음과 같이 API 경로별 접근 권한 제어를 쉽게 설정할 수 있습니다.
 ```java
-
+@Bean  
+@Order(2)  
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {  
+    http  
+       .authorizeHttpRequests(authorize ->  
+          authorize  
+             .requestMatchers(  
+                "/oauth2/authorization/**",  
+                "/login/oauth2/code/**",  
+                "/api/oauth/redirect",  
+                "/api/auth/signup",  
+                "/api/auth/signup/duplicationcheck/nickname/**",  
+                "/api/auth/signup/duplicationcheck/email/**",  
+                "/api/auth/signup/verifyEmail",  
+                "/api/auth/signup/verifyCode",  
+                "/api/auth/refresh/token",  
+                "/api/stocks/search",  
+                "/api/stocks/**",  
+                "/health-check",  
+                "/error"  
+             ).permitAll()  
+             .anyRequest().authenticated());
+    // ...
+}
 ```
+위와 같은 설정을 보면 여러가지 API 경로와 경로 패턴이 존재하는데 위 경로들은 인증이 필요치 않고 이용할 수 있는 API들입니다. 그 외의 API 경로들은 인증이 요구됩니다.
+
+이번에는 특정 컨트롤러의 API 메서드입니다.
+```java
+@RestController  
+@RequestMapping("/api/exchange-rates")  
+@RequiredArgsConstructor  
+public class ExchangeRateRestController {
+	// ...
+    @GetMapping  
+    @Secured(value = {"ROLE_MANAGER", "ROLE_ADMIN"})  
+    public ApiResponse<ExchangeRateListResponse> readExchangeRates() {  
+       ExchangeRateListResponse response = service.readExchangeRates();  
+       return ApiResponse.success(ExchangeRateSuccessCode.READ_EXCHANGE_RATE, response);  
+    }
+}
+```
+위 API 메서드는 환율 정보들을 조회하는 메서드입니다. `@Secured` 애노테이션을 설정해서 해당 API는 매니저 또는 관리자 권한을 가진 사용자만 접근할 수 잇습니다.
+
+위와 같이 Spring Security 프레임워크를 도입하게 되면 hasRole()을 이용해
 
 ## 유지보수성과 확장성 측면에서의 개선 효과
 - 코드 구조 정리
