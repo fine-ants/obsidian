@@ -313,6 +313,35 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
 
 ### 코드 구조 개선 효과
+기존에 구현한 소셜 로그인 처리 코드는 다음과 같습니다.
+```java
+@Service
+public class MemberService {
+	public OauthMemberLoginResponse login(String provider, String code, String redirectUrl, String state,
+		LocalDateTime now) {
+		log.info("로그인 서비스 요청 : provider = {}, code = {}, redirectUrl = {}, state = {}", provider, code, redirectUrl,
+			state);
+		AuthorizationRequest request = getCodeVerifier(state);
+		OauthUserProfileResponse profileResponse = getOauthUserProfileResponse(provider, code, redirectUrl, request,
+			now, state);
+		Optional<Member> optionalMember = getLoginMember(provider, profileResponse);
+		Member member = optionalMember.orElseGet(() ->
+			Member.builder()
+				.email(profileResponse.getEmail())
+				.nickname(generateRandomNickname())
+				.provider(provider)
+				.profileUrl(profileResponse.getProfileImage())
+				.build());
+		Member saveMember = memberRepository.save(member);
+		Jwt jwt = jwtProvider.createJwtBasedOnMember(saveMember, now);
+		redisService.saveRefreshToken(saveMember.createRedisKey(), jwt);
+		return OauthMemberLoginResponse.of(jwt, saveMember);
+	}
+}
+```
+위 코드를 보면 하나의 메서드에 state 검증, 액세스 토큰 발급, 사용자 프로필 정보 조회, 회원 생성/갱신, JWT 생성, API 응답 데이터 생성 등을 수행하고 있습니다. 이는 메서드 하나에 많은 책임을 가지고 있는 것을 볼수 있습니다.
+
+Spring Security 도입시 state 검증 같은 경우에는 `AuthorizationRequestRepository` 인터페이스의 구현체인 `HttpSessionOAuth2AuthorizationRequestRepository` 클래스가 처리합니다. 예를 들어 
 
 ### 보안 정책 일관성 개선 효과
 ### 기능 확장 또는 정책 변경시 개선 효과
