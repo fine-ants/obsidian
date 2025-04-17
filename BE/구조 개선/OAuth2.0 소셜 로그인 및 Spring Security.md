@@ -445,8 +445,73 @@ public final class DefaultAuthorizationCodeTokenResponseClient
 
 
 #### 사용자 프로필 조회 개선 비교
+Spring Security를 도입하고 소셜 로그인 처리시 사용자의 프로필 정보를 조회하는 부분은 OAuth2UserService 인터페이스가 담당합니다. 해당 인터페이스의 구현체로 DefaultOAuth2UserService 구현체도 있지만 저는 커스텀하게 처리하기 위해서 CustomOAuth2UserService 구현체를 구현한 다음에 주입하였습니다.
+```java
+@Slf4j  
+@Service  
+public class CustomOAuth2UserService extends AbstractUserService  
+    implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {  
+  
+    public CustomOAuth2UserService(MemberRepository memberRepository,  
+       NotificationPreferenceRepository notificationPreferenceRepository,  
+       NicknameGenerator nicknameGenerator, RoleRepository roleRepository) {  
+       super(memberRepository, notificationPreferenceRepository, nicknameGenerator, roleRepository);  
+    }  
+  
+    @Override  
+    @Transactional    
+    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {  
+       OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();  
+       OAuth2User oAuth2User = delegate.loadUser(userRequest);  
+       OAuthAttribute attributes = getUserInfo(userRequest, oAuth2User);  
+       Member member = saveOrUpdate(attributes);  
+       return createOAuth2User(member, userRequest, attributes.getSub());  
+    }  
+  
+    @Override  
+    OAuth2User createOAuth2User(Member member, OAuth2UserRequest userRequest, String sub) {  
+       Collection<? extends GrantedAuthority> authorities = member.getSimpleGrantedAuthorities();  
+       Map<String, Object> memberAttribute = member.toAttributeMap();  
+       String nameAttributeKey = userRequest.getClientRegistration()  
+          .getProviderDetails()  
+          .getUserInfoEndpoint()  
+          .getUserNameAttributeName();  
+       memberAttribute.put(nameAttributeKey, sub);  
+       return new DefaultOAuth2User(authorities, memberAttribute, nameAttributeKey);  
+    }  
+}
+```
+- 위 구현에서 delegate 객체에게 loadUser 메서드를 호출함으로써 사용자 프로필 정보를 조회하고 반환값으로 OAuth2User 객체를 반환받습니다.
 
+이번에는 기존 인증시스템에 구현한 사용자 프로필 정보 조회 부분을 비교해봅니다. 다음 코드를 보면 기존에 구현한 코드에서는 하나의 메서드에서 액세스 토큰을 발급받고 발급받은 토큰을 이용하여 사용자 프로필 정보를 조회하는 것을 볼수 있습니다. 이는 어찌보면 하나의 메서드에 2가지 책임이 들어있는 것을 볼수 있고 Spring Security에서는 액세스 토큰을 발급받는 부분과 프로필 조회 부분을 별도의 인터페이스로 분리한 것을 알수 있습니다.
+```java
+	private OauthUserProfileResponse getOauthUserProfileResponse(String provider, String authorizationCode,
+		String redirectUrl, AuthorizationRequest authorizationRequest, LocalDateTime now, String state) {
+		OauthClient oauthClient = oauthClientRepository.findOneBy(provider);
+		OauthAccessTokenResponse accessTokenResponse = webClientWrapper.post(
+			oauthClient.getTokenUri(),
+			oauthClient.createTokenHeader(),
+			oauthClient.createTokenBody(authorizationCode, redirectUrl, authorizationRequest.getCodeVerifier(), state),
+			OauthAccessTokenResponse.class);
 
+		if (oauthClient.isSupportOICD()) {
+			DecodedIdTokenPayload payload = oauthClient.decodeIdToken(
+				accessTokenResponse.getIdToken(),
+				authorizationRequest.getNonce(),
+				now);
+			return OauthUserProfileResponse.from(payload);
+		}
+		LinkedMultiValueMap<String, String> header = new LinkedMultiValueMap<>();
+		header.add(HttpHeaders.AUTHORIZATION,
+			String.format("%s %s", accessTokenResponse.getTokenType(), accessTokenResponse.getAccessToken()));
+		Map<String, Object> attributes = webClientWrapper.get(oauthClient.getUserInfoUri(), header,
+			new ParameterizedTypeReference<>() {
+			});
+		return oauthClient.createOauthUserProfileResponse(attributes);
+	}
+```
+#### 회원 생성 및 갱신 부분 비교
+Spring Security를 도입하여 
 
 
 
