@@ -341,7 +341,49 @@ public class MemberService {
 ```
 위 코드를 보면 하나의 메서드에 state 검증, 액세스 토큰 발급, 사용자 프로필 정보 조회, 회원 생성/갱신, JWT 생성, API 응답 데이터 생성 등을 수행하고 있습니다. 이는 메서드 하나에 많은 책임을 가지고 있는 것을 볼수 있습니다.
 
-Spring Security 도입시 state 검증 같은 경우에는 `AuthorizationRequestRepository` 인터페이스의 구현체인 `HttpSessionOAuth2AuthorizationRequestRepository` 클래스가 처리합니다. 예를 들어 
+#### state 검증 개선 비교
+Spring Security 도입시 state 검증 같은 경우에는 `AuthorizationRequestRepository` 인터페이스의 구현체인 `HttpSessionOAuth2AuthorizationRequestRepository` 클래스가 처리합니다. 예를 들어 다음 코드는 소셜 로그인시 세션에 저장된 state 값을 불러와서 Request의 state 파라미터와 동일한지 검증합니다.
+```java
+public final class HttpSessionOAuth2AuthorizationRequestRepository  
+       implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {  
+  
+    private static final String DEFAULT_AUTHORIZATION_REQUEST_ATTR_NAME = HttpSessionOAuth2AuthorizationRequestRepository.class  
+       .getName() + ".AUTHORIZATION_REQUEST";  
+  
+    private final String sessionAttributeName = DEFAULT_AUTHORIZATION_REQUEST_ATTR_NAME;  
+  
+    @Override  
+    public OAuth2AuthorizationRequest loadAuthorizationRequest(HttpServletRequest request) {  
+       Assert.notNull(request, "request cannot be null");  
+       String stateParameter = getStateParameter(request);  
+       if (stateParameter == null) {  
+          return null;  
+       }  
+       OAuth2AuthorizationRequest authorizationRequest = getAuthorizationRequest(request);  
+       return (authorizationRequest != null && stateParameter.equals(authorizationRequest.getState()))  
+             ? authorizationRequest : null;  
+    }
+}
+```
+
+반면 기존 인증 시스템에서 구현된 state 검증은 다음과 같았습니다. 이러한 state를 검증하는 메서드를 Spring Security 프레임워크에서는 `AuthorizationRequestRepository` 인터페이스로 분리하였습니다. 그래서 프레임워크를 이용하는 개발자는 별도의 state 검증하는 코드를 구현할 필요가 없습니다.
+```java
+private AuthorizationRequest getCodeVerifier(String state) {
+	log.info("AuthorizationRequest 조회 : state={}", state);
+	log.info("authorizationRequestMap : {}", authorizationRequestMap);
+	AuthorizationRequest request = authorizationRequestMap.remove(state);
+	if (request == null) {
+		throw new BadRequestException(OauthErrorCode.WRONG_STATE);
+	}
+	return request;
+}
+```
+
+#### 액세스 토큰 발급
+
+
+
+
 
 ### 보안 정책 일관성 개선 효과
 ### 기능 확장 또는 정책 변경시 개선 효과
