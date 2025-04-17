@@ -118,8 +118,6 @@ Spring Security 프레임워크를 도입을 고려한 배경은 API의 경로�
 - 소셜 로그인에서 추가적인 플랫폼이 추가되어도 기존 코드를 수정하지 않고 확장이 쉽습니다.
 - 인증이 실패하거나, 권한이 부족하여 오류가 발생할 때 예외 처리 흐름을 필터 단에서 일관되게 처리합니다.
 
-소셜 로그인 처리시 OAuth 2.0이나 OIDC 구분하지 않고 표준화된 방식으로 처리합니다. Spring Security에서 제공하는 @Secured 애노테이션이나 hasRole()와 같은 설정을 이용해서 API 경로별 접근 권한 제어를 쉽게 할 수 있습니다. 
-
 예를 들어 Spring Security 프레임워크를 적용하여 다음과 같이 API 경로별 접근 권한 제어를 쉽게 설정할 수 있습니다.
 ```java
 @Bean  
@@ -164,9 +162,66 @@ public class ExchangeRateRestController {
     }
 }
 ```
-위 API 메서드는 환율 정보들을 조회하는 메서드입니다. `@Secured` 애노테이션을 설정해서 해당 API는 매니저 또는 관리자 권한을 가진 사용자만 접근할 수 잇습니다.
+readExchangeRates() 메서드는 환율 정보들을 조회하는 메서드입니다. `@Secured` 애노테이션을 설정해서 해당 API는 매니저 또는 관리자 권한을 가진 사용자만 접근할 수 잇습니다. 위와 같이 Spring Security 프레임워크를 도입하게 되면 hasRole()을 이용해서 경로별로 접근 권한을 설정할 수 있거나 아니면 컨트롤러 메서드에 `@Secured` 애노테이션을 사용하여 요구되는 권한을 설정할 수 있습니다.
 
-위와 같이 Spring Security 프레임워크를 도입하게 되면 hasRole()을 이용해
+다음은 OAuth 2.0, OIDC 기반 소셜 로그인 방식을 표준화하여 처리하기 위한 설정 코드입니다.
+```java
+@Bean  
+@Order(2)  
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {  
+    // ...
+    http  
+       .oauth2Login(configurer -> configurer  
+          .userInfoEndpoint(config -> config  
+             .userService(customOAuth2UserService())  
+             .oidcUserService(customOidcUserService())  
+          )  
+          .successHandler(oauth2SuccessHandler()));  
+    // ...
+    return http.build();  
+}
+```
+- 설정을 보면 OAuth 2.0 로그인 설정에서 별도의 customOAuth2UserService와 customOidcUserService를 주입해서 처리하는 것을 볼수 있습니다.
+- custom으로  시작하는 서비스는 개발자가 직접 구현해서 주입해야 합니다.
+
+예를 들어 customOAuth2UserService의 구현은 다음과 같습니다.
+```java
+@Slf4j  
+@Service  
+public class CustomOAuth2UserService extends AbstractUserService  
+    implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {  
+  
+    public CustomOAuth2UserService(MemberRepository memberRepository,  
+       NotificationPreferenceRepository notificationPreferenceRepository,  
+       NicknameGenerator nicknameGenerator, RoleRepository roleRepository) {  
+       super(memberRepository, notificationPreferenceRepository, nicknameGenerator, roleRepository);  
+    }  
+  
+    @Override  
+    @Transactional    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {  
+       OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();  
+       OAuth2User oAuth2User = delegate.loadUser(userRequest);  
+       OAuthAttribute attributes = getUserInfo(userRequest, oAuth2User);  
+       Member member = saveOrUpdate(attributes);  
+       return createOAuth2User(member, userRequest, attributes.getSub());  
+    }  
+  
+    @Override  
+    OAuth2User createOAuth2User(Member member, OAuth2UserRequest userRequest, String sub) {  
+       Collection<? extends GrantedAuthority> authorities = member.getSimpleGrantedAuthorities();  
+       Map<String, Object> memberAttribute = member.toAttributeMap();  
+       String nameAttributeKey = userRequest.getClientRegistration()  
+          .getProviderDetails()  
+          .getUserInfoEndpoint()  
+          .getUserNameAttributeName();  
+       memberAttribute.put(nameAttributeKey, sub);  
+       return new DefaultOAuth2User(authorities, memberAttribute, nameAttributeKey);  
+    }  
+}
+```
+- 
+
+
 
 ## 유지보수성과 확장성 측면에서의 개선 효과
 - 코드 구조 정리
