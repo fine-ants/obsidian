@@ -238,8 +238,61 @@ public Authentication authenticate(Authentication authentication) throws Authent
 ```
 
 다음은 Spring Security를 도입하여 필터단에서 인증/인가 처리를 수행하던 중에 오류가 발생하면 어떻게 일관되게 예외 처리를 수행하는지 확인합니다.
+```java
+@Bean  
+@Order(2)  
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {  
+    // ...
+    http.exceptionHandling(configurer -> configurer  
+       .authenticationEntryPoint(commonLoginAuthenticationEntryPoint)  
+       .accessDeniedHandler(customAccessDeniedHandler()));  
+	// ...
+    return http.build();  
+}
+```
+- 위 설정을 보면 인증 관련해서 오류 처리는 commonLoginAuthenticationEntryPoint 객체가 처리하고 인가 관련한 오류 처리는 customAccessDeniedHandler가 처리하는 것을 알 수 있습니다.
 
+예를 들어 필터 단에서 인증 오류가 발생하면 예외 처리되서 위에서 주입한 commonLoginAuthenticationEntryPoint로 전달됩니다.
+```java
+@RequiredArgsConstructor  
+@Slf4j  
+public class CommonLoginAuthenticationEntryPoint implements AuthenticationEntryPoint {  
+    private final ObjectMapper objectMapper;  
+  
+    @Override  
+    public void commence(HttpServletRequest request, HttpServletResponse response,  
+       AuthenticationException exception) throws IOException {  
+       ErrorCode errorCode = ErrorCode.UNAUTHORIZED;  
+       ApiResponse<String> body = ApiResponse.error(HttpStatus.UNAUTHORIZED, errorCode);  
+       response.setStatus(HttpStatus.UNAUTHORIZED.value());  
+       response.setContentType(MediaType.APPLICATION_JSON_VALUE);  
+       response.setCharacterEncoding("utf-8");  
+       response.getWriter().write(objectMapper.writeValueAsString(body));  
+    }  
+}
+```
+- 코드를 보면 클라이언트에게 응답하기 위해서 헤더 설정을 하고 Body에 에러 객체를 직렬화하여 설정하는 것을 볼수 있습니다.
 
+인가 관련해서 오류가 발생하면 customAccessDeniedHandler로 전달되어 다음과 같이 처리됩니다.
+```java
+public class CustomAccessDeniedHandler implements AccessDeniedHandler {  
+  
+    @Override  
+    public void handle(HttpServletRequest request, HttpServletResponse response,  
+       AccessDeniedException exception) throws IOException {  
+       ApiResponse<Object> body = ApiResponse.of(HttpStatus.FORBIDDEN, exception.getMessage(),  
+          exception.toString());  
+       response.setContentType(MediaType.APPLICATION_JSON_VALUE);  
+       response.setStatus(HttpStatus.FORBIDDEN.value());  
+       response.getWriter().write(body.toString());  
+       response.getWriter().flush();  
+       response.getWriter().close();  
+    }  
+}
+```
+- 위 구현을 보면 HTTP Response에 헤더 및 Body를 설정하는 것을 볼수 있습니다.
+
+위와 같이 Spring Security 프레임워크를 적용하면 API 경로별 접근 권한 제어를 쉽게 할 수 있고 소셜 로그인 구현시 OAuth2.0, OIDC 기반을 구분하지 않고 표준화되어 처리할 수 있습니다. 그리고 인증 및 인가 처리시 별도의 핸들러를 주입하면 오류를 일관되게 처리할 수 있습니다.
 
 ## 유지보수성과 확장성 측면에서의 개선 효과
 - 코드 구조 정리
