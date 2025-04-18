@@ -1,5 +1,3 @@
-Spring Security 라이브러리를 추가하면서 소셜 로그인 기능을 다시 구현한 이유는 무엇인가요?
-
 
 - [[#개요|개요]]
 - [[#직접 구현한 소셜 로그인 방식|직접 구현한 소셜 로그인 방식]]
@@ -11,8 +9,8 @@ Spring Security 라이브러리를 추가하면서 소셜 로그인 기능을 �
 	- [[#Spring Security 도입#기존 인증 시스템을 Spring Security 프레임워크에 맞게 재구현한 이유|기존 인증 시스템을 Spring Security 프레임워크에 맞게 재구현한 이유]]
 	- [[#Spring Security 도입#Spring Security 프레임워크를 도입했을 때 효과는 무엇인가?|Spring Security 프레임워크를 도입했을 때 효과는 무엇인가?]]
 	- [[#Spring Security 도입#인증 시스템 구조는 어떻게 변경되었는가?|인증 시스템 구조는 어떻게 변경되었는가?]]
-- [[#마무리 및 회고|마무리 및 회고]]
-
+- [[#정리하며|정리하며]]
+- [[#References|References]]
 
 ## 개요
 이 글에서는 기존 시스템에서 직접 구현한 OAuth 2.0 기반 소셜 로그인 기능을, Spring Security 라이브러리를 도입하면서 해당 프레임워크에 맞게 재구현하게 된 배경과 이유를 소개합니다. 마지막으로 직접 구현한 소셜 로그인 인증 시스템의 문제점과 Spring Security를 도입하면서 어떻게 구조를 개선하였는지도 다룹니다.
@@ -72,19 +70,11 @@ public class MemberService {
 - 소셜 로그인 수행시 보안적인 요소를 수동적으로 처리하고 있습니다. state, code_verifier, nonce 등의 중요한 보안 요소를 직접 다루고 있습니다.
 - 새로운 소셜 로그인 플랫폼이 추가되는 경우 수정이 필요합니다. 예를 들어 OauthClient를 관리하는 OauthClientRepository에 새로운 소셜 플랫폼을 추가하는 코드를 추가하여야 합니다. 그리고 소셜 플랫폼 정보를 가지고 있는 OauthClient 구현체 클래스를 확장해야 합니다.
 
-위 설명을 표로 정리하면 다음과 같습니다.
-
-| 문제              | 설명                                                 |
-| --------------- | -------------------------------------------------- |
-| 책임 집중           | 인증, DB 처리, 토큰 발급 등 많은 책임이 한 메서드에 몰려 있음             |
-| 보안 요소 수동 처리     | state, code_verifier, nonce 등 중요한 보안 요소를 직접 다루고 있음 |
-| provider 추가 어려움 | 새로운 소셜 로그인 추가시 서비스 로직 수정 필요                        |
-
 ## Spring Security 도입
 ### Spring Security 프레임워크를 도입하게 된 이유
 Spring Security 프레임워크를 도입하게 된 이유는 **인가 처리 필요성** 때문이었습니다. 기존에는 인증된 사용자만 사용할 수 있는 API로도 충분했지만, 시간이 지나면서 서버 관리 목적의 관리자 전용의 API가 필요하게 되었습니다. 이에 따라 API별로 권한을 세분화 할 수 있는 인가 시스템이 필요하게 되었고, Spring Security를 도입하게 되었습니다.
 
-### 기존 인증 시스템을 Spring Security 프레임워크에 맞게 재구현한 이유
+### 기존 인증 시스템이 구현되어 있는데, Spring Security 프레임워크에 맞게 재구현한 이유
 Spring Security 프레임워크를 도입하면서, 기존 인증 시스템을 유지한 상태로 프레임워크의 인가 처리 기능만 활용하려면 인증 후 별도의 추가 작업이 필요했습니다.
 Spring Security는 인증이 완료되면 인증 정보를 `Authentication` 객체에 담아 `SecurityContextHolder`에 저장하며, 이렇게 저장된 정보는 `hasRole()`이나 `@Secured` 애노테이션을 통한 인가 처리에 사용됩니다.
 하지만 기존 인증 시스템을 그대로 유지하는 경우, 인증이 성공한 후에도 직접 `Authentication` 객체를 생성하고 이를 `SecurityContextHolder`에 수동으로 저장해주는 구현을 매번 추가로 해야 했습니다.
@@ -218,27 +208,8 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
 
 ## 정리하며
-- 이번 리팩토링의 의의
-- 얻은 교훈 또는 다음에 적용할 방향
-
 이번 글을 작성하며 기존에 직접 구현한 소셜 로그인 인증 시스템의 문제점이 무엇인지 분석해보고 Spring Security 프레임워크에 맞추어 재구현한 이유를 작성해보았습니다. 그리고 Spring Security 프레임워크를 도입하게된 이유와 도입했을 때의 효과도 생각해보았습니다. 마지막으로 기존 인증 시스템을 Spring Security에 맞게 재구현함으로써 어떻게 구조가 변경되었는지 파악하였습니다.
-이렇게 Spring Security를 도입하면서 개선한 구조를 기반으로 확장성 있는 구조로 개선해 볼 수 있을 것입니다. 예를 들어 현재 시스템에서는 인증 상태를 저장하는 전략을 JWT 방식을 사용하고 있는데, 가정으로 세션과 같은 방식으로 변경해야 한다고 가정하고 구조를 개선해 볼수 있을 것입니다. 
+이렇게 Spring Security를 도입하면서 개선한 구조를 기반으로 확장성 있는 구조로 개선해 볼 수 있을 것입니다. 예를 들어 현재 시스템에서는 인증 상태를 저장하는 전략을 JWT 방식을 사용하고 있는데, 세션과 같은 방식으로 변경해야 한다고 가정하고 구조를 개선해 볼수 있을 것입니다. 
 
----
-
-Spring Security를 도입한 이유에 대해서 작성하였습니다.
-기존에 구현한 소셜 로그인 인증 시스템을 Spring Security 프레임워크를 도입하면서 재구현한 이유를 작성했습니다.
-현재 구현한 인증 시스템의 문제점을 파악하고 Spring Security를 도입하면서 어떻게 구조를 개선하였는지 알아보았습니다.
-
-얻은 교훈은 무엇인가?
-- 현재 구현한 기능의 문제점이 무엇이고 개선향 방향이 무엇인지 분석할 수 있었습니다.
-- Spring Security 프레임워크를 도입해야 할 필요성을 생각하고 도입했을 때의 효과를 분석했습니다. 
-
-다음에 적용할 방향은 무엇인가?
-현재 인증 시스템에서 인증 상태를 저장하는 전략은 JWT 방식을 사용하고 있는데 만약 세션과 같은 방식으로 변경해야 한다고 할때 쉽게 변경할 수 있도록 구조 개선을 고려해볼 수 있습니다.
-
-
-
-
-References
-- source code : https://github.com/fine-ants/FineAnts-was/pull/41
+## References
+- source code : https://github.com/fine-ants/FineAnts-was/tree/0bbcee06eb051b93f7878cfecd5f602d856f1b73
