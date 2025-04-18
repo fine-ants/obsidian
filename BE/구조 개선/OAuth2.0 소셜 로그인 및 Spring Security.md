@@ -223,10 +223,10 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
 Spring Security를 도입한 이유에 대해서 작성하였습니다.
 기존에 구현한 소셜 로그인 인증 시스템을 Spring Security 프레임워크를 도입하면서 재구현한 이유를 작성하였습니다.
-현재 구현한 인증 시스템의 문제점을 파악하고 
+현재 구현한 인증 시스템의 문제점을 파악하고 Spring Security를 도입하면서 어떻게 구조를 개선하였는지 알아보았습니다.
 
-
-
+얻은 교훈은 무엇인가?
+현재 구현한 기능의 문제점이나 개선점을 파악할 수 있었습니다. Spring Security 프레임워크를 도입해야 할 필요성을 생각하고 프레임워크를 도입했을 때의 
 
 
 References
