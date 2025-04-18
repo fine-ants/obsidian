@@ -80,8 +80,8 @@ public class MemberService {
 - 하나의 login() 메서드에 state 검증, 액세스 토큰 발급, 사용자 프로필 조회, 회원 생성, JWT 생성 작업 등을 수행하고 있습니다. 이는 여러가지 책임이 하나의 메서드에 몰려 있습니다.
 - 소셜 로그인 수행시 보안적인 요소를 수동적으로 처리하고 있습니다. state, code_verifier, nonce 등의 중요한 보안 요소를 직접 다루고 있습니다.
 - 새로운 소셜 로그인 플랫폼이 추가되는 경우 수정이 필요합니다. 예를 들어 OauthClient를 관리하는 OauthClientRepository에 새로운 소셜 플랫폼을 추가하는 코드를 추가하여야 합니다. 그리고 소셜 플랫폼 정보를 가지고 있는 OauthClient 구현체 클래스를 확장해야 합니다.
-- Spring Security 프레임워크를 적용하는 경우 기존 인증 시스템과의 통합이 부족합니다. Spring Security의 인증 처리 같은 경우에는 인증에 성공한 후 인증 정보를 `Authentication`이라는 객체에 담아서 SecurityContextHolder에 저장합니다. 이렇게 저장된 정보는 hasRole(), `@Secured` 애노테이션과 같은 인가 처리시 사용됩니다. 하지만 기존 인증 시스템에서는 이러한 저장 과정이 없기 때문에 통합하기 위해서는 인증후에 별도의 `Authentication`객체를 생성하여 SecurityContextHolder에 담는 구현을 해야 합니다. 
-	- 즉, 정리하면 기존 인증 시스템을 
+- Spring Security 프레임워크를 적용하는 경우 기존 인증 시스템과의 통합이 부족합니다. Spring Security의 인증 처리 같은 경우에는 인증에 성공한 후 인증 정보를 `Authentication`이라는 객체에 담아서 SecurityContextHolder에 저장합니다. 이렇게 저장된 정보는 hasRole(), `@Secured` 애노테이션과 같은 인가 처리시 사용됩니다. 하지만 기존 인증 시스템에서는 이러한 저장 과정이 없기 때문에 통합하기 위해서는 인증후에 식별자 정보(Principal)와 권한 리스트(GrantedAuthority)를 포함한 `Authentication`객체를 생성하여 `SecurityContextHolder`에 수동으로 저장해야 합니다.
+
 
 
 
