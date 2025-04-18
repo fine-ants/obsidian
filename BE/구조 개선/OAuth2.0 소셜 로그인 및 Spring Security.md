@@ -115,6 +115,7 @@ Spring Security 프레임워크를 도입했을 때 효과는 다음과 같았�
 	- OAuth2UserService 같은 경우에는 커스텀 서비스를 만들어서 설정하였습니다. 제가 만든 커스텀 OAUth2 서비스에서는 사용자 프로필 정보를 조회하는 것까지는 동일하지만 만약 기존 회원 정보가 없다면 회원을 생성하여 저장하는 것까지 수행합니다.
 - login() 메서드에서 인증에 성공하면 JWT 생성하는 작업을 수행하였지만 Spring Security에서는 별도의 AuthenticationSuccessHandler를 구현하여 설정하였습니다.
 
+**사용자 프로필 정보 조회 구조 변경**
 소셜 로그인하여 인증할 때 액세스 토큰을 발급받은 다음에 플랫폼마다 프로필 정보를 조회하는 방식이 다를 수 있습니다. 첫번째는 OAuth 2.0 방식으로 액세스 토큰을 이용하여 조회하는 일반적인 방식입니다. 두번째는 OIDC 방식으로써 액세스 토큰 발급과 같이 OpenID를 발급받아서 추가적으로 액세스 토큰으로 정보를 질의하는 것이 아닌 OpenID에 있는 프로필 정보를 사용하여 처리하는 방식입니다. 기존 인증 시스템에서는 한 메서드에 조건문을 분기하여 처리하였지만 Spring Security에서는 별도의 커스텀 서비스로 분리하여 설정하였습니다. 다음 코드는 OAuth2.0 방식으로 커스텀 서비스를 구현한 것입니다.
 ```java
 @Slf4j  
@@ -148,7 +149,29 @@ public class CustomOAuth2UserService extends AbstractUserService
 }
 ```
 - 위 코드를 보면 OAuth2UserRequest 객체가 액세스 토큰을 가지고 있고 위임 객체를 통하여 프로필 정보를 조회합니다.
-- 
+
+**인증 또는 인가 실패 또는 오류 발생시 구조 변경**
+login 메서드에서 인증이 실패, 오류가 발생하거나 권한을 만족하지 못하면 GlobalExceptionHandler로 처리하였지만 Spring Security에서는 커스텀한 AuthenticationEntryPoint와 AccessDeniedHandler를 구현하여 처리합니다. 다음 코드는 커스텀하게 구현한 AuthenticationEntryPoint 구현체입니다.
+```java
+@RequiredArgsConstructor  
+@Slf4j  
+public class CommonLoginAuthenticationEntryPoint implements AuthenticationEntryPoint {  
+    private final ObjectMapper objectMapper;  
+  
+    @Override  
+    public void commence(HttpServletRequest request, HttpServletResponse response,  
+       AuthenticationException exception) throws IOException {  
+       ErrorCode errorCode = ErrorCode.UNAUTHORIZED;  
+       ApiResponse<String> body = ApiResponse.error(HttpStatus.UNAUTHORIZED, errorCode);  
+       response.setStatus(HttpStatus.UNAUTHORIZED.value());  
+       response.setContentType(MediaType.APPLICATION_JSON_VALUE);  
+       response.setCharacterEncoding("utf-8");  
+       response.getWriter().write(objectMapper.writeValueAsString(body));  
+    }  
+}
+```
+위 코드를 보면 인증에 실패하게 되면 Response 헤더 및 바디를 설정하는 것을 볼수 있습니다.
+
 
 
 ## 유지보수성과 확장성 측면에서의 개선 효과
