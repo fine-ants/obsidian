@@ -79,7 +79,9 @@ public class MemberService {
 현제 제가 구현한 소셜 로그인 서비스의 문제점은 다음과 같았습니다.
 - 하나의 login() 메서드에 state 검증, 액세스 토큰 발급, 사용자 프로필 조회, 회원 생성, JWT 생성 작업 등을 수행하고 있습니다. 이는 여러가지 책임이 하나의 메서드에 몰려 있습니다.
 - 소셜 로그인 수행시 보안적인 요소를 수동적으로 처리하고 있습니다. state, code_verifier, nonce 등의 중요한 보안 요소를 직접 다루고 있습니다.
-- 새로운 소셜 로그인 플랫폼이 추가되는 경우 서비스 로직 수정이 필요합니다.
+- 새로운 소셜 로그인 플랫폼이 추가되는 경우 수정이 필요합니다. 예를 들어 OauthClient를 관리하는 OauthClientRepository
+	- OauthClientRepository 수정
+	- OauthClient 구현체 확장
 
 
 위 설명을 표로 정리하면 다음과 같습니다.
