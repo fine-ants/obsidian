@@ -82,6 +82,8 @@ public class MemberService {
 - 새로운 소셜 로그인 플랫폼이 추가되는 경우 수정이 필요합니다. 예를 들어 OauthClient를 관리하는 OauthClientRepository에 새로운 소셜 플랫폼을 추가하는 코드를 추가하여야 합니다. 그리고 소셜 플랫폼 정보를 가지고 있는 OauthClient 구현체 클래스를 확장해야 합니다.
 - Spring Security와의 통합이 부족합니다. 
 	- 만약 기존 구현한 인증 시스템이 있고 별도로 Spring Security 프레임워크를 도입하여 인가 처리 시스템이 별도로 수행된다면 어떤 단점이 있을까요?
+	- 만약 내가 Spring Security를 도입하여 hasRole(), `@Secured` 애노테이션을 사용하여 인가 설정을 하면 별도로 잘 동작할까?
+	- 
 
 
 
