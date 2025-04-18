@@ -108,10 +108,14 @@ Spring Security 프레임워크를 도입했을 때 효과는 다음과 같았�
 
 ### 인증 시스템 구조는 어떻게 변경되었는가?
 기존에 구현한 인증 시스템을 프레임워크에 맞게 재구현하면서 구조가 변경되었습니다.
-- 기존에는 OAuth2.0, OIDC를 한 메서드안에서 처리하였지만 프레임워크에서는 별도의 커스텀 서비스로 분리하여 설정하였습니다.
-- 기존에는 login 메서드에서 인증이 실패, 오류가 발생하거나 권한을 만족하지 못하면 GlobalExceptionHandler로 처리하였지만 Spring Security에서는 커스텀한 AuthenticationEntryPoint와 AccessDeniedHandler를 구현하여 처리합니다.
-- 기존 인증 시스템에서는 state, code_verifier, nonce 등의 보안 요소 검증을 직접 다루었지만 Spring Security에 존재하는 라이브러리가 자동으로 처리해줍니다.
--  
+- OAuth2.0, OIDC를 한 메서드안에서 처리하였지만 프레임워크에서는 별도의 커스텀 서비스로 분리하여 설정하였습니다.
+- login 메서드에서 인증이 실패, 오류가 발생하거나 권한을 만족하지 못하면 GlobalExceptionHandler로 처리하였지만 Spring Security에서는 커스텀한 AuthenticationEntryPoint와 AccessDeniedHandler를 구현하여 처리합니다.
+- state, code_verifier, nonce 등의 보안 요소 검증을 직접 다루었지만 Spring SecurityAuthorizationRequestRepository가 관리 및 처리해줍니다.
+- 액세스 토큰 발급 및 사용자 프로필 정보 조회를 WebClient를 사용하여 직접 질의하였지만 Spring Security에서는 OAuth2AccessTokenResponseClient과 OAuth2UserService가 맡아서 수행합니다.
+	- OAuth2UserService 같은 경우에는 커스텀 서비스를 만들어서 설정하였습니다. 제가 만든 커스텀 OAUth2 서비스에서는 사용자 프로필 정보를 조회하는 것까지는 동일하지만 만약 기존 회원 정보가 없다면 회원을 생성하여 저장하는 것까지 수행합니다.
+- login() 메서드에서 인증에 성공하면 JWT 생성하는 작업을 수행하였지만 Spring Security에서는 별도의 AuthenticationSuccessHandler를 구현하여 설정하였습니다.
+
+
 
 
 
