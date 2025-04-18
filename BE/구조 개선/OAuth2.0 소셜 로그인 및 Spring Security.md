@@ -79,9 +79,10 @@ public class MemberService {
 현제 제가 구현한 소셜 로그인 서비스의 문제점은 다음과 같았습니다.
 - 하나의 login() 메서드에 state 검증, 액세스 토큰 발급, 사용자 프로필 조회, 회원 생성, JWT 생성 작업 등을 수행하고 있습니다. 이는 여러가지 책임이 하나의 메서드에 몰려 있습니다.
 - 소셜 로그인 수행시 보안적인 요소를 수동적으로 처리하고 있습니다. state, code_verifier, nonce 등의 중요한 보안 요소를 직접 다루고 있습니다.
-- 새로운 소셜 로그인 플랫폼이 추가되는 경우 수정이 필요합니다. 예를 들어 OauthClient를 관리하는 OauthClientRepository
-	- OauthClientRepository 수정
-	- OauthClient 구현체 확장
+- 새로운 소셜 로그인 플랫폼이 추가되는 경우 수정이 필요합니다. 예를 들어 OauthClient를 관리하는 OauthClientRepository에 새로운 소셜 플랫폼을 추가하는 코드를 추가하여야 합니다. 그리고 소셜 플랫폼 정보를 가지고 있는 OauthClient 구현체 클래스를 확장해야 합니다.
+- Spring Security와의 통합이 부족합니다. 
+	- 만약 기존 구현한 인증 시스템이 있고 별도로 Spring Security 프레임워크를 도입하여 인가 처리 시스템이 별도로 수행된다면 어떤 단점이 있을까요?
+
 
 
 위 설명을 표로 정리하면 다음과 같습니다.
@@ -91,7 +92,6 @@ public class MemberService {
 | 책임 집중                  | 인증, DB 처리, 토큰 발급 등 많은 책임이 한 메서드에 몰려 있음             |
 | 보안 요소 수동 처리            | state, code_verifier, nonce 등 중요한 보안 요소를 직접 다루고 있음 |
 | provider 추가 어려움        | 새로운 소셜 로그인 추가시 서비스 로직 수정 필요                        |
-| 에러 처리 부족               | 예외 발생 시 사용자 응답 일관성이 없고 디버깅 어려움                     |
 | Spring Security와 통합 부족 | 필터 기반 인증 처리 흐름과 통합되지 않아서 인증 상태 관리가 불안정함            |
 
 
