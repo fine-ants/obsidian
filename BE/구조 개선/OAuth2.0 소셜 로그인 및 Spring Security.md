@@ -115,8 +115,40 @@ Spring Security 프레임워크를 도입했을 때 효과는 다음과 같았�
 	- OAuth2UserService 같은 경우에는 커스텀 서비스를 만들어서 설정하였습니다. 제가 만든 커스텀 OAUth2 서비스에서는 사용자 프로필 정보를 조회하는 것까지는 동일하지만 만약 기존 회원 정보가 없다면 회원을 생성하여 저장하는 것까지 수행합니다.
 - login() 메서드에서 인증에 성공하면 JWT 생성하는 작업을 수행하였지만 Spring Security에서는 별도의 AuthenticationSuccessHandler를 구현하여 설정하였습니다.
 
-
-
+소셜 로그인하여 인증할 때 액세스 토큰을 발급받은 다음에 플랫폼마다 프로필 정보를 조회하는 방식이 다를 수 있습니다. 첫번째는 OAuth 2.0 방식으로 액세스 토큰을 이용하여 조회하는 일반적인 방식입니다. 두번째는 OIDC 방식으로써 액세스 토큰 발급과 같이 OpenID를 발급받아서 추가적으로 액세스 토큰으로 정보를 질의하는 것이 아닌 OpenID에 있는 프로필 정보를 사용하여 처리하는 방식입니다. 기존 인증 시스템에서는 한 메서드에 조건문을 분기하여 처리하였지만 Spring Security에서는 별도의 커스텀 서비스로 분리하여 설정하였습니다. 다음 코드는 OAuth2.0 방식으로 커스텀 서비스를 구현한 것입니다.
+```java
+@Slf4j  
+@Service  
+public class CustomOAuth2UserService extends AbstractUserService  
+    implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {  
+  
+    //...
+  
+    @Override  
+    @Transactional    
+    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {  
+       OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();  
+       OAuth2User oAuth2User = delegate.loadUser(userRequest);  
+       OAuthAttribute attributes = getUserInfo(userRequest, oAuth2User);  
+       Member member = saveOrUpdate(attributes);  
+       return createOAuth2User(member, userRequest, attributes.getSub());  
+    }  
+  
+    @Override  
+    OAuth2User createOAuth2User(Member member, OAuth2UserRequest userRequest, String sub) {  
+       Collection<? extends GrantedAuthority> authorities = member.getSimpleGrantedAuthorities();  
+       Map<String, Object> memberAttribute = member.toAttributeMap();  
+       String nameAttributeKey = userRequest.getClientRegistration()  
+          .getProviderDetails()  
+          .getUserInfoEndpoint()  
+          .getUserNameAttributeName();  
+       memberAttribute.put(nameAttributeKey, sub);  
+       return new DefaultOAuth2User(authorities, memberAttribute, nameAttributeKey);  
+    }  
+}
+```
+- 위 코드를 보면 OAuth2UserRequest 객체가 액세스 토큰을 가지고 있고 위임 객체를 통하여 프로필 정보를 조회합니다.
+- 
 
 
 ## 유지보수성과 확장성 측면에서의 개선 효과
