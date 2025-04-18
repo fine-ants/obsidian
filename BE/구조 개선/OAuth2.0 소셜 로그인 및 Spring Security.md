@@ -110,7 +110,8 @@ Spring Security 프레임워크를 도입했을 때 효과는 다음과 같았�
 기존에 구현한 인증 시스템을 프레임워크에 맞게 재구현하면서 구조가 변경되었습니다.
 - 기존에는 OAuth2.0, OIDC를 한 메서드안에서 처리하였지만 프레임워크에서는 별도의 커스텀 서비스로 분리하여 설정하였습니다.
 - 기존에는 login 메서드에서 인증이 실패, 오류가 발생하거나 권한을 만족하지 못하면 GlobalExceptionHandler로 처리하였지만 Spring Security에서는 커스텀한 AuthenticationEntryPoint와 AccessDeniedHandler를 구현하여 처리합니다.
-- 
+- 기존 인증 시스템에서는 state, code_verifier, nonce 등의 보안 요소 검증을 직접 다루었지만 Spring Security에 존재하는 라이브러리가 자동으로 처리해줍니다.
+-  
 
 
 
