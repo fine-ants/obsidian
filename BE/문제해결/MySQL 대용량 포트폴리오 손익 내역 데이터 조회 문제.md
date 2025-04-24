@@ -151,6 +151,54 @@ executed time: 88450ms
 ![[Pasted image 20250424142716.png]]
 
 
+응답 결과 처리 해결 탐색 부분이 먼저 끝나서 변경된 코드가 변경되었습니다.
+```java
+@Transactional(readOnly = true)  
+@Secured("ROLE_USER")  
+@Cacheable(value = "lineChartCache", key = "#memberId")  
+public List<DashboardLineChartResponse> getLineChart(Long memberId) {  
+    List<Long> portfolioIds = portfolioRepository.findAllByMemberId(memberId).stream()  
+       .map(Portfolio::getId)  
+       .toList();  
+  
+    Map<String, BigDecimal> result = new ConcurrentHashMap<>();  
+    int batchSize = 1000;  
+    int count = 0;  
+    long startTime = System.currentTimeMillis();  
+    for (Long portfolioId : portfolioIds) {  
+       try (Stream<PortfolioGainHistory> stream = portfolioGainHistoryRepository.streamAllByPortfolioId(  
+          portfolioId)) {  
+  
+          stream.parallel().forEach(history -> {  
+             String key = history.getLineChartKey();  
+             Expression totalPortfolioValue = history.calculateTotalPortfolioValue();  
+             BigDecimal amount = totalPortfolioValue.reduce(Bank.getInstance(), Currency.KRW).toDouble();  
+             result.merge(key, amount, BigDecimal::add);  
+          });  
+       } catch (Exception e) {  
+          log.error("Error occurred while streaming PortfolioGainHistory for portfolioId: {}", portfolioId, e);  
+          throw new IllegalStateException("Error occurred while streaming PortfolioGainHistory", e);  
+       } finally {  
+          entityManager.clear();  
+       }  
+    }  
+    long endTime = System.currentTimeMillis();  
+    log.debug("executed time: {}ms", endTime - startTime);  
+  
+    return result.keySet()  
+       .stream()  
+       .sorted()  
+       .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
+       .toList();  
+}
+```
+- 위와 같이 BigDecimal로 변환한 다음에 맵에 연산을 하여 Stackoverflow가 발생하는 문제를 해결하였지만 여전히 300만개의 포트폴리오 손익 내역 데이터들을 처리하는데 시간이 많이 소요됩니다.
+
+프로파일링 결과는 다음과 같습니다.
+![[Pasted image 20250424151357.png]]
+- 프로파일링 결과를 보면 totalPortfolioValue 객체가 reduce 메서드를 수행하는데 1,253ms가 소요되고 concurrentHashMap에 머지하는데 1,635ms가 소요됩니다.
+
+
 ### 응답 결과 처리 해결 탐색
 포트폴리오 손익 내역 데이터를 이용하여 계사된 해시맵을 이용하여 리스폰스 객체를 생성합니다.
 ```java
@@ -228,3 +276,4 @@ public List<DashboardLineChartResponse> getLineChart(Long memberId) {
 
 위와 같이 수정하고 실행결과를 보면 Stackoverflow가 발생하지 않은 것을 볼수 있습니다. 그러나 여전히 실행 결과는 1분 30초 정도 걸리는 것을 볼수 있습니다. 해당 실행 당시에 아직 포트폴리오 손익 내역 데이터 처리 지연 부분을 해결하지 못하였기 때문에 다음과 같은 결과가 나온 것입니다. 그러나 Stackoverflow가 발생하지 않았기 때문에 해당 문제는 해결된 것입니다.
 ![[Pasted image 20250424150119.png]]
+
