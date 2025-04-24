@@ -172,3 +172,10 @@ java.lang.StackOverflowError: null
 ```
 
 원인은 Expression 타입의 객체가 reduce(Bank, Currency) 메서드를 호출할 때 내부적으로 또다른 Expression이 들어있고 이 구조가 종료 조건없이 계속 호출되면서 StackOverFlow가 발생합니다.
+
+다음 디버깅 화면을 보면 Expression 타입의 실제 구현체 타입은 Sum 타입임을 알수 있습니다.
+![[Pasted image 20250424144549.png]]
+
+Sum.reduce() 메서드로 들어가서 다시 augend와 addend가 전부 Sum 타입임을 알수 있습니다. 이러한 합계가 300만개 정도 있는 것을 볼수 있습니다. 그래서 Bank -> Sum -> Bank -> Sum 타입순으로 계속 호출되다가 메모리에 더이상 공간이 없어서 Stackoverflow을 발생시킨 것입니다.
+![[Pasted image 20250424144633.png]]
+
