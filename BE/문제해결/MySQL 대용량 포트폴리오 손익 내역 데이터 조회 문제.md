@@ -5,8 +5,7 @@
 - 단, MySQL 클라이언트를 이용하여 조회시 3.2초가 소요됩니다.
 
 ## 원인
-- 포트폴리오 손익 내역 데이터를 쿼리할 때 많은 시간이 소요됩니다.
-
+포트폴리오 손익 내역 데이터(300만개)를 쿼리할 때 115,610ms(115초)가 소요됩니다. 다음 코드에서 portfolioGainHistoryRepository.findAllByPortfolioId 메서드 호출시 많은 시간이 소요됩니다.
 ```java
 @Transactional(readOnly = true)  
 @Secured("ROLE_USER")  
@@ -30,5 +29,11 @@ public List<DashboardLineChartResponse> getLineChart(Long memberId) {
        .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
        .toList();  
 }
+```
+
+findAllByPortfolioId 메서드 실행시 쿼리는 다음과 같습니다.
+```java
+@Query("select p from PortfolioGainHistory p where p.portfolio.id = :portfolioId")  
+List<PortfolioGainHistory> findAllByPortfolioId(@Param("portfolioId") Long portfolioId);
 ```
 
