@@ -141,4 +141,11 @@ public List<DashboardLineChartResponse> getLineChart(Long memberId) {
 }
 ```
 
-실행 결과는 다음과 같습니다.
+실행 결과는 다음과 같습니다. 실행 결과를 보면 101초에서 88초로 감소되었지만 여전히 만족스러운 수치는 아니었습니다.
+```shell
+executed time: 88450ms
+```
+
+프로파일링 결과는 다음과 같습니다.
+![[Pasted image 20250424142716.png]]
+
