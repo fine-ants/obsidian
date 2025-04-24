@@ -179,3 +179,52 @@ java.lang.StackOverflowError: null
 Sum.reduce() 메서드로 들어가서 다시 augend와 addend가 전부 Sum 타입임을 알수 있습니다. 이러한 합계가 300만개 정도 있는 것을 볼수 있습니다. 그래서 Bank -> Sum -> Bank -> Sum 타입순으로 계속 호출되다가 메모리에 더이상 공간이 없어서 Stackoverflow을 발생시킨 것입니다.
 ![[Pasted image 20250424144633.png]]
 
+위와 같은 재귀 문제를 해결하기 위해서 다음과 같이 변경합니다.
+```java
+@Transactional(readOnly = true)  
+@Secured("ROLE_USER")  
+@Cacheable(value = "lineChartCache", key = "#memberId")  
+public List<DashboardLineChartResponse> getLineChart(Long memberId) {  
+    List<Long> portfolioIds = portfolioRepository.findAllByMemberId(memberId).stream()  
+       .map(Portfolio::getId)  
+       .toList();  
+  
+    Map<String, BigDecimal> result = new HashMap<>();  
+    int batchSize = 1000;  
+    int count = 0;  
+    long startTime = System.currentTimeMillis();  
+    for (Long portfolioId : portfolioIds) {  
+       try (Stream<PortfolioGainHistory> stream = portfolioGainHistoryRepository.streamAllByPortfolioId(  
+          portfolioId)) {  
+          Iterator<PortfolioGainHistory> iterator = stream.iterator();  
+          while (iterator.hasNext()) {  
+             PortfolioGainHistory history = iterator.next();  
+             String key = history.getLineChartKey();  
+             Expression totalPortfolioValue = history.calculateTotalPortfolioValue();  
+             BigDecimal amount = totalPortfolioValue.reduce(Bank.getInstance(), Currency.KRW).toDouble();  
+             result.merge(key, amount, BigDecimal::add);  
+  
+             count++;  
+             if (count % batchSize == 0) {  
+                entityManager.clear();  
+             }  
+          }  
+       } catch (Exception e) {  
+          log.error("Error occurred while streaming PortfolioGainHistory for portfolioId: {}", portfolioId, e);  
+          throw new IllegalStateException("Error occurred while streaming PortfolioGainHistory", e);  
+       }  
+    }  
+    long endTime = System.currentTimeMillis();  
+    log.debug("executed time: {}ms", endTime - startTime);  
+  
+    return result.keySet()  
+       .stream()  
+       .sorted()  
+       .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
+       .toList();  
+}
+```
+- history.calculateTotalPortfolioValue() 메서드의 반환 값인 totalPortfolioValue 객체를 그대로 Map의 Plus 연산으로 전달하는 것이 아닌 BigDecimal 타입으로 변환을 수행하고 Map의 더하기 연산으로 전달하여 계산합니다.
+
+위와 같이 수정하고 실행결과를 보면 Stackoverflow가 발생하지 않은 것을 볼수 있습니다. 그러나 여전히 실행 결과는 1분 30초 정도 걸리는 것을 볼수 있습니다. 해당 실행 당시에 아직 포트폴리오 손익 내역 데이터 처리 지연 부분을 해결하지 못하였기 때문에 다음과 같은 결과가 나온 것입니다. 그러나 Stackoverflow가 발생하지 않았기 때문에 해당 문제는 해결된 것입니다.
+![[Pasted image 20250424150119.png]]
