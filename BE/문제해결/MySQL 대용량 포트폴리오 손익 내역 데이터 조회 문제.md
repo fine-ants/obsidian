@@ -38,3 +38,6 @@ List<PortfolioGainHistory> findAllByPortfolioId(@Param("portfolioId") Long portf
 ```
 
 Spring JPA는 조회된 결과를 PortfolioGainHistory 엔티티로 매핑하고, 모든 데이터를 영속성 컨텍스트에 올립니다. 300만개의 엔티티를 메모리에 로드하고 관리하려다 보니 GC 및 메모리 부하가 큽니다.
+
+## 해결방법
+
