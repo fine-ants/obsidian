@@ -55,6 +55,7 @@ return result.keySet()
 - 300만개의 데이터를 한꺼번에 처리하려니 메모리가 부족하여 StackOverFlow가 발생합니다.
 
 ## 해결 방법 탐색
+### 포트폴리오 손익 내역 데이터 처리 문제 탐색
 포트폴리오 손인내역 데이터를 조회하는데 115초가 소요되기 때문에 이 속도를 감소시키기 위해서 반환타입을 Stream으로 변경해봅니다. 반화타입으로 Stream으로 사용하면 JPA는 결과 전체를 메모리에 로딩하지 않고, 커서를 이용해 순차적으로 한 행씩 읽는 방식을 사용합니다. 이 덕분에 메모리 사용량을 줄이고, GC 오버헤드도 방지합니다. 이 설명을 반영한 코드는 다음과 같습니다.
 ```java
 @Transactional(readOnly = true)  
@@ -149,3 +150,25 @@ executed time: 88450ms
 프로파일링 결과는 다음과 같습니다.
 ![[Pasted image 20250424142716.png]]
 
+
+### 응답 결과 처리 해결 탐색
+포트폴리오 손익 내역 데이터를 이용하여 계사된 해시맵을 이용하여 리스폰스 객체를 생성합니다.
+```java
+return result.keySet()  
+    .stream()  
+    .sorted()  
+    .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
+    .toList();
+```
+
+실행 결과는 다음과 같습니다. 다음 실행 결과를 보면 Bank.reduce() -> Sum.reduce() -> Bank.reduce() 순으로 반복적으로 호출됨을 알수 있습니다.
+```shell
+java.lang.StackOverflowError: null
+	at co.fineants.api.domain.common.money.Bank.reduce(Bank.java:22)
+	at co.fineants.api.domain.common.money.Sum.reduce(Sum.java:20)
+	at co.fineants.api.domain.common.money.Bank.reduce(Bank.java:22)
+	at co.fineants.api.domain.common.money.Sum.reduce(Sum.java:20)
+	at co.fineants.api.domain.common.money.Bank.reduce(Bank.java:22)
+```
+
+원인은 Expression 타입의 객체가 reduce(Bank, Currency) 메서드를 호출할 때 내부적으로 또다른 Expression이 들어있고 이 구조가 종료 조건없이 계속 호출되면서 StackOverFlow가 발생합니다.
