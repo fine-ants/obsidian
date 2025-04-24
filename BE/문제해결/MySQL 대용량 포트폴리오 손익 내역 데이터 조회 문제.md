@@ -41,3 +41,5 @@ Spring JPA는 조회된 결과를 PortfolioGainHistory 엔티티로 매핑하고
 
 ## 해결방법
 
+
+88615ms
