@@ -93,6 +93,7 @@ public List<DashboardLineChartResponse> getLineChart(Long memberId) {
        .toList();  
 }
 ```
+- 기존 코드는 특정 포트폴리오의 손익 내역 데이터들을 한꺼번에 조회한 다음에 처리했다면 개선된 코드는 쿼리 조회할때 group by 쿼리를 이용하여 일자별 포트폴리오 총가치 금액을 계산한 다음에 반환합니다.
 
 개선한 SQL은 다음과 같습니다.
 ```java
