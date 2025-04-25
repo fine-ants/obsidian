@@ -61,31 +61,30 @@ return result.keySet()
 - 데이터 조회시 시간이 많이 소요(115초)됩니다.
 - 300만개의 데이터를 한꺼번에 처리하려니 메모리가 부족하여 StackOverFlow가 발생합니다.
 
-## 해결 방법 탐색
-### 포트폴리오 손익 내역 데이터 처리 문제 탐색
-포트폴리오 손인내역 데이터를 조회하는데 115초가 소요되기 때문에 이 속도를 감소시키기 위해서 반환타입을 Stream으로 변경해봅니다. 반화타입으로 Stream으로 사용하면 JPA는 결과 전체를 메모리에 로딩하지 않고, 커서를 이용해 순차적으로 한 행씩 읽는 방식을 사용합니다. 이 덕분에 메모리 사용량을 줄이고, GC 오버헤드도 방지합니다. 이 설명을 반영한 코드는 다음과 같습니다.
+## 해결 방법
+- Spring JPA를 이용하여 300만개의 데이터를 가져와서 처리하는 것이 아닌 group by를 이용하여 데이터베이스에서 데이터를 가져올때 일자별 포트폴리오 총 가치 금액을 처리하여 가져올 수 있도록 변경합니다.
+
+수정된 서비스 코드는 다음과 같습니다.
 ```java
 @Transactional(readOnly = true)  
 @Secured("ROLE_USER")  
 @Cacheable(value = "lineChartCache", key = "#memberId")  
 public List<DashboardLineChartResponse> getLineChart(Long memberId) {  
+    // 사용자의 모든 포트폴리오 아이디를 조회  
     List<Long> portfolioIds = portfolioRepository.findAllByMemberId(memberId).stream()  
        .map(Portfolio::getId)  
        .toList();  
   
-    Map<String, Expression> result = new HashMap<>();  
-    long startTime = System.currentTimeMillis();  
-    for (Long portfolioId : portfolioIds) {  
-       portfolioGainHistoryRepository.streamAllByPortfolioId(portfolioId)  
-          .forEach(history -> {  
-             String key = history.getLineChartKey();  
-             Expression value = history.calculateTotalPortfolioValue();  
-             result.merge(key, value, Expression::plus);  
-             entityManager.detach(history);  
-          });  
-    }  
-    long endTime = System.currentTimeMillis();  
-    log.debug("executed time: {}ms", endTime - startTime);  
+    // 일자별 포트폴리오 총 가치 금액 합계를 계산  
+    Map<String, Expression> result = portfolioIds.stream()  
+       .flatMap(portfolioId -> portfolioGainHistoryRepository.findDailyTotalAmountByPortfolioId_temp(portfolioId)  
+          .stream())  
+       .collect(Collectors.toMap(  
+          LineChartItem::getDate,  
+          item -> Money.won(item.getTotalValuation()),  
+          Expression::plus,  
+          HashMap::new  
+       ));  
   
     return result.keySet()  
        .stream()  
@@ -95,114 +94,7 @@ public List<DashboardLineChartResponse> getLineChart(Long memberId) {
 }
 ```
 
-위 코드를 실행한 결과는 다음과 같습니다. 실행 결과를 보면 115초에서 101초로 감소하기는 했지만 만족스러운 결과는 아닙니다.
-```shell
-executed time: 101261ms
-```
-
-이번에는 프로파일링하여 forEach문 내부에 걸리는 시간을 분석해보겠습니다. 결과는 다음과 같습니다.
-![[Pasted image 20250424141906.png]]
-위 결과를 보면 entityManager가 detach 메서드를 호출하여 엔티티를 영속성 컨텍스트에서 분리하는 과정이 3,793ms가 소요된것을 볼 수 있습니다.
-
-위 문제를 해결하기 위해서 다음과 같이 변경하여 측정해봅니다. entityManager가 detach 메서드를 호출하는 것이 아닌 1000번째마다 clear() 메서드를 호출해봅니다.
-```java
-@Transactional(readOnly = true)  
-@Secured("ROLE_USER")  
-@Cacheable(value = "lineChartCache", key = "#memberId")  
-public List<DashboardLineChartResponse> getLineChart(Long memberId) {  
-    List<Long> portfolioIds = portfolioRepository.findAllByMemberId(memberId).stream()  
-       .map(Portfolio::getId)  
-       .toList();  
-  
-    Map<String, Expression> result = new HashMap<>();  
-    int batchSize = 1000;  
-    int count = 0;  
-    long startTime = System.currentTimeMillis();  
-    for (Long portfolioId : portfolioIds) {  
-       try (Stream<PortfolioGainHistory> stream = portfolioGainHistoryRepository.streamAllByPortfolioId(  
-          portfolioId)) {  
-          Iterator<PortfolioGainHistory> iterator = stream.iterator();  
-          while (iterator.hasNext()) {  
-             PortfolioGainHistory history = iterator.next();  
-             String key = history.getLineChartKey();  
-             Expression value = history.calculateTotalPortfolioValue();  
-             result.merge(key, value, Expression::plus);  
-  
-             count++;  
-             if (count % batchSize == 0) {  
-                entityManager.clear();  
-             }  
-          }  
-       } catch (Exception e) {  
-          log.error("Error occurred while streaming PortfolioGainHistory for portfolioId: {}", portfolioId, e);  
-          throw new IllegalStateException("Error occurred while streaming PortfolioGainHistory", e);  
-       }  
-    }  
-    long endTime = System.currentTimeMillis();  
-    log.debug("executed time: {}ms", endTime - startTime);  
-  
-    return result.keySet()  
-       .stream()  
-       .sorted()  
-       .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
-       .toList();  
-}
-```
-
-실행 결과는 다음과 같습니다. 실행 결과를 보면 101초에서 88초로 감소되었지만 여전히 만족스러운 수치는 아니었습니다.
-```shell
-executed time: 88450ms
-```
-
-프로파일링 결과는 다음과 같습니다.
-![[Pasted image 20250424142716.png]]
-
-
-응답 결과 처리 해결 탐색 부분이 먼저 끝나서 변경된 코드가 변경되었습니다.
-```java
-@Transactional(readOnly = true)  
-@Secured("ROLE_USER")  
-@Cacheable(value = "lineChartCache", key = "#memberId")  
-public List<DashboardLineChartResponse> getLineChart(Long memberId) {  
-    List<Long> portfolioIds = portfolioRepository.findAllByMemberId(memberId).stream()  
-       .map(Portfolio::getId)  
-       .toList();  
-  
-    Map<String, BigDecimal> result = new ConcurrentHashMap<>();  
-    int batchSize = 1000;  
-    int count = 0;  
-    long startTime = System.currentTimeMillis();  
-    for (Long portfolioId : portfolioIds) {  
-       try (Stream<PortfolioGainHistory> stream = portfolioGainHistoryRepository.streamAllByPortfolioId(  
-          portfolioId)) {  
-  
-          stream.parallel().forEach(history -> {  
-             String key = history.getLineChartKey();  
-             Expression totalPortfolioValue = history.calculateTotalPortfolioValue();  
-             BigDecimal amount = totalPortfolioValue.reduce(Bank.getInstance(), Currency.KRW).toDouble();  
-             result.merge(key, amount, BigDecimal::add);  
-          });  
-       } catch (Exception e) {  
-          log.error("Error occurred while streaming PortfolioGainHistory for portfolioId: {}", portfolioId, e);  
-          throw new IllegalStateException("Error occurred while streaming PortfolioGainHistory", e);  
-       } finally {  
-          entityManager.clear();  
-       }  
-    }  
-    long endTime = System.currentTimeMillis();  
-    log.debug("executed time: {}ms", endTime - startTime);  
-  
-    return result.keySet()  
-       .stream()  
-       .sorted()  
-       .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
-       .toList();  
-}
-```
-- 위와 같이 BigDecimal로 변환한 다음에 맵에 연산을 하여 Stackoverflow가 발생하는 문제를 해결하였지만 여전히 300만개의 포트폴리오 손익 내역 데이터들을 처리하는데 시간이 많이 소요됩니다.
-
-위와 같이 300만개의 데이터에 대해서 합계를 계산하는데 많은 시간이 소요되기 때문에 일자별 가치 총합 계산 처리를 자바 코드에서 하는 것이 아닌 MySQL 쿼리를 통하여 처리해보기로 하였습니다.
-Spring JPA 쿼리는 다음과 같습니다. cash와 currentValuation이 단순 기본 타입이 아닌 Money 타입이기 때문에 nativeQuery를 사용하였습니다.
+개선한 SQL은 다음과 같습니다.
 ```java
 @Query(value = """  
     select date(p.create_at) as date, sum(p.cash + p.current_valuation) as totalValuation    
@@ -211,123 +103,7 @@ Spring JPA 쿼리는 다음과 같습니다. cash와 currentValuation이 단순 
     group by date(p.create_at)    
     order by date(p.create_at) desc    
     """, nativeQuery = true)  
-List<Object[]> findDailyTotalAmountByPortfolioId(@Param("portfolioId") Long portfolioId);
+List<LineChartItem> findDailyTotalAmountByPortfolioId_temp(@Param("portfolioId") Long portfolioId);
 ```
-
-개선한 코드는 다음과 같습니다.
-```java
-@Transactional(readOnly = true)  
-@Secured("ROLE_USER")  
-@Cacheable(value = "lineChartCache", key = "#memberId")  
-public List<DashboardLineChartResponse> getLineChart(Long memberId) {  
-    List<Long> portfolioIds = portfolioRepository.findAllByMemberId(memberId).stream()  
-       .map(Portfolio::getId)  
-       .toList();  
-  
-    long startTime = System.currentTimeMillis();  
-    Map<String, BigDecimal> result = new HashMap<>();  
-    for (Long portfolioId : portfolioIds) {  
-       Map<String, BigDecimal> map = portfolioGainHistoryRepository.findDailyTotalAmountByPortfolioId(  
-             portfolioId).stream()  
-          .collect(Collectors.toMap(  
-             o -> o[0].toString(),  
-             o -> BigDecimal.valueOf(Double.parseDouble(o[1].toString())),  
-             BigDecimal::add,  
-             HashMap::new  
-          ));  
-       result.putAll(map);  
-    }  
-    long endTime = System.currentTimeMillis();  
-    log.debug("executed time: {}ms", endTime - startTime);  
-  
-    return result.keySet()  
-       .stream()  
-       .sorted()  
-       .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
-       .toList();  
-}
-```
-
-실행 결과는 다음과 같습니다. 실행 결과를 보면 기존 88초에서 3.5초로 25.1배 더 빨라진것을 볼수 있습니다.
-```shell
-executed time: 3562ms 
-```
-
-### 응답 결과 처리 해결 탐색
-포트폴리오 손익 내역 데이터를 이용하여 계사된 해시맵을 이용하여 리스폰스 객체를 생성합니다.
-```java
-return result.keySet()  
-    .stream()  
-    .sorted()  
-    .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
-    .toList();
-```
-
-실행 결과는 다음과 같습니다. 다음 실행 결과를 보면 Bank.reduce() -> Sum.reduce() -> Bank.reduce() 순으로 반복적으로 호출됨을 알수 있습니다.
-```shell
-java.lang.StackOverflowError: null
-	at co.fineants.api.domain.common.money.Bank.reduce(Bank.java:22)
-	at co.fineants.api.domain.common.money.Sum.reduce(Sum.java:20)
-	at co.fineants.api.domain.common.money.Bank.reduce(Bank.java:22)
-	at co.fineants.api.domain.common.money.Sum.reduce(Sum.java:20)
-	at co.fineants.api.domain.common.money.Bank.reduce(Bank.java:22)
-```
-
-원인은 Expression 타입의 객체가 reduce(Bank, Currency) 메서드를 호출할 때 내부적으로 또다른 Expression이 들어있고 이 구조가 종료 조건없이 계속 호출되면서 StackOverFlow가 발생합니다.
-
-다음 디버깅 화면을 보면 Expression 타입의 실제 구현체 타입은 Sum 타입임을 알수 있습니다.
-![[Pasted image 20250424144549.png]]
-
-Sum.reduce() 메서드로 들어가서 다시 augend와 addend가 전부 Sum 타입임을 알수 있습니다. 이러한 합계가 300만개 정도 있는 것을 볼수 있습니다. 그래서 Bank -> Sum -> Bank -> Sum 타입순으로 계속 호출되다가 메모리에 더이상 공간이 없어서 Stackoverflow을 발생시킨 것입니다.
-![[Pasted image 20250424144633.png]]
-
-위와 같은 재귀 문제를 해결하기 위해서 다음과 같이 변경합니다.
-```java
-@Transactional(readOnly = true)  
-@Secured("ROLE_USER")  
-@Cacheable(value = "lineChartCache", key = "#memberId")  
-public List<DashboardLineChartResponse> getLineChart(Long memberId) {  
-    List<Long> portfolioIds = portfolioRepository.findAllByMemberId(memberId).stream()  
-       .map(Portfolio::getId)  
-       .toList();  
-  
-    Map<String, BigDecimal> result = new HashMap<>();  
-    int batchSize = 1000;  
-    int count = 0;  
-    long startTime = System.currentTimeMillis();  
-    for (Long portfolioId : portfolioIds) {  
-       try (Stream<PortfolioGainHistory> stream = portfolioGainHistoryRepository.streamAllByPortfolioId(  
-          portfolioId)) {  
-          Iterator<PortfolioGainHistory> iterator = stream.iterator();  
-          while (iterator.hasNext()) {  
-             PortfolioGainHistory history = iterator.next();  
-             String key = history.getLineChartKey();  
-             Expression totalPortfolioValue = history.calculateTotalPortfolioValue();  
-             BigDecimal amount = totalPortfolioValue.reduce(Bank.getInstance(), Currency.KRW).toDouble();  
-             result.merge(key, amount, BigDecimal::add);  
-  
-             count++;  
-             if (count % batchSize == 0) {  
-                entityManager.clear();  
-             }  
-          }  
-       } catch (Exception e) {  
-          log.error("Error occurred while streaming PortfolioGainHistory for portfolioId: {}", portfolioId, e);  
-          throw new IllegalStateException("Error occurred while streaming PortfolioGainHistory", e);  
-       }  
-    }  
-    long endTime = System.currentTimeMillis();  
-    log.debug("executed time: {}ms", endTime - startTime);  
-  
-    return result.keySet()  
-       .stream()  
-       .sorted()  
-       .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
-       .toList();  
-}
-```
-- history.calculateTotalPortfolioValue() 메서드의 반환 값인 totalPortfolioValue 객체를 그대로 Map의 Plus 연산으로 전달하는 것이 아닌 BigDecimal 타입으로 변환을 수행하고 Map의 더하기 연산으로 전달하여 계산합니다.
-
-위와 같이 수정하고 실행결과를 보면 Stackoverflow가 발생하지 않은 것을 볼수 있습니다. 그러나 여전히 실행 결과는 1분 30초 정도 걸리는 것을 볼수 있습니다. 해당 실행 당시에 아직 포트폴리오 손익 내역 데이터 처리 지연 부분을 해결하지 못하였기 때문에 다음과 같은 결과가 나온 것입니다. 그러나 Stackoverflow가 발생하지 않았기 때문에 해당 문제는 해결된 것입니다.
-![[Pasted image 20250424150119.png]]
+- nativeQuery를 사용한 이유는 PortfolioGainHistory 엔티티의 cash, currentValuation의 타입은 Money이고 연산이 복잡하기 때문에 nativeQuery를 사용하였습니다.
 
