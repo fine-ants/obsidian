@@ -194,10 +194,57 @@ public List<DashboardLineChartResponse> getLineChart(Long memberId) {
 ```
 - 위와 같이 BigDecimal로 변환한 다음에 맵에 연산을 하여 Stackoverflow가 발생하는 문제를 해결하였지만 여전히 300만개의 포트폴리오 손익 내역 데이터들을 처리하는데 시간이 많이 소요됩니다.
 
-프로파일링 결과는 다음과 같습니다.
-![[Pasted image 20250424151357.png]]
-- 프로파일링 결과를 보면 totalPortfolioValue 객체가 reduce 메서드를 수행하는데 1,253ms가 소요되고 concurrentHashMap에 머지하는데 1,635ms가 소요됩니다.
+위와 같이 300만개의 데이터에 대해서 합계를 계산하는데 많은 시간이 소요되기 때문에 일자별 가치 총합 계산 처리를 자바 코드에서 하는 것이 아닌 MySQL 쿼리를 통하여 처리해보기로 하였습니다.
+Spring JPA 쿼리는 다음과 같습니다. cash와 currentValuation이 단순 기본 타입이 아닌 Money 타입이기 때문에 nativeQuery를 사용하였습니다.
+```java
+@Query(value = """  
+    select date(p.create_at) as date, sum(p.cash + p.current_valuation) as totalValuation    
+    from fineAnts.portfolio_gain_history p    
+    where p.portfolio_id = :portfolioId    
+    group by date(p.create_at)    
+    order by date(p.create_at) desc    
+    """, nativeQuery = true)  
+List<Object[]> findDailyTotalAmountByPortfolioId(@Param("portfolioId") Long portfolioId);
+```
 
+개선한 코드는 다음과 같습니다.
+```java
+@Transactional(readOnly = true)  
+@Secured("ROLE_USER")  
+@Cacheable(value = "lineChartCache", key = "#memberId")  
+public List<DashboardLineChartResponse> getLineChart(Long memberId) {  
+    List<Long> portfolioIds = portfolioRepository.findAllByMemberId(memberId).stream()  
+       .map(Portfolio::getId)  
+       .toList();  
+  
+    long startTime = System.currentTimeMillis();  
+    Map<String, BigDecimal> result = new HashMap<>();  
+    for (Long portfolioId : portfolioIds) {  
+       Map<String, BigDecimal> map = portfolioGainHistoryRepository.findDailyTotalAmountByPortfolioId(  
+             portfolioId).stream()  
+          .collect(Collectors.toMap(  
+             o -> o[0].toString(),  
+             o -> BigDecimal.valueOf(Double.parseDouble(o[1].toString())),  
+             BigDecimal::add,  
+             HashMap::new  
+          ));  
+       result.putAll(map);  
+    }  
+    long endTime = System.currentTimeMillis();  
+    log.debug("executed time: {}ms", endTime - startTime);  
+  
+    return result.keySet()  
+       .stream()  
+       .sorted()  
+       .map(key -> DashboardLineChartResponse.of(key, result.get(key)))  
+       .toList();  
+}
+```
+
+실행 결과는 다음과 같습니다. 실행 결과를 보면 기존 88초에서 3.5초로 25.1배 더 빨라진것을 볼수 있습니다.
+```shell
+executed time: 3562ms 
+```
 
 ### 응답 결과 처리 해결 탐색
 포트폴리오 손익 내역 데이터를 이용하여 계사된 해시맵을 이용하여 리스폰스 객체를 생성합니다.
