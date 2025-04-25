@@ -107,4 +107,8 @@ public List<DashboardLineChartResponse> getLineChart(Long memberId) {
 List<LineChartItem> findDailyTotalAmountByPortfolioId_temp(@Param("portfolioId") Long portfolioId);
 ```
 
-
+성능 측정 결과는 다음과 같습니다.
+api : /api/dashboard/lineChart
+포트폴리오의 손익 내역 데이터 개수 : 300만개
+수행 시간 : 3.73초
+![[Pasted image 20250425120911.png]]
