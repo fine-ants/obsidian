@@ -106,5 +106,5 @@ public List<DashboardLineChartResponse> getLineChart(Long memberId) {
     """, nativeQuery = true)  
 List<LineChartItem> findDailyTotalAmountByPortfolioId_temp(@Param("portfolioId") Long portfolioId);
 ```
-- nativeQuery를 사용한 이유는 PortfolioGainHistory 엔티티의 cash, currentValuation의 타입은 Money이고 연산이 복잡하기 때문에 nativeQuery를 사용하였습니다.
+
 
