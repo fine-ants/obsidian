@@ -56,3 +56,19 @@ PortfolioGainHistory history =
 
 
 포트폴리오 종목 조회 API(/api/portfolio/:portfolioId/holdings)를 요청하여 300만건의 데이터가 존재하는 상태에서 성능 측정을 수행해봅니다.
+![[Pasted image 20250428145313.png]]
+성능 측정 결과를 보면 Pageable이 적용된 상태에서 약 3.44초가 소요되었습니다.
+
+무제한적인 응답 시간 문제를 해결하긴 하였지만 만족스러운 성능은 아니었습니다. 성능을 더욱 개선하기 위해서 인덱스를 추가하기로 하였습니다. 현재 JPQL 쿼리는 다음과 같습니다.
+```java
+@Query(value = """  
+    select p, p2 from PortfolioGainHistory p    
+    inner join Portfolio p2 on p.portfolio.id = p2.id  
+    where p.portfolio.id = :portfolioId and p.createAt <= :createAt    
+    order by p.createAt desc    """)  
+List<PortfolioGainHistory> findFirstLatestPortfolioGainHistory(  
+    @Param("portfolioId") Long portfolioId, 
+    @Param("createAt") LocalDateTime createAt, 
+    Pageable pageable);
+```
+위 쿼리에서 where절에
