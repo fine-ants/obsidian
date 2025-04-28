@@ -1,6 +1,6 @@
 
 ## 배경
-- 데이터베이스에 포트폴리오 손익 내역 데이터가 300만개인 상태에서 포트폴리오 종목 조회시 응답 시간이 길어지는 문제가 발생하였습니다.
+- 데이터베이스에 포트폴리오 손익 내역(PortfolioGainHistory) 데이터가 300만개인 상태에서 포트폴리오 종목 조회시 응답 시간이 길어지는 문제가 발생하였습니다.
 - api : /api/portfolio/:portfolioId/holdings
 
 포트폴리오 손익 내역 데이터를 가져오기 위한 JPQL은 다음과 같았습니다.
@@ -95,33 +95,6 @@ limit 1;
 ![[Pasted image 20250428160917.png]]
 실행 결과를 보면 기존 **3.44초에서 199ms로 17.2배 개선된 것**을 볼수 있습니다.
 
-Entity 클래스에 복합 인덱스를 설정하는 방법
-```java
-@Table(  
-    name = "portfolio_gain_history",  
-    indexes = {  
-       @Index(name = "idx_portfolio_id_create_at", columnList = "portfolio_id, create_at")  
-    }  
-)  
-public class PortfolioGainHistory extends BaseEntity {
-	// ...
-}
-
-@Getter  
-@NoArgsConstructor  
-@AllArgsConstructor  
-@MappedSuperclass  
-@EntityListeners(AuditingEntityListener.class)  
-@SuperBuilder(toBuilder = true)  
-public abstract class BaseEntity {  
-    @CreatedDate  
-    @Column(name = "create_at")  
-    private LocalDateTime createAt;  
-  
-    @LastModifiedDate  
-    @Column(name = "modified_at")  
-    private LocalDateTime modifiedAt;  
-}
-```
-- @Column 애노테이션을 이용해서 컬럼명을 반드시 설정해야 합니다.
-- JPA로는 복합 인덱스에서 특정 컬럼의 정렬 여부를 선택할 수 없습니다. 기본값인 ASC로 설정됩니다. 하지만 대부분의 MySQL 버전에서는 order by create_at desc를 쿼리할 때도 기본적으로 asc 인덱스를 역방향 스캔해서 처리할 수 있습니다.
+정리
+- JPQL 쿼리 메서드에 Pageable 매개변수를 추가하여 1건의 데이터만 조회할 수 있도록 합니다.
+- portfolio_id, create_at 컬럼을 대상으로 복합 인덱스를 구성하여 쿼리 시간을 단축시킵니다.
