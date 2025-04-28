@@ -71,4 +71,16 @@ limit 1;
 - p2는 ID기반 조회로 빠릅니다.
 - p는 portfolio_id 인덱스를 이용해서 145만건을 탐색합니다.
 - where p.create_at <= now() 필터링 후, order by p.create_at desc 정렬이 필요해서 전체 데이터에 대해 filesort를 발생시켰습니다.
-- limit 1이 
+- limit 1이 있지만, filesort 후에야 첫번째를 정할 수 있으므로, 여전히 전체 레코드를 정렬해야합니다.
+- **즉, 3.5가 소요되는 주요 원인은 create_at desc 정렬이 인덱스를 못타서 filesort 발생했기 때문입니다.**
+
+다음과 같이 복합 인덱스를 생성합니다.
+```java
+ALTER TABLE portfolio_gain_history  
+    ADD INDEX idx_portfolio_id_create_at (portfolio_id, create_at DESC);
+```
+
+복합 인덱스를 생성한 상태에서 다시 쿼리를 실행합니다.
+```java
+
+```
