@@ -96,3 +96,32 @@ limit 1;
 실행 결과를 보면 기존 **3.44초에서 199ms로 17.2배 개선된 것**을 볼수 있습니다.
 
 Entity 클래스에 복합 인덱스를 설정하는 방법
+```java
+@Table(  
+    name = "portfolio_gain_history",  
+    indexes = {  
+       @Index(name = "idx_portfolio_id_create_at", columnList = "portfolio_id, create_at")  
+    }  
+)  
+public class PortfolioGainHistory extends BaseEntity {
+	// ...
+}
+
+@Getter  
+@NoArgsConstructor  
+@AllArgsConstructor  
+@MappedSuperclass  
+@EntityListeners(AuditingEntityListener.class)  
+@SuperBuilder(toBuilder = true)  
+public abstract class BaseEntity {  
+    @CreatedDate  
+    @Column(name = "create_at")  
+    private LocalDateTime createAt;  
+  
+    @LastModifiedDate  
+    @Column(name = "modified_at")  
+    private LocalDateTime modifiedAt;  
+}
+```
+- @Column 애노테이션을 이용해서 컬럼명을 반드시 설정해야 합니다.
+- JPA로는 복합 인덱스에서 특정 컬럼의 정렬 여부를 선택할 수 없습니다. 기본값인 ASC로 설정됩니다. 하지만 대부분의 MySQL 버전에서는 order by create_at desc를 쿼리할 때도 기본적으로 asc 인덱스를 역방향 스캔해서 처리할 수 있습니다.
