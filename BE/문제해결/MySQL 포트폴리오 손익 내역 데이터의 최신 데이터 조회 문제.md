@@ -30,16 +30,15 @@ PortfolioGainHistory latestHistory =
 ## 해결 방법
 300만건의 데이터를 한번에 가져와 메모리에 로드하는 문제를 해결하기 위해서 다음과 같이 수행합니다.
 - @Query와 Pageable을 활용하여 첫번째 데이터만 가져옵니다. Pageable을 활용하면 쿼리에서 첫번째 페이지만 가져오도록 할 수 있습니다.
-- 반환 타입을 Optional 타입으로 변경합니다. 자바 소스코드에서 스트림으로 변환하여 처리하지 않고 처리하도록 개선합니다.
 
 변경된 코드는 다음과 같습니다.
 ```java
 @Query(value = """  
     select p, p2 from PortfolioGainHistory p    
-	    inner join Portfolio p2 on p.portfolio.id = p2.id  
+    inner join Portfolio p2 on p.portfolio.id = p2.id  
     where p.portfolio.id = :portfolioId and p.createAt <= :createAt    
-	order by p.createAt desc    """)  
-Optional<PortfolioGainHistory> findFirstLatestPortfolioGainHistory(  
+    order by p.createAt desc    """)  
+List<PortfolioGainHistory> findFirstLatestPortfolioGainHistory(  
     @Param("portfolioId") Long portfolioId, 
     @Param("createAt") LocalDateTime createAt, 
     Pageable pageable);
@@ -50,6 +49,10 @@ Optional<PortfolioGainHistory> findFirstLatestPortfolioGainHistory(
 PortfolioGainHistory history =  
     portfolioGainHistoryRepository.findFirstLatestPortfolioGainHistory(  
           portfolio.getId(), LocalDateTime.now(), PageRequest.of(0, 1))  
+       .stream()  
+       .findAny()  
        .orElseGet(() -> PortfolioGainHistory.empty(portfolio));
 ```
 
+
+포트폴리오 종목 조회 API(/api/portfolio/:portfolioId/holdings)를 요청하여 300만건의 데이터가 존재하는 상태에서 성능 측정을 수행해봅니다.
