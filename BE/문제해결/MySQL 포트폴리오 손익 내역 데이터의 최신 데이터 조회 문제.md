@@ -82,5 +82,15 @@ ALTER TABLE portfolio_gain_history
 
 복합 인덱스를 생성한 상태에서 다시 쿼리를 실행합니다.
 ```java
-
+explain select p.*, p2.* from portfolio_gain_history p  
+    inner join portfolio p2 on p.portfolio_id = p2.id  
+where p.portfolio_id = :portfolioId and p.create_at <= now()  
+order by p.create_at desc  
+limit 1;
 ```
+![[Pasted image 20250428160229.png]]
+실행 결과를 보면 where 절의 범위 조건을 다룰때 idx_portfolio_id_create_at 인덱스를 사용하는 것을 볼수 있습니다.
+
+위와 같이 복합 인덱스를 설정한 상태에서 다시 API를 요청하여 성능 측적을 수행합니다.
+![[Pasted image 20250428160917.png]]
+실행 결과를 보면 기존 **3.44초에서 199ms로 17.2배 개선된 것**을 볼수 있습니다.
