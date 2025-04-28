@@ -71,4 +71,15 @@ List<PortfolioGainHistory> findFirstLatestPortfolioGainHistory(
     @Param("createAt") LocalDateTime createAt, 
     Pageable pageable);
 ```
-위 쿼리에서 where절에
+인덱스 설계
+PortfolioGainHistory 테이블에서 portfolio.id와 createAt 컬럼은 쿼리 조건과 정렬에 사용되고 있으므로, 이들 컬럼을 포함하는 복합 인덱스를 추가하면 성능이 개선될 수 있습니다.
+
+복합 인덱스 생성
+portfolio.id와 createAt 컬럼을 결합하여 복합 인덱스를 생성합니다. 생성한 복합 인덱스는 where 절에서 portfolio.id를 찾고 order by 절에서 createAt을 기준으로 정렬할 때 유용합니다.
+```sql
+create index idx_portfolio_id_create_at on portfolio_gain_history (portfolio_id, create_at desc)
+```
+이 인덱스는 두가지 중요한 역할을 수행합니다.
+- portfolio_id에 대한 빠른 검색을 지원합니다.
+- create_at에 대해 내림차순으로 정렬 할 수 있도록 지원하여 쿼리 성능을 최적화합니다.
+
