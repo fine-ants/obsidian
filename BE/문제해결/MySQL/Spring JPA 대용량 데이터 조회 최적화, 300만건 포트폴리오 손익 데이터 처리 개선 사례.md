@@ -37,7 +37,8 @@ PortfolioGainHistory latestHistory =
     select p, p2 from PortfolioGainHistory p    
     inner join Portfolio p2 on p.portfolio.id = p2.id  
     where p.portfolio.id = :portfolioId and p.createAt <= :createAt    
-    order by p.createAt desc    """)  
+    order by p.createAt desc    
+    """)  
 List<PortfolioGainHistory> findFirstLatestPortfolioGainHistory(  
     @Param("portfolioId") Long portfolioId, 
     @Param("createAt") LocalDateTime createAt, 
@@ -54,10 +55,9 @@ PortfolioGainHistory history =
        .orElseGet(() -> PortfolioGainHistory.empty(portfolio));
 ```
 
-
 포트폴리오 종목 조회 API(/api/portfolio/:portfolioId/holdings)를 요청하여 300만건의 데이터가 존재하는 상태에서 성능 측정을 수행해봅니다.
 ![[Pasted image 20250428145313.png]]
-성능 측정 결과를 보면 Pageable이 적용된 상태에서 약 3.44초가 소요되었습니다.
+성능 측정 결과를 보면 Pageable이 적용된 상태에서 약 3.44초가 소요되었습니다. 이전의 측정 할 수 없을 정도로 긴 시간을 대기하는 것에 비해서 나아진 결과입니다. 하지만 사용자 입장에서는 만족스러운 성능은 아닙니다.
 
 MySQL 클라이언트를 이용하여 다음 쿼리를 실행하여 우리가 구현한 쿼리의 실행 계획을 확인해봅니다.
 ```sql
