@@ -68,6 +68,8 @@ order by p.create_at desc
 limit 1;
 ```
 ![[Pasted image 20250428154555.png]]
+위 실행 계획 결과를 보면 p2(portfolio) 테이블
+ 
 - p2는 ID기반 조회로 빠릅니다.
 - p는 portfolio_id 인덱스를 이용해서 145만건을 탐색합니다.
 - where p.create_at <= now() 조건을 필터링 후, order by p.create_at desc 정렬이 필요해서 전체 데이터에 대해 filesort를 발생시켰습니다.
