@@ -87,21 +87,20 @@ portfolio_gain_history 테이블(p)
 위 실행계획을 요약하면 다음과 같습니다.
 - portfolio 테이블은 PK 기반 단건 조회로 성능 문제가 없습니다.
 - portfolio_gain_history 테이블은 portfolio_id 인덱스를 이용하지만, create_at 조건을 따로 평가해야 해서 추가적인 레코드 스캔이 필요합니다.
-- 정렬()
+- 정렬(order by create_at desc)을 위해서 추가적인 파일 정렬(filesort)가 필요합니다.
+- 쿼리가 3.5초가 소요되는 주요 원인은 create_at desc 정렬이 인덱스를 못타서 filesort가 발생했기 때문입니다.
 
-- p2는 ID기반 조회로 빠릅니다.
-- p는 portfolio_id 인덱스를 이용해서 145만건을 탐색합니다.
-- where p.create_at <= now() 조건을 필터링 후, order by p.create_at desc 정렬이 필요해서 전체 데이터에 대해 filesort를 발생시켰습니다.
-- limit 1이 있지만, filesort 후에야 첫번째를 정할 수 있으므로, 여전히 전체 레코드를 정렬해야합니다.
-- **즉, 3.5가 소요되는 주요 원인은 create_at desc 정렬이 인덱스를 못타서 filesort 발생했기 때문입니다.**
+성능 개선 방향
+- portfolio_gain_history에 portfolio_id, create_at을 복합 인덱스로 구성하면, where 조건절과 order by 모두 인덱스만으로 처리할 수 있어서 filesort없이 최신 레코드 하나를 훨씬 빠르게 찾을 수 있습니다.
 
-다음과 같이 복합 인덱스를 생성합니다.
+복합 인덱스 생성
+portfolio_id, create_at 컬럼을 대상으로 인덱스를 생성합니다. 단, create_at 컬럼에 내림차순(desc)을 상세 설정합니다.
 ```java
 ALTER TABLE portfolio_gain_history  
     ADD INDEX idx_portfolio_id_create_at (portfolio_id, create_at DESC);
 ```
 
-복합 인덱스를 생성한 상태에서 다시 쿼리를 실행합니다.
+복합 인덱스 생성 후 쿼리 실행
 ```java
 explain select p.*, p2.* from portfolio_gain_history p  
     inner join portfolio p2 on p.portfolio_id = p2.id  
