@@ -59,7 +59,7 @@ PortfolioGainHistory history =
 ![[Pasted image 20250428145313.png]]
 성능 측정 결과를 보면 Pageable이 적용된 상태에서 약 3.44초가 소요되었습니다. 이전의 측정 할 수 없을 정도로 긴 시간을 대기하는 것에 비해서 나아진 결과입니다. 하지만 사용자 입장에서는 만족스러운 성능은 아닙니다.
 
-MySQL 클라이언트를 이용하여 다음 쿼리를 실행하여 우리가 구현한 쿼리의 실행 계획을 확인해봅니다.
+현재 데이터베이스 쿼리 시간과 응답 시간이 비슷하기 때문에 쿼리하는 방식에 문제가 있다고 판단하였습니다. MySQL 클라이언트를 이용하여 다음 쿼리를 실행하여 우리가 구현한 쿼리의 실행 계획을 확인해봅니다.
 ```sql
 explain select p.*, p2.* from portfolio_gain_history p  
     inner join portfolio p2 on p.portfolio_id = p2.id  
@@ -70,7 +70,7 @@ limit 1;
 ![[Pasted image 20250428154555.png]]
 - p2는 ID기반 조회로 빠릅니다.
 - p는 portfolio_id 인덱스를 이용해서 145만건을 탐색합니다.
-- where p.create_at <= now() 필터링 후, order by p.create_at desc 정렬이 필요해서 전체 데이터에 대해 filesort를 발생시켰습니다.
+- where p.create_at <= now() 조건을 필터링 후, order by p.create_at desc 정렬이 필요해서 전체 데이터에 대해 filesort를 발생시켰습니다.
 - limit 1이 있지만, filesort 후에야 첫번째를 정할 수 있으므로, 여전히 전체 레코드를 정렬해야합니다.
 - **즉, 3.5가 소요되는 주요 원인은 create_at desc 정렬이 인덱스를 못타서 filesort 발생했기 때문입니다.**
 
