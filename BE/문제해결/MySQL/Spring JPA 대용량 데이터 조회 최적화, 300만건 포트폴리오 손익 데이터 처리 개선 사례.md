@@ -109,7 +109,24 @@ order by p.create_at desc
 limit 1;
 ```
 ![[Pasted image 20250428160229.png]]
-실행 결과를 보면 where 절의 범위 조건을 다룰때 idx_portfolio_id_create_at 인덱스를 사용하는 것을 볼수 있습니다.
+
+portfolio 테이블(p2)
+- 처리 방법: const 타입
+	- portfolio 테이블은 id(PRIMARY KEY)를 기준으로 단건으로 즉시 조회합니다.
+- 특이사항: 없음
+	- 이전 결과와는 다르게 Using filesort가 없습니다.
+	- JOIN 이후 정렬이나 추가적인 비용이 발생하지 않습니다.
+
+portfolio_gain_history 테이블(p)
+- 처리 방법: range 타입
+	- 새로 생선한 복합 인덱스(idx_portfolio_id_create_at)을 사용하여 주어진 portfolio_id와 create_at 조건을 모두 인덱스 레벨에서 처리합니다.
+	- range 스캔이란 범위 조건(<= now())을 만족하는 레코드를 인덱스 안에서 찾아가는 방식입니다.
+- 예상되는 읽은 레코드 개수: 약 1,453,931건
+	- 읽어야 할 데이터 개수는 많지만, 인덱스를 통해서 필요한 범위만 스캔합니다.
+- 특이사항: Using index condition
+	- 복합 인덱스를 이용해 일부 조건(portfolio_id)
+
+
 
 위와 같이 복합 인덱스를 설정한 상태에서 다시 API를 요청하여 성능 측적을 수행합니다.
 ![[Pasted image 20250428160917.png]]
