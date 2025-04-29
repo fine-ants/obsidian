@@ -106,8 +106,7 @@ explain select p.*, p2.* from portfolio_gain_history p
     inner join portfolio p2 on p.portfolio_id = p2.id  
 where p.portfolio_id = :portfolioId and p.create_at <= now()  
 order by p.create_at desc  
-limit 1;
-```
+limit 1;```
 ![[Pasted image 20250428160229.png]]
 
 portfolio 테이블(p2)
@@ -144,10 +143,11 @@ portfolio_gain_history 테이블(p)
 ![[Pasted image 20250428160917.png]]
 실행 결과를 보면 기존 **3440ms에서 199ms로 17.2배 개선된 것**을 볼수 있습니다.
 
-정리
+## 정리
 - JPQL 쿼리 메서드에 Pageable 매개변수를 추가하여 1건의 데이터만 조회할 수 있도록 합니다.
 - portfolio_id, create_at 컬럼을 대상으로 복합 인덱스를 구성하여 쿼리 시간을 단축시킵니다.
 - 성능 측정 결과 기존 3440ms에서 199ms로 약 17.2배 개선되엇습니다.
 
 ## References
 - https://jojoldu.tistory.com/474
+- https://gywn.net/2012/04/mysql-covering-index/
