@@ -68,7 +68,16 @@ order by p.create_at desc
 limit 1;
 ```
 ![[Pasted image 20250428154555.png]]
-위 실행 계획 결과를 보면 p2(portfolio) 테이블
+portfolio 테이블(p2)
+- 처리 방법: const 타입으로 조회
+	- p2 테이블은 PRIMARY KEY(id)를 기준으로 단 하나의 레코드(rows)를 즉시 조회합니다.
+- 특이사항: Using filesort
+	- 일반적으로 const 조회에는 정렬이 필요 없지만, 전체 쿼리 결과를 합친 후 정렬이 추가로 발생한 것으로 보입니다.(JOIN 이후 정렬 때문)
+
+portfolio_gain_history 테이블(p)
+- 처리 방법: ref 타입으로 조회
+	- portfolio_id 인덱스를 사용해서 주어진 portfolioId에 해당하는 레코드를 찾습니다.
+	- 
  
 - p2는 ID기반 조회로 빠릅니다.
 - p는 portfolio_id 인덱스를 이용해서 145만건을 탐색합니다.
