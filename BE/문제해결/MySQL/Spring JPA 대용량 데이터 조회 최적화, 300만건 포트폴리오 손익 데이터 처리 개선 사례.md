@@ -77,8 +77,18 @@ limit 1;
 portfolio_gain_history 테이블(p)
 - 처리 방법: ref 타입으로 조회
 	- portfolio_id 인덱스를 사용해서 주어진 portfolioId에 해당하는 레코드를 찾습니다.
-	- 
- 
+- 읽은 예상 레코드 개수: 약, 1,453,931건
+	- 상당히 많은 양의 데이터 중에서 조건(create_at <= now())을 설정하여 걸러야 합니다.
+- 필터링 비율: 33.33%
+	- 읽어온 데이터중 약 33.33%만 조건을 만족합니다.
+- 특이사항: Using where
+	- portfolio_id 인덱스만으로 모든 조건을 해결하지 못하고, 추가로 create_at <= now() 조건을 사용합니다.
+
+위 실행계획을 요약하면 다음과 같습니다.
+- portfolio 테이블은 PK 기반 단건 조회로 성능 문제가 없습니다.
+- portfolio_gain_history 테이블은 portfolio_id 인덱스를 이용하지만, create_at 조건을 따로 평가해야 해서 추가적인 레코드 스캔이 필요합니다.
+- 정렬()
+
 - p2는 ID기반 조회로 빠릅니다.
 - p는 portfolio_id 인덱스를 이용해서 145만건을 탐색합니다.
 - where p.create_at <= now() 조건을 필터링 후, order by p.create_at desc 정렬이 필요해서 전체 데이터에 대해 filesort를 발생시켰습니다.
