@@ -14,10 +14,17 @@ CREATE INDEX idx_member_create_at ON portfolio (member_id, create_at DESC);
 
 
 ## 해결 방법
-Gradle 플러그인 추가
-```gradle
-plugins {
-    id "org.flywaydb.flyway" version "11.8.0"
+
+```java
+@Configuration  
+public class FlywayConfig {  
+  
+    @Bean  
+    public FlywayMigrationStrategy flywayMigrationStrategy() {  
+       return flyway -> {  
+          flyway.repair();  
+          flyway.migrate();  
+       };  
+    }  
 }
 ```
-
