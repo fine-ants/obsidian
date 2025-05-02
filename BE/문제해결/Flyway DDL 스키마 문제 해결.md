@@ -53,6 +53,17 @@ public class FlywayConfig {
 }
 ```
 
+## 실행 결과
+데이터베이스에 복합 인덱스가 제거된 상태에서 다시 spring 서버를 실행해보겠습니다. 서버를 실행한 다음에 flyway_schema_history 테이블의 데이터를 확인해보겠습니다.
+![[Pasted image 20250502134029.png]]
+실행 결과를 보면 V4 버전에 대해서 기존 success 컬럼의 값이 0에서 1로 변경된 것을 볼수 있습니다.
+
+portfolio 테이블에 인덱스가 정상적으로 생성되었는지 확인해보겠습니다.
+```sql
+show index from portfolio;
+```
+![[Pasted image 20250502134140.png]]
+위 실행 결과를 보면 portfolio에 정상적으로 복합 인덱스 idx_member_create_at이 생성
 
 
 ## References
