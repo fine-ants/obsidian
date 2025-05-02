@@ -63,8 +63,7 @@ portfolio 테이블에 인덱스가 정상적으로 생성되었는지 확인해
 show index from portfolio;
 ```
 ![[Pasted image 20250502134140.png]]
-위 실행 결과를 보면 portfolio에 정상적으로 복합 인덱스 idx_member_create_at이 생성
-
+위 실행 결과를 보면 portfolio에 정상적으로 복합 인덱스 idx_member_create_at이 생성된 것을 볼수 있습니다.
 
 ## References
 - https://backend-repository.tistory.com/159
