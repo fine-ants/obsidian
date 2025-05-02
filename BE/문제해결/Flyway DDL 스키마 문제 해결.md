@@ -30,11 +30,15 @@ Flyway로 생성된 flyway_schema_history 테이블에는 스키마 변경 내�
 ## 해결 방법
 위 문제를 해결할 첫번째 방법은 DB에 직접 접근하여 flyway_schema_history 테이블에 실패한 내역이 저장된 행을 직접 삭제합니다. 하지만 이 방법 같은 경우에는 별도로 DB에 접근해서 데이터를 삭제하는 번거로운 과정을 거쳐야 합니다. 이는 flyway 도구를 도입한 취지와 맞지 않을 수 있습니다.
 
-두번째 방법은 spring에서 자동으로 repair 기능이 실행되도록 할 수 있습니다. repiar 기능은 flyway_schema_history 테이블에 문제가 발생했을 때 이를 해결하기 위한 flyway 기능입니다. 기능의 내용은 다음과 같습니다.
-- 실패한 마이그레이션 항목 제거
-- 적용된 마이그레이션의 체크섬, 설명 및 유형을 사용 가능한 마이그레이션의 체크섬
+두번째 방법은 spring에서 자동으로 repair 기능이 실행되도록 할 수 있습니다. **flyway repair 기능은 Flyway의 마이그레이션 메타데이터 테이블(flyway_schema_history)을 복구하는 명령입니다.** 
+- 실패한 마이그레이션 레코드 제거
+- 잘못된 체크섬(파일이 수정됨)을 재계산
+- flyway_schema_history 테이블의 이상 상태를 정리
 
+Spring의 FlywayMigrationStrategy
+Spring에서는 FlywayMigrationStrategy(org.springframework.boot.autoconfigure.flyway)를 제공하고 있습니다. 해당 인터페이스는 Flyway 마이그레이션을 초기화하는데 사용됩니다. FlywayMigrationStrategy 타입을 스프링 빈으로 등록하여 마이그레이션 동작을 재정의 할 수 있습니다.
 
+마이그레이션 동작을 재정의해서 flyway의 마이그레이션 작업이 실행되기 직전에 직접 repair 기능을 수행한다면 flyway에 문제가 발생해도 적절한 상태에서 마이그레이션할 수 있습니다. 설정 코드는 다음과 같습니다.
 ```java
 @Configuration  
 public class FlywayConfig {  
@@ -48,6 +52,7 @@ public class FlywayConfig {
     }  
 }
 ```
+
 
 
 ## References
