@@ -1,7 +1,5 @@
 
 
-
-
 ## 1. Spring이 제공하는 Redis 직렬화-역직렬화의 종류와 한계
 Spring이 제공하는 Redis 직렬화-역직렬화 종류는 다음과 같습니다.
 - StringRedisSerializer
@@ -35,4 +33,5 @@ Spring이 제공하는 Redis 직렬화-역직렬화 종류는 다음과 같습�
 
 
 
-
+## References
+- https://mangkyu.tistory.com/402
