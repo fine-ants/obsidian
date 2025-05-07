@@ -16,5 +16,16 @@ Spring이 제공하는 Redis 직렬화-역직렬화 종류는 다음과 같습�
 - JDK 직렬화 사용할 때 발생할 수 있는 문제를 그대로 경험하게 됨
 	- 직렬화하는 객체의 클래스는 Serializable 인터페이스를 구현해야함
 	- serialVersionUID 값을 가져야함
-	- 클래스 정보가 
+	- 직렬화된 값에 클래스 정보가 포함되서 용량을 많이 차지하게 됨
+	- 클래스가 패키지 이동이나 클래스 이름이 변경되면 역직렬화에 실패할 수 있음
+
+### GenericJackson2JsonRedisSerializer
+- ObjectMapper를 사용하여 직렬화를 시도함
+- 설정에 따라서 직렬화 할때 클래스 정보가 포함되어 여러 문제가 생길 수 있음
+- Json 객체를 그대로 바이트 배열로 변환하여 저장하기 때문에 저장공간이 많이 사용됨
+
+### Jackson2JsonRedisSerializer
+- 객체를 JSON 형태로 직렬화하고 클래스 정보가 포함되지 않지만 Serializer 객체가 항상 타입을 지정해야함
+- 
+
 
