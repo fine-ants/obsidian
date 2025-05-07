@@ -1,4 +1,7 @@
 
+
+
+
 ## 1. Spring이 제공하는 Redis 직렬화-역직렬화의 종류와 한계
 Spring이 제공하는 Redis 직렬화-역직렬화 종류는 다음과 같습니다.
 - StringRedisSerializer
@@ -26,6 +29,10 @@ Spring이 제공하는 Redis 직렬화-역직렬화 종류는 다음과 같습�
 
 ### Jackson2JsonRedisSerializer
 - 객체를 JSON 형태로 직렬화하고 클래스 정보가 포함되지 않지만 Serializer 객체가 항상 타입을 지정해야함
-- 
+- 모든 캐시 대상 객체별로 Jackson2JsonRedisSerializer 객체를 생성해야 함
+- JSON 객체를 그대로 바이트 배열로 변환하여 저장하므로, 저장 공간이 많이 사용됨
+- 의도치 않은 ClassCastException 문제가 발생할 수 있음. 왜냐하면 클래스 정보가 포함되어 있지 않기 때문이다.
+
+
 
 
