@@ -92,8 +92,22 @@ Firebase 프로젝트 생성 확인
 Get Started 클릭
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827162240.png)
 
+Firebase CLI 설치
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827162915.png)
 
+개발 환경에서 Firebase CLI을 설치하기 전에 Github Repository로부터 프론트엔드 프로젝트를 다운로드합니다.
+```shell
+git clone https://github.com/fine-ants/frontend
+cd frontend
+```
 
+VS Code를 통해서 프론트엔드 프로젝트를 엽니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827163605.png)
+
+VS Code의 터미널을 열고 Firebase CLI을 설치합니다.
+```shell
+npm install -g firebase-tools
+```
 
 ## todo
 - 프론트엔드 배포 환경 구성
