@@ -108,6 +108,18 @@ VS Code의 터미널을 열고 Firebase CLI을 설치합니다.
 ```shell
 npm install -g firebase-tools
 ```
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827164237.png)
+
+Firebase CLI 설치 확인
+```
+firebase --version
+```
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827164525.png)
+
+Firebase Google 로그인
+```shell
+firebase login
+```
 
 ## todo
 - 프론트엔드 배포 환경 구성
