@@ -15,3 +15,8 @@
 - CI-CD 환경 구성
 - 도메인 이전 설정
 
+### 배포 환경 구성
+- 프론트엔드
+	- Firebase Hosting
+- Spring Boot + Redis + MySQL
+	- Compute Engine e2-micro 1대**(Free Tier 리전: `us-central1`)에 Docker Compose로 같이 실행
