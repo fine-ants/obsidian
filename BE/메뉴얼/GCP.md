@@ -156,8 +156,35 @@ Firebase 초기화 결과 확인
 - firebase.json : 호스팅 구성을 정의한다. 구성 정보에는 어떤 폴더를 기준으로 배포할지, 배포할 때 어떤 파일을 무시할지, 호스팅 대상 사이트는 어디에 있는지 등을 포함한다.
 - .firebaserc : 배포 대상 프로젝트를 정의한다.
 
+Firebase 호스팅에 배포하기
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827165852.png)
+
+```shell
+npm run build & firebase deploy
+```
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827170026.png)
 
 
+실행 결과 확인
+- 다음과 같은 화면이 뜨면 Firebase 호스팅 준비에 성공한 것입니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827170115.png)
+
+Firebase 호스팅 콘솔 페이지로 이동
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827170235.png)
+
+추가적인 사이트 도메인 추가
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827170419.png)
+
+도메인 입력
+- 추후 fineants.co와 같은 이름으로 변경할 예정
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827170530.png)
+
+프로젝트의 firebase
+
+VSCode의 터미널에서 다시 빌드 및 배포 시도
+```shell
+npm run build & firebase deploy
+```
 
 ## todo
 - 프론트엔드 배포 환경 구성
