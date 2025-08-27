@@ -63,10 +63,14 @@ Cloud Router 서비스로 이동합니다.
 "Create router" 버튼을 클릭하여 라우터 생성을 진행합니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827145810.png)
 
-라우터 생성 정ㅂ
+라우터 생성 정보 입력
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827151536.png)
 
+라우터 생성 확인
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827151841.png)
 
+## 프론트엔드 환경 구성
+Firebase Hosting 서비스로 이동
 
 
 
