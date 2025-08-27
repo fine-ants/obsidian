@@ -73,6 +73,18 @@ Cloud Router 서비스로 이동합니다.
 다음 링크에 접근하여 프로젝트를 생성할 예정입니다.
 - link : https://console.firebase.google.com/
 
+프로젝트 생성 정보 입력
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827153735.png)
+
+Continue 선택
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827153800.png)
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827155308.png)
+
+지역 설정
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827155459.png)
+
+Firebase 프로젝트 생성 확인
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827155617.png)
 
 
 
