@@ -34,6 +34,19 @@ VPC 네트워크 서비스 이동
 "VPC 네트워크 만들기" 버튼 클릭
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827142338.png)
 
+VPC 네트워크 생성 정보 입력
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827142810.png)
+
+public 서브넷 생성 정보 입력
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827143258.png)
+
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827143016.png)
+
+private subnet 생성 정보 입력
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827143433.png)
+
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827143504.png)
+
 
 
 
