@@ -20,3 +20,9 @@
 	- Firebase Hosting
 - Spring Boot + Redis + MySQL
 	- Compute Engine e2-micro 1대**(Free Tier 리전: `us-central1`)에 Docker Compose로 같이 실행
+
+
+### GCP Free Tier 혜택
+- Compute Engine e2-mirco 1개/월
+- Cloud Storage 5GB/월
+- Cloud 
