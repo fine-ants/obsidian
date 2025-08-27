@@ -5,6 +5,9 @@
 프로젝트 생성 확인
 ![[Pasted image 20250827130244.png]]
 
+## 서비스 계정 생성
+서비스 계정은 사람이 아닌 시스템(Spring, Redis,)
+
 
 ## todo
 - 프론트엔드 배포 환경 구성
@@ -25,4 +28,3 @@
 ### GCP Free Tier 혜택
 - Compute Engine e2-mirco 1개/월
 - Cloud Storage 5GB/월
-- Cloud 
