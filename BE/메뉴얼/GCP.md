@@ -70,7 +70,11 @@ Cloud Router 서비스로 이동합니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827151841.png)
 
 ## 프론트엔드 환경 구성
-Firebase Hosting 서비스로 이동
+다음 링크에 접근하여 프로젝트를 생성할 예정입니다.
+- link : https://console.firebase.google.com/
+
+
+
 
 
 
