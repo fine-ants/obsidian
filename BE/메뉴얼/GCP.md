@@ -175,28 +175,6 @@ npm run build & firebase deploy
 - 다음과 같은 화면이 뜨면 Firebase 호스팅 준비에 성공한 것입니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827170115.png)
 
-Firebase 호스팅 콘솔 페이지로 이동
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827170235.png)
-
-추가적인 사이트 도메인 추가
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827170419.png)
-
-도메인 입력
-- 추후 fineants.co와 같은 이름으로 변경할 예정
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827170530.png)
-
-프로젝트의 firebase.json 파일에서 "hosting" 아래에 "site" 프로퍼티를 다음과 같이 추가
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827170902.png)
-
-VSCode의 터미널에서 다시 빌드 및 배포 시도
-```shell
-npm run build & firebase deploy
-```
-
-배포결과 확인
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827171012.png)
-
-
 
 ## todo
 - 프론트엔드 배포 환경 구성
