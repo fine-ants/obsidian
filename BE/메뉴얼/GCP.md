@@ -117,9 +117,47 @@ firebase --version
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827164525.png)
 
 Firebase Google 로그인
+- 로그인을 진행하다보면 구글 인증을 진행합니다.
 ```shell
 firebase login
 ```
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827164839.png)
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827164902.png)
+
+다음과 같이 콘솔에서 로그인이 되면 성공입니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827164912.png)
+
+프로젝트에서 Firebase 초기화
+```shell
+firebase init
+```
+
+Hosting 선택
+- Hosting을 선택하기 위해서 스페이스바 키를 누름
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827165118.png)
+
+기존 프로젝트 선택
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827165218.png)
+
+build 입력후 엔터
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827165319.png)
+
+싱글 페이지 앱으로 설정
+- /index.html에 모든 URL들이 덮어쓰여진다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827165359.png)
+
+Github 배포
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827165648.png)
+
+
+Firebase 초기화 결과 확인
+프로젝트의 파일들을 보면 firebase 파일이 2개 생성된 것을 확인할 수 있다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827165810.png)
+- firebase.json : 호스팅 구성을 정의한다. 구성 정보에는 어떤 폴더를 기준으로 배포할지, 배포할 때 어떤 파일을 무시할지, 호스팅 대상 사이트는 어디에 있는지 등을 포함한다.
+- .firebaserc : 배포 대상 프로젝트를 정의한다.
+
+
+
 
 ## todo
 - 프론트엔드 배포 환경 구성
