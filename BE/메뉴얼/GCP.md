@@ -144,7 +144,7 @@ build 입력후 엔터
 
 싱글 페이지 앱으로 설정
 - /index.html에 모든 URL들이 덮어쓰여진다.
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827165359.png)
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827171548.png)
 
 Github 배포
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827165648.png)
@@ -179,12 +179,18 @@ Firebase 호스팅 콘솔 페이지로 이동
 - 추후 fineants.co와 같은 이름으로 변경할 예정
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827170530.png)
 
-프로젝트의 firebase
+프로젝트의 firebase.json 파일에서 "hosting" 아래에 "site" 프로퍼티를 다음과 같이 추가
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827170902.png)
 
 VSCode의 터미널에서 다시 빌드 및 배포 시도
 ```shell
 npm run build & firebase deploy
 ```
+
+배포결과 확인
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827171012.png)
+
+
 
 ## todo
 - 프론트엔드 배포 환경 구성
