@@ -48,8 +48,14 @@ private subnet 생성 정보 입력
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827143504.png)
 
 
+고급 동적 라우팅 구성
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827143851.png)
 
+VPC 및 서브넷 생성 확인
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827144120.png)
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827144136.png)
 
+## 라우터 생성
 
 
 
