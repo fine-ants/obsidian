@@ -86,6 +86,11 @@ Continue 선택
 Firebase 프로젝트 생성 확인
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827155617.png)
 
+왼쪽 사이드 메뉴의 Build -> Hosting 메뉴 접근
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827162155.png)
+
+Get Started 클릭
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827162240.png)
 
 
 
