@@ -25,7 +25,17 @@ IAM 서비스 이동 후 서비스 계정 메뉴로 이동
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827140023.png)
 
 ## VPC 및 서브넷 환경 구성
-VPC 
+VM 인스턴스가 연결할 VPC 및 서브넷을 생성합니다.
+
+### VPC 생성
+VPC 네트워크 서비스 이동
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827141923.png)
+
+"VPC 네트워크 만들기" 버튼 클릭
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827142338.png)
+
+
+
 
 
 
