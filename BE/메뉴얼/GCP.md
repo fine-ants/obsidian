@@ -143,8 +143,7 @@ build 입력후 엔터
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827165319.png)
 
 싱글 페이지 앱으로 설정
-- /index.html에 모든 URL들이 덮어쓰여진다.
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827171548.png)
+![](BE/메뉴얼/refImg/Pasted%20image%2020250827172048.png)
 
 Github 배포
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827165648.png)
@@ -159,6 +158,13 @@ Firebase 초기화 결과 확인
 Firebase 호스팅에 배포하기
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827165852.png)
 
+타입스크립트 설치
+- build하기전에 프로젝트에서 typescript를 사용하기 때문에 추가적인 의존성 라이브러리 설치 필요함
+```shell
+npm install --save-dev typescript
+```
+
+재빌드 및 배포
 ```shell
 npm run build & firebase deploy
 ```
