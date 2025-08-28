@@ -204,6 +204,17 @@ Firebase Hosting 페이지로 이동합니다.
 - 레코드를 생성한 다음에 다음과 같이 확인 버튼을 눌러서 소유자인지 확인합니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828142025.png)
 
+다음 단게에서 A 레코드의 fineants.co의 값을 다음과 같이 변경합니다. 
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828144215.png)
+
+DNS 레코드 수정
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828144310.png)
+
+확인 버튼을 눌러서 도메인 소유자임을 확인
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828144332.png)
+
+도메인 소유자임을 확인되면 SSL 인증서를 발급합니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828144339.png)
 
 SSL 인증서 발급
 - 레코드를 수정하면 자동적으로 SSL 인증서가 발급됩니다.
@@ -214,7 +225,6 @@ SSL 인증서 발급
 - 실행 결과를 보면 https://www.fineants.co 리다이렉션 된것을 볼수 있습니다.
 - www.fineants.co 도메인의 SSL 인증서는 AWS에서 발급하고 있는 것을 사용하고 있습니다. 이는 아직 AWS의 레코드 설정하지 않아서 입니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828140214.png)
-### 커스텀 도메인 설정
 
 
 
