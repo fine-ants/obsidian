@@ -176,6 +176,21 @@ npm run build & firebase deploy
 
 
 ##  커스텀 도메인 연결
+현재 Firebase Hosting을 통하여 배포된 도메인 이름은 fineants-frontend.firbaseapp.com으로 고정적입니다. 이 도메인 이름을 fineants.co 또는 www.fineants.co 로 커스텀 도메인을 추가하고자 합니다.
+
+### 커스텀 도메인 추가
+Firebase Hosting 페이지로 이동합니다.
+- 페이지로 이동하면 기본 도메인 2개가 호스팅되고 있는 것을 볼수 있습니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828130059.png)
+
+커스텀 도메인 추가 클릭
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828130200.png)
+
+커스텀 도메인 생성 정보 입력
+- www.fineants.co 리다이렉션을 추가하여 사용자가 fineants.co로 접근하면 www.fineants.co로 리다이렉션하도록 설정
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828130251.png)
+
+
 
 
 
