@@ -139,15 +139,15 @@ Hosting 선택
 기존 프로젝트 선택
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827165218.png)
 
-build 입력후 엔터
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827165319.png)
+dist 입력후 엔터
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828123047.png)
+
 
 싱글 페이지 앱으로 설정
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827172048.png)
 
-Github 배포
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827165648.png)
-
+dist/index.html 파일을 덮어씌울 것인지 물어보는 질문입니다. NO를 선택합니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828123110.png)
 
 Firebase 초기화 결과 확인
 프로젝트의 파일들을 보면 firebase 파일이 2개 생성된 것을 확인할 수 있다.
@@ -158,11 +158,13 @@ Firebase 초기화 결과 확인
 Firebase 호스팅에 배포하기
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827165852.png)
 
-타입스크립트 설치
-- build하기전에 프로젝트에서 typescript를 사용하기 때문에 추가적인 의존성 라이브러리 설치 필요함
-```shell
-npm install --save-dev typescript
-```
+
+> [!NOTE] 타입스크립트 설치
+> npm run build 명령어를 이용하여 빌드하기전에 타입스크립트 라이브러리가 설치되어 있지 않은 경우가 있습니다. 이러한 경우 다음 명령어를 통해서 설치합니다.
+> ```shell
+> npm install --save-dev typescript
+> ```
+
 
 재빌드 및 배포
 ```shell
