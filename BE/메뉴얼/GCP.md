@@ -277,6 +277,12 @@ aws_access_key_id = AKID1234567890
 aws_secret_access_key = MY-SECRET-KEY
 ```
 
+#### cli53 시작하기
+호스트 존 생성
+```shell
+cli53 create fineants.co --comment 'fineants host zone'
+```
+
 
 
 
