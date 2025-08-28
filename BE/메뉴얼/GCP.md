@@ -178,6 +178,7 @@ npm run build & firebase deploy
 
 ## todo
 - 프론트엔드 배포 환경 구성
+	- Firebase Hosting 구성
 - 백엔드 환경 구성
 	- Spring 서버
 	- Redis
