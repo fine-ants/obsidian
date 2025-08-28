@@ -172,10 +172,11 @@ npm run build & firebase deploy
 실행 결과 확인
 - 다음과 같은 화면이 뜨면 Firebase 호스팅 준비에 성공한 것입니다.
 - 다음 실행 결과를 봤을때 fineants-frontend 사이트에 대해서 호스팅한 결과입니다.
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827170115.png)
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828124444.png)
 
-### Firebase Hosting 사이트 추가 및 배포
-- 현재 Firebase Hosting 되고 있는 사이트는 fi
+
+##  커스텀 도메인 연결
+
 
 
 ## todo
