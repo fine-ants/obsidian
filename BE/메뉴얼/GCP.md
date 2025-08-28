@@ -235,7 +235,12 @@ SSL 인증서 발급
 - 현재 AWS Cloud에 도메인을 등록중입니다. 이 도메인을 GCP로 이전할 예정입니다.
 
 Route53 서비스에서 fineants.co 도메인을 선택하고 이전 메뉴 선택
+- 메뉴를 클릭하면 이전을 위한 권한 부여 코드가 할당됩니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828150336.png)
+
+GCP Cloud Domains 서비스로 이동
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828151508.png)
+
 
 
 
