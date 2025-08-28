@@ -239,12 +239,28 @@ Route53 서비스에서 fineants.co 도메인을 선택하고 이전 메뉴 선�
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828150336.png)
 
 
-시작전
+### 시작전
 - Google Cloud CLI 설정
+	- GCP의 Cloud Shell로 접속
 - Google Cloud 콘솔 인증
 ```shell
 gcloud auth login
 ```
+
+Cloud Shell을 열고 로그인을 수행합니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828153915.png)
+
+### 관리형 영역 만들기
+기존 도메인을 마이그레이션하려면 먼저 DNS 레코드를 포함할 관리형 영역을 생성해야 합니다.  Cloud DNS 서비스로 이동한 다음에 영역 만들기를 수행합니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828154412.png)
+
+DNS 영역 생성 확인
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828154453.png)
+
+
+### 기존 제공자의 DNS 구성 내보내기
+- Cloud DNS는 BIND 또는 YAML 레코드 형식으로 영역 파일을 가져오기를 지원합니다.
+- 우리는 기존 제공자가 AWS이기 때문에 AWS Route 53의 경우 cli53 툴을 이용하여 내보내기를 수행합니다.
 
 
 
