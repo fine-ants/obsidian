@@ -226,6 +226,10 @@ SSL 인증서 발급
 - www.fineants.co 도메인의 SSL 인증서는 AWS에서 발급하고 있는 것을 사용하고 있습니다. 이는 아직 AWS의 레코드 설정하지 않아서 입니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828140214.png)
 
+### www.fineants.co 도메인의 서빙을 GCP 배포한 것으로 변경하기
+- 현재 www.fineants.co 요청시 AWS Ampify에서 배포중인 것을 서빙하고 있습니다.
+- 도메인 주소를 유지하면서 GCP Hosting에서 배포한 fineants-frontend-web.app을 서빙하도록 변경할 예정입니다.
+
 
 
 
