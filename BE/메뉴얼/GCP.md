@@ -231,6 +231,11 @@ SSL 인증서 발급
 - 도메인 주소를 유지하면서 GCP Hosting에서 배포한 fineants-frontend-web.app을 서빙하도록 변경할 예정입니다.
 
 
+## 도메인 이전하기
+- 현재 AWS Cloud에 도메인을 등록중입니다. 이 도메인을 GCP로 이전할 예정입니다.
+
+Route53 서비스에서 fineants.co 도메인을 선택하고 이전 메뉴 선택
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828150336.png)
 
 
 
