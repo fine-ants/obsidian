@@ -205,6 +205,7 @@ SSL 인증서 발급
 - 실행 결과를 보면 https://www.fineants.co 리다이렉션 된것을 볼수 있습니다.
 - www.fineants.co 도메인의 SSL 인증서는 AWS에서 발급하고 있는 것을 사용하고 있습니다. 이는 아직 AWS의 레코드 설정하지 않아서 입니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828140214.png)
+### 커스텀 도메인 설정
 
 
 
