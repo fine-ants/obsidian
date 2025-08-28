@@ -262,11 +262,22 @@ DNS 영역 생성 확인
 - Cloud DNS는 BIND 또는 YAML 레코드 형식으로 영역 파일을 가져오기를 지원합니다.
 - 우리는 기존 제공자가 AWS이기 때문에 AWS Route 53의 경우 [cli53](https://github.com/barnybug/cli53) 툴을 이용하여 내보내기를 수행합니다.
 
+#### cli53 환경 구성
 cli53 설치
 - 필자는 mac os이기 때문에 homebrew 패키지 매니저를 통하여 설치하겠습니다.
 ```shell
 brew install cli53
 ```
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828160218.png)
+
+AWS 자격 증명 설정
+- `~/.aws/credentials` 경로의 파일에 AWS의 액세스 키와 시크릿 액세스 키 값을 설정합니다.
+```txt
+aws_access_key_id = AKID1234567890
+aws_secret_access_key = MY-SECRET-KEY
+```
+
+
 
 
 todo: cli53을 이용하여 Route53의 DNS 구성 내보내기 수행
