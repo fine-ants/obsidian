@@ -155,10 +155,6 @@ Firebase 초기화 결과 확인
 - firebase.json : 호스팅 구성을 정의한다. 구성 정보에는 어떤 폴더를 기준으로 배포할지, 배포할 때 어떤 파일을 무시할지, 호스팅 대상 사이트는 어디에 있는지 등을 포함한다.
 - .firebaserc : 배포 대상 프로젝트를 정의한다.
 
-Firebase 호스팅에 배포하기
-![](BE/메뉴얼/refImg/Pasted%20image%2020250827165852.png)
-
-
 > [!NOTE] 타입스크립트 설치
 > npm run build 명령어를 이용하여 빌드하기전에 타입스크립트 라이브러리가 설치되어 있지 않은 경우가 있습니다. 이러한 경우 다음 명령어를 통해서 설치합니다.
 > ```shell
@@ -175,7 +171,11 @@ npm run build & firebase deploy
 
 실행 결과 확인
 - 다음과 같은 화면이 뜨면 Firebase 호스팅 준비에 성공한 것입니다.
+- 다음 실행 결과를 봤을때 fineants-frontend 사이트에 대해서 호스팅한 결과입니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250827170115.png)
+
+### Firebase Hosting 사이트 추가 및 배포
+- 현재 Firebase Hosting 되고 있는 사이트는 fi
 
 
 ## todo
