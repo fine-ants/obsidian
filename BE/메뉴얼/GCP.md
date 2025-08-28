@@ -190,6 +190,11 @@ Firebase Hosting 페이지로 이동합니다.
 - www.fineants.co 리다이렉션을 추가하여 사용자가 fineants.co로 접근하면 www.fineants.co로 리다이렉션하도록 설정
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828130251.png)
 
+레코드 수정
+- 도메인 소유를 확인하기 위해서 도메인의 레코드를 수정합니다.
+- 현재 도메인은 AWS 계정이 가지고 있습니다. Route53 서비스에서 변경
+- 구글에서 할당한 IP 주소인 199.36.158.100 wnth
+![](BE/메뉴얼/refImg/Pasted%20image%2020250828135331.png)
 
 
 
