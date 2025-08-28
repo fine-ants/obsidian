@@ -239,7 +239,10 @@ Route53 서비스에서 fineants.co 도메인을 선택하고 이전 메뉴 선�
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828150336.png)
 
 GCP Cloud Domains 서비스로 이동
+- 도메인 등록 버튼에 마우스를 포커싱하면 "도메인 등록 할당량에 도달했습니다."와 같은 메시지가 나오면서 등록할 수 없다고 나옵니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828151508.png)
+
+GCP 콘솔 -> IAM & Admin -> Quotas 서비스 이동
 
 
 
