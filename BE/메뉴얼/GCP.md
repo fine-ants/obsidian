@@ -262,6 +262,10 @@ SSL 인증서 자동 발급
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250829124609.png)
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250829124620.png)
 
+### AWS Ampify 앱 삭제
+- 기존 배포되어 있는 AWS Ampify 앱을 삭제합니다.
+- AWS Ampify -> 앱 선택 -> 앱 설정 -> 앱 삭제
+
 
 
 ## todo
