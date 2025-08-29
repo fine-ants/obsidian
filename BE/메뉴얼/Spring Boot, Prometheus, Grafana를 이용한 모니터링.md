@@ -56,7 +56,7 @@ management:
 	- 메트릭 데이터에 태그를 추가하는 역할을 수행합니다.
 
 위와 같이 설정 후 `/actuator/prometheus` 경로로 HTTP 요청하여 실행 결과를 확인합니다. 실행 결과를 보면 커넥션, 세션, 스레드 등과 같은 애플리케이션 메트릭 정보를 확인할 수 잇습니다.
-![[Pasted image 20250228164726.png]]
+![[BE/메뉴얼/GCP/refImg/Pasted image 20250228164726.png]]
 
 ### 프로메테우스 설정
 ```yaml
@@ -173,24 +173,24 @@ prometheus:
 
 ### 그라파나 설정
 그라파나의 관리자 계정으로 접속한 다음에 data source 메뉴로 이동합니다.
-![[Pasted image 20250301153433.png]]
+![[BE/메뉴얼/GCP/refImg/Pasted image 20250301153433.png]]
 
 
 새로운 데이터 소스를 추가합니다. 검색창에 Prometheus를 검색하여 선택합니다.
-![[Pasted image 20250301153454.png]]
+![[BE/메뉴얼/GCP/refImg/Pasted image 20250301153454.png]]
 
 URL에 프로메테우스의 호스트 주소와 포트주소를 입력합니다. 저 같은 경우 http://fineAnts_prometheus:9090 입니다.
-![[Pasted image 20250301153509.png]]
+![[BE/메뉴얼/GCP/refImg/Pasted image 20250301153509.png]]
 
 Save & Test 버튼을 눌러서 연결을 확인한 다음에 생성 결과를 확인합니다.
-![[Pasted image 20250301153543.png]]
+![[BE/메뉴얼/GCP/refImg/Pasted image 20250301153543.png]]
 
 이제는 Dashboards 메뉴로 이동한 다음에 Import 버튼을 클릭합니다.
-![[Pasted image 20250301153610.png]]
+![[BE/메뉴얼/GCP/refImg/Pasted image 20250301153610.png]]
 
 다음과 같이 ID 입력 부분에 "4701"을 입력하고 Load합니다.
-![[Pasted image 20250301153657.png]]
+![[BE/메뉴얼/GCP/refImg/Pasted image 20250301153657.png]]
 
 대시보드 생성 결과를 확인합니다.
-![[Pasted image 20250301153710.png]]
+![[BE/메뉴얼/GCP/refImg/Pasted image 20250301153710.png]]
 

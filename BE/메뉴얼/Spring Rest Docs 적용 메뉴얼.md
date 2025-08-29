@@ -74,5 +74,5 @@ bootJar {
 ### 2. Intellij AsciiDoc Plugin 추가
 인텔리제이 IDE에서 asciidoc이라는 플러그인을 추가합니다. 해당 플러그인은 asciidoc 문법으로 작성한 결과를 볼 수 있는 플러그인입니다.
 
-![[Pasted image 20240220125447.png]]
+![[BE/메뉴얼/GCP/refImg/Pasted image 20240220125447.png]]
 
