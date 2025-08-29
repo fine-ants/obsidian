@@ -230,6 +230,11 @@ SSL 인증서 발급
 > https://cloud.google.com/domains/docs/deprecations/feature-deprecations?hl=ko
 
 
+### 커스텀 도메인 추가 (www.fineants.co)
+- 현재 fineants.co로 요청시 www.fineants.co 로 리다이렉션합니다. 그러나 www.fineants.co 요청시 AWS Ampify 배포중인 컨텐츠로 서빙하고 있습니다.
+- www.fineants.co 요청시 Firebase Hosting에서 배포한 fineants-frontend.web.app으로 서빙하도록 수정할 예정입니다.
+
+Firebase -> Hosting -> 커스텀 도메인 추가
 
 
 
