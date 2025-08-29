@@ -245,6 +245,15 @@ www.fineants.co 도메인 소유자 인증
 AWS Route53의 DNS 레코드 수정
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250829123403.png)
 
+DNS 레코드 수정 확인
+![](BE/메뉴얼/refImg/Pasted%20image%2020250829123435.png)
+
+도메인 소유 인증 확인
+- DNS 레코드를 수정한 다음에 시간이 조금 지나서 소유자 인증을 확인하면 다음과 같이 커스텀 도메인 성공이 됩니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250829124011.png)
+
+SSL 인증서 자동 발급
+- 커스텀 도메인을 추가하면 Firebase에서 자동으로 커스텀 도메인에 대한 SSL 인증서를 발급합니다.
 
 
 ## todo
