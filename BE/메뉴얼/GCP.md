@@ -226,49 +226,9 @@ SSL 인증서 발급
 - www.fineants.co 도메인의 SSL 인증서는 AWS에서 발급하고 있는 것을 사용하고 있습니다. 이는 아직 AWS의 레코드 설정하지 않아서 입니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828140214.png)
 
-### www.fineants.co 도메인의 서빙을 GCP 배포한 것으로 변경하기
-- 현재 www.fineants.co 요청시 AWS Ampify에서 배포중인 것을 서빙하고 있습니다.
-- 도메인 주소를 유지하면서 GCP Hosting에서 배포한 fineants-frontend-web.app을 서빙하도록 변경할 예정입니다.
 
-
-## Cloud DNS로 도메인 이전하기
-- 현재 AWS Cloud에 도메인을 등록중입니다. 이 도메인을 GCP로 이전할 예정입니다.
-
-Route53 서비스에서 fineants.co 도메인을 선택하고 이전 메뉴 선택
-- 메뉴를 클릭하면 이전을 위한 권한 부여 코드가 할당됩니다.
-![](BE/메뉴얼/refImg/Pasted%20image%2020250828150336.png)
-
-
-### 시작전
-- Google Cloud CLI 설정
-	- GCP의 Cloud Shell로 접속
-- Google Cloud 콘솔 인증
-```shell
-gcloud auth login
-```
-
-Cloud Shell을 열고 로그인을 수행합니다.
-![](BE/메뉴얼/refImg/Pasted%20image%2020250828153915.png)
-
-### 관리형 영역 만들기
-기존 도메인을 마이그레이션하려면 먼저 DNS 레코드를 포함할 관리형 영역을 생성해야 합니다.  Cloud DNS 서비스로 이동한 다음에 영역 만들기를 수행합니다.
-![](BE/메뉴얼/refImg/Pasted%20image%2020250828154412.png)
-
-DNS 영역 생성 확인
-![](BE/메뉴얼/refImg/Pasted%20image%2020250828154453.png)
-
-
-### 기존 제공자의 DNS 구성 복사하기
-- AWS Route53의 호스팅 영역으로 이동하여 레코드 설정을 미리 어딘가에 값을 복사해둔다.
-- NS 및 SOA 레코드는 제외한다.
-![](BE/메뉴얼/refImg/Pasted%20image%2020250828162225.png)
-
-### 새로운 호스팅 영역에 레코드 추가
-- GCP에서 생성한 fineants.co 호스팅 영역에 위에서 복사한 레코드 설정을 기반으로 설정을 추가합니다.
-- Cloud DNS 메뉴에서 "표준 추가" 버튼을 클릭하여 레코드를 추가합니다.
-![](BE/메뉴얼/refImg/Pasted%20image%2020250829113749.png)- 
-
-
+> [!NOTE] AWS Domain을 GCP로 도메인 이전을 안하는 이유
+> Contents
 
 
 
