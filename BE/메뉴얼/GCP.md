@@ -254,6 +254,14 @@ DNS 레코드 수정 확인
 
 SSL 인증서 자동 발급
 - 커스텀 도메인을 추가하면 Firebase에서 자동으로 커스텀 도메인에 대한 SSL 인증서를 발급합니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250829124539.png)
+
+커스텀 도메인 실행 확인
+- www.fineants.co 로 접속하여 페이지 접속을 확인합니다.
+- 실행 결과를 보면 정상적으로 출력되었고 SSL 인증서도 AWS에서 Google 것으로 변경된 것을 확인할 수 있습니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250829124609.png)
+![](BE/메뉴얼/refImg/Pasted%20image%2020250829124620.png)
+
 
 
 ## todo
