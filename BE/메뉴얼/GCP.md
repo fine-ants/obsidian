@@ -225,10 +225,9 @@ SSL 인증서 발급
 - 실행 결과를 보면 https://www.fineants.co 리다이렉션 된것을 볼수 있습니다.
 - www.fineants.co 도메인의 SSL 인증서는 AWS에서 발급하고 있는 것을 사용하고 있습니다. 이는 아직 AWS의 레코드 설정하지 않아서 입니다.
 ![](BE/메뉴얼/refImg/Pasted%20image%2020250828140214.png)
-
-
 > [!NOTE] AWS Domain을 GCP로 도메인 이전을 안하는 이유
-> Contents
+> Google Domain Transfer-In 기능을 더이상 지원하지 않습니다. 또한 도메인 등록 또한 지원하되지 않고 Squarespace를 통해서 지원됩니다. 이러한 경우 도메인은 AWS로 관리하는 것이 적절하다고 판단함
+> https://cloud.google.com/domains/docs/deprecations/feature-deprecations?hl=ko
 
 
 
