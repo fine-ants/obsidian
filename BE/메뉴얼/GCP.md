@@ -235,7 +235,15 @@ SSL 인증서 발급
 - www.fineants.co 요청시 Firebase Hosting에서 배포한 fineants-frontend.web.app으로 서빙하도록 수정할 예정입니다.
 
 Firebase -> Hosting -> 커스텀 도메인 추가
+![](BE/메뉴얼/refImg/Pasted%20image%2020250829122439.png)
 
+www.fineants.co 도메인 소유자 인증
+- 커스텀 도메인 추가시 도메인 제공업체의 DNS 레코드를 수정하여 소유자임을 인증해야 합니다.
+- 현재 fineants.co 도메인의 제공업체는 AWS이기 때문에 Route53 서비스로 이동하여 레코드를 수정해야 합니다.
+![](BE/메뉴얼/refImg/Pasted%20image%2020250829122811.png)
+
+AWS Route53의 DNS 레코드 수정
+![](BE/메뉴얼/refImg/Pasted%20image%2020250829123403.png)
 
 
 
