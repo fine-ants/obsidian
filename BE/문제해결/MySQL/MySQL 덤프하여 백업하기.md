@@ -14,6 +14,12 @@ mysqldump --version
 ```
 ![](BE/문제해결/MySQL/refImg/Pasted%20image%2020250830130623.png)
 
+인텔리제이 툴을 이용하여 특정 스키마를 선택하고 "Export with mysqldump" 실행
+![](BE/문제해결/MySQL/refImg/Pasted%20image%2020250830131916.png)
+
+MySQL dump 실행 확인
+![](BE/문제해결/MySQL/refImg/Pasted%20image%2020250830131950.png)
+
 
 
 
