@@ -8,4 +8,12 @@
 - 본인은 mac os이기 때문에 패키지 매니저로 home brew 사용
 ```shell
 brew install mysql-client
+echo 'export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+mysqldump --version
 ```
+![](BE/문제해결/MySQL/refImg/Pasted%20image%2020250830130623.png)
+
+
+
+
