@@ -73,6 +73,43 @@ cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts
 
 프로젝트에 keystore.p12 파일을 복사에 성공하면 커밋후 프로젝트를 다시 배포합니다.
 
+---
+
+## GCP 기반 SSL 인증서 발급
+
+certbot 설치
+```shell
+sudo apt-get update
+sudo apt-get install certbot
+```
+
+SSL 인증서 발급
+```shell
+sudo certbot certonly --standalone -d services.fineants.co
+```
+
+SSL 인증서가 발급된 디렉토리로 이동
+```shell
+su - root
+password: {패스워드 입력}
+cd /etc/letsencrypt/live/services.fineants.co
+```
+
+#### root 계정 비밀번호 변경 후 접속하기
+root 계정 접속 전 비밀번호 변경
+```shell
+sudo passwd root
+```
+
+SSH 설정 파일 수정
+```shell
+sudo vim /etc/ssh/sshd_config
+```
+![](BE/문제해결/refImg/Pasted%20image%2020251111164014.png)
+
+
+
+---
 
 ## Spring Boot SSL 관련 설정
 application-secret.yml 파일에서 SSL 설정
@@ -150,3 +187,4 @@ $ sudo rm -rf /root/.aws/credentials
 # codedeploy-agent 재시작
 $ sudo systemctl restart codedeploy-agent
 ```
+
