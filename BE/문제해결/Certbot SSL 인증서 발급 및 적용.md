@@ -104,12 +104,15 @@ sudo openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out keystore.p
 
 keysthore.p12 파일을 프로젝트의 디렉토리로 복사
 ```shell
+chmod a+rw keystore.p12
+
 scp -i ~/.ssh/gcp_vm \
-    root@35.209.165.201:/etc/letsencrypt/live/services.fineants.co/keystore.p12 \
+    fineants@35.209.165.201:/home/fineants/keystore.p12 \
     ~/Downloads/
 
-cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts/backend/src/main/resources/ssl/keystore.p12
+cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts/backend/src/main/resources/ssl/production/keystore.p12
 ```
+![](BE/문제해결/refImg/Pasted%20image%2020251111165410.png)
 
 #### root 계정 비밀번호 변경 후 접속하기
 root 계정 접속 전 비밀번호 변경
