@@ -12,4 +12,10 @@
 
 
 ---
-## mysql 데이터 백업
+
+## pd-balanaced에서 pd-standard로 디스크 타입 변경
+### 스냅샷 생성
+![](BE/문제해결/GCP/refImg/Pasted%20image%2020251112124417.png)
+
+![](BE/문제해결/GCP/refImg/Pasted%20image%2020251112124431.png)
+
