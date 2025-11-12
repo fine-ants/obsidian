@@ -15,7 +15,26 @@
 
 ## pd-balanaced에서 pd-standard로 디스크 타입 변경
 ### 스냅샷 생성
+현재 실해중인 vm 인스턴스를 대상으로 스냅샷을 생성합니다.
 ![](BE/문제해결/GCP/refImg/Pasted%20image%2020251112124417.png)
 
 ![](BE/문제해결/GCP/refImg/Pasted%20image%2020251112124431.png)
 
+스냅샷 생성 확인
+![](BE/문제해결/GCP/refImg/Pasted%20image%2020251112124908.png)
+
+### 디스크 만들기
+스냅샷 메뉴에서 "디스크 만들기"를 선택하여 디스크를 생성합니다.
+![](BE/문제해결/GCP/refImg/Pasted%20image%2020251112124930.png)
+
+디스크 생성 정보를 입력합니다.
+![](BE/문제해결/GCP/refImg/Pasted%20image%2020251112125043.png)
+
+디스크 유형에서 **"표준 영구 디스크"**를 선택합니다.
+![](BE/문제해결/GCP/refImg/Pasted%20image%2020251112125102.png)
+
+디스크 생성 확인
+![](BE/문제해결/GCP/refImg/Pasted%20image%2020251112125304.png)
+
+### 부팅 디스크 교체
+VM 인스턴스 중지
