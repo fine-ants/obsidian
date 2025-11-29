@@ -43,7 +43,7 @@ IntelliJ IDE를 이용하여 빌드를 수행할 때는 temurin-17(open jdk17) �
 
 build.gradle 파일 수정
 - `toolchain`을 이용하여 JDK 17버전을 사용하도록 수정
-```
+```
 java {  
     sourceCompatibility = '17'  
   
@@ -66,5 +66,5 @@ Gradle 로그를 보면 JDK17을 사용하는 것을 확인할 수 있습니다.
 
 ## 정리
 - IntelliJ IDEA에서는 JDK17 버전으로 수행하여 빌드가 성공했지만 Gradle build 테스크를 이용하여 빌드하는 경우에는 QClass를 찾을 수 없다고 에러가 발생하였습니다.
-- 에러의 원인은 Gradle 실행시에는 JDK21 버전으로 수행하여 Lombok 라이브러리와 버전 충돌이 발생하여 빌드가 실패하였습니다.
-- `gradle.properties` 파일을 추가하여 
+- 빌드 실패의 원인은 **Gradle 실행시에는 JDK21 버전으로 수행하여 Lombok 라이브러리와 버전 충돌이 발생하여 빌드가 실패**하였습니다.
+- 빌드 실패 문제를 해결하기 위해서 Gradle 설정에 toolchain을 추가하여 JDK17를 사용하도록 설정하여 문제를 해결하였습니다.
