@@ -67,9 +67,11 @@ sub-project-2 모듈의 `build.gradle` 확인
 ![](refImg/Pasted%20image%2020251129160708.png)
 
 
-루트 프로젝트의 Gradle 설정
-- 자바 플러그인 추가
-- sub-project-1 프로젝트에 java 플러그인 적용 및 hello 테스크 추가
+루트 프로젝트의 Gradle 설정 : **project 설정**
+- **루프 프로젝트의 Gradle 설정에서 project 설정을 이용하면 특정 모듈의 Gradle을 설정 적용할 수 있습니다.**
+- 적용할것
+	- 자바 플러그인 추가
+	- hello 테스크 추가
 - 다음 플러그인들(java, java-library, org.springframework.boot)은 루트 프로젝트에만 적용됩니다. 서브 모듈에 적용하기 위해서는 별도의 설정이 필요합니다.
 ![](refImg/Pasted%20image%2020251129162906.png)
 
@@ -88,5 +90,19 @@ sub-project-1 hello Task 수행
 
 서브 모듈에 루트 프로젝트의 플러그인을 적용하기 위해서는 `apply` 키워드를 이용하여 별도로 설정해야 합니다. 그리고 `subprojects` 설정을 활용하면 루트 프로젝트의 서브 모듈들에 일괄적으로 설정이 적용됩니다.
 ![](refImg/Pasted%20image%2020251129163933.png)
+
+
+
+루트 프로젝트 hello 테스크 테스트
+```shell
+./gradlew hello
+```
+
+실행 결과를 보면 2개의 서브모듈의 hello 테스크가 실행된 것을 확인할 수 있습니다.
+![](refImg/Pasted%20image%2020251129164132.png)
+
+
+**allprojects 설정 적용하기**
+allprojects 설정을 이용하면 루트 프로젝트 및 서브 모듈 모든 프로젝트에 Gradle 설정을 적용할 수 있습니다.
 
 
