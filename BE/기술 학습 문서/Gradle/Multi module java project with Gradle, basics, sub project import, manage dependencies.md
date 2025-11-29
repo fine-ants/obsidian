@@ -59,3 +59,12 @@ sub-project-1 모듈과 같이 디렉토리를 직접 생성하는 방법이 아
 sub-project-2 모듈 생성 확인
 ![](refImg/Pasted%20image%2020251129155534.png)
 
+sub-project-2 모듈의 `build.gradle` 확인
+파일을 확인하면 sub-project-2 모듈의 독립적인 설정들이 존재하는데, 이번 학습에서는 중복적인 설정을 모두 루트 프로젝트의 Gradle 설정에서 제어할 예정이기 때문에 다음 설정들을 모두 제거합니다. 이는 sub-project-1 모듈 또한 동일합니다.
+![](refImg/Pasted%20image%2020251129160512.png)
+
+![](refImg/Pasted%20image%2020251129160613.png)
+![](refImg/Pasted%20image%2020251129160708.png)
+
+
+
