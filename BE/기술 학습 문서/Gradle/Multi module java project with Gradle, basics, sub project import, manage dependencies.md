@@ -68,5 +68,16 @@ sub-project-2 모듈의 `build.gradle` 확인
 
 
 루트 프로젝트의 Gradle 설정
+- 자바 플러그인 추가
+- sub-project-1 프로젝트에 java 플러그인 적용 및 hello 테스크 추가
+![](refImg/Pasted%20image%2020251129162906.png)
 
+
+sub-project-1 hello Task 수행
+```shell
+./gradlew :sub-project-1:hello
+```
+
+실행 결과를 보면 정상적으로 hello 테스크를 수행하여 프로젝트 이름을 출력한 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251129163027.png)
 
