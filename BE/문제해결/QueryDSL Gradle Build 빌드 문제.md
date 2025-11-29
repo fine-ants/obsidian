@@ -35,4 +35,28 @@ IntelliJ IDE를 이용하여 빌드를 수행할 때는 temurin-17(open jdk17) �
 반면에 1.18.22 버전부터 JDK17이 지원됩니다.
 ![](BE/문제해결/refImg/Pasted%20image%2020251129140908.png)
 
-정리하면 Gradle build 명령어 수행시 컴파일에 실행한 이유는 QueryDSL 문제 이전에 Gradle이 JDK21 버전으로 수행되고 Lombok 라이브러리와 버전 충돌이 발생하면서 Annotation Processor 작업이 실패한 것입니다. 그로인해서 QClass
+정리하면 Gradle build 명령어 수행시 컴파일에 실행한 이유는 QueryDSL 문제 이전에 Gradle이 JDK21 버전으로 수행되고 Lombok 라이브러리와 버전 충돌이 발생하면서 Annotation Processor 작업이 실패한 것입니다. 그로인해서 QClass가 생성되지 않고 에러 결과에서는 QClass가 존재하지 않는다고 실패한 것입니다.
+![](BE/문제해결/refImg/Pasted%20image%2020251129141201.png)
+
+## 해결 방법
+위와 같은 컴파일 문제를 해결하기 위해서는 Gradle이 실행하는 JDK 버전을 open JDK17 버전으로 변경합니다.
+
+프로젝트 루트 경로에 `gradle.properties` 파일을 추가합니다.
+![](BE/문제해결/refImg/Pasted%20image%2020251129141333.png)
+
+gradle.properties 파일 수정
+- `org.gradle.java.home` 프로퍼티에 사용하고자 하는 JDK 경로를 설정합니다.
+
+```properties
+org.gradle.java.home=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
+```
+
+Gradle Build 테스트
+```shell
+./gradlew clean build --info
+```
+
+Gradle 로그를 보면 JDK17을 사용하는 것을 확인할 수 있습니다.
+![](BE/문제해결/refImg/Pasted%20image%2020251129141629.png)
+
+
