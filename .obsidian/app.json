@@ -4,5 +4,5 @@
   "attachmentFolderPath": "./refImg",
   "spellcheck": false,
   "useMarkdownLinks": true,
-  "newLinkFormat": "absolute"
+  "newLinkFormat": "relative"
 }

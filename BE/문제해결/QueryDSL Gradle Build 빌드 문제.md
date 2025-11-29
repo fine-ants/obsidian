@@ -1,7 +1,7 @@
 
 ## 배경
 IntelliJ IDEA가 아닌 Gradle 기반으로 빌드 명령어를 수행 시 QueryDSL의 QClass를 찾을 수 없다고 에러를 출력하였습니다.
-![](BE/문제해결/refImg/Pasted%20image%2020251129134704.png)
+![](./refImg/Pasted%20image%2020251129134704.png)
 
 하지만 IntelliJ IDEA를 이용하여 빌드를 수행할 때는 정상적으로 QueryDSL의 QClass를 생성하고 빌드 완료된 것을 볼수 있습니다.
 ![](BE/문제해결/refImg/Pasted%20image%2020251129134821.png)
@@ -68,3 +68,4 @@ Gradle 로그를 보면 JDK17을 사용하는 것을 확인할 수 있습니다.
 - IntelliJ IDEA에서는 JDK17 버전으로 수행하여 빌드가 성공했지만 Gradle build 테스크를 이용하여 빌드하는 경우에는 QClass를 찾을 수 없다고 에러가 발생하였습니다.
 - 빌드 실패의 원인은 **Gradle 실행시에는 JDK21 버전으로 수행하여 Lombok 라이브러리와 버전 충돌이 발생하여 빌드가 실패**하였습니다.
 - 빌드 실패 문제를 해결하기 위해서 Gradle 설정에 toolchain을 추가하여 JDK17를 사용하도록 설정하여 문제를 해결하였습니다.
+- QueryDSL 관련하여 빌드가 실패한줄 알았지만 실제 문제는 JDK 버전과 Lombok 라이브러리간 버전 충돌 때문에 발생한 문제였습니다.
