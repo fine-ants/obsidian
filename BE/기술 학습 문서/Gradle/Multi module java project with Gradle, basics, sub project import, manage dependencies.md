@@ -104,5 +104,16 @@ sub-project-1 hello Task 수행
 
 **allprojects 설정 적용하기**
 allprojects 설정을 이용하면 루트 프로젝트 및 서브 모듈 모든 프로젝트에 Gradle 설정을 적용할 수 있습니다.
+![](refImg/Pasted%20image%2020251129165306.png)
 
+subprojects 설정에서 등록했었던 hello 테스크를 allprojects 설정으로 이동시킵니다. 이렇게 함으로써 루트 프로젝트 자체의 hello 테스크를 수행할 수 있습니다.
+![](refImg/Pasted%20image%2020251129165345.png)
+
+루트 프로젝트의 hello 테스크 실행
+```shell
+./gradlew hello
+```
+
+실행 결과를 보면 루트 프로젝트의 hello 실행만이 아닌 서브 모듈들의 hello도 실행한 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251129165522.png)
 
