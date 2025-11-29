@@ -23,3 +23,16 @@ IntelliJ IDE를 이용하여 빌드를 수행할 때는 temurin-17(open jdk17) �
 ```shell
 ./gradlew build --info
 ```
+
+다음 실행 결과를 보면 Gradle build 명령어 실행시 정작 실행되는 JDK 버전은 temurin-21(open jdk21)인것을 볼수 있습니다. 제 로컬 개발 환경 경우에는 mac os 운영체제에 temurin-17과 temurin-21이 같이 설치되어 있는 상태입니다. 
+![](BE/문제해결/refImg/Pasted%20image%2020251129140125.png)
+
+**open jdk21 버전으로 컴파일 할때의 문제점은 Lombok 라이브러리와 버전 충돌이 발생한다는 점입니다.** 현재 Lombok 라이브러리 버전은 1.18.22 버전으로 JDK17 버전에 맞추어져 있는 최소 버전입니다. jdk21으로 컴파일시 Lombok 1.18.22 버전을 사용하면 컴파일러의 내부 API 충돌이 발생합니다.
+
+다음 화면을 보면 1.18.30 버전부터 JDK21이 지원된다는 것을 알 수 있습니다.
+![](BE/문제해결/refImg/Pasted%20image%2020251129140815.png)
+
+반면에 1.18.22 버전부터 JDK17이 지원됩니다.
+![](BE/문제해결/refImg/Pasted%20image%2020251129140908.png)
+
+정리하면 Gradle build 명령어 수행시 컴파일에 실행한 이유는 QueryDSL 문제 이전에 Gradle이 JDK21 버전으로 수행되고 Lombok 라이브러리와 버전 충돌이 발생하면서 Annotation Processor 작업이 실패한 것입니다. 그로인해서 QClass
