@@ -39,3 +39,11 @@ sub-project-1 모듈에 소스 코드 디렉토리 생성
 ![](refImg/Pasted%20image%2020251129153946.png)
 
 sub-project-1 모듈, 패키지 생성
+![](refImg/Pasted%20image%2020251129154459.png)
+
+subprojectone 패키지에 클래스 생성
+![](refImg/Pasted%20image%2020251129154629.png)
+
+
+sub-project-1 모듈, build.gradle 파일 생성
+![](refImg/Pasted%20image%2020251129154711.png)
