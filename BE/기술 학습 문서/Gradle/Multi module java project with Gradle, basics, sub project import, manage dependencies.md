@@ -67,4 +67,6 @@ sub-project-2 모듈의 `build.gradle` 확인
 ![](refImg/Pasted%20image%2020251129160708.png)
 
 
+루트 프로젝트의 Gradle 설정
+
 
