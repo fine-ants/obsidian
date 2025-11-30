@@ -138,4 +138,7 @@ common, build.gradle
 ```gradle
 jar.enabled = true
 ```
+- 해당 설정을 true로 설정하면 모듈을 jar 파일로 생성할 수 있습니다.
+- 이 설정을 하는 이유는 프로젝트를 다른 곳에서 라이브러리로 사용해야할 때 사용합니다.
 
+서브 모듈인 sub-project-1 모듈에서 common 모듈 import하기
