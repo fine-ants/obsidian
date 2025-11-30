@@ -125,3 +125,17 @@ common 모듈에 패키지 생성
 ![](refImg/Pasted%20image%2020251130122835.png)
 
 commonEntity
+```java
+@AllArgsConstructor  
+public class CommonEntity {  
+    private final String id;  
+}
+```
+
+common, build.gradle
+- jar 파일 생성 활성화
+
+```gradle
+jar.enabled = true
+```
+
