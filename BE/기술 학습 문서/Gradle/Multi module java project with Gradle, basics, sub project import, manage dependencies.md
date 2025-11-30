@@ -117,3 +117,6 @@ subprojects 설정에서 등록했었던 hello 테스크를 allprojects 설정�
 실행 결과를 보면 루트 프로젝트의 hello 실행만이 아닌 서브 모듈들의 hello도 실행한 것을 볼수 있습니다.
 ![](refImg/Pasted%20image%2020251129165522.png)
 
+### common 모듈 생성하기
+다른 모듈에서 common 모듈의 설정을 가져오기 위해서 common 모듈을 다음과 같이 생성합니다.
+![](refImg/Pasted%20image%2020251130122407.png)
