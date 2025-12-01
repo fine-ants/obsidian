@@ -154,5 +154,9 @@ sub-project-1, ModuleOneUser 클래스에서 common 모듈에 있는 CommonEntit
 ![](refImg/Pasted%20image%2020251201102757.png)
 
 
-모듈간에 의존성들을 공유하는 방법 정리
+**모듈간에 의존성들을 공유하는 방법 정리**
+다음 그림을 보면 moudle-2 모듈에서는 moudle-1을 의존하도록 설정되어 있습니다. 이렇게 함으로써 moudle-2의 프로덕션 코드에서 module-1 모듈에 존재하는 코드를 import하여 가져올 수 있습니다.
+단, moudle-1 모듈에 존재하는 'commons-io:commons-io:2.8.0' 의존성은 module-2에서 import하여 가져올수 없습니다. 이는 해당 의존성 설정이 **implementation**으로 설정되어 있기 때문에 전이 의존성이 발생하지 않습니다.
+하지만 api 의존성으로 설정되어 있는 'junit:junit:4.2' 의존성 같은 경우에는 api로 설정되어 있기 때문에 전이 의존성이 발생하여 module-2 모듈에서 참조가 가능합니다.
+![](refImg/Pasted%20image%2020251201103402.png)
 
