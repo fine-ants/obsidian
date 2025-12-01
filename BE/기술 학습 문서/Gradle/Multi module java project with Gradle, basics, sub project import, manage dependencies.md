@@ -90,7 +90,7 @@ sub-project-2 모듈 생성 확인
 `build.gradle` 파일에 project 설정을 이용하여 특정 모듈의 Gradle 설정을 추가할 수 있습니다.
 
 project 설정을 활용하여 서브 모듈인 sub-project-1 모듈에 "hello" 라는 이름의 테스크를 추가해보겠습니다.
-추가적으로 sub-project-1 모듈에서 자바 언어를 사용하도록 
+추가적으로 sub-project-1 모듈에 java 플러그인을 추가합니다. java 플러그인을 추가함으로써 sub-project-1 모듈은 표준 자바 프로젝트로 인식하고, 자바 코드를 빌드하는데 필요한 모든 설정(compileJava, jar, test 등)을 자동으로 추가합니다.
 ![](refImg/Pasted%20image%2020251129162906.png)
 
 
@@ -101,6 +101,13 @@ sub-project-1 hello Task 수행
 
 실행 결과를 보면 정상적으로 hello 테스크를 수행하여 프로젝트 이름을 출력한 것을 볼수 있습니다.
 ![](refImg/Pasted%20image%2020251129163027.png)
+
+### 루트 프로젝트 - subprojects 설정
+project 설정을 이용하여 특정 모듈에 테스크 및 플러그인을 적용할 수 있었습니다. 하지만 만약에 동일한 테스크 및 플러그인 설정을 다른 모듈에도 적용하기 위해서는 어떻게 해야할까요? project 설정을 추가하여 동일한 코드의 테스크와 플러그인 설정을 추가해야 할 것입니다. 하지만 이러한 방법은 코드 중복이 발생합니다.
+
+위와 같은 중복 문제를 해결하기 위해서 subprojects 설정을 사용하여 해결할 수 있습니다. **subprojects 설정을 사용하면 루트 프로젝트를 제외한 서브 모듈들에 동일한 설정을 제공**할 수 있습니다.
+
+subprojects 설정을 사용하여 
 
 서브 모듈(sub-project-1, sub-project-2)에 플러그인 및 테스크 적용하기
 - 서브 모듈에 java, spring boot 플러그린 적용
