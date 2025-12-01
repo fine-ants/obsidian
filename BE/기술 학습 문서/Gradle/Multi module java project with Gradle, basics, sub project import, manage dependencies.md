@@ -180,10 +180,12 @@ common 모듈, guava 라이브러리 참조하기
 ![](refImg/Pasted%20image%2020251201111126.png)
 
 위와 같은 문제를 해결하기 위해서는 implementation 의존성 설정이 아닌 **api 의존성 설정**으로 해야 합니다.
+- api 의존성 설정을 사용하기 위해서는 java-library 플러그인을 추가해야 합니다.
+- 해당 실습에서는 루트 프로젝트의 subprojects 설정에 java-library 플러그인을 적용한 상태입니다.
+![](refImg/Pasted%20image%2020251201111420.png)
 
 
+위와 같은 상태에서 다시 빌드해봅니다. 실행 결과를 보면 정상적으로 빌드가 완료된 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251201111518.png)
 
-하지만 common 모듈의 guava 의존성 설정을 다음과 같이 변경하면 결과가 달라집니다.
-우선은 루트 프로젝트의 설정에서 모든 서브 프로젝트에 java-library 플러그인을 사용할 수 있도록 합니다.
-![](refImg/Pasted%20image%2020251201110531.png)
-
+### 모든 의존성들을 외부의 파일에 저장하는 방법
