@@ -105,7 +105,7 @@ sub-project-1 hello Task 수행
 **allprojects 설정 적용하기**
 allprojects 설정을 이용하면 루트 프로젝트 및 서브 모듈 모든 프로젝트에 Gradle 설정을 적용할 수 있습니다.
 ![](refImg/Pasted%20image%2020251129165306.png)
-
+ 
 subprojects 설정에서 등록했었던 hello 테스크를 allprojects 설정으로 이동시킵니다. 이렇게 함으로써 루트 프로젝트 자체의 hello 테스크를 수행할 수 있습니다.
 ![](refImg/Pasted%20image%2020251129165345.png)
 
@@ -192,8 +192,13 @@ common 모듈, guava 라이브러리 참조하기
 루트 프로젝트에 `dependencies.gradle` 파일 생성
 ![](refImg/Pasted%20image%2020251201112556.png)
 
-루트 프로젝트에 있는 모든 의존성을 dependencis.gradle 파일로 이동시키고 ext 설정을 이용해서 다음과 같이 설정합니다.
+루트 프로젝트에 있는 모든 의존성을 dependencis.gradle 파일로 이동시키고 ext 설정을 이용해서 다음과 같이 설정합니다. 또한 common 모듈에 있는 guava 의존성 또한 가져와 설정하도록 합니다.
 ![](refImg/Pasted%20image%2020251201113101.png)
 
+루트 프로젝트의 build.gradle에서 `dependencis.gradle` 파일을 참조하여 의존성 설정을 적용합니다.
+![](refImg/Pasted%20image%2020251201114108.png)
+![](refImg/Pasted%20image%2020251201114114.png)
+
+sub-project-1 모듈에서 junitJupiterApi가 정상적으로 동작하는지 테스트 클래스를 생성하고 실행해봅니다.
 
 
