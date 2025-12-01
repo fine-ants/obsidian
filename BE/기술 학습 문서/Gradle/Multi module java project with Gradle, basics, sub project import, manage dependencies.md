@@ -189,3 +189,11 @@ common 모듈, guava 라이브러리 참조하기
 ![](refImg/Pasted%20image%2020251201111518.png)
 
 ### 모든 의존성들을 외부의 파일에 저장하는 방법
+루트 프로젝트에 `dependencies.gradle` 파일 생성
+![](refImg/Pasted%20image%2020251201112556.png)
+
+루트 프로젝트에 있는 모든 의존성을 dependencis.gradle 파일로 이동시키고 ext 설정을 이용해서 다음과 같이 설정합니다.
+![](refImg/Pasted%20image%2020251201113101.png)
+
+
+
