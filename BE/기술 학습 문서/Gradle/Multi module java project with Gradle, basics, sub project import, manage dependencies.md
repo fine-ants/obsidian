@@ -171,22 +171,20 @@ jar.enabled = true
 - 이 설정을 하는 이유는 프로젝트를 다른 곳에서 라이브러리로 사용해야할 때 사용합니다.
 
 ## 모듈간 의존성 추가하기
-프로젝트 내의 서브 모듈이 다른 모듈의 클래스를 참조하기 위해서는 모듈간의 의존성을 추가
+프로젝트 내의 서브 모듈이 다른 모듈의 클래스를 참조하기 위해서는 모듈간의 의존성을 추가하여 참조할 수 있습니다. 예를 들어 sub-project-1 모듈이 common 모듈의 CommonEntity 클래스를 참조하기 위해서 모듈간 의존성을 추가해보도록 하겠습니다.
 
-**서브 모듈인 sub-project-1 모듈에서 common 모듈 import하기**
-build.gradle
+sub-project-1 모듈에서 common 모듈에 대한 모듈간 의존성 추가, build.gradle
 ```
 dependencies {  
     implementation project(':common')  
 }
 ```
 
-sub-project-1, ModuleOneUser 클래스에서 common 모듈에 있는 CommonEntity 참조하기
-- 다음 코드를 보면 import문을 이용해서 common 모듈에 있는 CommonEntity를 가져오는 것을 볼수 있습니다.
+sub-project-1, ModuleOneUser 클래스에서 common 모듈에 있는 CommonEntity 클래스를 참조합니다.
+다음 코드를 보면 import문을 이용해서 common 모듈에 있는 CommonEntity를 가져오는 것을 볼수 있습니다.
 ![](refImg/Pasted%20image%2020251201102757.png)
 
-
-**모듈간에 의존성들을 공유하는 방법 정리**
+**모듈간에 의존성들을 추가 방법 정리**
 다음 그림을 보면 moudle-2 모듈에서는 moudle-1을 의존하도록 설정되어 있습니다. 이렇게 함으로써 moudle-2의 프로덕션 코드에서 module-1 모듈에 존재하는 코드를 import하여 가져올 수 있습니다.
 단, moudle-1 모듈에 존재하는 'commons-io:commons-io:2.8.0' 의존성은 module-2에서 import하여 가져올수 없습니다. 이는 해당 의존성 설정이 **implementation**으로 설정되어 있기 때문에 전이 의존성이 발생하지 않습니다.
 하지만 api 의존성으로 설정되어 있는 'junit:junit:4.2' 의존성 같은 경우에는 api로 설정되어 있기 때문에 전이 의존성이 발생하여 module-2 모듈에서 참조가 가능합니다.
@@ -195,19 +193,19 @@ sub-project-1, ModuleOneUser 클래스에서 common 모듈에 있는 CommonEntit
 - 단, module-2 모듈에서는 junit 라이브러리는 접근 가능
 
 
-루트 프로젝트에 있는 guava 의존성 설정을 common 모듈로 옮기기
+### common 모듈에 guava 의존성을 추가하기
+common 모듈에 guava 의존성을 추가하여 common 모듈을 의존하고 있는 sub-project-1 모듈에서도 guava 라이브러리 클래스를 사용할 수 있도록 합니다.
+
+루트 프로젝트에 있는 guava 의존성 설정을 common 모듈로 이동시킵니다.
 ![](refImg/Pasted%20image%2020251201105609.png)
 
-common 모듈, guava 라이브러리 참조하기
-- Map 객체를 생성하는 과정에서 guava 라이브러리 클래스인 ImmutableMap 클래스를 참조합니다.
+common 모듈에서 guava 라이브러리의 클래스를 사용하여 객체를 생성해봅니다. 다음 코드를 보면 common 모듈의 CommonEntity 클래스에서 guava 라이브러리 클래스인 ImmutableMap 클래스를 참조하는 것을 볼수 있습니다.
 ![](refImg/Pasted%20image%2020251201105725.png)
 
-그러면 이번에는 common 모듈을 참조하고 있는 sub-project-1 모듈을 대상으로 guava 라이브러리 클래스인 ImmutableMap 객체를 생성할 수 있는지 확인해봅니다.
-![](refImg/Pasted%20image%2020251201110105.png)
+그러면 이번에는 common 모듈을 참조하고 있는 sub-project-1 모듈을 대상으로 guava 라이브러리 클래스인 ImmutableMap 객체를 생성할 수 있는지 확인해봅니다. 다음 화면을 보면 sub-project-1 모듈에서 ImmutableMap 클래스를 참조할 수 없는 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251201142127.png)
 
-위와 같이 작성하고 모듈을 빌드해봅니다. 실행 결과를 보면 sub-project-1의 빌드가 실패한 것을 볼수 있습니다.
-![](refImg/Pasted%20image%2020251201110946.png)
-
+sub-project-1 모듈에서 common 모듈의 guava 의존성을 가져오지 못하는 이유는 guava 의존성이 implementation 의존성으로 설정되었기 때문입니다.
 빌드가 실패한 원인은 common 모듈의 의존성 설정에서 guava 의존성 설정을 **implementation**으로 설정했기 때문입니다. implementation으로 설정하면 전이 의존성이 되지 않아서 common 모듈을 의존성하는 sub-project-1 모듈에서 참조하지 못합니다.
 ![](refImg/Pasted%20image%2020251201111126.png)
 
