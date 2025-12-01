@@ -171,6 +171,19 @@ common 모듈, guava 라이브러리 참조하기
 ![](refImg/Pasted%20image%2020251201105725.png)
 
 그러면 이번에는 common 모듈을 참조하고 있는 sub-project-1 모듈을 대상으로 guava 라이브러리 클래스인 ImmutableMap 객체를 생성할 수 있는지 확인해봅니다.
-다음 코드를 보면 정상적으로 ImmutableMap 클래스를 참조하는 것을 볼수 있습니다. 왜냐하면 sub-project-1은 common 의존성을 추가하였기 때문입니다.
 ![](refImg/Pasted%20image%2020251201110105.png)
+
+위와 같이 작성하고 모듈을 빌드해봅니다. 실행 결과를 보면 sub-project-1의 빌드가 실패한 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251201110946.png)
+
+빌드가 실패한 원인은 common 모듈의 의존성 설정에서 guava 의존성 설정을 **implementation**으로 설정했기 때문입니다. implementation으로 설정하면 전이 의존성이 되지 않아서 common 모듈을 의존성하는 sub-project-1 모듈에서 참조하지 못합니다.
+![](refImg/Pasted%20image%2020251201111126.png)
+
+위와 같은 문제를 해결하기 위해서는 implementation 의존성 설정이 아닌 **api 의존성 설정**으로 해야 합니다.
+
+
+
 하지만 common 모듈의 guava 의존성 설정을 다음과 같이 변경하면 결과가 달라집니다.
+우선은 루트 프로젝트의 설정에서 모든 서브 프로젝트에 java-library 플러그인을 사용할 수 있도록 합니다.
+![](refImg/Pasted%20image%2020251201110531.png)
+
