@@ -90,7 +90,7 @@ sub-project-2 모듈 생성 확인
 `build.gradle` 파일에 project 설정을 이용하여 특정 모듈의 Gradle 설정을 추가할 수 있습니다.
 
 project 설정을 활용하여 서브 모듈인 sub-project-1 모듈에 "hello" 라는 이름의 테스크를 추가해보겠습니다.
-추가적으로 sub-project-1 모듈에 java 플러그인을 추가합니다. java 플러그인을 추가함으로써 sub-project-1 모듈은 표준 자바 프로젝트로 인식하고, 자바 코드를 빌드하는데 필요한 모든 설정(compileJava, jar, test 등)을 자동으로 추가합니다.
+추가적으로 sub-project-1 모듈에 java 플러그인을 추가합니다. java 플러그인을 추가함으로써 sub-project-1 모듈은 표준 자바 프로젝트로 인식하고, 자바 코드를 빌드하는데 필요한 모든 설정(compileJava, jar, test 등)을 자동으로 추가합니다.
 ![](refImg/Pasted%20image%2020251129162906.png)
 
 
@@ -107,15 +107,8 @@ project 설정을 이용하여 특정 모듈에 테스크 및 플러그인을 �
 
 위와 같은 중복 문제를 해결하기 위해서 subprojects 설정을 사용하여 해결할 수 있습니다. **subprojects 설정을 사용하면 루트 프로젝트를 제외한 서브 모듈들에 동일한 설정을 제공**할 수 있습니다.
 
-subprojects 설정을 사용하여 
-
-서브 모듈(sub-project-1, sub-project-2)에 플러그인 및 테스크 적용하기
-- 서브 모듈에 java, spring boot 플러그린 적용
-- hello 테스크 적용
-
-서브 모듈에 루트 프로젝트의 플러그인을 적용하기 위해서는 `apply` 키워드를 이용하여 별도로 설정해야 합니다. 그리고 `subprojects` 설정을 활용하면 루트 프로젝트의 서브 모듈들에 일괄적으로 설정이 적용됩니다.
+subprojects 설정을 사용하여 sub-project-1, sub-project-2 모듈에 java 플러그인, spring boot 플러그인, hello 테스크를 적용해보겠습니다.
 ![](refImg/Pasted%20image%2020251129163933.png)
-
 
 
 루트 프로젝트 hello 테스크 테스트
@@ -127,8 +120,11 @@ subprojects 설정을 사용하여
 ![](refImg/Pasted%20image%2020251129164132.png)
 
 
-**allprojects 설정 적용하기**
-allprojects 설정을 이용하면 루트 프로젝트 및 서브 모듈 모든 프로젝트에 Gradle 설정을 적용할 수 있습니다.
+### 루트 프로젝트 - allprojects 설정
+우리는 subprojects 설정을 이용하여 루트 프로젝트를 제외한 서브 모듈들에 동일한 설정을 적용할 수 있었습니다. 하지만 만약에 루트 프로젝트를 포함한 서브 모듈들에도 동일한 설정을 적용하기 위해서는 어떻게 해야 할까요? 
+위 문제를 해결하기 위해서 allprojects 설정을 사용할 수 있습니다. allprojects 설정을 사용하면 루트 프로젝트 포함 서브 모듈들에도 동일한 설정을 적용할 수 있습니다.
+
+루트 프로젝트의 build.gradle 파일에 다음과 같이 allprojects 설정을 사용하여 동일한 설정을 적용합니다.
 ![](refImg/Pasted%20image%2020251129165306.png)
  
 subprojects 설정에서 등록했었던 hello 테스크를 allprojects 설정으로 이동시킵니다. 이렇게 함으로써 루트 프로젝트 자체의 hello 테스크를 수행할 수 있습니다.
