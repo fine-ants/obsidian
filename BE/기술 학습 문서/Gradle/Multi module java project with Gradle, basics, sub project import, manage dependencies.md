@@ -159,4 +159,8 @@ sub-project-1, ModuleOneUser 클래스에서 common 모듈에 있는 CommonEntit
 단, moudle-1 모듈에 존재하는 'commons-io:commons-io:2.8.0' 의존성은 module-2에서 import하여 가져올수 없습니다. 이는 해당 의존성 설정이 **implementation**으로 설정되어 있기 때문에 전이 의존성이 발생하지 않습니다.
 하지만 api 의존성으로 설정되어 있는 'junit:junit:4.2' 의존성 같은 경우에는 api로 설정되어 있기 때문에 전이 의존성이 발생하여 module-2 모듈에서 참조가 가능합니다.
 ![](refImg/Pasted%20image%2020251201103402.png)
+- moudle-2 모듈에서는 commons-io 라이브러리에 접근 불가능
+- 단, module-2 모듈에서는 junit 라이브러리는 접근 가능
 
+
+루트 프로젝트에 있는 gua
