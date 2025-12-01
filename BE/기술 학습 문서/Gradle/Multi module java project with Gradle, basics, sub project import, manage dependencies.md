@@ -148,3 +148,11 @@ dependencies {
     implementation project(':common')  
 }
 ```
+
+sub-project-1, ModuleOneUser 클래스에서 common 모듈에 있는 CommonEntity 참조하기
+- 다음 코드를 보면 import문을 이용해서 common 모듈에 있는 CommonEntity를 가져오는 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251201102757.png)
+
+
+모듈간에 의존성들을 공유하는 방법 정리
+
