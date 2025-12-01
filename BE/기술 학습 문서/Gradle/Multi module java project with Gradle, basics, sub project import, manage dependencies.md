@@ -163,4 +163,14 @@ sub-project-1, ModuleOneUser 클래스에서 common 모듈에 있는 CommonEntit
 - 단, module-2 모듈에서는 junit 라이브러리는 접근 가능
 
 
-루트 프로젝트에 있는 gua
+루트 프로젝트에 있는 guava 의존성 설정을 common 모듈로 옮기기
+![](refImg/Pasted%20image%2020251201105609.png)
+
+common 모듈, guava 라이브러리 참조하기
+- Map 객체를 생성하는 과정에서 guava 라이브러리 클래스인 ImmutableMap 클래스를 참조합니다.
+![](refImg/Pasted%20image%2020251201105725.png)
+
+그러면 이번에는 common 모듈을 참조하고 있는 sub-project-1 모듈을 대상으로 guava 라이브러리 클래스인 ImmutableMap 객체를 생성할 수 있는지 확인해봅니다.
+다음 코드를 보면 정상적으로 ImmutableMap 클래스를 참조하는 것을 볼수 있습니다. 왜냐하면 sub-project-1은 common 의존성을 추가하였기 때문입니다.
+![](refImg/Pasted%20image%2020251201110105.png)
+하지만 common 모듈의 guava 의존성 설정을 다음과 같이 변경하면 결과가 달라집니다.
