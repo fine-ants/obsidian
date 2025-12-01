@@ -197,7 +197,10 @@ common 모듈, guava 라이브러리 참조하기
 
 루트 프로젝트의 build.gradle에서 `dependencis.gradle` 파일을 참조하여 의존성 설정을 적용합니다.
 ![](refImg/Pasted%20image%2020251201114108.png)
-![](refImg/Pasted%20image%2020251201114114.png)
+![](refImg/Pasted%20image%2020251201114358.png)
+
+위와 같이 설정한 다음에 build 하여 설정이 적용되는지 확인해봅니다. 실행 결과를 보면 정상적으로 빌드된 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251201114638.png)
 
 sub-project-1 모듈에서 junitJupiterApi가 정상적으로 동작하는지 테스트 클래스를 생성하고 실행해봅니다.
 
