@@ -125,7 +125,7 @@ subprojects 설정을 사용하여 sub-project-1, sub-project-2 모듈에 java �
 위 문제를 해결하기 위해서 allprojects 설정을 사용할 수 있습니다. allprojects 설정을 사용하면 루트 프로젝트 포함 서브 모듈들에도 동일한 설정을 적용할 수 있습니다.
 
 루트 프로젝트의 build.gradle 파일에 다음과 같이 allprojects 설정을 사용하여 동일한 설정을 적용합니다.
-![](refImg/Pasted%20image%2020251129165306.png)
+![](refImg/Pasted%20image%2020251201134954.png)
  
 subprojects 설정에서 등록했었던 hello 테스크를 allprojects 설정으로 이동시킵니다. 이렇게 함으로써 루트 프로젝트 자체의 hello 테스크를 수행할 수 있습니다.
 ![](refImg/Pasted%20image%2020251129165345.png)
@@ -138,7 +138,15 @@ subprojects 설정에서 등록했었던 hello 테스크를 allprojects 설정�
 실행 결과를 보면 루트 프로젝트의 hello 실행만이 아닌 서브 모듈들의 hello도 실행한 것을 볼수 있습니다.
 ![](refImg/Pasted%20image%2020251129165522.png)
 
+
+> [!NOTE] java toolchain 설정을 이용하여 JDK 버전 명시
+> java toolchain 설정을 이용하여 실행하는 Gradle의 JDK 버전을 명세적으로 설정할 수 있습니다.
+> ![](refImg/Pasted%20image%2020251201135103.png)
+> 
+
+
 ## common 모듈 생성하기
+
 다른 모듈에서 common 모듈의 설정을 가져오기 위해서 common 모듈을 다음과 같이 생성합니다.
 ![](refImg/Pasted%20image%2020251130122407.png)
 
