@@ -205,8 +205,7 @@ common 모듈에서 guava 라이브러리의 클래스를 사용하여 객체를
 그러면 이번에는 common 모듈을 참조하고 있는 sub-project-1 모듈을 대상으로 guava 라이브러리 클래스인 ImmutableMap 객체를 생성할 수 있는지 확인해봅니다. 다음 화면을 보면 sub-project-1 모듈에서 ImmutableMap 클래스를 참조할 수 없는 것을 볼수 있습니다.
 ![](refImg/Pasted%20image%2020251201142127.png)
 
-sub-project-1 모듈에서 common 모듈의 guava 의존성을 가져오지 못하는 이유는 guava 의존성이 implementation 의존성으로 설정되었기 때문입니다.
-빌드가 실패한 원인은 common 모듈의 의존성 설정에서 guava 의존성 설정을 **implementation**으로 설정했기 때문입니다. implementation으로 설정하면 전이 의존성이 되지 않아서 common 모듈을 의존성하는 sub-project-1 모듈에서 참조하지 못합니다.
+sub-project-1 모듈에서 common 모듈의 guava 의존성을 가져오지 못하는 이유는 **guava 의존성이 implementation 의존성으로 설정되었기 때문**입니다. implementation 의존성으로 설정되면 **전이 의존성**이 발생하지 않아서 해당 모듈을 참조하는 다른 모듈에서 implementation 으로 설정한 의존성 라이브러리를 참조할 수 없습니다.
 ![](refImg/Pasted%20image%2020251201111126.png)
 
 위와 같은 문제를 해결하기 위해서는 implementation 의존성 설정이 아닌 **api 의존성 설정**으로 해야 합니다.
@@ -214,11 +213,17 @@ sub-project-1 모듈에서 common 모듈의 guava 의존성을 가져오지 못�
 - 해당 실습에서는 루트 프로젝트의 subprojects 설정에 java-library 플러그인을 적용한 상태입니다.
 ![](refImg/Pasted%20image%2020251201111420.png)
 
+api 의존성 설정으로 변경후 Gradle을 리로드한 다음에 sub-project-1 모듈의 ModuleOneUser 클래스를 보면 ImmutableMap 클래스를 참조할 수 있습니다.
+![](refImg/Pasted%20image%2020251201142436.png)
 
-위와 같은 상태에서 다시 빌드해봅니다. 실행 결과를 보면 정상적으로 빌드가 완료된 것을 볼수 있습니다.
+이번에는 Gradle Build하여 빌드가 되는지 테스트해봅니다.
 ![](refImg/Pasted%20image%2020251201111518.png)
 
-## 모든 의존성들을 외부의 파일에 저장하는 방법
+
+## 외부 파일을 이용한 의존성 관리하는 방법
+다음 의존성 설정은 루트 프로젝트의 의존성 설정입니다. 그중에서 lombok 라이브러리(1.18.22)를 compileOnly, annotationProcessor 의존성 설정한 것을 볼수 있습니다. 
+![](refImg/Pasted%20image%2020251201143118.png)
+
 루트 프로젝트에 `dependencies.gradle` 파일 생성
 ![](refImg/Pasted%20image%2020251201112556.png)
 
