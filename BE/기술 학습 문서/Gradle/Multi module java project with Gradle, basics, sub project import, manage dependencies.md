@@ -162,14 +162,16 @@ public class CommonEntity {
 }
 ```
 
-common, build.gradle
-- jar 파일 생성 활성화
-
+build.gradle 설정 추가
+common 모듈을 별도의 jar 파일로 생성할 수 있도록 다음 설정을 추가합니다.
 ```gradle
 jar.enabled = true
 ```
 - 해당 설정을 true로 설정하면 모듈을 jar 파일로 생성할 수 있습니다.
 - 이 설정을 하는 이유는 프로젝트를 다른 곳에서 라이브러리로 사용해야할 때 사용합니다.
+
+## 모듈간 의존성 추가하기
+프로젝트 내의 서브 모듈이 다른 모듈의 클래스를 참조하기 위해서는 모듈간의 의존성을 추가
 
 **서브 모듈인 sub-project-1 모듈에서 common 모듈 import하기**
 build.gradle
