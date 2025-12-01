@@ -146,14 +146,15 @@ subprojects 설정에서 등록했었던 hello 테스크를 allprojects 설정�
 
 
 ## common 모듈 생성하기
+서브 모듈들간에 공통적으로 사용하는 의존성 설정이 존재한다면 common과 같은 이름의 모듈을 생성하여 sub-project-1, sub-project-2과 같은 서브 모듈들에서 설정을 의존할 수 있습니다.
 
-다른 모듈에서 common 모듈의 설정을 가져오기 위해서 common 모듈을 다음과 같이 생성합니다.
+common 모듈 생성
 ![](refImg/Pasted%20image%2020251130122407.png)
 
-common 모듈에 패키지 생성
+패키지 생성
 ![](refImg/Pasted%20image%2020251130122835.png)
 
-commonEntity
+CommonEntity 클래스 생성
 ```java
 @AllArgsConstructor  
 public class CommonEntity {  
