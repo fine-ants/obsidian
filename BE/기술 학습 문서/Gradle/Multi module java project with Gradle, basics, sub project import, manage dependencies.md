@@ -21,6 +21,7 @@
 
 
 ## 루트 프로젝트 생성 및 모듈 생성
+### gradlebasics 루트 프로젝트 생성
 gradlebasics라는 이름의 루트 프로젝트를 생성합니다.
 ![](refImg/Pasted%20image%2020251129153119.png)
 
@@ -33,10 +34,11 @@ gradlebasics 프로젝트 생성 확인
 다음 화면을 보면 gradlebasics라는 프로젝트가 루트 프로젝트가 되는 것을 볼수 있습니다.
 ![](refImg/Pasted%20image%2020251129153226.png)
 
-sub-project-1 모듈 생성
+### sub-project-1 모듈 생성
+sub-project-1 모듈 생성시 "Module..." 메뉴를 통하여 생성하는 것이 아닌 단순히 Directory 메뉴를 통하여 생성해봅니다.
 ![](refImg/Pasted%20image%2020251129153352.png)
 
-생성한 sub-project-1 디렉토리가 모듈로 취급하기 위해서 루트 프로젝트의 `settings.gradle` 파일을 수정하여 sub-project-1 모듈을 포함하도록 합니다.
+생성한 sub-project-1 디렉토리가 모듈로 취급하기 위해서 루트 프로젝트의 **`settings.gradle`** 파일을 수정하여 sub-project-1 모듈을 포함하도록 합니다.
 ![](refImg/Pasted%20image%2020251129153526.png)
 
 모듈 프로젝트 확인
@@ -57,11 +59,18 @@ subprojectone 패키지에 클래스 생성
 ![](refImg/Pasted%20image%2020251129154629.png)
 
 
-sub-project-1 모듈, build.gradle 파일 생성
-- 해당 디렉토리에 `build.gradle` 파일을 생성한다는 의미는 해당 디렉토리를 독립적인 Gradle 모듈로 정의하고 그 모듈의 **빌드 방식과 설정을 명시**하겠다는 의미입니다.
+`build.gradle` 파일 생성
+해당 디렉토리에 `build.gradle` 파일을 생성한다는 의미는 해당 디렉토리를 독립적인 Gradle 모듈로 정의하고 그 모듈의 **빌드 방식과 설정을 명시**하겠다는 의미입니다.
 ![](refImg/Pasted%20image%2020251129154711.png)
 
-sub-project-2 모듈 생성
+
+> [!NOTE] IntelliJ IDEA에서 모듈 취급하기
+> 서브 모듈을 디렉토리와 같이 직접적으로 생성하는 경우 IntelliJ IDEA 편집창에서 해당 디렉토리를 서브 모듈로 취급하지 않을 수 있습니다. 이 문제를 해결하기 위해서 IntelliJ의 Gradle 메뉴에서 **"Reload All Gradle Project"** 기능을 실행하여 sub-project-1와 같은 디렉토리를 모듈 취급하게 할 수 있습니다.
+![](refImg/Pasted%20image%2020251201125226.png) ![](refImg/Pasted%20image%2020251201125253.png)
+
+
+
+**sub-project-2 모듈 생성**
 sub-project-1 모듈과 같이 디렉토리를 직접 생성하는 방법이 아닌 Intellij UI를 통해서도 모듈을 생성할 수 있습니다.
 ![](refImg/Pasted%20image%2020251129155343.png)
 
