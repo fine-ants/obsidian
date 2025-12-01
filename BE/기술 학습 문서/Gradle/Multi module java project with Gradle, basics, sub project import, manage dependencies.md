@@ -9,9 +9,10 @@
 
 
 ## 개요
-- Gradle 기반으로 멀티 모듈 Project를 생성하는 방법을 학습ㅎ
-- 한개 이상의 모듈을 import 방법 학습
-- 의존성 라이브러리를 별도의 파일로 관리하는 방법 학습
+- Gradle 기반으로 멀티 모듈 Project를 생성하는 방법을 학습
+- project, subprojects, allprojects을 통하여 특정 모듈들에 설정하는 방법을 학습
+- 모듈간에 다른 의존성을 공유하는 방법을 학습
+- 외부 파일을 기반으로 의존성 라이브러리를 관리하는 방법을 학습
 
 ## 멀티 모듈 프로젝트는 무엇인가
 멀티 모듈 프로젝트는 여러개의 작은 프로젝트들로 구성된 프로젝트입니다. 다음 프로젝트를 보면 프로젝트 이름은 "gradlebasics" 라는 이름이 프로젝트 이름이고 하나의 gradlebasics 라는 프로젝트 이름 아래에 sub-project-1, sub-project-2, common라는 모듈이 포함되어 있는 형태입니다. 물론 gradlebasics 라는 프로젝트 자체가 하나의 모듈로서 작동할 수도 있습니다.
@@ -19,7 +20,7 @@
 
 
 ## 루트 프로젝트 생성 및 모듈 생성
-gradlebasics 프로젝트 생성
+gradlebasics라는 이름의 루트 프로젝트를 생성합니다.
 ![](refImg/Pasted%20image%2020251129153119.png)
 
 gradlebasics 프로젝트 생성 확인
