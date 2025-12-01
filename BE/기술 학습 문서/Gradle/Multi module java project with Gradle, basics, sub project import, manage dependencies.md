@@ -69,9 +69,8 @@ subprojectone 패키지에 클래스 생성
 ![](refImg/Pasted%20image%2020251201125226.png) ![](refImg/Pasted%20image%2020251201125253.png)
 
 
-
-**sub-project-2 모듈 생성**
-sub-project-1 모듈과 같이 디렉토리를 직접 생성하는 방법이 아닌 Intellij UI를 통해서도 모듈을 생성할 수 있습니다.
+### sub-project-2 모듈 생성
+sub-project-1 모듈과 같이 디렉토리를 직접 생성하는 방법이 아닌 Intellij Module 메뉴를 통해서 생성해봅니다.
 ![](refImg/Pasted%20image%2020251129155343.png)
 
 생성창에서 이름과 JDk 버전, 상위 모듈 또는 프로젝트를 설정할 수 있습니다.
@@ -80,20 +79,18 @@ sub-project-1 모듈과 같이 디렉토리를 직접 생성하는 방법이 아
 sub-project-2 모듈 생성 확인
 ![](refImg/Pasted%20image%2020251129155534.png)
 
-sub-project-2 모듈의 `build.gradle` 확인
+`build.gradle` 확인
 파일을 확인하면 sub-project-2 모듈의 독립적인 설정들이 존재하는데, 이번 학습에서는 중복적인 설정을 모두 루트 프로젝트의 Gradle 설정에서 제어할 예정이기 때문에 다음 설정들을 모두 제거합니다. 이는 sub-project-1 모듈 또한 동일합니다.
 ![](refImg/Pasted%20image%2020251129160512.png)
 
 ![](refImg/Pasted%20image%2020251129160613.png)
 ![](refImg/Pasted%20image%2020251129160708.png)
 
+## 루트 프로젝트 - project 설정
+`build.gradle` 파일에 project 설정을 이용하여 특정 모듈의 Gradle 설정을 추가할 수 있습니다.
 
-루트 프로젝트의 Gradle 설정 : **project 설정**
-- **루프 프로젝트의 Gradle 설정에서 project 설정을 이용하면 특정 모듈의 Gradle을 설정 적용할 수 있습니다.**
-- 적용할것
-	- 자바 플러그인 추가
-	- hello 테스크 추가
-- 다음 플러그인들(java, java-library, org.springframework.boot)은 루트 프로젝트에만 적용됩니다. 서브 모듈에 적용하기 위해서는 별도의 설정이 필요합니다.
+project 설정을 활용하여 서브 모듈인 sub-project-1 모듈에 "hello" 라는 이름의 테스크를 추가해보겠습니다.
+추가적으로 sub-project-1 모듈에서 자바 언어를 사용하도록 
 ![](refImg/Pasted%20image%2020251129162906.png)
 
 
