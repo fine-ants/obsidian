@@ -73,9 +73,11 @@ Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵�
 
 3. public 필드에 사용되는 타입, public annotation 타입
 	- 외부에 공개된 타입이나 annotation 타입은 외부에서 직접 참조하므로 ABI에 해당됩니다.
-	- 예를 들어 
+	- 예를 들어 MyLibrary 모듈(프로젝트)이 구현한 클래스에서 외부 라이브러이인 Gson 라이브러리의 JsonElement 타입을 public으로 설정하여 구현하였습니다. 이러한 MyLibrary 모듈을 의존하는 외부 프로젝트인 AppModule이 DataContainer 객체의 element public 필드를 참조한다면 AppModule 모듈은 Gson 라이브러리의 JsonElement를 import 할 수 있어야 합니다. 이렇게 하기 위해서 gson 라이브러리를 api로 의존성 해야 합니다.
+![](refImg/Pasted%20image%2020251202133809.png)
 
-
+4. public Annotation 타입
+5. 
 
 ### implementation과 api 차이 요약
 `implementation`은 전이 의존성을 허용하지 않아서 어떤 프로젝트를 의존하는 외부의 프로젝트들로부터 의존성 라이브러리들을 노출시키지 않을 수 있습니다.
