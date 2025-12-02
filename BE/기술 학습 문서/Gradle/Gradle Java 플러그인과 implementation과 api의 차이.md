@@ -73,7 +73,7 @@ Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵�
 
 3. public 필드에 사용되는 타입, public annotation 타입
 	- 외부에 공개된 타입이나 annotation 타입은 외부에서 직접 참조하므로 ABI에 해당됩니다.
-
+	- 예를 들어 
 
 
 
