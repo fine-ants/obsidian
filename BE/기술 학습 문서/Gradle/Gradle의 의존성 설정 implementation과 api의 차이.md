@@ -11,7 +11,7 @@ plugins {
 ```
 
 Java 플러그인을 추가하면 다음 그림과 같은 테스크들을 사용할 수 있습니다. 각 테스크들간에 화살표 관계는 해당 테스크를 완료하기 위한 선행 조건 테스크들을 의미합니다. 예를 들어 build 테스크를 수행하기 위해서는 check, assemble 테스크가 먼저 수행 및 완료되어야 합니다.
-![](refImg/Pasted%20image%2020251201155125.png)
+![그림](refImg/Pasted%20image%2020251201155125.png)
 
 자바 컴파일러가 자바 소스 코드(`*.java`)를 컴파일 하게 되면 바이트 코드(`*.class`)를 생성합니다. 이러한 바이트 코드들은 JVM(Java Virtual Machine)에 의해서 읽어지게 됩니다. 그리고 읽어진 바이트 코드들은 기계어로 번역됩니다. JVM이 자바 소스코드를 컴파일하거나 컴파일된 바이트코드를 읽어서 실행하기 위해서 파일과 패키지를 탐색하는데, 이러한 경로를 **클래스패스(classpath)**라고 합니다.
 
@@ -36,17 +36,17 @@ Java-Library를 사용하면 java 플러그인이 제공하는 기본적인 디�
 ### 전이 의존성이란 무엇인가?
 Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵션이 존재합니다. 대표적으로 implementation과 api 의존성 설정이 존재합니다. 두 설정은 모두 컴파일 클래스경로(compile classpath)와 런타임 클래스경로(runtime classpath) 두곳 모두에 라이브러리를 설정하는 공통점을 가지고 있습니다. 하지만 대표적인 차이점은 **전의 의존성(transitive dependency)의 컴파일 경로 노출 여부**가 있습니다. 
 전이 의존성은 어떤 프로젝트 A가 직접적으로 명시하지 않은 라이브러리 C인데도 불구하고, 프로젝트 A가 다른 프로젝트 B를 의존하는 것만으로도 라이브러리 C를 사용할 수 있다면 전이 의존성이 있는 것입니다.
-![](refImg/Pasted%20image%2020251202115140.png)
+![그림](refImg/Pasted%20image%2020251202115140.png)
 
 ### implementation과 api의 차이
 **`api` 의존성 설정은 전이 의존성을 허용하고 있습니다.** 예를 들어 프로젝트 A,B,C가 존재하고 프로젝트 B는 프로젝트 C를 의존하고 프로젝트 A는 프로젝트 B를 의존하는 관계라고 가정합니다. 그림으로 보면 다음과 같습니다.
-![](refImg/Pasted%20image%2020251202120803.png)
+![그림](refImg/Pasted%20image%2020251202120803.png)
 
 위 그림을 보면 프로젝트 C에는 Hello라는 클래스가 public으로 구현되어 있습니다. 그런한 프로젝트 C를 프로젝트 B는 api 설정으로 의존성 설정되어 있습니다. `api`로 설정하였기 때문에 전이 의존성을 허용합니다. 그래서 프로젝트 B를 의존하고 있는 프로젝트 A에서는 프로젝트 C에 정의되어 있는 Hello 클래스를 참조하여 객체를 생성할 수 있습니다.
 
 반면에 `implementation` 의존성 설정은 전이 의존성을 허용하고 있지 않습니다. 예를 들어 위 그림에서 프로젝트 B가 프로젝트 C의 의존성 설정을 `api`가 아닌 `implementation`으로 설정해보겠습니다. 그렇게 되면 상황은 다음 그림과 같이 됩니다.
 프로젝트 B의 의존성 라이브러리 설정에서 `implementation`으로 설정된 의존성 라이브러리들은 내부 구현으로 숨겨져 있기 때문에 프로젝트 A가 프로젝트 C의 Hello 클래스를 사용할 수 없습니다.
-![](refImg/Pasted%20image%2020251202122742.png)
+![그림](refImg/Pasted%20image%2020251202122742.png)
 
 ### implementation과 api의 사용
 `api` 대신 `implementation`을 사용하는 경우 장점은 다음과 같습니다.
@@ -65,36 +65,36 @@ Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵�
 
 1. 부모 클래스 또는 인터페이스에 사용되는 타입
 	- 예를 들어 당신의 프로젝트 B가 **외부 라이브러리 A의 인터페이스와 상속받은 클래스를 외부에 공개할 경우**에 외부의 프로젝트인 C는 외부 라이브러리 A의 존재를 알고 있어야 합니다.
-![](refImg/Pasted%20image%2020251202131147.png)
+![그림](refImg/Pasted%20image%2020251202131147.png)
 
 2. public 메서드 파라미터/반환 타입으로 사용하는 타입
 	- 예를 들어 `public List<User> getUsers()` 메서드와 같이 외부 라이브러리 A의 `List`나 `User` 타입을 반환하면, 당신의 프로젝트를 사용하는 외부의 프로젝트들은 컴파일 시점에 외부 라이브러리 A의 `User` 타입을 알고 있어야 합니다.
-![](refImg/Pasted%20image%2020251202131252.png)
+![그림](refImg/Pasted%20image%2020251202131252.png)
 
 3. public 필드에 사용되는 타입
 	- 외부에 공개된 타입이나 annotation 타입은 외부에서 직접 참조하므로 ABI에 해당됩니다.
 	- 예를 들어 MyLibrary 모듈(프로젝트)이 구현한 클래스에서 외부 라이브러이인 Gson 라이브러리의 JsonElement 타입을 public으로 설정하여 구현하였습니다. 이러한 MyLibrary 모듈을 의존하는 외부 프로젝트인 AppModule이 DataContainer 객체의 element public 필드를 참조한다면 AppModule 모듈은 Gson 라이브러리의 JsonElement를 import 할 수 있어야 합니다. 이렇게 하기 위해서 gson 라이브러리를 api로 의존성 해야 합니다.
-![](refImg/Pasted%20image%2020251202133809.png)
+![그림](refImg/Pasted%20image%2020251202133809.png)
 
 4. public annotation 타입
 	- 외부에 공개되는 annotation 타입은 외부에서 직접 참조할 수 있으므로 ABI에 해당됩니다.
 	- 예를 들어 MyLibrary 모듈에서 validation 외부 라이브러리를 의존하고 그 라이브러리의 애노테이션 중 하나인 `@NotNull`을 필드에 사용합니다. 그리고 MyLibrary를 의존하는 외부 프로젝트인 AppModule 모듈이 프로덕션 코드 중에서 매개변수로 받은 객체의 클래스 정보 중에서 NotNull을 가지고 있는지 확인합니다. 이 상황에서 AppMoudle은 validation 외부 라이브러리를 알아야 합니다.
-![](refImg/Pasted%20image%2020251202140232.png)
+![그림](refImg/Pasted%20image%2020251202140232.png)
 
 `api`를 사용하지 않아야 하는 경우 (ABI에 해당 안됨)
 1. 메서드의 바디에서만 사용되는 타입
 	- 예를 들어 MyLibrary 모듈은 Guava 라이브러리를 의존하고 있습니다. 그리고 processData 메서드를 구현하는 과정에서 Guava 라이브러리의 ImmutableList를 import하여 사용하고 있습니다. 하지만 반환 타입은 List 타입을 사용하고 있기 때문에 외부 프로젝트에서는 ImmutableList 타입을 알지 않아도 됩니다. 그래서 외부 프로젝트인 AppMoudle에서는 DataProcessor 객체를 사용할때 processData 메서드를 호출하여도 ImmutableList 타입은 외부에 노출되지 않고 사용할 수 있습니다. 이러한 경우에 일부로 guava 라이브러리를 `api`로 노출시키지 않아도 됩니다.
-![](refImg/Pasted%20image%2020251202142134.png)
+![그림](refImg/Pasted%20image%2020251202142134.png)
 
 2. private 멤버로 사용되는 타입
 	- 내부에서만 사용되는 private 멤버로 사용되는 타입이라면 `api` 사용하지 않아도 됩니다.
 	- 예를 들어 MyLibrary 모듈에서 lombok 라이브러리를 의존합니다. 그리고 Hello 클래스 구현시 Lombok 라이브러리의 Logger 클래스를 사용할때 private로 선언되어 있고 Hello 클래스에서만 내부적으로 사용되고 있습니다. 이러한 경우에 외부 프로젝트인 AppModule에서 MyLibrary 모듈을 의존하고 Hello 객체를 생성하고 사용해도 Logger에 대한 노출이 없기 때문에 Lombok이 변경되어도 재컴파일하지 않아도 됩니다.
-![](refImg/Pasted%20image%2020251202145159.png)
+![그림](refImg/Pasted%20image%2020251202145159.png)
 
 3. 내부 클래스에서 발견되는 타입
 	- 외부 라이브러리가 오직 외부에 공개되지 않은 내부 클래스(Inner Class)나 익명 클래스에서만 사용될때 해당됩니다.
 	- 예를 들어 MyLibrary 모듈이 StringUtils 외부 라이브러리를 의존합니다. 그러나 MyLibrary 모듈을 사용하는 외부의 프로젝트에서는 ObjectFactory 객체가 create 메서ㄷ를 수행할때 StringUtils 라이브러리를 참조할 필요가 없습니다.
-![](refImg/Pasted%20image%2020251202150247.png)
+![그림](refImg/Pasted%20image%2020251202150247.png)
 
 
 ### implementation과 api 차이 요약
