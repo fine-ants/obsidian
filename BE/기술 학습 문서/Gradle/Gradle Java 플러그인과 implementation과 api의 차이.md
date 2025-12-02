@@ -83,7 +83,11 @@ Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵�
 
 `api`를 사용하지 않아야 하는 경우 (ABI에 해당 안됨)
 1. 메서드의 바디에서만 사용되는 타입
+	- 예를 들어 MyLibrary 모듈은 Guava 라이브러리를 의존하고 있습니다. 그리고 processData 메서드를 구현하는 과정에서 Guava 라이브러리의 ImmutableList를 import하여 사용하고 있습니다. 하지만 반환 타입은 List 타입을 사용하고 있기 때문에 외부 프로젝트에서는 ImmutableList 타입을 알지 않아도 됩니다. 그래서 외부 프로젝트인 AppMoudle에서는 DataProcessor 객체를 사용할때 processData 메서드를 호출하여도 ImmutableList 타입은 외부에 노출되지 않고 사용할 수 있습니다. 이러한 경우에 일부로 guava 라이브러리를 `api`로 노출시키지 않아도 됩니다.
+![](refImg/Pasted%20image%2020251202142134.png)
+
 2. private 멤버로 사용되는 타입
+
 3. 내부 클래스에서 발견되는 타입
 
 
