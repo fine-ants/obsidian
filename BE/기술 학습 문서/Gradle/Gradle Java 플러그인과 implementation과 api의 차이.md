@@ -87,7 +87,8 @@ Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵�
 ![](refImg/Pasted%20image%2020251202142134.png)
 
 2. private 멤버로 사용되는 타입
-
+	- 
+![](refImg/Pasted%20image%2020251202145159.png)
 3. 내부 클래스에서 발견되는 타입
 
 
