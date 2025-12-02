@@ -87,9 +87,38 @@ Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵�
 ![](refImg/Pasted%20image%2020251202142134.png)
 
 2. private 멤버로 사용되는 타입
-	- 
+	- 내부에서만 사용되는 private 멤버로 사용되는 타입이라면 `api` 사용하지 않아도 됩니다.
+	- 예를 들어 MyLibrary 모듈에서 lombok 라이브러리를 의존합니다. 그리고 Hello 클래스 구현시 Lombok 라이브러리의 Logger 클래스를 사용할때 private로 선언되어 있고 Hello 클래스에서만 내부적으로 사용되고 있습니다. 이러한 경우에 외부 프로젝트인 AppModule에서 MyLibrary 모듈을 의존하고 Hello 객체를 생성하고 사용해도 Logger에 대한 노출이 없기 때문에 Lombok이 변경되어도 재컴파일하지 않아도 됩니다.
 ![](refImg/Pasted%20image%2020251202145159.png)
+
 3. 내부 클래스에서 발견되는 타입
+	- 외부 라이브러리가 오직 외부에 공개되지 않은 내부 클래스(Inner Class)나 익명 클래스에서만 사용될때 해당됩니다.
+	- 예를 들어 MyLibrary 모듈이 StringUtils 외부 라이브러리를 의존합니다. 그러나 MyLibrary 모듈을 사용하는 외부의 프로젝트에서는 ObjectFactory 객체가 create 메서ㄷ를 수행할때 StringUtils 라이브러리를 참조할 필요가 없습니다.
+```java
+
+package com.factory;
+
+import org.apache.commons.lang3.StringUtils; // Commons Lang 타입 임포트
+
+public class ObjectFactory {
+
+    // 📌 이 private 클래스 내부에서만 StringUtils를 사용합니다.
+    private static class InternalValidator {
+        public boolean validate(String input) {
+            // StringUtils는 내부 구현에만 사용됩니다.
+            return StringUtils.isNotBlank(input); 
+        }
+    }
+
+    public Object create(String data) {
+        InternalValidator validator = new InternalValidator();
+        if (validator.validate(data)) {
+            return new Object();
+        }
+        return null;
+    }
+}
+```
 
 
 
