@@ -33,4 +33,5 @@ Java-Library를 사용하면 java 플러그인이 제공하는 기본적인 디�
 
 
 ## Gradle implementation과 api의 차이
-Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵션이 존재합니다. 대표적으로 implementation과 api 의존성 설정이 존재합니다. 두 설정은 모두 컴파일 클래스경로(compile classpath)와 런타임 클래스경로(runtime classpath) 두곳 모두에 라이브러리를 설정하는 공통점을 가지고 있습니다. 하지만 대표적인 차이점은 **전의 의존성(transitive dependency)의 여부**입니다.
+Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵션이 존재합니다. 대표적으로 implementation과 api 의존성 설정이 존재합니다. 두 설정은 모두 컴파일 클래스경로(compile classpath)와 런타임 클래스경로(runtime classpath) 두곳 모두에 라이브러리를 설정하는 공통점을 가지고 있습니다. 하지만 대표적인 차이점은 **전의 의존성(transitive dependency)의 컴파일 경로 노출 여부**가 있습니다. 
+전이 의존성이라는 것은 
