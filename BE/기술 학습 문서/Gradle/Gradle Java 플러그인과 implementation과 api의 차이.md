@@ -32,6 +32,11 @@ Java 플러그인과의 차이점은 라이브러리 개발시 어떤 의존성�
 Java-Library를 사용하면 java 플러그인이 제공하는 기본적인 디렉토리 구조, 빌드 테스크(compileJava, jar 등), 그리고 의존성 설정(testImplementation 등)을 모두 자동으로 사용할 수 있습니다.
 
 
-## Gradle implementation과 api의 차이
+## 2. Gradle implementation과 api의 차이
+### 전이 의존성이란 무엇인가?
 Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵션이 존재합니다. 대표적으로 implementation과 api 의존성 설정이 존재합니다. 두 설정은 모두 컴파일 클래스경로(compile classpath)와 런타임 클래스경로(runtime classpath) 두곳 모두에 라이브러리를 설정하는 공통점을 가지고 있습니다. 하지만 대표적인 차이점은 **전의 의존성(transitive dependency)의 컴파일 경로 노출 여부**가 있습니다. 
-전이 의존성이라는 것은 
+전이 의존성은 어떤 프로젝트 A가 직접적으로 명시하지 않은 라이브러리 C인데도 불구하고, 프로젝트 A가 다른 프로젝트 B를 의존하는 것만으로도 라이브러리 C를 사용할 수 있다면 전이 의존성이 있는 것입니다.
+![](refImg/Pasted%20image%2020251202115140.png)
+
+### implementation과 api의 차이
+api 의존성 설정은 전이 의존성을 허용하고 있습니다. 예를 들어 프로젝트 A,B,C가 존재하고 프로젝트 B는 프로젝트 C를 의존하고 프로젝트 A는 프로젝트 B를 의존하는
