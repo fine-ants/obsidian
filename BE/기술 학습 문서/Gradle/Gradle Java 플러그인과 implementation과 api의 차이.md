@@ -29,6 +29,8 @@ Gradle을 기반으로 자바 애플리케이션을 빌드하기 위해서 설�
 ### Java-Library 플러그인은 무엇인가?
 Java-Library 플러그인은 기본 Java 플러그인의 모든 기능을 포함하고, 라이브러리 개발에 필요한 특화된 규칙(예: 프로덕션 코드는 src/main/java에 위치)을 추가합니다.
 Java 플러그인과의 차이점은 라이브러리 개발시 어떤 의존성을 라이브러리의 외부 API로 노출하고(다른 프로젝트가 접근 가능), 어떤 의존성을 내부 구현으로 숨길지(다른 프로젝트가 접근 불가)을 정의할 수 있습니다.(이때 `api`, `implementation` 설정이 사용됨)
+Java-Library를 사용하면 java 플러그인이 제공하는 기본적인 디렉토리 구조, 빌드 테스크(compileJava, jar 등), 그리고 의존성 설정(testImplementation 등)을 모두 자동으로 사용할 수 있습니다.
 
 
-
+## Gradle implementation과 api의 차이
+Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵션이 존재합니다. 대표적으로 implementation과 api 의존성 설정이 존재합니다. 두 설정은 모두 컴파일 클래스경로(compile classpath)와 런타임 클래스경로(runtime classpath) 두곳 모두에 라이브러리를 설정하는 공통점을 가지고 있습니다. 하지만 대표적인 차이점은 **전의 의존성(transitive dependency)의 여부**입니다.
