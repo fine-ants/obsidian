@@ -94,37 +94,23 @@ Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵�
 3. 내부 클래스에서 발견되는 타입
 	- 외부 라이브러리가 오직 외부에 공개되지 않은 내부 클래스(Inner Class)나 익명 클래스에서만 사용될때 해당됩니다.
 	- 예를 들어 MyLibrary 모듈이 StringUtils 외부 라이브러리를 의존합니다. 그러나 MyLibrary 모듈을 사용하는 외부의 프로젝트에서는 ObjectFactory 객체가 create 메서ㄷ를 수행할때 StringUtils 라이브러리를 참조할 필요가 없습니다.
-```java
-
-package com.factory;
-
-import org.apache.commons.lang3.StringUtils; // Commons Lang 타입 임포트
-
-public class ObjectFactory {
-
-    // 📌 이 private 클래스 내부에서만 StringUtils를 사용합니다.
-    private static class InternalValidator {
-        public boolean validate(String input) {
-            // StringUtils는 내부 구현에만 사용됩니다.
-            return StringUtils.isNotBlank(input); 
-        }
-    }
-
-    public Object create(String data) {
-        InternalValidator validator = new InternalValidator();
-        if (validator.validate(data)) {
-            return new Object();
-        }
-        return null;
-    }
-}
-```
-
+![](refImg/Pasted%20image%2020251202150247.png)
 
 
 ### implementation과 api 차이 요약
-`implementation`은 전이 의존성을 허용하지 않아서 어떤 프로젝트를 의존하는 외부의 프로젝트들로부터 의존성 라이브러리들을 노출시키지 않을 수 있습니다.
-반면에 `api`은 전이 의존성을 허용하기 때문에 프로젝트를 의존하는 외부의 프로젝트로부터 의존성 라이브러리를 노출시켜서 사용하게 할 수 있습니다.
+| **구분**                    | **implementation (권장)**                        | **api (제한적 사용)**                                          |
+| ------------------------- | ---------------------------------------------- | --------------------------------------------------------- |
+| **의존성 전파 (Transitivity)** | **차단** (노출 안 함)                                | **허용** (노출 함)                                             |
+| **외부 노출**                 | 이 모듈을 사용하는 **외부 모듈에게 라이브러리 노출 안 함** (전이 의존성 X) | 이 모듈을 사용하는 **외부 모듈에게 라이브러리 노출 함** (전이 의존성 O)              |
+| **사용 목적**                 | 모듈의 **내부 구현**에만 사용하는 의존성 (예: 유틸리티, 로깅 구현체)     | 모듈의 **공개된 API**를 구성하는 데 사용되는 의존성 (예: Public 메서드의 파라미터 타입) |
+| **빌드 성능**                 | **우수함.** 내부 구현 변경 시 외부 모듈은 재컴파일 불필요.           | **낮음.** `api` 의존성 변경 시 이를 사용하는 모든 외부 모듈이 **재컴파일 필요.**     |
+
+## References
+- https://mangkyu.tistory.com/296
+- https://docs.gradle.org/current/userguide/java_library_plugin.html
+- https://docs.gradle.org/current/userguide/java_plugin.html
+- https://robin00q.tistory.com/15
+
 
 
 
