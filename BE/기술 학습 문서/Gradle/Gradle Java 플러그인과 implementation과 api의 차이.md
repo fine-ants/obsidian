@@ -50,7 +50,11 @@ Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵�
 
 ### implementation과 api의 사용
 `api` 대신 `implementation`을 사용하는 경우 장점은 다음과 같습니다.
-- 
+- 컴파일 클래스패스(compile classpath)에 `implementation`으로 설정된 의존성 라이브러리들이 노출되지 않아서 해당 라이브러리들에 대해서 종속적이지 않게 됩니다.
+- 의존성 라이브러리들이 노출되지 않아서 그만큼 컴파일 속도가 빨라집니다.
+- `implementation`으로 설정된 의존성 라이브러리들이 변경되면 다시 컴파일하지 않아도 되서 재컴파일 횟수가 줄어듭니다.
+
+
 
 
 ### implementation과 api 차이 요약
