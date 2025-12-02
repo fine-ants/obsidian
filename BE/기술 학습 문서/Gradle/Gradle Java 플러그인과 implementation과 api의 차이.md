@@ -71,13 +71,22 @@ Gradle 설정에서 의존성 라이브러리 설정시 다양한 설정이 옵�
 	- 예를 들어 `public List<User> getUsers()` 메서드와 같이 외부 라이브러리 A의 `List`나 `User` 타입을 반환하면, 당신의 프로젝트를 사용하는 외부의 프로젝트들은 컴파일 시점에 외부 라이브러리 A의 `User` 타입을 알고 있어야 합니다.
 ![](refImg/Pasted%20image%2020251202131252.png)
 
-3. public 필드에 사용되는 타입, public annotation 타입
+3. public 필드에 사용되는 타입
 	- 외부에 공개된 타입이나 annotation 타입은 외부에서 직접 참조하므로 ABI에 해당됩니다.
 	- 예를 들어 MyLibrary 모듈(프로젝트)이 구현한 클래스에서 외부 라이브러이인 Gson 라이브러리의 JsonElement 타입을 public으로 설정하여 구현하였습니다. 이러한 MyLibrary 모듈을 의존하는 외부 프로젝트인 AppModule이 DataContainer 객체의 element public 필드를 참조한다면 AppModule 모듈은 Gson 라이브러리의 JsonElement를 import 할 수 있어야 합니다. 이렇게 하기 위해서 gson 라이브러리를 api로 의존성 해야 합니다.
 ![](refImg/Pasted%20image%2020251202133809.png)
 
-4. public Annotation 타입
-5. 
+4. public annotation 타입
+	- 외부에 공개되는 annotation 타입은 외부에서 직접 참조할 수 있으므로 ABI에 해당됩니다.
+	- 예를 들어 MyLibrary 모듈에서 validation 외부 라이브러리를 의존하고 그 라이브러리의 애노테이션 중 하나인 `@NotNull`을 필드에 사용합니다. 그리고 MyLibrary를 의존하는 외부 프로젝트인 AppModule 모듈이 프로덕션 코드 중에서 매개변수로 받은 객체의 클래스 정보 중에서 NotNull을 가지고 있는지 확인합니다. 이 상황에서 AppMoudle은 validation 외부 라이브러리를 알아야 합니다.
+![](refImg/Pasted%20image%2020251202140232.png)
+
+`api`를 사용하지 않아야 하는 경우 (ABI에 해당 안됨)
+1. 메서드의 바디에서만 사용되는 타입
+2. private 멤버로 사용되는 타입
+3. 내부 클래스에서 발견되는 타입
+
+
 
 ### implementation과 api 차이 요약
 `implementation`은 전이 의존성을 허용하지 않아서 어떤 프로젝트를 의존하는 외부의 프로젝트들로부터 의존성 라이브러리들을 노출시키지 않을 수 있습니다.
