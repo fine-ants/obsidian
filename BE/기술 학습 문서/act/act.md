@@ -55,7 +55,7 @@ act -W .github/workflows/gcp/ci.cd.production.gcp.yml \
 ---
 키 파일의 값 한줄의 문자열로 변환
 ```shell
-KEY_FILE_PATH="gcp_vm"
+KEY_FILE_PATH="/Users/yonghwankim/.ssh/gcp_vm"
 awk '{printf "%s\\n", $0}' "$KEY_FILE_PATH" | sed 's/\\n$//'
 ```
 
