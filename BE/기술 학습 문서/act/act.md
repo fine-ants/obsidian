@@ -48,7 +48,7 @@ act -W .github/workflows/gcp/ci.cd.production.gcp.yml \
 ```shell
 act -W .github/workflows/gcp/ci.cd.production.gcp.yml \
 --container-architecture linux/amd64 \
---secret-file .secrets
+--secret-file .secrets \
 --job deploy
 ```
 
