@@ -34,7 +34,9 @@ act -W {workflows 파일 경로} --job {job 이름}
 
 예시
 ```shell
-act -W .github/workflows/ci.cd.production.gcp.yml --job build-image
+act -W .github/workflows/gcp/ci.cd.production.gcp.yml \
+--container-architecture linux/amd64 \
+--job build-image
 ```
 
 
