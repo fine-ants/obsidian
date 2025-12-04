@@ -15,6 +15,11 @@ act --version
 act -l
 ```
 
+### 이미지 내려받기
+```shell
+act pull --container-architecture linux/amd64
+```
+
 ### 특정 워크플로우 파일 실행
 형식
 ```shell
