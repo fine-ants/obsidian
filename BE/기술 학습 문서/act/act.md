@@ -45,6 +45,12 @@ act -W .github/workflows/gcp/ci.cd.production.gcp.yml \
 ```
 
 
+```shell
+act -W .github/workflows/gcp/ci.cd.production.gcp.yml \
+--container-architecture linux/amd64 \
+--job deploy
+```
+
 ---
 키 파일의 값 한줄의 문자열로 변환
 ```shell
