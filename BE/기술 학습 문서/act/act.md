@@ -50,7 +50,7 @@ act -W .github/workflows/ci.cd.production.gcp.yml \
 --container-architecture linux/amd64 \
 --secret-file .secrets \
 --job deploy
---debug
+
 ```
 
 ---
