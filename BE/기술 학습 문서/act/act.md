@@ -42,6 +42,7 @@ act -W {workflows 파일 경로} --job {job 이름}
 act -W .github/workflows/ci.cd.production.gcp.yml \
 --container-architecture linux/amd64 \
 --secret-file .secrets \
+--bind \
 --job build-image
 ```
 
@@ -50,6 +51,7 @@ act -W .github/workflows/ci.cd.production.gcp.yml \
 act -W .github/workflows/ci.cd.production.gcp.yml \
 --container-architecture linux/amd64 \
 --secret-file .secrets \
+--bind \
 --job deploy
 
 ```
