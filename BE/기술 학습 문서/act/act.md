@@ -41,6 +41,7 @@ act -W {workflows 파일 경로} --job {job 이름}
 ```shell
 act -W .github/workflows/ci.cd.production.gcp.yml \
 --container-architecture linux/amd64 \
+--secret-file .secrets \
 --job build-image
 ```
 
