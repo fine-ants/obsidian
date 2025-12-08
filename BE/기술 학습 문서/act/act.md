@@ -56,10 +56,7 @@ act -W .github/workflows/ci.cd.production.gcp.yml \
 
 ```
 
----
-키 파일의 값 한줄의 문자열로 변환
-```shell
-KEY_FILE_PATH="/Users/yonghwankim/.ssh/gcp_vm"
-awk '{printf "%s\\n", $0}' "$KEY_FILE_PATH" | sed 's/\\n$//'
-```
 
+```shell
+ENV_FILE=/home/fineants/app/.env.production /bin/bash /home/fineants/app/scripts/gcp/backup_mysql_data.sh
+```
