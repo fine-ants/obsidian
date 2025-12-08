@@ -55,8 +55,3 @@ act -W .github/workflows/ci.cd.production.gcp.yml \
 --job deploy
 
 ```
-
-
-```shell
-ENV_FILE=/home/fineants/app/.env.production /bin/bash /home/fineants/app/scripts/gcp/backup_mysql_data.sh
-```
