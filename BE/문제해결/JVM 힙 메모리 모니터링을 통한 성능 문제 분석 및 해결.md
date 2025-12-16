@@ -5,7 +5,9 @@ VisualVM의 Monitor 기능을 통해서 Spring 서버의 힙 메모리 사용량
 **Monitor 실행 결과**
 ![](refImg/Pasted%20image%2020251216141808.png)
 
-
+힙 덤프 파일을 생성한 다음에 Eclipse Memory Analyzer 도구를 이용하여 히스토그램(Histogram)을 분석합니다. 히스토그램을 분석함으로써 전체 힙 메모리 중에서 가장 많은 공간을 차지하는 클래스가 무엇인지 파악합니다.
+실행 결과를 보면 `byte[]` 배열이 49%
+![](refImg/Pasted%20image%2020251216155333.png)
 
 ## 원인
 ### Problem Suspect 1
