@@ -34,6 +34,17 @@ refreshCurrentPrice 메서드 상세 내용을 추적하면 다음과 같습니�
 	- 현재가 갱신 과정에서 WebClient를 사용하여 외부 API와 지속적으로 통신함
 	- WebClient는 Reactor Netty를 기반으로 하며, 이 과정에서 `byte[]` 형태의 I/O 버퍼와 `reactor-http-nio` 스레드를 사용하게 됨
 
+---
+
+다음으로 힙 덤프의 히스토그램에서 `java.util.concurrent.ConcurrentHasMap$Node`와 `org.aspectj.weaver.reflect.ShadowMatchImpl` 객체가 왜 이렇게 힙 메모리를 많이 점유하는지 분석해봅니다.
+![](refImg/Pasted%20image%2020251216162902.png)
+
+`java.util.concurrent.ConcurrentHasMap$Node`를 대상으로 GC Root를 조회해봅니다. 다음 실행 결과를 보면 `lettuce-eventExecutorLoop-1-1` Thread가 참조하고 있는 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251216162949.png)
+
+위 분석을 통해서 해당 스레드가 어느 메서드에서 실행하고 있는지 CPU 프로파일링을 통해서 추적해봅니다.
+
+
 확인된 메모리 누수 및 비효율 증거
 - I/O 버퍼 누수
 	- `byte[]` 배열이 Shallow Heap의 49% 점유
@@ -44,15 +55,3 @@ refreshCurrentPrice 메서드 상세 내용을 추적하면 다음과 같습니�
 - 로깅/AOP 관련 누수
 	- `ConcurrentHashMap$Node`와 ShadowMatchImpl 객체의 간접적인 참조 누수
 	- `lettuce-eventExecutorLoop` 스레드와 **Logback `LoggerContext`**의 참조 누수 경로가 확인되었으며, 이는 **클래스 로더 누수**와 연관될 가능성이 높음
-	
-
-## 원인
-### Problem Suspect 1
-![](refImg/Pasted%20image%2020251210144630.png)
-
-
-
-## 해결 방법
-
-
-
