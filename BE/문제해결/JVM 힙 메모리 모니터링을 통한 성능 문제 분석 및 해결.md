@@ -18,7 +18,11 @@ VisualVM의 Monitor 기능을 통해서 Spring 서버의 힙 메모리 사용량
 그러면 reactor-http-nio 스레드가 발생하게된 메서드를 추적해봅니다. 그러기 위해서는 VisualVM 툴을 이용하여 프로파일링할때 Profile classes에 `reactor.netty.**` 정규식을 추가합니다.
 ![](refImg/Pasted%20image%2020251216160314.png)
 
+CPU 프로파일링을 해본 결과 우선 첫번째로 scheduling-1이 기록되었고 해당 스케줄링 작업은 KisProductionScheduler 클래스에 의해서 refreshCurrentPrice 메서드가 실행된 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251216160839.png)
 
+refreshCurrentPrice 메서드 상세 내용을 추적하면 다음과 같습니다. 분석 결과 내부적으로 다시 KisService 객체를 이용하여 refreshAllStockCurrentPrice 메서드를 수행합니다.
+![](refImg/Pasted%20image%2020251216161231.png)
 
 
 ## 원인
