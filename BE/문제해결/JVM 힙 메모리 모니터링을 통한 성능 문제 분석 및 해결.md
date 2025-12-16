@@ -13,7 +13,3 @@ Spring 서버를 대상으로 힙 덤프 파일을 생성한 다음에 메모리
 
 
 
-
-```
-java -jar "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005" target/da-ch4-ex1-0.0.1-SNAPSHOT.jar
-```
