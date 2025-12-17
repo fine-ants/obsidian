@@ -36,12 +36,6 @@ refreshCurrentPrice 메서드 상세 내용을 추적하면 다음과 같습니�
 
 ---
 
-다음으로 힙 덤프의 히스토그램에서 `java.util.concurrent.ConcurrentHasMap$Node`객체가 왜 메모리 점유를 많이 하고 있는지 분석해봅니다.
-![](refImg/Pasted%20image%2020251216170242.png)
-
-
-
-
 
 확인된 메모리 누수 및 비효율 증거
 - I/O 버퍼 누수
