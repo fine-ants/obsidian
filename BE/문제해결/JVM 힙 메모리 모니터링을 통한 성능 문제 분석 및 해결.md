@@ -157,4 +157,5 @@ Problem Suspect 2에 대한 내용은 다음과 같습니다.
 ## 원인
 ### Netty DNS Resolver 설정 점검
 Spring Boot 설정에서 Netty가 너무 많은 DNS 채널을 만들지 않도록 캐시 설정을 확인해봅니다.
-WebClient
+WebClient 생성할때 사용하는 HttpClient 설정에서 DNS 리졸버를 공유하도록 설정되었는지 확인해봅니다.
+
