@@ -82,3 +82,52 @@ Eclipse Memory Analyzer 도구의 메모리 누수 의심 보고서 결과는 �
 ## 해결방법
 ### 포인트컷(Pointcut) 범위 좁히기
 현재 설정된 로그 기록 포인트컷은 다음과 같습니다.
+- service 패키지 밑에 있는 모든 메서드를 대상으로 메서드의 실행 전후에 로그를 작성하고 있습니다.
+- 해당 포인트컷 설정은 로그의 유용성이 없다고 판단하여 해당 AOP는 제거할 예정
+```java
+@Component  
+@Aspect  
+@Slf4j  
+@Profile("!test")  
+public class ServiceLogAspect {  
+    private long startTime;  
+  
+    // service의 모든 메서드에 대해 적용  
+    @Pointcut("execution(* co.fineants..service.*.*(..))")  
+    public void pointCut() {  
+  
+    }  
+  
+    // 메서드 호출 전 로그 남기기  
+    @Before("pointCut()")  
+    public void logBefore(JoinPoint joinPoint) {  
+       startTime = System.currentTimeMillis();  
+       String methodName = ((MethodSignature)joinPoint.getSignature()).getMethod().getName();  
+       String args = Arrays.toString(joinPoint.getArgs());  
+       log.info("Entering Service: Method={} with Args={}", methodName, args);  
+    }  
+  
+    // 메서드 호출 후 정상적으로 반환된 경우 로그 남기기  
+    @AfterReturning(pointcut = "pointCut()", returning = "result")  
+    public void logAfterReturning(JoinPoint joinPoint, Object result) {  
+       String methodName = ((MethodSignature)joinPoint.getSignature()).getMethod().getName();  
+       log.info("Exiting Service: Method={}, with Return={}", methodName, result);  
+    }  
+  
+    // 완전히 종료된후 메서드 실행시간 측정하기  
+    @After("pointCut()")  
+    public void logAfter(JoinPoint joinPoint) {  
+       long executionTime = System.currentTimeMillis() - startTime;  
+       String methodName = ((MethodSignature)joinPoint.getSignature()).getMethod().getName();  
+       log.info("Method={}, ExecutionTime={}ms", methodName, executionTime);  
+    }  
+}
+```
+
+### 로그 출력 방식 변경
+- 표준 출력(System.out)은 IntelliJ와 같은 IDE 환경에서 메모리를 점유합니다.
+- 로그 레벨을 DEBUG에서 INFO로 높여서 불필요한 출력을 줄이거나 로컬 실행시에는 파일 로그 출력을 끕니다.
+- 현재 이 환경은 로컬 개발 환경에서 표준 출력하는 것이기 때문에 배포 환경에서는 파일 로그만 출력됩니다.
+- 로컬 개발 환경에서는 콘솔 로그 출력만 하도록 유지하고, 배포 환경에서는 동일하게 유지합니다.
+![](refImg/Pasted%20image%2020251218124102.png)
+
