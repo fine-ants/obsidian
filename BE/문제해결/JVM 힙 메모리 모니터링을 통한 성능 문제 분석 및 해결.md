@@ -65,4 +65,5 @@ Eclipse Memory Analyzer 도구의 메모리 누수 의심 보고서 결과는 �
 ![](refImg/Pasted%20image%2020251218113723.png)
 
 ## 원인
-
+- 현상 : 8개의 `AspectJExpressionPointcut`이 약 11MB를 차지하고 있습니다.
+- 이유 : 
