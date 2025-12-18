@@ -136,3 +136,10 @@ public class ServiceLogAspect {
 실행 결과를 보면 Suspect 3에 해당하는 **AspectJExpressionPointcut** 인스턴스의 메모리 점유가 사라진 것을 볼수 있습니다.
 ![](refImg/Pasted%20image%2020251218130016.png)
 
+
+```
+PROJECT_VERSION="0.0.32"
+IMAGE_TAG="fineants/fineants-app:local-0.0.32"
+
+docker build --platform linux/amd64 --build-arg PROJECT_VERSION="$PROJECT_VERSION" -t $IMAGE_TAG .
+```
