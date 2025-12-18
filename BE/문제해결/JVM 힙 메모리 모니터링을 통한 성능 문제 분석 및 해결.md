@@ -129,17 +129,17 @@ public class ServiceLogAspect {
 - 로그 레벨을 DEBUG에서 INFO로 높여서 불필요한 출력을 줄이거나 로컬 실행시에는 파일 로그 출력을 끕니다.
 - 현재 이 환경은 로컬 개발 환경에서 표준 출력하는 것이기 때문에 배포 환경에서는 파일 로그만 출력됩니다.
 - 로컬 개발 환경에서는 콘솔 로그 출력만 하도록 유지하고, 배포 환경에서는 동일하게 유지합니다.
-![](refImg/Pasted%20image%2020251218124102.png)
+![](refImg/Pasted%20image%2020251218133031.png)
 
 ## 실행 결과 확인
-다음 결과는 포인트컷 클래스를 비활성화하고 로그 출력 방식을 변경한 다음에 메모리 누수 의심 기능을 실행한 결과입니다.
-실행 결과를 보면 Suspect 3에 해당하는 **AspectJExpressionPointcut** 인스턴스의 메모리 점유가 사라진 것을 볼수 있습니다.
-![](refImg/Pasted%20image%2020251218130016.png)
+포인트컷 클래스를 비활성화하고 로그 출력 방식을 변경한 다음에 메모리 누수 의심 기능을 실행합니다.
+로컬 개발 환경에서 배포 환경과 비슷하게 하기 위해서 로그 설정은 배포 환경과 동일하게(파일 로그 출력) 설정하고 실행합니다.
 
+VisualVm으로 힙 사용량을 모니터링한 결과
+- 실행 결과를 보면 여전히 톱니형 패턴은 그대로 유지된 것을 볼수 있습니다. 이는 종목 현재가 갱신 스케줄러에 의해서 5초 간격으로 실행되고 스케줄러 실행시 WebClient를 이용하여 외부 API와 통신하기 힙 사용량이 증가되기 때문에 로그 포인트컷 클래스를 제거하여도 힙 사용량 패턴은 동일한 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251218133324.png)
 
-```
-PROJECT_VERSION="0.0.32"
-IMAGE_TAG="fineants/fineants-app:local-0.0.32"
+MAT 도구를 이용하여 메모리 누수 기능을 수행한 결과
+- 실행 결과를 보면 Suspect 3번에 해당하는 PointCut 인스턴스의 메모리 점유가 제거된 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251218133549.png)
 
-docker build --platform linux/amd64 --build-arg PROJECT_VERSION="$PROJECT_VERSION" -t $IMAGE_TAG .
-```
