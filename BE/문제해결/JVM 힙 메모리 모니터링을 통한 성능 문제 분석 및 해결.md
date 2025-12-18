@@ -131,3 +131,8 @@ public class ServiceLogAspect {
 - 로컬 개발 환경에서는 콘솔 로그 출력만 하도록 유지하고, 배포 환경에서는 동일하게 유지합니다.
 ![](refImg/Pasted%20image%2020251218124102.png)
 
+## 실행 결과 확인
+다음 결과는 포인트컷 클래스를 비활성화하고 로그 출력 방식을 변경한 다음에 메모리 누수 의심 기능을 실행한 결과입니다.
+실행 결과를 보면 Suspect 3에 해당하는 **AspectJExpressionPointcut** 인스턴스의 메모리 점유가 사라진 것을 볼수 있습니다.
+![](refImg/Pasted%20image%2020251218130016.png)
+
