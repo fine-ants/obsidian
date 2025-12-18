@@ -47,3 +47,8 @@ refreshCurrentPrice 메서드 상세 내용을 추적하면 다음과 같습니�
 - 로깅/AOP 관련 누수
 	- `ConcurrentHashMap$Node`와 ShadowMatchImpl 객체의 간접적인 참조 누수
 	- `lettuce-eventExecutorLoop` 스레드와 **Logback `LoggerContext`**의 참조 누수 경로가 확인되었으며, 이는 **클래스 로더 누수**와 연관될 가능성이 높음
+
+---
+
+### 로깅 AOP 관련 누수
+배경
