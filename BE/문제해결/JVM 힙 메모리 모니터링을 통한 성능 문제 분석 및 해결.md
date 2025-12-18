@@ -50,5 +50,19 @@ refreshCurrentPrice 메서드 상세 내용을 추적하면 다음과 같습니�
 
 ---
 
-### 로깅 AOP 관련 누수
-배경
+## 로깅 AOP 관련 누수
+### 배경
+Eclipse Memory Analyzer 도구의 메모리 누수 의심 보고서 결과는 다음과 같습니다.
+![](refImg/Pasted%20image%2020251218113347.png)
+
+첫번째 메모리 누수 의심은 `byte[]` 배열의 데이터가 30.97%를 점유하고 있고 `Object[]` 배열 하나에서 대부분을 참조하고 있습니다. 그리고 이러한 `Object[]` 배열을 Monitor Ctrl-Break 스레드가 참조하고 있습니다.
+![](refImg/Pasted%20image%2020251218113356.png)
+
+세번째 메모리 누수 의심은 AspectJExpressionPointcut 인스턴스가10.35% 메모리 점유하고 있습니다. 해당 인스턴스들은 대부분 `ConcurrentHashMap$Node[]` 배열에서 참조하고 있습니다. 그리고 이러한 배열 데이터는 DefaultListableBeanFactory에 의해서 참조되고 있습니다.
+![](refImg/Pasted%20image%2020251218113559.png)
+
+힌트를 보면 메모리 누수 1, 3은 서로 연관되어 있을 수 있습니다. 왜냐하면 참조 체인이 공통적인 시작을 가지고 있기 때문이라고 합니다.
+![](refImg/Pasted%20image%2020251218113723.png)
+
+## 원인
+
