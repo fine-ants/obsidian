@@ -143,21 +143,3 @@ MAT 도구를 이용하여 메모리 누수 기능을 수행한 결과
 - 실행 결과를 보면 Suspect 3번에 해당하는 PointCut 인스턴스의 메모리 점유가 제거된 것을 볼수 있습니다.
 ![](refImg/Pasted%20image%2020251218133549.png)
 
----
-
-## Netty DNS 관련 자원 누수
-### 배경
-다음 실행 결과는 로그 포인트컷 클래스를 제거한 다음에 로컬 개발 환경에서 실행한 결과입니다.
-![](refImg/Pasted%20image%2020251218141554.png)
-
-Problem Suspect 2에 대한 내용은 다음과 같습니다.
-- 273개의 `ZipFile$Source` 인스턴스가 10.04%를 메모리 점유하고 있습니다.
-- 이 인스턴스들은 `HashMap$Node[]` 배열에서 참조하고 있습니다.
-- `HashMap$Node[]` 배열은 NioDatagramChannel에서 참조하고 있습니다.
-![](refImg/Pasted%20image%2020251218141611.png)
-
-## 원인
-### Netty DNS Resolver 설정 점검
-Spring Boot 설정에서 Netty가 너무 많은 DNS 채널을 만들지 않도록 캐시 설정을 확인해봅니다.
-WebClient 생성할때 사용하는 HttpClient 설정에서 DNS 리졸버를 공유하도록 설정되었는지 확인해봅니다.
-
