@@ -107,7 +107,7 @@ keysthore.p12 파일을 프로젝트의 디렉토리로 복사
 chmod a+rw keystore.p12
 
 scp -i ~/.ssh/gcp_vm \
-    fineants@35.209.165.201:/home/fineants/keystore.p12 \
+    fineants@35.209.156.219:/home/fineants/keystore.p12 \
     ~/Downloads/
 
 cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts/backend/src/main/resources/ssl/production/keystore.p12
