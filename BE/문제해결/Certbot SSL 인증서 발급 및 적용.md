@@ -110,7 +110,7 @@ scp -i ~/.ssh/gcp_vm \
     fineants@35.209.156.219:/home/fineants/keystore.p12 \
     ~/Downloads/
 
-cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fintAnts/backend/src/main/resources/ssl/production/keystore.p12
+cp ~/Downloads/keystore.p12 /Users/yonghwankim/Documents/bootcamp/group/fineAnts/FineAnts-was/src/main/resources/ssl/production/keystore.p12
 ```
 ![](BE/문제해결/refImg/Pasted%20image%2020251111165410.png)
 
